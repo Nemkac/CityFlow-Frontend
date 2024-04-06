@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SigninSignupComponent } from '../signin-signup/signin-signup.component';
 
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [SigninSignupComponent],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css'
 })
 export class SidePannelComponent {
-  //Icons
-  faArrowRight = faArrowRight;
+
 }
