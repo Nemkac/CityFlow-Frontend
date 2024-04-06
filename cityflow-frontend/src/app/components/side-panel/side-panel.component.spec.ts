@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidePannelComponent } from './side-pannel.component';
+import { SidePannelComponent } from './side-panel.component';
 
 describe('SidePannelComponent', () => {
   let component: SidePannelComponent;
