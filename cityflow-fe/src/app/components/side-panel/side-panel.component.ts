@@ -7,27 +7,40 @@ import { User } from '../../models/user';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-profile.component';
 
 
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [SigninSignupComponent, FontAwesomeModule, SidePanelMenuComponent, FormsModule, RouterOutlet,HttpClientModule],
+  imports: [
+    SigninSignupComponent, 
+    FontAwesomeModule, 
+    SidePanelMenuComponent, 
+    FormsModule, 
+    RouterOutlet, 
+    HttpClientModule, 
+    CommonModule,
+    SidePanelProfileComponent
+  ],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css'
 })
 export class SidePannelComponent implements OnInit{
 
-  loggedUser!: User;
-  token = localStorage.getItem('token');
-
-
+  isLoggedIn: boolean = false;
+  
   constructor(private authService : AuthService){}
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
+    this.isLoggedIn = this.authService.isLoggedIn();
+    
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'token') {
+        this.isLoggedIn = !!localStorage.getItem('token');
+      }
+    });
   }
-
- 
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginDTO } from '../dtos/loginDTO';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
 import { RegisterDTO } from '../dtos/registerDTO';
 
@@ -9,6 +9,9 @@ import { RegisterDTO } from '../dtos/registerDTO';
   providedIn: 'root'
 })
 export class AuthService {
+
+  private authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public authStatus: Observable<boolean> = this.authStatusSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +32,11 @@ export class AuthService {
   }
 
   public getUserFromToken(token: String): Observable<User>{
-    return this.http.get<User>(`${this.apiServerUrl}/CityFlow/getUserByToken/${token}`);
+    return this.http.get<User>(`${this.apiServerUrl}/CityFlow/getUserByToken?token=${token}`);
+  }
+
+  public isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
   }
 }

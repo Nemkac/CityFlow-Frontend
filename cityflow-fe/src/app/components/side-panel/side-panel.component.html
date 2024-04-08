@@ -1,10 +1,14 @@
 <div class="flex flex-col px-6 py-12 w-[310px] bg-darkGrey h-[100vh]">
     <img src="../../../assets/LogoWithName.png" class="w-[250px] h-[50px]">
-    <app-signin-signup/>
+    @if(isLoggedIn){
+        <app-side-panel-profile></app-side-panel-profile>
+    } @else {
+        <app-signin-signup/>
+    }
     <hr class="flex w-full text-lightGrey/20 my-10">
-    @if (loggedUser) {
+    @if(isLoggedIn) {
         <app-side-panel-menu></app-side-panel-menu>
     } @else {
-        <div>Not logged in</div>
+        <p>Not logged in</p>
     }
 </div>
