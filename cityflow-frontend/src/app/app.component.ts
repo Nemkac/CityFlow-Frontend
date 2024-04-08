@@ -10,5 +10,5 @@ import { SidePannelComponent } from './components/side-panel/side-panel.componen
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'cityflow-frontend';
+  title = 'cityflow-frontend';  
 }
