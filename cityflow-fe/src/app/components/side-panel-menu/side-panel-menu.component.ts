@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { response } from 'express';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-panel-menu',
@@ -26,17 +27,41 @@ export class SidePanelMenuComponent implements OnInit{
   showProfile : boolean = false;
   showCards : boolean = false;
   showInbox : boolean = false;
+  showRoutes : boolean = false;
+  showEmployees: boolean = false;
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
+  loggedUserRole : string  = '';
 
-  ngOnInit(): void {}
+  constructor(private authService : AuthService,
+              private router: Router){}
+
+  ngOnInit(): void {
+    this.fetchUser();
+  }
+
+  public fetchUser() : void {
+    if(this.token != null){
+      this.authService.getUserFromToken(this.token).subscribe(
+        (response : User) => {
+          this.loggedUser = response;
+          this.loggedUserRole = this.loggedUser.roles;
+        },
+        (error: HttpErrorResponse) => {
+          console.log('Error fetching user data:\n', error.message);
+        }
+      )
+    }
+  }
 
   public viewHome() : void{
     this.showHome = true;
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
+    this.showRoutes = false;
+    this.showEmployees = false;
   }
   
   public viewProfile() : void{
@@ -44,6 +69,8 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = true;
     this.showCards = false;
     this.showInbox = false;
+    this.showRoutes = false;
+    this.showEmployees = false;
   }
 
   public viewCards() : void{
@@ -58,5 +85,31 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = true;
+    this.showRoutes = false;
+    this.showEmployees = false;
+  }
+
+  public viewRoutes() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showRoutes = true;
+    this.showInbox = false;
+    this.navigateToRoutes();
+  }
+
+  public viewEmployees() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showEmployees = true;
+    this.showInbox = false;
+    this.navigateToEmployees();
+  }
+
+  public navigateToRoutes() : void {
+    this.router.navigate(['/routes']);
+  }
+
+  public navigateToEmployees() : void {
+    this.router.navigate(['/employees']);
   }
 }
