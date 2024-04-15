@@ -71,6 +71,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showRoutes = false;
     this.showEmployees = false;
+    this.navigateToProfile();
   }
 
   public viewCards() : void{
@@ -111,5 +112,9 @@ export class SidePanelMenuComponent implements OnInit{
 
   public navigateToEmployees() : void {
     this.router.navigate(['/employees']);
+  }
+
+  public navigateToProfile() : void {
+    this.router.navigate(['/profile']);
   }
 }
