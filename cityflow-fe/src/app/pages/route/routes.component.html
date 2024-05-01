@@ -1,6 +1,6 @@
-<div class="flex flex-col w-full h-full px-4 pt-4 pb-8 font-manrope text-white items-center justify-between">
-    <div class="flex flex-row w-full h-[13%] justify-between">
-        <div class="flex flex-col w-[300px]">
+<div class="flex flex-col w-full h-full p-4 font-manrope text-white items-center justify-between">
+    <div class="flex flex-row w-full h-[13%] justify-between items-center">
+        <div class="flex flex-col w-[400px]">
             <p class="text-[16px] font-normal">Enter route name</p>
             <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
                         h-[50px] border-white/60 bg-white/0 w-full px-2 py-4 items-center">
@@ -12,7 +12,7 @@
                 </button>
             </div>
         </div>
-        <div class="flex flex-row ml-[100px]">
+        <div class="flex flex-row">
             <div class="flex flex-col w-[220px]">
                 <p class="text-[16px] font-normal">Enter starting point</p>
                 <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
@@ -38,11 +38,11 @@
                 </div>
             </div>
         </div>
-        <button class="flex items-center justify-center bg-white/0 h-full ml-[100px]">
+        <button class="flex items-center justify-center bg-white/0 h-full">
             <p class="underline font-semibold text-[24px]">Show all</p>
         </button>
     </div>
-    <div class="flex flex-col w-full h-[70%] overflow-y-scroll">
+    <div class="flex flex-col h-[70%] w-full overflow-y-auto">
         @for (route of routes; track $index) {
             <app-route-list-item
                 [routeId]="route.id"

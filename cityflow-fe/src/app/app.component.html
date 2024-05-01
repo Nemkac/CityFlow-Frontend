@@ -1,6 +1,8 @@
-<div class="flex flex-row bg-grey overflow-hidden">
-  <div class="flex w-auto">
+<div class="flex flex-row bg-grey w-[100vw] h-[100vh] overflow-hidden justify-between">
+  <div class="flex w-[16%] h-full">
     <app-side-panel></app-side-panel>
   </div>
-  <router-outlet/>
+  <div class="flex-1 grow w-[84%] h-full p-4">
+    <router-outlet/>
+  </div>
 </div>
