@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Route } from '../models/route';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { RouteDTO } from '../dtos/routeDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class RoutesService {
 
   public showRoute(id: number) : void{
     this.router.navigate([`/route/${id}`]);
+  }
+
+  public saveRoute(route: RouteDTO) : Observable<Route> {
+    return this.http.post<Route>(`${this.apiServerUrl}/CityFlow/saveRoute`, route);
   }
 }

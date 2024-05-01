@@ -1,25 +1,40 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '../../models/location';
+import { FormsModule } from '@angular/forms';
+import { RouteDTO } from '../../dtos/routeDTO';
+import { RoutesService } from '../../service/routes.service';
+import { Route } from '../../models/route';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-route',
   standalone: true,
-  imports: [],
+  imports: [FontAwesomeModule, FormsModule],
   templateUrl: './create-route.component.html',
   styleUrl: './create-route.component.css'
 })
 export class CreateRouteComponent implements AfterViewInit {
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+  faPlus = faPlus;
+
   private map!: L.Map;
   private routingControl: any; // Promenljiva za čuvanje rutiranja
   private coordinates: L.LatLng[] = []; // Niz za čuvanje koordinata
-  private toleranceRadius = 40; // Tolerancija u metrima
+  private toleranceRadius = 30; // Tolerancija u metrima
   private routeFinished = false; // Promenljiva koja prati da li je ruta završena
   
-  private startingStation!: L.LatLng;
-  private endingStation!: L.LatLng;
-  private stations: L.LatLng[] = [];
+  routeName: string = "";
+  openingTime: string = "";
+  closingTime: string = "";
+  startingStation!: L.LatLng;
+  endingStation!: L.LatLng;
+  stations: L.LatLng[] = [];
+
+  constructor(private routeService : RoutesService){}
 
   ngAfterViewInit(): void {
     this.loadMap();
@@ -69,31 +84,55 @@ export class CreateRouteComponent implements AfterViewInit {
     const startingPoint = this.coordinates[0];
     this.startingStation = startingPoint;
     console.log(this.startingStation);
-
+  
     const endingPoint = this.coordinates[this.coordinates.length - 1];
     this.endingStation = endingPoint;
     console.log(this.endingStation);
-
-    // Postavljamo markere za početak i kraj rute
+  
+    this.stations = this.coordinates.slice(1, -1).map(coordinate => L.latLng(coordinate.lat, coordinate.lng));
+    console.log(this.stations);
+  
     L.marker(startingPoint, { icon: this.startingIcon }).addTo(this.map).bindPopup('Starting Point');
     L.marker(endingPoint, { icon: this.endingIcon }).addTo(this.map).bindPopup('Ending Point');
   }
 
-  // Stil za marker početne tačke
   private startingIcon = L.icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x-green.png',
+    iconUrl: 'assets/flag.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
 
-  // Stil za marker krajnje tačke
   private endingIcon = L.icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x-red.png',
+    iconUrl: 'assets/pin.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
+
+  public saveRoute() : void {
+    const startingPoint: Location = { latitude: this.startingStation.lat, longitude: this.startingStation.lng };
+    const endingPoint: Location = { latitude: this.endingStation.lat, longitude: this.endingStation.lng };
+
+    const stationsArray: Location[] = this.stations.map(station => ({ latitude: station.lat, longitude: station.lng }));
+    const routeDTO: RouteDTO = {
+      routeName: this.routeName,
+      startingPoint: startingPoint,
+      endingPoint: endingPoint,
+      stations: stationsArray,
+      openingTime: this.openingTime,
+      closingTime: this.closingTime
+    };
+
+    this.routeService.saveRoute(routeDTO).subscribe(
+      (response : Route) => {
+        console.log(response);
+      },
+      (error : HttpErrorResponse) => {
+        console.log("Error while creating route: \n", error.message);
+      }
+    );
+  } 
 }
