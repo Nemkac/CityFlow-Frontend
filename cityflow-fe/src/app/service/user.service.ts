@@ -14,8 +14,8 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) { }
   
-  public updateProfile(requestBody : EditProfileDTO, id: number) : Observable<string>{
-    return this.http.post<string>(`${this.apiServerUrl}/CityFlow/Account/updateProfile/${id}`, requestBody);  
+  public updateProfile(requestBody : EditProfileDTO, headers: HttpHeaders) : Observable<string>{
+    return this.http.post<string>(`${this.apiServerUrl}/Account/updateProfile`, requestBody, {headers: headers});  
   }
   
 }

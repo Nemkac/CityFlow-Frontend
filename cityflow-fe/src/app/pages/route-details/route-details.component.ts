@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Route } from '../../models/route';
 import { RoutesService } from '../../service/routes.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-route-details',
@@ -13,7 +14,7 @@ import { faBus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './route-details.component.html',
   styleUrl: './route-details.component.css'
 })
-export class RouteDetailsComponent implements OnInit{
+export class RouteDetailsComponent implements OnInit, AfterViewInit{
   //Icons
   faBus = faBus;
   faPen = faPen;
@@ -43,6 +44,21 @@ export class RouteDetailsComponent implements OnInit{
         console.log("Error while fetching route: \n", error.message);
       }
     )
+  }
+
+  @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.loadMap();
+  }
+
+  loadMap() {
+    const map = L.map(this.mapContainer.nativeElement).setView(
+      [45.267136, 19.833549],
+      12
+    );
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.marker([45.267136, 19.833549]).addTo(map);
   }
 
 }
