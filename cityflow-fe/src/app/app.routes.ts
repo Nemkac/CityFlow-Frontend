@@ -6,6 +6,7 @@ import { EmployeesComponent } from './pages/employees/employees.component';
 import { RouteDetailsComponent } from './pages/route-details/route-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewEmployeeFormComponent } from './components/new-employee-form/new-employee-form.component';
+import { ReportMalfunctionComponent } from './components/report-malfunction/report-malfunction.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path:"employees", component: EmployeesComponent},
     {path:"route/:id", component: RouteDetailsComponent},
     {path:"profile", component: ProfileComponent},
-    {path:"newEmployee", component: NewEmployeeFormComponent}
+    {path:"newEmployee", component: NewEmployeeFormComponent},
+    {path:"reportMalfunction", component:ReportMalfunctionComponent}
 ];
