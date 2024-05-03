@@ -15,7 +15,8 @@
         <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10">
             <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
         </button>
-        <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center">
+        <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center"
+                (click)="deleteRoute(routeId)">
             <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
         </button>
     </div>

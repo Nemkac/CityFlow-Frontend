@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-route-list-item',
@@ -25,8 +26,12 @@ export class RouteListItemComponent {
 
   constructor(private routeService: RoutesService){}
 
-  public showRoute(routeId : number) : void{
+  public showRoute(routeId : number) : void {
     this.routeService.showRoute(routeId);
+  }
+
+  public deleteRoute(routeId: number): void {
+    this.routeService.deleteRoute(routeId).subscribe();
   }
 
 }

@@ -30,4 +30,8 @@ export class RoutesService {
   public saveRoute(route: RouteDTO) : Observable<Route> {
     return this.http.post<Route>(`${this.apiServerUrl}/CityFlow/saveRoute`, route);
   }
+
+  public deleteRoute(id: number) : Observable<string>{
+    return this.http.delete<string>(`${this.apiServerUrl}/CityFlow/deleteRoute/${id}`);
+  }
 }
