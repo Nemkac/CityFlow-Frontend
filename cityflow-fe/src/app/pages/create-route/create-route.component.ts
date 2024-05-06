@@ -9,6 +9,8 @@ import { RouteDTO } from '../../dtos/routeDTO';
 import { RoutesService } from '../../service/routes.service';
 import { Route } from '../../models/route';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-route',
@@ -34,7 +36,9 @@ export class CreateRouteComponent implements AfterViewInit {
   endingStation!: L.LatLng;
   stations: L.LatLng[] = [];
 
-  constructor(private routeService : RoutesService){}
+  constructor(private routeService : RoutesService,
+              private toast: NgToastService,
+              private router: Router){}
 
   ngAfterViewInit(): void {
     this.loadMap();
@@ -129,6 +133,10 @@ export class CreateRouteComponent implements AfterViewInit {
     this.routeService.saveRoute(routeDTO).subscribe(
       (response : Route) => {
         console.log(response);
+        this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
+        setTimeout(() => {
+          this.router.navigate(['/routes'])
+        }, 3000);
       },
       (error : HttpErrorResponse) => {
         console.log("Error while creating route: \n", error.message);

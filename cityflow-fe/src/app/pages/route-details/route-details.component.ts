@@ -58,7 +58,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     const startingPoint: any = this.route.startingPoint;
     this.startingPoint = L.latLng(startingPoint.latitude, startingPoint.longitude);
 
-    const endingPoint: any = this.route.startingPoint;
+    const endingPoint: any = this.route.endPoint;
     this.endingPoint = L.latLng(endingPoint.latitude, endingPoint.longitude);
 
     const stations: any[] = this.route.stations;
@@ -68,8 +68,6 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     console.log('Ending station: \n', this.endingPoint);
     console.log('Stations: \n', this.stations);
   }
-
-
 
   ngAfterViewInit(): void {
     this.loadMap();
@@ -84,12 +82,12 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
     L.marker([this.startingPoint.lat, this.startingPoint.lng], { icon: this.startingIcon }).addTo(map);
 
-    L.marker([this.endingPoint.lat, this.endingPoint.lng], { icon: this.endingIcon }).addTo(map);
-  
     this.stations.forEach(station => {
       L.marker([station.lat, station.lng], { icon: this.busIcon }).addTo(map);
     });
 
+    L.marker([this.endingPoint.lat, this.endingPoint.lng], { icon: this.endingIcon }).addTo(map);
+  
     const waypoints = [
       L.latLng(this.startingPoint.lat, this.startingPoint.lng),
       ...this.stations.map(station => L.latLng(station.lat, station.lng)),

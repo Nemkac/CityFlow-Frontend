@@ -3,6 +3,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgToastService } from 'ng-angular-popup'
 
 @Component({
   selector: 'app-route-list-item',
@@ -24,14 +25,21 @@ export class RouteListItemComponent {
   faPen = faPen;
   faTrash = faTrash;
 
-  constructor(private routeService: RoutesService){}
+  constructor(private routeService: RoutesService,
+              private toast: NgToastService){}
 
   public showRoute(routeId : number) : void {
     this.routeService.showRoute(routeId);
   }
 
   public deleteRoute(routeId: number): void {
-    this.routeService.deleteRoute(routeId).subscribe();
+    this.routeService.deleteRoute(routeId).subscribe(response => {
+      console.log(response);
+      this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    });
   }
 
 }
