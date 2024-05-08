@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSearch, faArrowDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../../models/user';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-employees',
@@ -15,11 +17,15 @@ export class EmployeesComponent {
   faSearch = faSearch;
   faArrowDown = faArrowDown;
   faPlus = faPlus;
+  users: User[] = [];
 
-  constructor(private router : Router){}
+  constructor(private router: Router, private userService: UserService) {}
 
-  public navigateToAddNewEmployee() : void {
-    this.router.navigate(['/newEmployee']);
+  showEmployees(): void {
+    this.router.navigate(['/employees-list']);
   }
 
+  navigateToAddNewEmployee(): void {
+    this.router.navigate(['/newEmployee']);
+  }
 }
