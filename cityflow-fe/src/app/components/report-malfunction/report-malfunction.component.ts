@@ -32,6 +32,7 @@ export class ReportMalfunctionComponent implements OnInit{
         console.log("Report : ", report);
       }
     )
+    window.location.reload();
   }
 
 }
