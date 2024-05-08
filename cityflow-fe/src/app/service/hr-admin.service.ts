@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDTO } from '../dtos/userDTO';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { newUserDTO } from '../dtos/newUserDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +18,15 @@ export class HrAdminService {
   public register(requestBody:UserDTO):Observable<UserDTO>{
     return this.http.post<UserDTO>(`${this.apiServerUrl}/CityFlow/RegisterUser`, requestBody);
   }
+
+  public addUser(requestBody: newUserDTO): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/addUser`, requestBody);
+  }
+  deleteUser(userId: number, reason: string): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/deleteUser/${userId}`, reason);
+  }
+  public updateUser(userId: number, userDTO: UserDTO): Observable<User> {
+    return this.http.post<User>(`${this.apiServerUrl}/CityFlow/updateUser/${userId}`, userDTO);
+  }
+
 }
