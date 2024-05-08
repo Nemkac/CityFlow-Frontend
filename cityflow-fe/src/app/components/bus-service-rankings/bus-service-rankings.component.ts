@@ -39,7 +39,14 @@ export class BusServiceRankingsComponent implements OnInit{
   }
 
   
-  moveDown(bus:Bus){}
+  moveDown(busId:number){
+    this.serviceAdminService.moveBusDownByRank(busId).subscribe(
+      (rankings) => {
+        console.log("Rankings : ", rankings);
+      }
+    )
+    window.location.reload;
+  }
 
 
 }

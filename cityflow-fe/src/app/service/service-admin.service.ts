@@ -23,4 +23,8 @@ export class ServiceAdminService{
     public moveBusUpByRank(busId:number):Observable<ServiceRanking[]>{
         return this.http.get<ServiceRanking[]>(`${this.apiServerUrl}/CityFlow/moveBusUpByRank/${busId}`);
     }
+
+    public moveBusDownByRank(busId:number):Observable<ServiceRanking[]>{
+        return this.http.get<ServiceRanking[]>(`${this.apiServerUrl}/CityFlow/moveBusDownByRank/${busId}`);
+    }
 }
