@@ -9,6 +9,8 @@ import { NewEmployeeFormComponent } from './components/new-employee-form/new-emp
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { UpdateEmployeFormComponent } from './components/update-employe-form/update-employe-form.component';
 import { CreateRouteComponent } from './pages/create-route/create-route.component';
+import { UserBalanceComponent } from './pages/user-balance/user-balance.component';
+import { UserCardBalanceComponent } from './pages/user-card-balance/user-card-balance.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -20,5 +22,7 @@ export const routes: Routes = [
     {path:"newEmployee", component: NewEmployeeFormComponent},
     {path:'employees-list', component: EmployeesListComponent },
     {path:'update-employee/:id', component: UpdateEmployeFormComponent },
-    {path:"newRoute", component: CreateRouteComponent}
+    {path:"newRoute", component: CreateRouteComponent},
+    {path:"updateUserBalance", component: UserBalanceComponent},
+    {path:"updateUserCardBalance", component: UserCardBalanceComponent}
 ];

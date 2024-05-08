@@ -29,6 +29,8 @@ export class SidePanelMenuComponent implements OnInit{
   showInbox : boolean = false;
   showRoutes : boolean = false;
   showEmployees: boolean = false;
+  showUserBalance: boolean = false;
+  showUserCardBalance: boolean = false;
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -62,6 +64,8 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showRoutes = false;
     this.showEmployees = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = false;
   }
   
   public viewProfile() : void{
@@ -71,7 +75,10 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showRoutes = false;
     this.showEmployees = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = false;
     this.navigateToProfile();
+  
   }
 
   public viewCards() : void{
@@ -88,6 +95,8 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = true;
     this.showRoutes = false;
     this.showEmployees = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = false;
   }
 
   public viewRoutes() : void{
@@ -105,6 +114,22 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.navigateToEmployees();
   }
+  public viewUserBalance() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showInbox = false;
+    this.showUserBalance = true;
+    this.showUserCardBalance = false;
+    this.navigateToEmployees();
+  }
+  public viewUserCardBalance() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showInbox = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = true;
+    this.navigateToUserCardBalance();
+  }
 
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
@@ -116,5 +141,11 @@ export class SidePanelMenuComponent implements OnInit{
 
   public navigateToProfile() : void {
     this.router.navigate(['/profile']);
+  }
+  public navigateToUserBalance() : void {
+    this.router.navigate(['/updateUserBalance']);
+  }
+  public navigateToUserCardBalance() : void {
+    this.router.navigate(['/updateUserCardBalance']);
   }
 }
