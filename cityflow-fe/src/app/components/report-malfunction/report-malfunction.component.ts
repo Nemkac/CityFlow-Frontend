@@ -17,7 +17,15 @@ export class ReportMalfunctionComponent implements OnInit{
   testReport(){
     this.driverService.testReport().subscribe(
       (report) => {
-        console.log("Niga report :",report);
+        console.log("Report :",report);
+      }
+    )
+  }
+
+  reportMalfunction(driverId:number){
+    this.driverService.reportMalfunction(driverId).subscribe(
+      (report) => {
+        console.log("Report : ", report);
       }
     )
   }
