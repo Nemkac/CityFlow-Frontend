@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DriverService } from '../../service/driver.service';
+import { ServiceRanking } from '../../models/serviceRanking';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-report-malfunction',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './report-malfunction.component.html',
   styleUrl: './report-malfunction.component.css'
 })
