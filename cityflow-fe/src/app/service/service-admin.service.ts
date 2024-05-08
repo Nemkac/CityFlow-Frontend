@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { ServiceRanking } from "../models/serviceRanking";
+import { BusServicing } from "../models/busServicing";
+import { TimeSlot } from "../models/timeSlot";
 
 
 
@@ -26,5 +28,13 @@ export class ServiceAdminService{
 
     public moveBusDownByRank(busId:number):Observable<ServiceRanking[]>{
         return this.http.get<ServiceRanking[]>(`${this.apiServerUrl}/CityFlow/moveBusDownByRank/${busId}`);
+    }
+
+    public bookServiceViaDate(date:Date):Observable<BusServicing[]>{
+        return this.http.put<BusServicing[]>(`${this.apiServerUrl}/CityFlow/bookServicesOneSlotViaDate`,date);
+    }
+
+    public bookService(timeSlot:TimeSlot):Observable<BusServicing[]>{
+        return this.http.put<BusServicing[]>(`${this.apiServerUrl}/CityFlow/bookServicesOneSlot`,timeSlot);
     }
 }

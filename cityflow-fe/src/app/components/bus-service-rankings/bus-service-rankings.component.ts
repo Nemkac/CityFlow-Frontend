@@ -4,20 +4,23 @@ import { ServiceRanking } from '../../models/serviceRanking';
 import { Bus } from '../../models/bus';
 import { NgFor } from '@angular/common';
 import { AppComponent } from '../../app.component';
+import { FormsModule, NgModel } from '@angular/forms';
+import { TimeSlot, TimeSlotImpl } from '../../models/timeSlot';
 
 
-export class AppModule{}
+
 
 @Component({
   selector: 'app-bus-service-rankings',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor,FormsModule],
   templateUrl: './bus-service-rankings.component.html',
   styleUrl: './bus-service-rankings.component.css'
 })
 export class BusServiceRankingsComponent implements OnInit{
 
   rankings!:ServiceRanking[];
+  timeSlotDate!:Date;
 
   constructor(private serviceAdminService:ServiceAdminService
   ) {}
@@ -53,8 +56,22 @@ export class BusServiceRankingsComponent implements OnInit{
     window.location.reload;
   }
 
-  addTimeSlots(){
+  addTimeSlotViaDate(timeSlotDate:Date){
+    console.log(timeSlotDate);
+    this.serviceAdminService.bookServiceViaDate(timeSlotDate).subscribe(
+      (services) => {
+        console.log(services);
+      }
+    )
+  }
 
+  addTimeSlot(date:Date){
+    const timeSlot = new TimeSlotImpl(date, 60);
+    this.serviceAdminService.bookService(timeSlot).subscribe(
+      (services) => {
+        console.log(services);
+      }
+    )
   }
 
 
