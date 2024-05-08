@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NewEmployeeFormComponent } from './components/new-employee-form/new-employee-form.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { UpdateEmployeFormComponent } from './components/update-employe-form/update-employe-form.component';
+import { CreateRouteComponent } from './pages/create-route/create-route.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -17,7 +18,7 @@ export const routes: Routes = [
     {path:"route/:id", component: RouteDetailsComponent},
     {path:"profile", component: ProfileComponent},
     {path:"newEmployee", component: NewEmployeeFormComponent},
-    {path: 'employees-list', component: EmployeesListComponent },
-    { path: 'update-employee/:id', component: UpdateEmployeFormComponent }
-
+    {path:'employees-list', component: EmployeesListComponent },
+    {path:'update-employee/:id', component: UpdateEmployeFormComponent },
+    {path:"newRoute", component: CreateRouteComponent}
 ];

@@ -4,7 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 import { EditProfileDTO } from '../../dtos/editProfileDTO';
 
@@ -29,12 +29,11 @@ export class ProfileComponent implements OnInit{
 
   public editProfile(RegisterForm : NgForm) : void {
     if(this.token != null){
-      console.log(this.token)
       const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-        });
-      this.userService.updateProfile(RegisterForm.value, this.loggedUser.id,headers).subscribe(
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${this.token}`
+      });
+      this.userService.updateProfile(RegisterForm.value, headers).subscribe(
         (response: string) => {
           console.log(response);
         },
