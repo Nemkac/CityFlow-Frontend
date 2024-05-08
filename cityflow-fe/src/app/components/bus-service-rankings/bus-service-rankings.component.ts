@@ -41,9 +41,9 @@ export class BusServiceRankingsComponent implements OnInit{
     this.serviceAdminService.moveBusUpByRank(busId).subscribe(
       (rankings) => {
         console.log("Rankings : ", rankings);
+        window.location.reload;
       }
     )
-    window.location.reload;
   }
 
   
@@ -51,9 +51,9 @@ export class BusServiceRankingsComponent implements OnInit{
     this.serviceAdminService.moveBusDownByRank(busId).subscribe(
       (rankings) => {
         console.log("Rankings : ", rankings);
+        window.location.reload;
       }
     )
-    window.location.reload;
   }
 
   addTimeSlotViaDate(timeSlotDate:Date){
@@ -63,6 +63,7 @@ export class BusServiceRankingsComponent implements OnInit{
         console.log(services);
       }
     )
+    window.location.reload();
   }
 
   addTimeSlot(date:Date){
@@ -72,6 +73,7 @@ export class BusServiceRankingsComponent implements OnInit{
         console.log(services);
       }
     )
+    window.location.reload();
   }
 
 
