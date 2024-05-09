@@ -32,7 +32,7 @@ export class BusServiceRankingsComponent implements OnInit{
     this.serviceAdminService.getRankings().subscribe(
       (serviceRankings) => {
         this.rankings = serviceRankings;
-        console.log("stae");
+        this.rankings.sort((a,b) => a.rank - b.rank);
       }
     )
   }
@@ -41,7 +41,8 @@ export class BusServiceRankingsComponent implements OnInit{
     this.serviceAdminService.moveBusUpByRank(busId).subscribe(
       (rankings) => {
         console.log("Rankings : ", rankings);
-        window.location.reload;
+        //window.location.reload;
+        this.getRankings();
       }
     )
   }
@@ -51,7 +52,8 @@ export class BusServiceRankingsComponent implements OnInit{
     this.serviceAdminService.moveBusDownByRank(busId).subscribe(
       (rankings) => {
         console.log("Rankings : ", rankings);
-        window.location.reload;
+        //window.location.reload;
+        this.getRankings();
       }
     )
   }

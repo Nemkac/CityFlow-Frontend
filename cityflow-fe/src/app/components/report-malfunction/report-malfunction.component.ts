@@ -3,6 +3,7 @@ import { DriverService } from '../../service/driver.service';
 import { ServiceRanking } from '../../models/serviceRanking';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Driver } from '../../models/driver';
 
 @Component({
   selector: 'app-report-malfunction',
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class ReportMalfunctionComponent implements OnInit{
 
   commentary!:string;
+  driver!:Driver
 
   constructor(private driverService:DriverService) {}
   ngOnInit(): void {}
