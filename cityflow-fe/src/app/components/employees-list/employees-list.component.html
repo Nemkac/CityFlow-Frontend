@@ -19,7 +19,7 @@
       <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="editEmployee(user.id)">
         <img src="assets/EditEmployee.png" alt="Edit Employee" class="w-7 h-7">
       </button>
-      <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center mr-2 sm:mr-2">
+      <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="openAssignSalaryForm(user.id)">
         <img src="assets/UserSalary.png" alt="Edit Salary" class="w-6 h-6">
       </button>
       <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center" (click)="deleteUser(user.id, reason)">

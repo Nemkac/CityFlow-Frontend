@@ -7,21 +7,25 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserDTO } from '../../dtos/userDTO';
 import { Router } from '@angular/router';
+import { SalaryDTO } from '../../dtos/salaryDTO';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal instead of NgbActiveModal
+import { AssignSalaryFormComponent } from '../assign-salary-form/assign-salary-form.component';
 
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css'],
   standalone: true,
-  imports: [CommonModule,
-            FormsModule 
-  ]
+  imports: [CommonModule, FormsModule]
 })
 export class EmployeesListComponent implements OnInit {
   users$!: Observable<User[]>;
   reason: string = '';
+  selectedEmployee: User | null = null;
+  userId: any;
 
   constructor(
+    private modalService: NgbModal, // Use NgbModal here instead of NgbActiveModal
     private userService: UserService,
     private hrAdminService: HrAdminService,
     private router: Router
@@ -49,4 +53,14 @@ export class EmployeesListComponent implements OnInit {
     this.router.navigate(['/update-employee', userId]);
   }
 
+  openAssignSalaryForm(userId: number) {
+    const modalRef = this.modalService.open(
+      AssignSalaryFormComponent,
+      { backdrop: 'static', keyboard: true }
+    );
+  
+    // Pass the userId to the component instance
+    modalRef.componentInstance.userId = userId;
+  }
+  
 }

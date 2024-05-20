@@ -11,6 +11,7 @@ import { UpdateEmployeFormComponent } from './components/update-employe-form/upd
 import { CreateRouteComponent } from './pages/create-route/create-route.component';
 import { UserBalanceComponent } from './pages/user-balance/user-balance.component';
 import { UserCardBalanceComponent } from './pages/user-card-balance/user-card-balance.component';
+import { AssignSalaryFormComponent } from './components/assign-salary-form/assign-salary-form.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path:"newEmployee", component: NewEmployeeFormComponent},
     {path:'employees-list', component: EmployeesListComponent },
     {path:'update-employee/:id', component: UpdateEmployeFormComponent },
+    {path:'assign-salary/:id', component: AssignSalaryFormComponent },
     {path:"newRoute", component: CreateRouteComponent},
     {path:"updateUserBalance", component: UserBalanceComponent},
     {path:"updateUserCardBalance", component: UserCardBalanceComponent}

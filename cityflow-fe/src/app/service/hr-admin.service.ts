@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDTO } from '../dtos/userDTO';
+
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { newUserDTO } from '../dtos/newUserDTO';
+import { SalaryDTO } from '../dtos/salaryDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,10 @@ export class HrAdminService {
   }
   public updateUser(userId: number, userDTO: UserDTO): Observable<User> {
     return this.http.post<User>(`${this.apiServerUrl}/CityFlow/updateUser/${userId}`, userDTO);
+  }
+
+  assignSalary(userId: number, salaryDTO: SalaryDTO): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/assignSalary/${userId}`, salaryDTO);
   }
 
 }

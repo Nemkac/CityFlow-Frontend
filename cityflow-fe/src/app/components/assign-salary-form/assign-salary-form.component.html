@@ -1,0 +1,41 @@
+<div class="fixed inset-0 flex items-center justify-center bg-[#000000] bg-opacity-40 z-50">
+  <div class="bg-[#A0A0A0] rounded-[5px] p-8 w-[745px] h-[838px]">
+    <h2 class="text-[48px] font-manrope font-semiLight mb-6 text-center text-white">Add employee salary</h2>
+    <form #updateEmployee="ngForm" (ngSubmit)="onUpdateEmployee(updateEmployee)">
+      <div class="flex flex-col w-[350px] h-[450px] py-6 items-center rounded-[10px] justify-between">
+        <div class="w-full px-6">
+          <p class="text-white font-manrope font-Light font-regular text-[32pxpx] mb-2">Monthly salary</p>
+          <input type="number" #idInput="ngModel" [(ngModel)]="assignSalary.baseSalary" name="baseSalary"
+            class="rounded-[10px] h-[50px] w-full bg-lightGrey/20 px-2 py-4 text-white"
+            placeholder="baseSalary" required>
+        </div>
+        <div class="w-full px-6">
+          <p class="text-white font-manrope font-Light font-regular text-[32pxpx] mb-2">Hourly rate for holiday work</p>
+          <input type="number" #idInput="ngModel" [(ngModel)]="assignSalary.holidayPayRate" name="holidayPayRate"
+            class="rounded-[10px] h-[50px] w-full bg-lightGrey/20 px-2 py-4 text-white"
+            placeholder="holidayPayRate" required>
+        </div>
+        <div class="w-full px-6">
+          <p class="text-white font-manrope font-Light font-regular text-[32pxpx] mb-2">Hourly rate for overtime work</p>
+          <input type="number" #idInput="ngModel" [(ngModel)]="assignSalary.overtimePayRate" name="overtimePayRate"
+            class="rounded-[10px] h-[50px] w-full bg-lightGrey/20 px-2 py-4 text-white"
+            placeholder="overtimePayRate" required>
+        </div>
+        <div class="w-full px-6">
+          <p class="text-white font-manrope font-Light font-regular text-[32pxpx] mb-2">Hourly rate for night shift</p>
+          <input type="number" #idInput="ngModel" [(ngModel)]="assignSalary.nightShiftPayRate" name="nightShiftPayRate"
+            class="rounded-[10px] h-[50px] w-full bg-lightGrey/20 px-2 py-4 text-white"
+            placeholder="nightShiftPayRate" required>
+        </div>
+        <div class="w-[444px] h-[74px] px-6">
+          <button type="submit"
+              class="w-full h-[50px] font-manrope font-semiLight text-white rounded-[10px] text-[25px] bg-gradient-to-tl from-[#4CD137] to-[#44BD32] hover:from-[#44BD32] hover:to-[#4CD137] transition-[0.5s]">
+              Save
+          </button>
+      </div>      
+        <div *ngIf="successMessage" class="alert alert-success text-green-500 mt-4">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger text-red-500 mt-4">{{ errorMessage }}</div>
+      </div>
+    </form>
+  </div>
+</div>
