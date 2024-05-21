@@ -24,8 +24,7 @@ export class RoutesComponent implements OnInit{
   routes : Route[] = [];
 
   constructor(private routeService : RoutesService,
-              private router: Router,
-              ) {}
+              private router: Router) {}
 
   ngOnInit(): void {
     this.fetchRoutes();

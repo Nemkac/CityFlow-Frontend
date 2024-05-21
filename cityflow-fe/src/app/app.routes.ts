@@ -12,6 +12,7 @@ import { CreateRouteComponent } from './pages/create-route/create-route.componen
 import { UserBalanceComponent } from './pages/user-balance/user-balance.component';
 import { UserCardBalanceComponent } from './pages/user-card-balance/user-card-balance.component';
 import { AssignSalaryFormComponent } from './components/assign-salary-form/assign-salary-form.component';
+import { BusesComponent } from './pages/buses/buses.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -26,5 +27,6 @@ export const routes: Routes = [
     {path:'assign-salary/:id', component: AssignSalaryFormComponent },
     {path:"newRoute", component: CreateRouteComponent},
     {path:"updateUserBalance", component: UserBalanceComponent},
-    {path:"updateUserCardBalance", component: UserCardBalanceComponent}
+    {path:"updateUserCardBalance", component: UserCardBalanceComponent},
+    {path:"buses", component: BusesComponent}
 ];

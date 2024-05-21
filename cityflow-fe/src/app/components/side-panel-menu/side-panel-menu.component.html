@@ -5,10 +5,10 @@
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewHome()">
         <div class="flex w-[10%]">
-            <fa-icon [icon]="faHome" class="text-[24px]"/>
+            <fa-icon [icon]="faHome" class="text-[20px]"/>
         </div>
         <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Home</p>
+            <p class="ml-[20px] text-[28px]">Home</p>
         </div>
     </button>
 
@@ -18,10 +18,10 @@
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewProfile()">
         <div class="flex w-[10%]">
-            <fa-icon [icon]="faUser" class="text-[24px]"/>
+            <fa-icon [icon]="faUser" class="text-[20px]"/>
         </div>
         <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Profile</p>
+            <p class="ml-[20px] text-[28px]">Profile</p>
         </div>
     </button>
 
@@ -32,10 +32,10 @@
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="navigateToUserCardBalance()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">eWallet</p>
+                <p class="ml-[20px] text-[28px]">eWallet</p>
             </div>
         </button>
 
@@ -45,10 +45,10 @@
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="viewCards()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Cards</p>
+                <p class="ml-[20px] text-[28px]">Cards</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'ROLE_ROUTEADMINISTRATOR') {
@@ -58,10 +58,22 @@
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="viewRoutes()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Routes</p>
+                <p class="ml-[20px] text-[28px]">Routes</p>
+            </div>
+        </button>
+        <button [ngClass]="{'bg-lightGrey/30' : showBuses,
+                    'bg-transparent': !showBuses}" 
+        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+                hover:bg-lightGrey/30 transition-[0.5s]"
+        (click)="viewBuses()">
+            <div class="flex w-[10%]">
+                <fa-icon [icon]="faBus" class="text-[20px]"/>
+            </div>
+            <div class="flex w-[90%] justify-start">
+                <p class="ml-[20px] text-[28px]">Buses</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'ROLE_HRAdministrator') {
@@ -71,10 +83,10 @@
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="viewEmployees()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Employees</p>
+                <p class="ml-[20px] text-[28px]">Employees</p>
             </div>
         </button>
     }@else if (loggedUserRole == 'ROLE_KYCADMINISTRATOR') {
@@ -84,10 +96,10 @@
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="navigateToUserBalance()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Update user balance</p>
+                <p class="ml-[20px] text-[28px]">Update user balance</p>
             </div>
         </button>
     }
@@ -98,10 +110,10 @@
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewInbox()">
         <div class="flex w-[10%]">
-            <fa-icon [icon]="faInbox" class="text-[24px]"/>
+            <fa-icon [icon]="faInbox" class="text-[20px]"/>
         </div>
         <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Inbox</p>
+            <p class="ml-[20px] text-[28px]">Inbox</p>
         </div>
     </button>
 </div>
