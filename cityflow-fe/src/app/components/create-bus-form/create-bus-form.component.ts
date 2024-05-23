@@ -11,6 +11,7 @@ import { BusService } from '../../service/bus.service';
 import { Bus } from '../../models/bus';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create-bus-form',
@@ -31,6 +32,7 @@ export class CreateBusFormComponent implements OnInit{
   public isOpen = false;
 
   constructor(private routeService : RoutesService,
+              private modalService : NgbActiveModal,
               private busService : BusService,
               private toast : NgToastService,
               private router: Router){}
@@ -81,7 +83,8 @@ export class CreateBusFormComponent implements OnInit{
         console.log(response);
         this.toast.success({detail:"SUCCESS",summary:'Bus created successfully!'});
         setTimeout(() => {
-          this.router.navigate(['/buses'])
+          this.modalService.close();
+          window.location.reload();
         }, 3000);
       },
       (error : HttpErrorResponse) => {

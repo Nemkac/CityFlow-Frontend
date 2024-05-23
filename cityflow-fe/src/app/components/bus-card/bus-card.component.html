@@ -9,7 +9,10 @@
             <fa-icon [icon]="faTrash" class="text-md"/>
         </button>
     </div>
-    <p class="font-semibold text-[24px]">Bus #{{busId}}</p>
+    <div class="flex flex-col w-full items-center justify-center">
+        <p class="font-semibold text-[24px]">Bus #{{busId}}</p>
+        <p class="font-medium text-[22px]">{{licencePlate}}</p>
+    </div>
     <div class="flex flex-col w-full items-center justify-center">
         <p class="font-regular text-[20px]">Routes:</p>
         @for (routeName of routes; track $index) {

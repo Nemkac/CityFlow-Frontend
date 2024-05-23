@@ -2,12 +2,12 @@
     <div class="flex flex-row items-end w-full mb-10 justify-between">
         <div class="flex flex-row items-end">
             <div class="felx flex-col w-[400px]">
-                <p>Enter bus number</p>
+                <p>Enter bus licence plate</p>
                 <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
                             h-[50px] border-white/60 bg-white/0 w-full px-2 py-4 items-center">
                     <input class="bg-white/0"
-                            placeholder="e.g. 123" ngModel name="password"
-                            type="text" required>
+                            placeholder="e.g. BG 1234 AB" ngModel 
+                            type="text">
                     <button class="w-[25px]">
                         <fa-icon [icon]="faSearch"/>
                     </button>
@@ -27,6 +27,7 @@
         @for (bus of buses; track $index) {
             <app-bus-card
                 [busId]="bus.id"
+                [licencePlate]="bus.licencePlate"
                 [routes]="bus.routeNames"
             />
         }

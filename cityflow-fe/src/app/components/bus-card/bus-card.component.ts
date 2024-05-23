@@ -16,6 +16,7 @@ export class BusCardComponent implements OnInit{
 	faPen = faPen;
 
 	@Input() busId: number = 0;
+	@Input() licencePlate: string = '';
   	@Input() routes: string[] = [];
 
 	ngOnInit(): void {

@@ -94,12 +94,12 @@
                     'bg-transparent': !showUserBalance}" 
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
-        (click)="navigateToUserBalance()">
+        (click)="viewUserBalance()">
             <div class="flex w-[10%]">
-                <fa-icon [icon]="faIdCard" class="text-[20px]"/>
+                <fa-icon [icon]="faMoneyBillTransfer" class="text-[20px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[28px]">Update user balance</p>
+                <p class="ml-[20px] text-[22px]">Update user balance</p>
             </div>
         </button>
 
@@ -107,12 +107,12 @@
                 'bg-transparent': !showRequests}" 
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
             hover:bg-lightGrey/30 transition-[0.5s]"
-        (click)="navigateToDocumentRequests()">
+        (click)="viewUserRequests()">
         <div class="flex w-[10%]">
             <fa-icon [icon]="faIdCard" class="text-[24px]"/>
         </div>
         <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Show requests</p>
+            <p class="ml-[20px] text-[28px]">Requests</p>
         </div>
         </button>
     }

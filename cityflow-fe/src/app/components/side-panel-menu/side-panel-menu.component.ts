@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHome, faIdCard, faInbox, faBus } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faIdCard, faInbox, faBus, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
@@ -22,6 +22,7 @@ export class SidePanelMenuComponent implements OnInit{
   faIdCard = faIdCard;
   faInbox = faInbox;
   faBus = faBus;
+  faMoneyBillTransfer = faMoneyBillTransfer;
 
   //Menu item selections
   showHome : boolean = true;
@@ -140,7 +141,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserBalance = true;
     this.showUserCardBalance = false;
     this.showRequests = false;
-    this.navigateToEmployees();
+    this.navigateToUserBalance();
   }
   public viewUserRequests() : void{
     this.showHome = false;
@@ -149,7 +150,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserBalance = false;
     this.showUserCardBalance = false;
     this.showRequests = true;
-    this.navigateToEmployees();
+    this.navigateToDocumentRequests();
   }
   public viewUserCardBalance() : void{
     this.showHome = false;
