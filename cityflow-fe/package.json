@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-splitbuttons": "^25.2.4",
     "@types/leaflet-routing-machine": "^3.2.8",
     "angular-font-awesome": "^3.1.2",
+    "flowbite": "^2.3.0",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
     "ng-angular-popup": "^0.5.2",

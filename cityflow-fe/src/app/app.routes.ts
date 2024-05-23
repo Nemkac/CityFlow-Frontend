@@ -13,6 +13,7 @@ import { UserBalanceComponent } from './pages/user-balance/user-balance.componen
 import { UserCardBalanceComponent } from './pages/user-card-balance/user-card-balance.component';
 import { AssignSalaryFormComponent } from './components/assign-salary-form/assign-salary-form.component';
 import { DocumentRequestsComponent } from './components/document-requests/document-requests.component';
+import { BusesComponent } from './pages/buses/buses.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -28,5 +29,6 @@ export const routes: Routes = [
     {path:"newRoute", component: CreateRouteComponent},
     {path:"updateUserBalance", component: UserBalanceComponent},
     {path:"updateUserCardBalance", component: UserCardBalanceComponent},
-    {path:"documentRequests", component: DocumentRequestsComponent}
+    {path:"documentRequests", component: DocumentRequestsComponent},
+    {path:"buses", component: BusesComponent}
 ];
