@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +9,7 @@ import { faBus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 	templateUrl: './bus-card.component.html',
 	styleUrl: './bus-card.component.css'
 })
-export class BusCardComponent {
+export class BusCardComponent implements OnInit{
 	//Icons
 	faBus = faBus;
 	faTrash = faTrash;
@@ -17,4 +17,7 @@ export class BusCardComponent {
 
 	@Input() busId: number = 0;
   	@Input() routes: string[] = [];
+
+	ngOnInit(): void {
+	}
 }

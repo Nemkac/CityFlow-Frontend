@@ -2,5 +2,7 @@ import { Route } from "./route";
 
 export interface Bus {
     id: number,
-    routes: Route[];
+    licencePlate: string,
+    routes: Route[],
+    routeNames: string[],
 }

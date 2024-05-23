@@ -12,6 +12,8 @@
     <p class="font-semibold text-[24px]">Bus #{{busId}}</p>
     <div class="flex flex-col w-full items-center justify-center">
         <p class="font-regular text-[20px]">Routes:</p>
-        <p class="font-medium text-[24px]">7, 4A, 8</p>
+        @for (routeName of routes; track $index) {
+            <p class="font-medium text-[24px]">{{routeName}}</p>
+        }
     </div>
 </div>

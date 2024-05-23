@@ -13,7 +13,8 @@
                     </button>
                 </div>
             </div>
-            <button class="flex flex-row h-[50px] w-[258px] ml-4 rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]">
+            <button class="flex flex-row h-[50px] w-[258px] ml-4 rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]"
+                    (click)="openCreateBusForm()">
                 <p class="font-manrope text-darkGrey font-semibold text-[16px]">New bus</p>
                 <fa-icon [icon]="faPlus" class="w-[16px] ml-[10px] text-darkGrey"/>        
             </button>
@@ -26,6 +27,7 @@
         @for (bus of buses; track $index) {
             <app-bus-card
                 [busId]="bus.id"
+                [routes]="bus.routeNames"
             />
         }
     </div>

@@ -5,6 +5,8 @@ import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Bus } from '../../models/bus';
 import { BusService } from '../../service/bus.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateBusFormComponent } from '../../components/create-bus-form/create-bus-form.component';
 
 @Component({
 	selector: 'app-buses',
@@ -19,21 +21,29 @@ export class BusesComponent implements OnInit{
 
 	buses : Bus[] = [];
 
-	constructor(private busService : BusService){}
+	constructor(private busService : BusService,
+				private modalService: NgbModal,){}
 	
 	ngOnInit(): void {
 		this.fetchBuses();
 	}
 
 	public fetchBuses() : void {
-		this.busService.getAll().subscribe(
-			(response : Bus[]) => {
-				this.buses = response;
-				console.log(this.buses);
+		this.busService.getAll().subscribe({
+			next: (data) => {
+				this.buses = data.map(bus => ({
+					...bus,
+					routeNames: bus.routes.map(route => route.name)
+				}));
 			},
-			(error : HttpErrorResponse) => {
-				console.log('Error fetching buses: ', error.message);
-			}
-		)
+			error: (error) => console.error('Error fetching buses', error)
+		});
 	}
+
+	openCreateBusForm() {
+		const modalRef = this.modalService.open(
+		  CreateBusFormComponent,
+		  { backdrop: 'static', keyboard: true }
+		);
+	  }
 }
