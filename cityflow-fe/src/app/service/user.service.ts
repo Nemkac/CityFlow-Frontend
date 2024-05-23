@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { BalanceDTO } from '../dtos/balanceDTO';
 import { KYCBalanceDTO } from '../dtos/kycBalanceDTO';
+import { StringDTO } from '../dtos/stringDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,29 @@ export class UserService {
   }
   public updateUserCardBalance(requestBody : KYCBalanceDTO, headers : HttpHeaders) : Observable<string>{
     return this.http.post<string>(`${this.apiServerUrl}/KYC/updateBalance`, requestBody,{headers});  
+  }
+  public getStudentUsernames(headers : HttpHeaders) : Observable<String[]>{
+    return this.http.get<String[]>(`${this.apiServerUrl}/document/getStudentUsernames`,{headers});
+  }
+  public getPensionerUsernames(headers : HttpHeaders) : Observable<Map<String, String[]>>{
+    return this.http.get<Map<String, String[]>>(`${this.apiServerUrl}/document/getPensionerUsernames`,{headers});
+  }
+  public getHealthcareUsernames(headers : HttpHeaders) : Observable<Map<String, String[]>>{
+    return this.http.get<Map<String, String[]>>(`${this.apiServerUrl}/document/getHealthcareUsernames`,{headers});
+  }
+  public getVacationUsernames(headers : HttpHeaders) : Observable<Map<String, String[]>>{
+    return this.http.get<Map<String, String[]>>(`${this.apiServerUrl}/document/getVacationUsernames`,{headers});
+  }
+  public downloadStudentRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/getStudentFiles`, string, {headers});  
+  }
+  public downloadPensionerRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/getPensionerFiles`, string, {headers});  
+  }
+  public downloadVacationRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/getVacationFiles`, string, {headers});  
+  }
+  public downloadHealthcareRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/getHealthcareFiles`, string, {headers});  
   }
 }

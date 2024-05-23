@@ -90,6 +90,19 @@
                 <p class="ml-[20px] text-[32px]">Update user balance</p>
             </div>
         </button>
+
+        <button [ngClass]="{'bg-lightGrey/30' : showRequests,
+                'bg-transparent': !showRequests}" 
+        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+            hover:bg-lightGrey/30 transition-[0.5s]"
+        (click)="navigateToDocumentRequests()">
+        <div class="flex w-[10%]">
+            <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+        </div>
+        <div class="flex w-[90%] justify-start">
+            <p class="ml-[20px] text-[32px]">Show requests</p>
+        </div>
+        </button>
     }
 
     <button [ngClass]="{'bg-lightGrey/30' : showInbox,

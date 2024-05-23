@@ -1,0 +1,49 @@
+<p>document-requests works!</p>
+<button class="flex flex-row h-[35px] w-[200px] rounded-[6px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]"
+                    (click)="toggleDropdown()">
+                <p class="font-manrope text-darkGrey font-semibold text-[14px]">Select routes</p>
+                @if (!isOpen) {
+                    <fa-icon [icon]="faArrowDown" class="w-[10px] text-[14px] ml-[10px] text-darkGrey"/>        
+                } @else {
+                    <fa-icon [icon]="faArrowUp" class="w-[10px] text-[14px] ml-[10px] text-darkGrey"/>        
+                }
+</button>
+
+    @if (isOpen) {
+    <div class="flex bg-grey mt-2 absolute rounded-md w-[200px]">
+        <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+            <li (click)="getStudentRequests()">
+                <div class="flex items-center">
+                <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za studentske kartice</label>
+                </div>
+            </li>
+            <li (click)="getPensionerRequests()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za penzionerske kartice</label>
+                </div>
+            </li>
+            <li (click)="getVacationRequests()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za godisnji odmor</label>
+                </div>
+            </li>
+            <li (click)="getHealthcareRequests()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-4" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za bolovanje</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="flex flex-col w-full items-center justify-center">
+    @for (user of selected; track $index) {
+        <p (click)="collectUsername(user)">{{user}}</p>
+    }
+</div>
+<button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
+                type="submit"
+                (click)="downloadRequests()">
+            <p class="font-manrope text-white font-semibold text-[24px]">Download files</p>
+            <!--<fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>-->
+        </button>
