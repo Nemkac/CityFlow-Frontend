@@ -25,7 +25,7 @@ export class FileUploadComponent implements OnInit{
     console.log(this.selectedFiles['zahtev'])
   }
 
-  onSubmit() {
+  public uploadFiles(): void {
     const formData = new FormData();
     formData.append('zahtev', this.selectedFiles['zahtev']);
     formData.append('obrada', this.selectedFiles['obrada']);
@@ -34,7 +34,7 @@ export class FileUploadComponent implements OnInit{
 
     if(this.token != null){
       const headers = new HttpHeaders({
-        'Content-Type' : 'application/json',
+        //'Content-Type' : 'multipart/form-data',
         'Authorization' : `Bearer ${this.token}`
       });
       this.userService.uploadStudentFiles(formData,headers).subscribe(

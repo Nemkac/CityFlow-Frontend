@@ -183,13 +183,10 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToDocumentRequests() : void {
     this.router.navigate(['/documentRequests']);
   }
-<<<<<<< Updated upstream
-  
   public navigateToBuses() : void {
     this.router.navigate(['/buses']);
-=======
+  }
   public navigateToCards() : void {
     this.router.navigate(['/fileUpload']);
->>>>>>> Stashed changes
   }
 }
