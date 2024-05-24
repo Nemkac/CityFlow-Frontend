@@ -13,7 +13,11 @@ import { UserBalanceComponent } from './pages/user-balance/user-balance.componen
 import { UserCardBalanceComponent } from './pages/user-card-balance/user-card-balance.component';
 import { AssignSalaryFormComponent } from './components/assign-salary-form/assign-salary-form.component';
 import { DocumentRequestsComponent } from './components/document-requests/document-requests.component';
+<<<<<<< Updated upstream
 import { BusesComponent } from './pages/buses/buses.component';
+=======
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+>>>>>>> Stashed changes
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -30,5 +34,9 @@ export const routes: Routes = [
     {path:"updateUserBalance", component: UserBalanceComponent},
     {path:"updateUserCardBalance", component: UserCardBalanceComponent},
     {path:"documentRequests", component: DocumentRequestsComponent},
+<<<<<<< Updated upstream
     {path:"buses", component: BusesComponent}
+=======
+    {path:"fileUpload", component: FileUploadComponent}
+>>>>>>> Stashed changes
 ];

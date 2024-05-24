@@ -1,0 +1,16 @@
+<p>file-upload works!</p>
+<div >
+<form class="flex flex-col" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+    <input type="file" (change)="onFileSelected($event, 'zahtev')"/>
+    Molimo vas ovde prilozite pdf fajl zahteva
+    <input type="file" (change)="onFileSelected($event, 'obrada')" />
+    Molim vas ovde prilozite dokument o saglasnosti za obradu podataka
+    <input type="file" (change)="onFileSelected($event, 'fotografija')" />
+    Molimo vas ovde prilozite svoju fotografiju
+    <input type="file" (change)="onFileSelected($event, 'indeks')" />
+    Molimol vas ovde prilozite fotografiju svog indeksa
+    <button type="submit">Upload</button>
+    
+  </form>
+</div>

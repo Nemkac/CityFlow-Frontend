@@ -56,4 +56,7 @@ export class UserService {
   public downloadHealthcareRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
     return this.http.post<String>(`${this.apiServerUrl}/document/getHealthcareFiles`, string, {headers});  
   }
+  public uploadStudentFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/studentRequestUpload`, formData, {headers});  
+  }
 }
