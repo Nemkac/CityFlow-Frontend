@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBus, faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPen, faTrash, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgToastService } from 'ng-angular-popup'
@@ -20,10 +20,10 @@ export class RouteListItemComponent {
   @Input() endTime: string = '';
 
   //Icons
-  faBus = faBus;
   faPlus = faPlus
   faPen = faPen;
   faTrash = faTrash;
+  faRoute = faRoute;
 
   constructor(private routeService: RoutesService,
               private toast: NgToastService){}

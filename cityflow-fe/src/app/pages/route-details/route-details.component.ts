@@ -4,14 +4,16 @@ import { RoutesService } from '../../service/routes.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faRoute, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import * as L from 'leaflet';
 import { Routing } from 'leaflet';
+import { Bus } from '../../models/bus';
+import { BusesListItemComponent } from '../../components/buses-list-item/buses-list-item.component';
 
 @Component({
   selector: 'app-route-details',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, BusesListItemComponent],
   templateUrl: './route-details.component.html',
   styleUrl: './route-details.component.css'
 })
@@ -19,15 +21,16 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
   //Icons
-  faBus = faBus;
   faPen = faPen;
   faTrash = faTrash;
+  faRoute = faRoute;
 
   routeId : number = 0;
   route!: Route;
   startingPoint!: L.LatLng;
   endingPoint!: L.LatLng;
   stations: L.LatLng[] = []; 
+  routeBuses : Bus[] = [];
 
   constructor(private routeService: RoutesService,
               private routes: ActivatedRoute){}
@@ -44,6 +47,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     this.routeService.getRoute(this.routeId).subscribe(
       (response : Route) => {
         this.route = response;
+        this.routeBuses = this.route.buses;
         this.fetchStations();
 
         console.log("ROUTE: \n", this.route);
