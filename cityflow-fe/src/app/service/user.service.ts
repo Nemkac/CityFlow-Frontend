@@ -57,7 +57,15 @@ export class UserService {
     return this.http.post<String>(`${this.apiServerUrl}/document/getHealthcareFiles`, string, {headers});  
   }
   public uploadStudentFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
-    console.log("Usao")
     return this.http.post<String>(`${this.apiServerUrl}/document/studentRequestUpload`, formData, {headers});  
+  }
+  public uploadPensionerFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/pensionerRequestUpload`, formData, {headers});  
+  }
+  public uploadHealthcareFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/healthcareRequestUpload`, formData, {headers});  
+  }
+  public uploadVacationFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/document/vacationRequestUpload`, formData, {headers});  
   }
 }

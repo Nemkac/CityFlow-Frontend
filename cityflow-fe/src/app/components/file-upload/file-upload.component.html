@@ -1,20 +1,103 @@
-<p>file-upload works!</p>
-<div >
-<form class="flex flex-col" enctype="multipart/form-data">
+<button class="flex flex-row h-[35px] w-[200px] rounded-[6px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]"
+                    (click)="toggleDropdown()">
+                <p class="font-manrope text-darkGrey font-semibold text-[14px]">Select request type</p>
+                @if (!isOpen) {
+                    <fa-icon [icon]="faArrowDown" class="w-[10px] text-[14px] ml-[10px] text-darkGrey"/>        
+                } @else {
+                    <fa-icon [icon]="faArrowUp" class="w-[10px] text-[14px] ml-[10px] text-darkGrey"/>        
+                }
+</button>
 
+    @if (isOpen) {
+    <div class="flex bg-grey mt-2 absolute rounded-md w-[200px]">
+        <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+            <li (click)="selectStudentRequest()">
+                <div class="flex items-center">
+                <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za studentske kartice</label>
+                </div>
+            </li>
+            <li (click)="selectPensionerRequest()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za penzionerske kartice</label>
+                </div>
+            </li>
+            <li (click)="selectVacationRequest()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za godisnji odmor</label>
+                </div>
+            </li>
+            <li (click)="selectHealthcareRequest()">
+                <div class="flex items-center">
+                    <label for="checkbox-item-4" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Zahtevi za bolovanje</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+}
+@if (selectedRequest == "Student"){
+<div >
+  <p>Student request.</p>
+<form class="flex flex-col" enctype="multipart/form-data">
     <input type="file" (change)="onFileSelected($event, 'zahtev')"/>
-    Molimo vas ovde prilozite pdf fajl zahteva
+    Please submit the request pdf file.
     <input type="file" (change)="onFileSelected($event, 'obrada')" />
-    Molim vas ovde prilozite dokument o saglasnosti za obradu podataka
+    Please submit the data collection agreement pdf file.
     <input type="file" (change)="onFileSelected($event, 'fotografija')" />
-    Molimo vas ovde prilozite svoju fotografiju
+    Please submit your photo.
     <input type="file" (change)="onFileSelected($event, 'indeks')" />
-    Molimol vas ovde prilozite fotografiju svog indeksa
+    Please submit the picture of index document. 
   </form>
 </div>
 <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
                 type="submit"
-                (click)="uploadFiles()">
-            <p class="font-manrope text-white font-semibold text-[24px]">Upload files</p>
-            <!--<fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>-->
+                (click)="uploadStudentFiles()">
+            <p class="font-manrope text-white font-semibold text-[24px]">Upload student files</p>
         </button>
+      }@else if (selectedRequest == "Pensioner") {
+        <div>
+          <p>Pensioner request.</p>
+          <form class="flex flex-col" enctype="multipart/form-data">
+            <input type="file" (change)="onFileSelected($event, 'zahtev')"/>
+            Please submit the request pdf file.
+            <input type="file" (change)="onFileSelected($event, 'obrada')" />
+            Please submit the data collection agreement pdf file.
+            <input type="file" (change)="onFileSelected($event, 'penzioniCek')" />
+            Please submit the picture of your last pension check. 
+            <input type="file" (change)="onFileSelected($event, 'licna')" />
+            Please submit the picture of your ID card. 
+            <input type="file" (change)="onFileSelected($event, 'fotografija')" />
+            Please submit your photo.
+          </form>
+        </div>
+        <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
+                        type="submit"
+                        (click)="uploadPensionerFiles()">
+                    <p class="font-manrope text-white font-semibold text-[24px]">Upload pensioner files</p>
+                </button>
+      }@else if (selectedRequest == "Vacation") {
+        <div>
+          <p>Vacation request.</p>
+          <form class="flex flex-col" enctype="multipart/form-data">
+            <input type="file" (change)="onFileSelected($event, 'zahtev')"/>
+            Please submit the request pdf file.
+          </form>
+        </div>
+        <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
+                        type="submit"
+                        (click)="uploadVacationFiles()">
+                    <p class="font-manrope text-white font-semibold text-[24px]">Upload vacation request file</p>
+                </button>
+      }@else if (selectedRequest == "Healthcare"){
+        <div>
+          <p>Healthcare request.</p>
+          <form class="flex flex-col" enctype="multipart/form-data">
+            <input type="file" (change)="onFileSelected($event, 'zahtev')"/>
+            Please submit the request pdf file.
+          </form>
+        </div>
+        <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
+                        type="submit"
+                        (click)="uploadHealthcareFiles()">
+                    <p class="font-manrope text-white font-semibold text-[24px]">Upload healthcare request file</p>
+                </button>
+      }
