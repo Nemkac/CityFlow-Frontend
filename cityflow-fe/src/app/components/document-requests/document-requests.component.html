@@ -1,7 +1,7 @@
 <p>document-requests works!</p>
 <button class="flex flex-row h-[35px] w-[200px] rounded-[6px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]"
                     (click)="toggleDropdown()">
-                <p class="font-manrope text-darkGrey font-semibold text-[14px]">Select routes</p>
+                <p class="font-manrope text-darkGrey font-semibold text-[14px]">Select request type</p>
                 @if (!isOpen) {
                     <fa-icon [icon]="faArrowDown" class="w-[10px] text-[14px] ml-[10px] text-darkGrey"/>        
                 } @else {
@@ -45,5 +45,4 @@
                 type="submit"
                 (click)="downloadRequests()">
             <p class="font-manrope text-white font-semibold text-[24px]">Download files</p>
-            <!--<fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>-->
         </button>

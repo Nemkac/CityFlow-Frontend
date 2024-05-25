@@ -95,6 +95,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = false;
     this.showCards = true;
     this.showInbox = false;
+    this.navigateToCards();
   }
   
   public viewInbox() : void{
@@ -161,6 +162,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = true;
     this.navigateToUserCardBalance();
   }
+ 
 
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
@@ -183,8 +185,10 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToDocumentRequests() : void {
     this.router.navigate(['/documentRequests']);
   }
-  
   public navigateToBuses() : void {
     this.router.navigate(['/buses']);
+  }
+  public navigateToCards() : void {
+    this.router.navigate(['/fileUpload']);
   }
 }
