@@ -42,7 +42,7 @@ export class WorkCalendarComponent implements OnInit {
         title: `User: ${shift.userId} - Route: ${shift.routeId || 'N/A'}`,
         start: shift.startTime,
         end: shift.endTime,
-        description: `Location: ${shift.location}`
+        location: `${shift.location}`
       }));
     }, (error) => {
       console.error('Failed to fetch shifts:', error);
@@ -60,6 +60,19 @@ export class WorkCalendarComponent implements OnInit {
       { backdrop: 'static', keyboard: true }
     );
    // modalRef.componentInstance.userId = userId;
+  }
+
+  public getEventStyles(extendedProps: any): any {
+    return { 'background-color': '#00A6FB' };
+    // if (!extendedProps.reservedBy) {
+    //   if (this.appointmentSelected && this.selectedAppointment === extendedProps.slot.id) {
+    //     return { 'background-color': '#00A6FB' };
+    //   } else {
+    //     return { 'background-color': '#037971' };
+    //   }
+    // } else {
+    //   return { 'background-color' : '#003554' };
+    // }
   }
 
 }

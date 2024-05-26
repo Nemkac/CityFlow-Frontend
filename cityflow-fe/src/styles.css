@@ -2,3 +2,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fc-daygrid-day {
+    height: 80px; /* Prilagodite visinu prema potrebi */
+  }
+  
+/* Omogućavanje scroll-a unutar polja za datum */
+.fc-daygrid-day-events {
+    overflow-y: auto;
+    max-height: 140px; /* Prilagodite visinu prema potrebi */
+}
+
+.fc-more {
+    cursor: pointer;
+}
+
+:root{
+  --fc-button-text-color: #000000;
+  --fc-button-bg-color: #FFFFFF;
+  --fc-button-border-color: transparent;
+  --fc-button-hover-bg-color: #DCDDE1;
+  --fc-button-hover-border-color: transparent;
+  --fc-button-active-bg-color: #DCDDE1;
+  --fc-button-active-border-color: transparent;
+
+  --fc-event-bg-color: transparent;
+  --fc-event-border-color: transparent;
+
+  --fc-small-font-size: .85em;
+  --fc-page-bg-color: #F5F6FA;
+  --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
+  --fc-neutral-text-color: #000000;
+  --fc-border-color: #FFFFFF;
+}
+  
+.full-calendar-button:hover {
+    background-color: #e74c3c; /* Crvena boja dugmeta pri hoveru */
+}
+  
+.full-calendar-event {
+    cursor: pointer;
+}
+  
+.full-calendar-event:hover {
+    background-color: #f39c12; /* Žuta boja eventa pri hoveru */
+}
