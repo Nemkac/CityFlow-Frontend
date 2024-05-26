@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHome, faIdCard, faInbox, faBus, faMoneyBillTransfer, faRoute } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faIdCard, faInbox, faCalendar, faBus, faMoneyBillTransfer, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
@@ -25,6 +25,8 @@ export class SidePanelMenuComponent implements OnInit{
   faMoneyBillTransfer = faMoneyBillTransfer;
   faRoute = faRoute;
 
+  faCalendar = faCalendar;
+  
   //Menu item selections
   showHome : boolean = true;
   showProfile : boolean = false;
@@ -36,6 +38,7 @@ export class SidePanelMenuComponent implements OnInit{
   showUserBalance: boolean = false;
   showUserCardBalance: boolean = false;
   showRequests : boolean = false;
+  showWorkCalendar: boolean = false
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -73,6 +76,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.showBuses = false;
+    this.showWorkCalendar = false;
   }
   
   public viewProfile() : void{
@@ -87,6 +91,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showRequests = false;
     this.showBuses = false;
     this.navigateToProfile();
+    this.showWorkCalendar = false;
   
   }
 
@@ -96,6 +101,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showCards = true;
     this.showInbox = false;
     this.navigateToCards();
+    this.showWorkCalendar = false;
   }
   
   public viewInbox() : void{
@@ -109,6 +115,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.showBuses = false;
+    this.showWorkCalendar = false;
   }
 
   public viewRoutes() : void{
@@ -118,6 +125,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showBuses = false;
     this.navigateToRoutes();
+    this.showWorkCalendar = false;
   }
 
   public viewBuses() : void{
@@ -135,6 +143,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showEmployees = true;
     this.showInbox = false;
     this.navigateToEmployees();
+    this.showWorkCalendar = false;
   }
   public viewUserBalance() : void{
     this.showHome = false;
@@ -153,6 +162,8 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = true;
     this.navigateToDocumentRequests();
+    this.navigateToEmployees();
+    this.showWorkCalendar = false;
   }
   public viewUserCardBalance() : void{
     this.showHome = false;
@@ -161,6 +172,19 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserBalance = false;
     this.showUserCardBalance = true;
     this.navigateToUserCardBalance();
+    this.showWorkCalendar = false;
+  }
+  public viewWorkCalendar() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showCards = false;
+    this.showInbox = false;
+    this.showRoutes = false;
+    this.showEmployees = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = false;
+    this.showWorkCalendar = true;
+    this.navigateToWorkCalendar();
   }
  
 
@@ -190,5 +214,9 @@ export class SidePanelMenuComponent implements OnInit{
   }
   public navigateToCards() : void {
     this.router.navigate(['/fileUpload']);
+  }
+  
+  public navigateToWorkCalendar() : void {
+    this.router.navigate(['/work-calendar']);
   }
 }

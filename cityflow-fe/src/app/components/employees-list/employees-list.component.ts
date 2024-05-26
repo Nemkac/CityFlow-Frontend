@@ -25,7 +25,7 @@ export class EmployeesListComponent implements OnInit {
   userId: any;
 
   constructor(
-    private modalService: NgbModal, // Use NgbModal here instead of NgbActiveModal
+    private modalService: NgbModal, 
     private userService: UserService,
     private hrAdminService: HrAdminService,
     private router: Router
@@ -58,8 +58,6 @@ export class EmployeesListComponent implements OnInit {
       AssignSalaryFormComponent,
       { backdrop: 'static', keyboard: true }
     );
-  
-    // Pass the userId to the component instance
     modalRef.componentInstance.userId = userId;
   }
   
