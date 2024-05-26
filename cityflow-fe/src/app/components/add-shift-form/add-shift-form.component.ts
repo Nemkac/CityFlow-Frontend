@@ -17,8 +17,8 @@ export class AddShiftFormComponent implements OnInit {
    id: 0,
    userId: 0,
    routeId: 0,
-   startTime: new Date(),
-    endTime: new Date(),
+   startTime: '',
+    endTime: '',
    location: ''
  }
  formOpen: boolean = true;
