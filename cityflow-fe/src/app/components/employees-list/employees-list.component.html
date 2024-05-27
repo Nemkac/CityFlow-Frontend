@@ -1,0 +1,34 @@
+<div class="flex flex-row w-full">
+  <div class="flex flex-col p-4 font-manrope text-white justify-start w-full">
+  <div *ngFor="let user of users$ | async" class="flex w-full flex-col sm:flex-row justify-between items-center border-b-[1px] border-white/60 py-2">
+    <div class="flex flex-row items-center mb-2 sm:mb-0 w-full">
+      <div class="flex rounded-full bg-[#E6C79C] items-center justify-center mr-4">
+        <img src="assets/user.png" alt="User Image" class="rounded-full max-w-[40px] max-h-[40px]">
+      </div>
+      <p class="text-white font-manrope font-semibold text-[32px]">{{ user.name }} {{ user.lastname }}</p>
+    </div>
+    <ng-container [ngSwitch]="user.roles">
+      <p *ngSwitchCase="'ROLE_ROUTEADMINISTRATOR'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Route Administrator</p>
+      <p *ngSwitchCase="'ROLE_HRAdministrator'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">HR Administrator</p>
+      <p *ngSwitchCase="'ROLE_DRIVER'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Driver</p>
+      <p *ngSwitchCase="'ROLE_SERVICER'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Servicer</p>
+      <p *ngSwitchCase="'ROLE_Accountant'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Accountant</p>
+      <p *ngSwitchDefault class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Unknown Role</p>
+    </ng-container>
+    <div class="flex flex-row justify-center sm:justify-end mt-2 sm:mt-0 w-full">
+      <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="editEmployee(user.id)">
+        <img src="assets/EditEmployee.png" alt="Edit Employee" class="w-7 h-7">
+      </button>
+      <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="openAssignSalaryForm(user.id)">
+        <img src="assets/UserSalary.png" alt="Edit Salary" class="w-6 h-6">
+      </button>
+      <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center" (click)="deleteUser(user.id, reason)">
+        <img src="assets/TerminateEmployee.png" alt="Terminate Employee" class="w-7 h-7">
+      </button>
+    </div>    
+  </div>
+</div>
+<div class="flex flex-col mt-4 bg-grey">
+  <input type="text" placeholder="Enter reason for termination." [(ngModel)]="reason" class="rounded-lg border-1 border-gray-300 text-black w-full h-full p-2 mb-2 bg-grey">
+</div>
+</div>
