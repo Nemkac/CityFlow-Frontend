@@ -162,7 +162,6 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = true;
     this.navigateToDocumentRequests();
-    this.navigateToEmployees();
     this.showWorkCalendar = false;
   }
   public viewUserCardBalance() : void{

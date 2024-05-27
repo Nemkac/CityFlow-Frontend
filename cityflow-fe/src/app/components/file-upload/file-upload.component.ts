@@ -5,6 +5,7 @@ import { AuthService } from '../../service/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-file-upload',
@@ -23,6 +24,7 @@ export class FileUploadComponent implements OnInit{
   selectedRequest : string = "";
 
   constructor(private http: HttpClient,
+              private toast : NgToastService,
               private authService : AuthService,
               private userService : UserService) {}
               
@@ -63,15 +65,18 @@ export class FileUploadComponent implements OnInit{
         'Authorization' : `Bearer ${this.token}`
       });
       this.userService.uploadStudentFiles(formData,headers).subscribe(
-        (response: String) => {
+        (response : String) => {
           console.log(response);
+          this.toast.success({detail:"SUCCESS",summary:'You have successfully submitted a request for issuing a student card.'});
         },
         (error : HttpErrorResponse) => {
           console.log("Error while updating balance with kyc:\n", error.message);
+          this.toast.error({detail:"Error",summary:'An error occurred while submitting the request.\nPlease try again.'});
         }
       )
     }
   }
+  
   public uploadPensionerFiles(): void {
     const formData = new FormData();
     formData.append('zahtev', this.selectedFiles['zahtev']);
@@ -85,11 +90,13 @@ export class FileUploadComponent implements OnInit{
         'Authorization' : `Bearer ${this.token}`
       });
       this.userService.uploadPensionerFiles(formData,headers).subscribe(
-        (response: String) => {
+        (response : String) => {
           console.log(response);
+          //this.toast.success({detail:"SUCCESS",summary:'You have successfully submitted a request for issuing a pensioner card.'});
         },
         (error : HttpErrorResponse) => {
           console.log("Error while updating balance with kyc:\n", error.message);
+          //this.toast.error({detail:"Error",summary:'An error occurred while submitting the request.\nPlease try again.'});
         }
       )
     }
@@ -103,11 +110,13 @@ export class FileUploadComponent implements OnInit{
         'Authorization' : `Bearer ${this.token}`
       });
       this.userService.uploadVacationFiles(formData,headers).subscribe(
-        (response: String) => {
+        (response : String) => {
           console.log(response);
+          //this.toast.success({detail:"SUCCESS",summary:'You have successfully submitted your request for annual leave.'});
         },
         (error : HttpErrorResponse) => {
           console.log("Error while updating balance with kyc:\n", error.message);
+          //this.toast.error({detail:"Error",summary:'An error occurred while submitting the request.\nPlease try again.'});
         }
       )
     }
@@ -120,16 +129,15 @@ export class FileUploadComponent implements OnInit{
         'Authorization' : `Bearer ${this.token}`
       });
       this.userService.uploadHealthcareFiles(formData,headers).subscribe(
-        (response: String) => {
+        (response : String) => {
           console.log(response);
+          //this.toast.success({detail:"SUCCESS",summary:'You have successfully sent a request for opening/closing sick leave.'});
         },
         (error : HttpErrorResponse) => {
           console.log("Error while updating balance with kyc:\n", error.message);
+          //this.toast.error({detail:"Error",summary:'An error occurred while submitting the request.\nPlease try again.'});
         }
       )
     }
   }
-
-
-
 }
