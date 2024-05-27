@@ -8,8 +8,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { StringDTO } from '../../dtos/stringDTO';
-
-
+import { faFile, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-document-requests',
@@ -33,6 +32,10 @@ export class DocumentRequestsComponent implements OnInit{
   selectedUsername: StringDTO = {
     string: ''
   };
+  requestCategory : string = '';
+
+  faFile = faFile;
+  faDownload = faDownload;
 
   ngOnInit(): void {}
   toggleDropdown() {
@@ -41,12 +44,14 @@ export class DocumentRequestsComponent implements OnInit{
 
   public collectUsername(username: String) : void {
     this.selectedUsername.string = username;
-    console.log(this.selectedUsername.string)
+    console.log(this.selectedUsername.string);
+    this.downloadRequests();
   }
 
   getStudentRequests() : void {
     this.isOpen = !this.isOpen;
     this.requestType = "Student";
+    this.requestCategory = 'Applications for issuing a student card';
     if(this.token != null){
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json',
@@ -67,6 +72,7 @@ export class DocumentRequestsComponent implements OnInit{
   getPensionerRequests() : void {
     this.isOpen = !this.isOpen;
     this.requestType = "Pensioner";
+    this.requestCategory = 'Applications for issuing a pensioner card';
     if(this.token != null){
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json',
@@ -86,6 +92,7 @@ export class DocumentRequestsComponent implements OnInit{
   getVacationRequests() : void {
     this.isOpen = !this.isOpen;
     this.requestType = "Vacation";
+    this.requestCategory = 'Requests for annual leave';
     if(this.token != null){
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json',
@@ -104,6 +111,7 @@ export class DocumentRequestsComponent implements OnInit{
   getHealthcareRequests() : void {
     this.isOpen = !this.isOpen;
     this.requestType = "Healthcare";
+    this.requestCategory = 'Requests for opening or closing sick leave';
     if(this.token != null){
       const headers = new HttpHeaders({
         'Content-Type' : 'application/json',
