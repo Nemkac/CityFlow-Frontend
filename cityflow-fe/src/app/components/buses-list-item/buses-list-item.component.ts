@@ -3,6 +3,7 @@ import { RoutesService } from '../../service/routes.service';
 import { NgToastService } from 'ng-angular-popup';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPen, faTrash, faBus } from '@fortawesome/free-solid-svg-icons';
+import { deleteBusFromRouteDTO } from '../../dtos/deleteBusFromRouteDTO';
 
 @Component({
   selector: 'app-buses-list-item',
@@ -26,9 +27,13 @@ export class BusesListItemComponent {
               private toast: NgToastService){}
 
   public deleteBusFromRoute(routeId: number, busId : number): void {
-    this.routeService.deleteRoute(routeId).subscribe(response => {
+    const dto : deleteBusFromRouteDTO = {
+      routeId : routeId,
+      busId : busId
+    }
+    this.routeService.deleteBusFromRoute(dto).subscribe(response => {
       console.log(response);
-      this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
+      this.toast.success({ detail: "SUCCESS", summary: 'Bus successfully deleted from route!' });
       setTimeout(() => {
         window.location.reload();
       }, 3000);

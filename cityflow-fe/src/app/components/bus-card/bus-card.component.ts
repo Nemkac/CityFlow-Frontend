@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { BusService } from '../../service/bus.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
 	selector: 'app-bus-card',
@@ -19,6 +21,18 @@ export class BusCardComponent implements OnInit{
 	@Input() licencePlate: string = '';
   	@Input() routes: string[] = [];
 
-	ngOnInit(): void {
+	constructor(private busService : BusService,
+				private toast : NgToastService){}
+
+	ngOnInit(): void {}
+
+	public deleteBus(busId: number): void {
+		this.busService.deleteBus(busId).subscribe(response => {
+		  console.log(response);
+		  this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
+		  setTimeout(() => {
+			window.location.reload();
+		  }, 3000);
+		});
 	}
 }

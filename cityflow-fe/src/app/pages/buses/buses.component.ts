@@ -45,5 +45,5 @@ export class BusesComponent implements OnInit{
 		  CreateBusFormComponent,
 		  { backdrop: 'static', keyboard: true }
 		);
-	  }
+	}
 }
