@@ -37,6 +37,6 @@ export class RoutesService {
   }
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
-    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
+    return this.http.put<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
   }
 }
