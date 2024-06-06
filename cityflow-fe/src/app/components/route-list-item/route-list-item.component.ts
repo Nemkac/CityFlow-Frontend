@@ -18,6 +18,7 @@ export class RouteListItemComponent {
   @Input() routeName: string = '';
   @Input() startTime: string = '';
   @Input() endTime: string = '';
+  @Input() isUser: boolean = false;
 
   //Icons
   faPlus = faPlus

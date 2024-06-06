@@ -8,16 +8,23 @@
     <p class="w-full text-[24] font-light font-manrope text-lightGrey">Futoska pijaca - Centar</p>
     <p class="w-full text-[32px] font-semibold font-manrope text-white"> {{startTime}} - {{endTime}}</p>
     <div class="flex flex-row w-full justify-end justify-end">
-        <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center mr-10"
-                (click)="showRoute(routeId)">
-            <fa-icon [icon]="faPlus" class="text-white font-bold text-[24px]"/>
-        </button>
-        <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10">
-            <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
-        </button>
-        <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center"
-                (click)="deleteRoute(routeId)">
-            <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
-        </button>
+        @if (!isUser) {
+            <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center"
+                    (click)="showRoute(routeId)">
+                <fa-icon [icon]="faPlus" class="text-white font-bold text-[24px]"/>
+            </button>
+            <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mx-10">
+                <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
+            </button>
+            <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center"
+                    (click)="deleteRoute(routeId)">
+                <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
+            </button>
+        } @else {
+            <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center"
+                    (click)="showRoute(routeId)">
+                <fa-icon [icon]="faPlus" class="text-white font-bold text-[24px]"/>
+            </button>
+        }
     </div>
 </div>
