@@ -1,14 +1,36 @@
-<div *ngFor="let genOutput of geneticOutputFull" class="text-white flex flex-col bg-gray-800 rounded-lg p-4 mb-4">
-    <div class="flex items-center mb-2">
-        <div class="w-1/4">
-            <p class="text-xl"><b>Gen Out ID:</b> {{ genOutput.genOutId }}</p>
+<div class="text-white flex flex-col bg-gray-800 rounded-lg p-4 mb-4">
+    <!-- Header Row -->
+    <div class="flex items-center mb-2 border-b border-gray-600 pb-2">
+        <div class="w-1/4 px-2">
+            <p class="text-xl"><b>Charging Station ID</b></p>
         </div>
-
-        <div class="w-1/4">
+        <div class="w-1/4 px-2">
+            <p class="text-xl"><b>Charging Time</b></p>
+        </div>
+        <div class="w-1/2 flex px-2">
+            <div class="w-1/2 px-2">
+                <p class="text-xl"><b>Start Time</b></p>
+            </div>
+            <div class="w-1/2 px-2">
+                <p class="text-xl"><b>End Time</b></p>
+            </div>
+        </div>
+    </div>
+    <!-- Data Rows -->
+    <div *ngFor="let genOutput of geneticOutputFull" class="flex items-center mb-2">
+        <div class="w-1/4 px-2">
             <p class="text-xl"><b>Charging Station ID:</b> {{ genOutput.chStation.chargerId }}</p>
         </div>
-        <div class="w-1/4">
+        <div class="w-1/4 px-2">
             <p class="text-xl"><b>Charging Time:</b> {{ genOutput.chargingTime }}</p>
+        </div>
+        <div class="w-1/2 flex px-2">
+            <div class="w-1/2 px-2">
+                <p class="text-xl"><b>Start Time:</b> {{ genOutput.startTime | date: 'short' }}</p>
+            </div>
+            <div class="w-1/2 px-2">
+                <p class="text-xl"><b>End Time:</b> {{ genOutput.endTime | date: 'short' }}</p>
+            </div>
         </div>
     </div>
 </div>
