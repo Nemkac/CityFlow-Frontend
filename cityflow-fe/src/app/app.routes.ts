@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NewEmployeeFormComponent } from './components/new-employee-form/new-employee-form.component';
 import { ReportMalfunctionComponent } from './components/report-malfunction/report-malfunction.component';
 import { BusServiceRankingsComponent } from './components/bus-service-rankings/bus-service-rankings.component';
+import { GenAlgChargingComponent } from './components/gen-alg-charging/gen-alg-charging.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path:"profile", component: ProfileComponent},
     {path:"newEmployee", component: NewEmployeeFormComponent},
     {path:"reportMalfunction", component:ReportMalfunctionComponent},
-    {path:"busesServiceRankings",component:BusServiceRankingsComponent}
+    {path:"busesServiceRankings",component:BusServiceRankingsComponent},
+    {path:"chargingPlanGeneticAlgorithm",component : GenAlgChargingComponent}
 ];

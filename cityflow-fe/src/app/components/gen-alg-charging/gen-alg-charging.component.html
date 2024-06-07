@@ -1,0 +1,14 @@
+<div *ngFor="let genOutput of geneticOutputFull" class="text-white flex flex-col bg-gray-800 rounded-lg p-4 mb-4">
+    <div class="flex items-center mb-2">
+        <div class="w-1/4">
+            <p class="text-xl"><b>Gen Out ID:</b> {{ genOutput.genOutId }}</p>
+        </div>
+
+        <div class="w-1/4">
+            <p class="text-xl"><b>Charging Station ID:</b> {{ genOutput.chStation.chargerId }}</p>
+        </div>
+        <div class="w-1/4">
+            <p class="text-xl"><b>Charging Time:</b> {{ genOutput.chargingTime }}</p>
+        </div>
+    </div>
+</div>

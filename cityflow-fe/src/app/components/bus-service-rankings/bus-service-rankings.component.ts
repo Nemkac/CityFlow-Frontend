@@ -35,6 +35,7 @@ export class BusServiceRankingsComponent implements OnInit{
         this.rankings.sort((a,b) => a.rank - b.rank);
       }
     )
+    console.log('niga');
   }
 
   moveBusUpByRank(busId:number){
