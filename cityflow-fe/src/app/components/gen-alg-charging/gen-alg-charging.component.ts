@@ -24,11 +24,19 @@ export class GenAlgChargingComponent implements OnInit{
   getGeneticOutput(){
     this.genService.getChargingPlan().subscribe(
       (result) => {
+        if(result.length != 0) {
         this.geneticOutputFull = result;
-        console.log(this.geneticOutputFull);
+        console.log('Prikazivanje vec izvrsenog genetskog algoritma');
+        } else  {
+          this.genService.runGeneticAlgorithm().subscribe(
+            (result1) => {
+              this.geneticOutputFull = result1;
+              console.log('Genetski algoritam uspesno izvrsen');
+            }
+          )
+        }
       }
     )
-    console.log('niga');
   }
 
 }
