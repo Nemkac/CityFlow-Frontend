@@ -8,35 +8,45 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-gen-alg-charging',
   standalone: true,
-  imports: [NgFor,FormsModule,CommonModule],
+  imports: [NgFor, FormsModule, CommonModule],
   templateUrl: './gen-alg-charging.component.html',
-  styleUrl: './gen-alg-charging.component.css'
+  styleUrls: ['./gen-alg-charging.component.css'] // fixed typo: styleUrl -> styleUrls
 })
-export class GenAlgChargingComponent implements OnInit{
-  geneticOutputFull !: GeneticAlgorithmOutput[];
+export class GenAlgChargingComponent implements OnInit {
+  geneticOutputFull!: GeneticAlgorithmOutput[];
+  isLoading = true; // Added loading state
 
-  constructor(private genService:GenAlgChargeService) {}
+  constructor(private genService: GenAlgChargeService) {}
 
   ngOnInit(): void {
     this.getGeneticOutput();
   }
 
-  getGeneticOutput(){
+  getGeneticOutput(): void {
     this.genService.getChargingPlan().subscribe(
       (result) => {
-        if(result.length != 0) {
-        this.geneticOutputFull = result;
-        console.log('Prikazivanje vec izvrsenog genetskog algoritma');
-        } else  {
+        if (result.length != 0) {
+          this.geneticOutputFull = result;
+          console.log('Prikazivanje vec izvrsenog genetskog algoritma');
+          this.isLoading = false; 
+        } else {
           this.genService.runGeneticAlgorithm().subscribe(
             (result1) => {
               this.geneticOutputFull = result1;
               console.log('Genetski algoritam uspesno izvrsen');
+              this.isLoading = false;
+            },
+            (error) => {
+              console.error('Error running genetic algorithm', error);
+              this.isLoading = false;
             }
-          )
+          );
         }
+      },
+      (error) => {
+        console.error('Error fetching charging plan', error);
+        this.isLoading = false; 
       }
-    )
+    );
   }
-
 }
