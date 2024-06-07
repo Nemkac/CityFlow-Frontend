@@ -10,6 +10,10 @@
         <p class="w-full text-[32px] font-semibold font-manrope text-white"> {{route.openingTime}} - {{route.closingTime}}</p>
         @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
             <div class="flex flex-row w-full justify-end justify-end">
+                <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10"
+                        (click)="generatePDF()">
+                    <fa-icon [icon]="faFilePdf" class="text-grey font-bold text-[24px]"/>
+                </button>
                 <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10">
                     <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
                 </button>
@@ -30,4 +34,14 @@
             />
         }
     }
+    <div class="w-full flex flex-row justify-end">
+        <button class="w-[200px] h-[35px] font-manrope font-medium text-[16px] text-grey rounded-[4px] bg-white hover:bg-lightGrey/10 transition-[0.5s]"
+                (click)="increaseNumberOfPassengers()">
+            Buy ticket
+        </button>
+        <button class="w-[200px] h-[35px] font-manrope font-medium text-[16px] text-grey rounded-[4px] ml-4 bg-white hover:bg-lightGrey/10 transition-[0.5s]"
+                (click)="increaseNumberOfPassengersWithCard()">
+            Scan card
+        </button>
+    </div>
 </div>
