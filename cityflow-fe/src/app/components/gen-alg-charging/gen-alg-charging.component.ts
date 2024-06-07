@@ -37,7 +37,7 @@ export class GenAlgChargingComponent implements OnInit {
               this.isLoading = false;
             },
             (error) => {
-              console.error('Error running genetic algorithm', error);
+              console.error('Greska sa izvrsavanjem genetskog algoritma', error);
               this.isLoading = false;
             }
           );
@@ -46,6 +46,21 @@ export class GenAlgChargingComponent implements OnInit {
       (error) => {
         console.error('Error fetching charging plan', error);
         this.isLoading = false; 
+      }
+    );
+  }
+
+  regenerateChargingPlan(){
+    this.isLoading = true;
+    this.genService.runGeneticAlgorithm().subscribe(
+      (result) => {
+        this.geneticOutputFull = result;
+        console.log('Genetski algoritam uspesno izvrsen');
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('Greska sa izvrsavanjem genetskog algoritma', error);
+        this.isLoading = false;
       }
     );
   }

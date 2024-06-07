@@ -39,5 +39,9 @@
                 <p class="text-lg sm:text-xl"><b>End Time:</b> {{ genOutput.endTime | date: 'short' }}</p>
             </div>
         </div>
-    </div>
+    </div> <br>
+    <button class="flex flex-row w-[344px] h-[44px] rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s] mx-auto"
+    on-click="regenerateChargingPlan()" >
+        <p class="font-manrope text-darkGrey font-semibold text-[24px]">Regenerate charging plan</p>
+    </button>
 </div>
