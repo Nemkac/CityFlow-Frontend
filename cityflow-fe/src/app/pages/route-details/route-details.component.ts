@@ -72,6 +72,8 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       this.fetchRoute();
     }
 
+    this.establishWebSocketConnection();
+    this.simulate();
   }
 
   public fetchUser() : void {
@@ -121,10 +123,10 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit(): void {
     this.loadMap();
-    if(this.loggedUserRole !== "ROLE_ROUTEADMINISTRATOR"){
-      this.establishWebSocketConnection();
-      this.simulate();
-    }
+    // if(this.loggedUserRole !== "ROLE_ROUTEADMINISTRATOR"){
+    //   this.establishWebSocketConnection();
+    //   this.simulate();
+    // }
   }
 
   loadMap() {
@@ -256,29 +258,29 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
     const imgData = 'assets/LogoWithNameGrey.png';
     doc.addImage(imgData, 'PNG', 10, 10, 60, 30);
-  
-    doc.setFont('Manrope-Bold', 'normal');
-    doc.setFontSize(22);
-  
+    
+    doc.setFontSize(24);
+    doc.text('ROUTE STATISTICS, 2024', 10, 60);
+
     doc.setFontSize(14);
     doc.text('June, 2024', 10, 50);
-    doc.text(`Statistics for route ${this.route.name}`, 10, 60);
+    doc.text(`Statistics for route ${this.route.name}`, 10, 80);
   
     this.numberOfBusesOnRoute = this.route.buses.length;
     this.numberOfBoughtTickets = this.numberOfPassengers - this.numberOfPassengersWithCard;
     doc.setFontSize(12);
-    doc.text(`Total Number of passengers: ${this.numberOfPassengers}`, 10, 70);
-    doc.text(`Number of passengers who bought a ticket: ${this.numberOfBoughtTickets}`, 10, 80);
-    doc.text(`Number of passengers with a city transport card: ${this.numberOfPassengersWithCard}`, 10, 90);
-    doc.text(`Number of buses on the route: ${this.numberOfBusesOnRoute}`, 10, 100);
+    doc.text(`Total Number of passengers: ${this.numberOfPassengers}`, 10, 90);
+    doc.text(`Number of passengers who bought a ticket: ${this.numberOfBoughtTickets}`, 10, 100);
+    doc.text(`Number of passengers with a city transport card: ${this.numberOfPassengersWithCard}`, 10, 110);
+    doc.text(`Number of buses on the route: ${this.numberOfBusesOnRoute}`, 10, 120);
     this.averageNumberOfPassengersPerBus = this.numberOfPassengers / this.numberOfBusesOnRoute;
-    doc.text(`Average number of passengers per bus: ${this.averageNumberOfPassengersPerBus}`, 10, 110);
+    doc.text(`Average number of passengers per bus: ${this.averageNumberOfPassengersPerBus}`, 10, 130);
   
     doc.setFontSize(16);
-    doc.text('Earnings from ticket sales', 10, 130);
+    doc.text('Earnings from ticket sales', 10, 140);
     doc.setFontSize(14);
     const profit = this.numberOfBoughtTickets * this.ticketPrice;
-    doc.text(`${profit} DIN`, 10, 140);
+    doc.text(`${profit} DIN`, 10, 150);
   
     doc.save('Route_statistics.pdf');
   }
