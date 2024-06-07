@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { newUserDTO } from '../dtos/newUserDTO';
 import { SalaryDTO } from '../dtos/salaryDTO';
+import { FinancialReport } from '../models/financial-report';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,9 @@ export class HrAdminService {
 
   assignSalary(userId: number, salaryDTO: SalaryDTO): Observable<any> {
     return this.http.post<any>(`${this.apiServerUrl}/CityFlow/assignSalary/${userId}`, salaryDTO);
+  }
+  getAggregatedFinancialReport(): Observable<FinancialReport> {
+    return this.http.get<FinancialReport>(`${this.apiServerUrl}/CityFlow/financialReports`);
   }
 
 }

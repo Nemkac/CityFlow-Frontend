@@ -38,6 +38,33 @@
         </button>
     </div>
     <div class="flex flex-col w-full ">
-
+    </div>
+    <div class="flex flex-col w-full items-end mt-4">
+        <button class="bg-blue-500 text-white rounded p-2" (click)="showFinancialReport()">
+            Show Financial Report
+        </button>
     </div>
 </div>
+<!-- Modal or Section for displaying the financial report -->
+<!-- Modal or Section for displaying the financial report -->
+<div *ngIf="financialReport" class="modal">
+    <div class="modal-content">
+      <h2>Financial Report</h2>
+      <p>Date: {{ getCurrentDate() }}</p>
+      <h3>Income</h3>
+      <ul>
+        <li>Daily Ticket Sales: {{ financialReport.dailyTicketSales }}</li>
+        <li>Monthly Ticket Sales: {{ financialReport.monthlyTicketSales }}</li>
+        <li>Annual Ticket Sales: {{ financialReport.annualTicketSales }}</li>
+        <li>Sponsorship Revenue: {{ financialReport.sponsorshipRevenue }}</li>
+      </ul>
+      <h3>Outcome</h3>
+      <ul>
+        <li>Total Salaries Paid: {{ financialReport.totalSalariesPaid }}</li>
+        <li>Fuel Costs: {{ financialReport.fuelCosts }}</li>
+        <li>Vehicle Maintenance Costs: {{ financialReport.vehicleMaintenanceCosts }}</li>
+      </ul>
+      <h3>Net Profit: {{ financialReport.netProfit }}</h3>
+      <button (click)="downloadPDF()">Download as PDF</button>
+    </div>
+  </div>
