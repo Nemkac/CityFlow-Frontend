@@ -25,6 +25,7 @@ export class DocumentRequestsComponent implements OnInit{
   isOpen = false;
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;
+  usernamesJson:{usernames:String[]} | undefined;
   constructor(private authService : AuthService,
               private userService : UserService) {}
 
@@ -33,6 +34,8 @@ export class DocumentRequestsComponent implements OnInit{
   selectedUsername: StringDTO = {
     string: ''
   };
+  usernamesForScript : String[] = []
+  
 
   ngOnInit(): void {}
   toggleDropdown() {
@@ -42,6 +45,7 @@ export class DocumentRequestsComponent implements OnInit{
   public collectUsername(username: String) : void {
     this.selectedUsername.string = username;
     console.log(this.selectedUsername.string)
+    this.usernamesForScript.push(username)
   }
 
   getStudentRequests() : void {
@@ -119,6 +123,27 @@ export class DocumentRequestsComponent implements OnInit{
       )
     }
   } 
+
+  runScript() : void {
+    if(this.token != null){
+      const headers = new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${this.token}`
+      });
+      this.usernamesJson = {
+        usernames: this.usernamesForScript
+      };
+      
+      this.userService.runScript(this.usernamesJson,headers).subscribe(
+        (response: String) => {
+          console.log(response);
+        },
+        (error : HttpErrorResponse) => {
+          console.log("Error while updating balance with kyc:\n", error.message);
+        }
+      )
+    }
+  }
 
   downloadRequests() : void {
     if(this.token != null){

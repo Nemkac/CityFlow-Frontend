@@ -34,6 +34,7 @@ export class SidePanelMenuComponent implements OnInit{
   showUserBalance: boolean = false;
   showUserCardBalance: boolean = false;
   showRequests : boolean = false;
+  showReports : boolean = false;
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -71,6 +72,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.showBuses = false;
+    this.showReports = false;
   }
   
   public viewProfile() : void{
@@ -84,6 +86,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.showBuses = false;
+    this.showReports = false;
     this.navigateToProfile();
   
   }
@@ -93,6 +96,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = false;
     this.showCards = true;
     this.showInbox = false;
+    this.showReports = false;
     this.navigateToCards();
   }
   
@@ -107,6 +111,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.showBuses = false;
+    this.showReports = false;
   }
 
   public viewRoutes() : void{
@@ -115,6 +120,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showRoutes = true;
     this.showInbox = false;
     this.showBuses = false;
+    this.showReports = false;
     this.navigateToRoutes();
   }
 
@@ -124,6 +130,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showRoutes = false;
     this.showInbox = false;
     this.showBuses = true;
+    this.showReports = false;
     this.navigateToBuses();
   }
 
@@ -132,6 +139,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = false;
     this.showEmployees = true;
     this.showInbox = false;
+    this.showReports = false;
     this.navigateToEmployees();
   }
   public viewUserBalance() : void{
@@ -141,6 +149,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserBalance = true;
     this.showUserCardBalance = false;
     this.showRequests = false;
+    this.showReports = false;
     this.navigateToEmployees();
   }
   public viewUserRequests() : void{
@@ -150,6 +159,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserBalance = false;
     this.showUserCardBalance = false;
     this.showRequests = true;
+    this.showReports = false;
     this.navigateToEmployees();
   }
   public viewUserCardBalance() : void{
@@ -158,12 +168,26 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showUserBalance = false;
     this.showUserCardBalance = true;
+    this.showReports = false;
     this.navigateToUserCardBalance();
   }
+  public viewReports() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showInbox = false;
+    this.showUserBalance = false;
+    this.showUserCardBalance = true;
+    this.showReports = true;
+    this.navigateToReports();
+  }
+
  
 
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
+  }
+  public navigateToReports() : void {
+    this.router.navigate(['/reports']);
   }
 
   public navigateToEmployees() : void {

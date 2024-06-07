@@ -27,6 +27,8 @@
     "@types/leaflet-routing-machine": "^3.2.8",
     "angular-font-awesome": "^3.1.2",
     "flowbite": "^2.3.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "leaflet": "^1.7.1",
     "leaflet-routing-machine": "^3.2.12",
     "ng-angular-popup": "^0.5.2",

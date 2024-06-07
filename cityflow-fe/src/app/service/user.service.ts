@@ -56,6 +56,12 @@ export class UserService {
   public downloadHealthcareRequests(string : StringDTO, headers : HttpHeaders) : Observable<String>{
     return this.http.post<String>(`${this.apiServerUrl}/document/getHealthcareFiles`, string, {headers});  
   }
+  public runScript(map : {usernames: String[]}, headers : HttpHeaders) : Observable<String>{
+    return this.http.post<String>(`${this.apiServerUrl}/KYC/studentRequests`, map, {headers});  
+  }
+  public getData(headers : HttpHeaders) : Observable<string[]>{
+    return this.http.get<string[]>(`${this.apiServerUrl}/KYC/report`, {headers});  
+  }
   public uploadStudentFiles(formData : FormData, headers : HttpHeaders) : Observable<String>{
     return this.http.post<String>(`${this.apiServerUrl}/document/studentRequestUpload`, formData, {headers});  
   }

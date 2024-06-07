@@ -115,6 +115,18 @@
             <p class="ml-[20px] text-[32px]">Show requests</p>
         </div>
         </button>
+        <button [ngClass]="{'bg-lightGrey/30' : showReports,
+        'bg-transparent': !showReports}" 
+class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+    hover:bg-lightGrey/30 transition-[0.5s]"
+(click)="viewReports()">
+<div class="flex w-[10%]">
+    <fa-icon [icon]="faIdCard" class="text-[20px]"/>
+</div>
+<div class="flex w-[90%] justify-start">
+    <p class="ml-[20px] text-[28px]">Reports</p>
+</div>
+</button>
     }
 
     <button [ngClass]="{'bg-lightGrey/30' : showInbox,
