@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-// @NgModule({
-//       declarations: [
-//       ],
-//       imports: [
-//           NgbModule
-//       ],
-//       providers: [
-//       ],
-//       bootstrap: [],
-//     })
+@NgModule({
+      declarations: [
+      ],
+      imports: [
+          NgbModule
+      ],
+      providers: [
+      ],
+      bootstrap: [],
+    })
 export class AppModule { }

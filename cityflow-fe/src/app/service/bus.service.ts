@@ -22,4 +22,8 @@ export class BusService {
   public save(bus : BusDTO) : Observable<Bus> {
     return this.http.post<Bus>(`${this.apiServerUrl}/CityFlow/saveBus`, bus);
   }
+
+  public deleteBus(id: number) : Observable<any>{
+    return this.http.delete<any>(`${this.apiServerUrl}/CityFlow/deleteBus/${id}`);
+  }
 }

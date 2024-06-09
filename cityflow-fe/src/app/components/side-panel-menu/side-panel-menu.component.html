@@ -31,7 +31,7 @@
                     'bg-transparent': !showUserCardBalance}" 
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
-        (click)="navigateToUserCardBalance()">
+        (click)="viewUserCardBalance()">
             <div class="flex w-[10%]">
                 <fa-icon [icon]="faIdCard" class="text-[20px]"/>
             </div>
@@ -52,6 +52,20 @@
                 <p class="ml-[20px] text-[28px]">Cards</p>
             </div>
         </button>
+
+        <button [ngClass]="{'bg-lightGrey/30' : showUserRoutes,
+                    'bg-transparent': !showUserRoutes}" 
+        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+            hover:bg-lightGrey/30 transition-[0.5s]"
+        (click)="viewUserRoutes()">
+            <div class="flex w-[10%]">
+                <fa-icon [icon]="faRoute" class="text-[20px]"/>
+            </div>
+            <div class="flex w-[90%] justify-start">
+                <p class="ml-[20px] text-[28px]">Routes</p>
+            </div>
+        </button>
+
     } @else if (loggedUserRole == 'ROLE_ROUTEADMINISTRATOR') {
         <button [ngClass]="{'bg-lightGrey/30' : showRoutes,
                     'bg-transparent': !showCards}" 
@@ -77,6 +91,7 @@
                 <p class="ml-[20px] text-[28px]">Buses</p>
             </div>
         </button>
+
     } @else if (loggedUserRole == 'ROLE_HRAdministrator') {
         <button [ngClass]="{'bg-lightGrey/30' : showWorkCalendar,
                             'bg-transparent': !showWorkCalendar}" 
@@ -103,6 +118,7 @@
                 <p class="ml-[20px] text-[28px]">Employees</p>
             </div>
         </button>
+        
     }@else if (loggedUserRole == 'ROLE_KYCADMINISTRATOR') {
         <button [ngClass]="{'bg-lightGrey/30' : showUserBalance,
                     'bg-transparent': !showUserBalance}" 

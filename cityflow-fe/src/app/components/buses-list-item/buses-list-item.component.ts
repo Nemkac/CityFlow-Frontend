@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RoutesService } from '../../service/routes.service';
 import { NgToastService } from 'ng-angular-popup';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPen, faTrash, faBus } from '@fortawesome/free-solid-svg-icons';
+import { deleteBusFromRouteDTO } from '../../dtos/deleteBusFromRouteDTO';
 
 @Component({
   selector: 'app-buses-list-item',
@@ -11,7 +12,7 @@ import { faPen, faTrash, faBus } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './buses-list-item.component.html',
   styleUrl: './buses-list-item.component.css'
 })
-export class BusesListItemComponent {
+export class BusesListItemComponent implements OnInit{
   //Inputs
   @Input() routeId : number = 0;
   @Input() busId: number = 0;
@@ -24,14 +25,22 @@ export class BusesListItemComponent {
 
   constructor(private routeService: RoutesService,
               private toast: NgToastService){}
+  
+  ngOnInit(): void {}
 
-  public deleteBusFromRoute(routeId: number, busId : number): void {
-    this.routeService.deleteRoute(routeId).subscribe(response => {
-      console.log(response);
-      this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    });
+  async deleteBusFromRoute(routeId: number, busId : number) : Promise<void>{
+    const dto : deleteBusFromRouteDTO = {
+      routeId : routeId,
+      busId : busId
+    }
+    this.routeService.deleteBusFromRoute(dto).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.toast.success({ detail: "SUCCESS", summary: 'Bus successfully deleted from route!' });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+    );
   }
 }

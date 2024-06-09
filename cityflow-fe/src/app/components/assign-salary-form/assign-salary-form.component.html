@@ -1,7 +1,7 @@
 <div class="fixed inset-0 flex items-center justify-center bg-opacity-40 z-50 font-manrope text-white">
-  <div class="flex flex-col bg-[#A0A0A0] rounded-[10px] w-[40%] h-[90%] items-center justify-between justify-center p-4">
-    <h2 class="text-[36px] font-semibold">Add employee salary</h2>
-    <form #updateEmployee="ngForm" (ngSubmit)="onUpdateEmployee(updateEmployee)" class="flex flex-col justify-start w-full">
+  <div class="flex flex-col bg-[#A0A0A0] rounded-[10px] w-[40%] h-[90%] items-evenly items-center justify-center p-4">
+    <h2 class="text-[36px] font-semibold mb-6">Add employee salary</h2>
+    <form #updateEmployee="ngForm" (ngSubmit)="onUpdateEmployee(updateEmployee)" class="flex flex-col w-full justify-start w-full">
       <div class="flex flex-col justify-start w-full">
         <p class="font-Light text-[16px] mb-2">Monthly salary</p>
         <div class="flex flex-row items-center w-full">
@@ -41,11 +41,13 @@
           <p class="text-[24px] ml-4">$</p>
         </div>
       </div>
+      <div class="flex w-full items-center justify-center">
+        <button class="w-[400px] h-[50px] font-manrope font-semiLight text-white rounded-[10px] text-[25px] 
+                      bg-lightGreen hover:bg-deepGreen transition-[0.5s] mt-10"
+                type="submit">
+          Save
+        </button>
+      </div>
     </form>
-    <button class="w-[400px] h-[50px] font-manrope font-semiLight text-white rounded-[10px] text-[25px] 
-                  bg-lightGreen hover:bg-deepGreen transition-[0.5s]"
-            type="submit">
-        Save
-    </button>
   </div>
 </div>

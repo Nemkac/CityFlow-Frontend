@@ -39,6 +39,7 @@ export class SidePanelMenuComponent implements OnInit{
   showUserCardBalance: boolean = false;
   showRequests : boolean = false;
   showWorkCalendar: boolean = false
+  showUserRoutes : boolean = false;
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -77,6 +78,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showRequests = false;
     this.showBuses = false;
     this.showWorkCalendar = false;
+    this.showUserRoutes = false;
   }
   
   public viewProfile() : void{
@@ -92,7 +94,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showBuses = false;
     this.navigateToProfile();
     this.showWorkCalendar = false;
-  
+    this.showUserRoutes = false;
   }
 
   public viewCards() : void{
@@ -102,6 +104,19 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.navigateToCards();
     this.showWorkCalendar = false;
+    this.showUserRoutes = false;
+    this.showUserCardBalance = false;
+  }
+
+  public viewUserRoutes() : void{
+    this.showHome = false;
+    this.showProfile = false;
+    this.showCards = false;
+    this.showInbox = false;
+    this.navigateToUserRoutes();
+    this.showWorkCalendar = false;
+    this.showUserRoutes = true;
+    this.showUserCardBalance = false;
   }
   
   public viewInbox() : void{
@@ -116,6 +131,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showRequests = false;
     this.showBuses = false;
     this.showWorkCalendar = false;
+    this.showUserRoutes = false;
   }
 
   public viewRoutes() : void{
@@ -170,8 +186,10 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showUserBalance = false;
     this.showUserCardBalance = true;
+    this.showCards = false;
     this.navigateToUserCardBalance();
     this.showWorkCalendar = false;
+    this.showUserRoutes = false;
   }
   public viewWorkCalendar() : void{
     this.showHome = false;
@@ -190,18 +208,15 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
   }
-
   public navigateToEmployees() : void {
     this.router.navigate(['/employees']);
   }
-
   public navigateToProfile() : void {
     this.router.navigate(['/profile']);
   }
   public navigateToUserBalance() : void {
     this.router.navigate(['/updateUserBalance']);
   }
-
   public navigateToUserCardBalance() : void {
     this.router.navigate(['/updateUserCardBalance']);
   }
@@ -214,8 +229,10 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToCards() : void {
     this.router.navigate(['/fileUpload']);
   }
-  
   public navigateToWorkCalendar() : void {
     this.router.navigate(['/work-calendar']);
+  }
+  public navigateToUserRoutes() : void {
+    this.router.navigate(['/allRoutes']);
   }
 }

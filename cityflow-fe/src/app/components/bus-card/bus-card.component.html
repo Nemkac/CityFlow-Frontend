@@ -5,7 +5,8 @@
         <button class="flex bg-yellow rounded-[10px] size-[30px] items-center justify-center">
             <fa-icon [icon]="faPen" class="text-md"/>
         </button>
-        <button class="flex bg-lightRed rounded-[10px] size-[30px] items-center justify-center ml-[12px] hover:bg-deepRed transition-[0.5s]">
+        <button class="flex bg-lightRed rounded-[10px] size-[30px] items-center justify-center ml-[12px] hover:bg-deepRed transition-[0.5s]"
+                (click)="deleteBus(busId)">
             <fa-icon [icon]="faTrash" class="text-md"/>
         </button>
     </div>

@@ -4,6 +4,7 @@ import { Route } from '../models/route';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { RouteDTO } from '../dtos/routeDTO';
+import { deleteBusFromRouteDTO } from '../dtos/deleteBusFromRouteDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class RoutesService {
 
   public deleteRoute(id: number) : Observable<any>{
     return this.http.delete<any>(`${this.apiServerUrl}/CityFlow/deleteRoute/${id}`);
+  }
+
+  public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
+    return this.http.put<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
   }
 }
