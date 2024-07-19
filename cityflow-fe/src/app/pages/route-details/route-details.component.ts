@@ -123,10 +123,6 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit(): void {
     this.loadMap();
-    // if(this.loggedUserRole !== "ROLE_ROUTEADMINISTRATOR"){
-    //   this.establishWebSocketConnection();
-    //   this.simulate();
-    // }
   }
 
   loadMap() {
@@ -217,7 +213,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
       this.map.panTo(new L.LatLng(latitude, longitude));
     }
-}
+  }
 
   sendCoordinateToRabbitMQ(latitude: number, longitude: number): void{
 		const liveLocation : LiveLocation = {

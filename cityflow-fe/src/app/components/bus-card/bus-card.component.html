@@ -1,4 +1,4 @@
-<div class="flex flex-col w-[250px] h-[300px] bg-lightGrey/40 rounded-[10px] justify-evenly mb-4
+<!-- <div class="flex flex-col w-[250px] h-[300px] bg-lightGrey/40 rounded-[10px] justify-evenly mb-4
             items-center justify-center font-manrope text-white p-4 relative">
     <fa-icon [icon]="faBus" class="text-7xl"/>
     <div class="flex flex-row w-auto absolute top-[10px] right-[10px]">
@@ -20,4 +20,28 @@
             <p class="font-medium text-[24px]">{{routeName}}</p>
         }
     </div>
+</div> -->
+
+<div class="flex flex-col w-[300px] border-[1px] border-primaryGrey/50 rounded-md p-4 gap-4 relative
+            hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]">
+    <div class="flex flex-row items-center w-auto gap-2">
+        <img src="../../../assets/icons/BusIcon.png" class="size-[25px]"/>
+        <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>
+    </div>
+    <div>
+        <p class="w-full text-[14px] font-semibold font-manrope text-primaryBlack">{{licencePlate}}</p>
+        <div class="flex flex-row w-full items-center gap-2">
+            <p class="font-light font-manrope text-primaryBlack text-[14px]">Routes:</p>
+            @for (routeName of routes; track $index) {
+                <p class="font-light text-[14px] text-primaryBlack font-manrope">{{routeName}}</p>
+            }
+        </div>    
+    </div>
+    <button class="flex flex-row gap-2 absolute top-2 right-2 items-center group button-hover-effect">
+        <img src="../../../assets/icons/TrashIcon.png" class="size-[14px] opacity-50 nav_menu_icon_red"/>
+        <p class="text-primaryBlack group-hover:text-lightRed group-hover:opacity-100 
+                opacity-50 font-manrope text-[12px] transition-[0.5s]">
+            Delete route
+        </p>
+    </button>
 </div>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { RouteDTO } from '../dtos/routeDTO';
 import { deleteBusFromRouteDTO } from '../dtos/deleteBusFromRouteDTO';
+import { SearchDTO } from '../dtos/searchDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,21 @@ export class RoutesService {
     return this.http.get<Route>(`${this.apiServerUrl}/CityFlow/route/${id}`);
   }
 
-  public showRoute(id: number) : void{
+  public showRoute(id: number, username: string, routename: string) : void{
+    const dto : SearchDTO = {
+      username : username,
+      routename : routename
+    }
+    this.searchRoute(dto).subscribe();
     this.router.navigate([`/route/${id}`]);
+  }
+
+  public getMostFrequentedRoute(username : String) : Observable<String> {
+    return this.http.get(`${this.apiServerUrl}/CityFlow/mostFrequented/${username}`, { responseType: 'text' });
+  }
+
+  public searchRoute(dto : SearchDTO) : Observable<any>{
+    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/route/search`, dto)
   }
 
   public saveRoute(route: RouteDTO) : Observable<Route> {
@@ -38,5 +52,17 @@ export class RoutesService {
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
     return this.http.put<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
+  }
+
+  public getRouteWithAtLeastThreeStations() : Observable<String[]>{
+    return this.http.get<String[]>(`${this.apiServerUrl}/CityFlow/atLeastThreeStations`)
+  }
+
+  public getLongestRoute() : Observable<String>{
+    return this.http.get(`${this.apiServerUrl}/CityFlow/longest`, {responseType: 'text'})
+  }
+
+  public getStationsCount(routeName: String) : Observable<any>{
+    return this.http.get<any>(`${this.apiServerUrl}/CityFlow/stationsCount/${routeName}`)
   }
 }

@@ -1,4 +1,4 @@
-<button class="flex flex-row w-[258px] h-[43px] rounded-[10px] bg-white justify-center items-center mt-20 hover:bg-lightGrey transition-[0.5s]"
+<!-- <button class="flex flex-row w-[258px] h-[43px] rounded-[10px] bg-white justify-center items-center mt-20 hover:bg-lightGrey transition-[0.5s]"
         (click)="navigateToSignIn()">
     <p class="font-manrope text-darkGrey font-semibold text-[16px]">Sign In</p>
     <fa-icon [icon]="faArrowRight" class="w-[16px] ml-[10px] text-darkGrey"/>
@@ -13,4 +13,19 @@
          (click)="navigateToSignUp()">
     <p class="font-manrope font-semibold text-[16px]">Sign Up</p>
     <fa-icon [icon]="faArrowRight" class="w-[16px] ml-[10px]"/>
-</button>
+</button> -->
+<div class="flex flex-col p-4 bg-primaryWhite rounded-md shadow-md w-auto gap-4 items-center">
+    <p class="text-primaryGrey font-manrope tracking-wide text-[12px]">GET STARTED USING CITYFLOW</p>
+    <button class="flex bg-primaryDarkGreen h-[40px] flex-row p-4 w-full items-center justify-center gap-2 rounded-full 
+                    hover:bg-primaryLightGreen transition-[0.5s]"
+            (click)="navigateToSignIn()">
+        <img src="../../../assets/icons/SignInCircleIcon.png" class="size-[20px] nav_menu_icon"/>
+        <p class="font-manrope text-primaryWhite text-[16px]">Sign In</p>
+    </button>
+    <button class="flex bg-transparent border-[1px] border-primaryDarkGreen flex-row p-4 w-full items-center h-[40px]
+                    justify-center gap-2 rounded-full group hover:border-primaryLightGreen transition-[0.5s]"
+            (click)="navigateToSignUp()">
+        <img src="../../../assets/icons/ArrowIcon.png" class="size-[20px] rotate-[225deg]"/>
+        <p class="font-manrope text-primaryBlack text-[16px] group-hover:text-primaryLightGreen">Sign Up</p>
+    </button>
+</div>

@@ -1,0 +1,20 @@
+.nav_menu_icon{
+    filter: brightness(0) invert(1);
+}
+
+.bg-darkGreen {
+    background: linear-gradient(to top left, #39b36a 20%, #0A210F 100%);
+}
+
+.button-hover-effect .nav_menu_icon {
+    transition: filter 0.5s ease; /* Dodaje tranziciju za glatki efekat */
+}
+
+/* Stil koji se primenjuje kada je kursor iznad dugmeta */
+.button-hover-effect:hover .nav_menu_icon {
+    filter: invert(23%) sepia(87%) saturate(1093%) hue-rotate(155deg) brightness(88%) contrast(98%);
+}
+
+.nav_menu_icon_green {
+    filter: invert(23%) sepia(87%) saturate(1093%) hue-rotate(155deg) brightness(88%) contrast(98%);
+}

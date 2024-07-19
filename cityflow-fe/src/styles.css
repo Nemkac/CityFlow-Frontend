@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.nav_menu_icon{
+    filter: brightness(0) invert(1);
+}
+
+group-hover.nav_menu_icon{
+    filter: invert(23%) sepia(87%) saturate(1093%) hue-rotate(155deg) brightness(88%) contrast(98%);
+}
+
 .fc-daygrid-day {
     height: 80px; /* Prilagodite visinu prema potrebi */
   }

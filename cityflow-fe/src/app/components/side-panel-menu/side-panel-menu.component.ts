@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser, faHome, faIdCard, faInbox, faCalendar, faBus, faMoneyBillTransfer, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
@@ -7,6 +7,8 @@ import { response } from 'express';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import jsPDF from 'jspdf';
+import { RoutesService } from '../../service/routes.service';
 
 @Component({
   selector: 'app-side-panel-menu',
@@ -15,7 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: './side-panel-menu.component.html',
   styleUrl: './side-panel-menu.component.css'
 })
-export class SidePanelMenuComponent implements OnInit{
+export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   //Icons
   faUser = faUser;
   faHome = faHome;
@@ -45,11 +47,22 @@ export class SidePanelMenuComponent implements OnInit{
   loggedUser! : User;
   loggedUserRole : string  = '';
 
+    //PDF DATA
+    routesWithAtLeastThreeStations: String[] = [];
+    longestRouteName: String = '';
+    stationsCount: number = 0;
+
   constructor(private authService : AuthService,
-              private router: Router){}
+              private router: Router,
+              private routeService: RoutesService){}
 
   ngOnInit(): void {
     this.fetchUser();
+    this.fetchPdfData();
+  }
+
+  ngAfterViewInit(): void {
+    this.fetchLongestRouteStationCount();
   }
 
   public fetchUser() : void {
@@ -234,5 +247,53 @@ export class SidePanelMenuComponent implements OnInit{
   }
   public navigateToUserRoutes() : void {
     this.router.navigate(['/allRoutes']);
+  }
+
+  public fetchPdfData() : void {
+    this.routeService.getRouteWithAtLeastThreeStations().subscribe(
+      (response : String[]) => {
+        this.routesWithAtLeastThreeStations = response;
+        console.log("Three stations successful");
+      }, (error: HttpErrorResponse) => {
+        console.log("Error 1", error.message)
+      }
+    );
+
+    this.routeService.getLongestRoute().subscribe(
+      (response: String) => {
+        this.longestRouteName = response;
+        console.log("Longest route successful");
+      }, (error: HttpErrorResponse) => {
+        console.log("Error 2", error.message);
+      }
+    );
+  }
+  
+  public generatePDF() : void {
+    const doc = new jsPDF();
+
+    const imgData = 'assets/LogoWithNameGrey.png';
+    doc.addImage(imgData, 'PNG', 10, 10, 60, 30);
+    
+    doc.setFontSize(32);
+    doc.text('GENERAL ROUTE STATISTICS, 2024', 10, 60);
+  
+    doc.setFontSize(12);
+    doc.text(`Routes with three or more stations: ${this.routesWithAtLeastThreeStations}`, 10, 90);
+    doc.text(`Longest route: ${this.longestRouteName}`, 10, 100);
+    doc.text(`Number of stations on longest route: ${this.stationsCount}`, 10, 110);
+  
+    doc.save('Route_statistics.pdf');
+  }
+
+  public fetchLongestRouteStationCount() : void {
+    this.routeService.getStationsCount(this.longestRouteName).subscribe(
+      (response : number) => {
+        this.stationsCount = response;
+        console.log("Stations count successful");
+      }, (error: HttpErrorResponse) => {
+        console.log("Error 3", error.message);
+      }
+    )
   }
 }

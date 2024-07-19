@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full h-full p-4 font-manrope text-white">
+<!-- <div class="flex flex-col w-full h-full p-4 font-manrope text-white">
     <div class="flex flex-row items-end w-full mb-10 justify-between">
         <div class="flex flex-row items-end">
             <div class="felx flex-col w-[400px]">
@@ -31,5 +31,66 @@
                 [routes]="bus.routeNames"
             />
         }
+    </div>
+</div> -->
+
+
+<div class="flex flex-col w-full h-full p-4 gap-8 font-manrope text-white items-center justify-between">
+    <div class="flex flex-row w-full h-[13%] justify-between items-center">
+        <div class="flex flex-col w-[400px] gap-2">
+            <p class="text-[16px] text-primaryBlack font-normal">Enter route name</p>
+            <div class="flex flex-row w-full rounded-[10px] border-[1px]  p-2
+                        h-[50px] border-primaryGrey/50 bg-white/0 w-full items-center gap-2">
+                <button class="w-[25px] text-primaryBlack">
+                    <fa-icon [icon]="faSearch"/>
+                </button>
+                <input class="focus:outline-none text-primaryBlack" placeholder="e.g. 7A" ngModel name="password" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col h-full w-full overflow-y-auto p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md">
+        <div class="flex flex-row w-full items-center justify-between">
+            <div class="flex flex-row gap-4 items-center"> 
+                <div class="flex flex-row items-center gap-2">
+                    <img src="../../../assets/icons/BusIcon.png" class="size-[24px] icon"/>
+                    <p class="text-primaryBlack text-[24px] font-medium">Buses</p>
+                </div>
+                <button class="flex flex-row py-2 px-4 gap-2 items-center rounded-md bg-primaryDarkGreen 
+                                hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="openCreateBusForm()">
+                    <img src="../../../assets/icons/PlusIcon.png" class="size-[15px] nav_menu_icon"/>
+                    <p class="text-primaryWhite font-manrope text-[14px]">Add new</p>
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-row gap-4 justify-evenly flex-wrap ">
+            @for (bus of buses; track $index) {
+                <app-bus-card
+                    [busId]="bus.id"
+                    [licencePlate]="bus.licencePlate"
+                    [routes]="bus.routeNames"
+                />
+                <app-bus-card
+                    [busId]="bus.id"
+                    [licencePlate]="bus.licencePlate"
+                    [routes]="bus.routeNames"
+                />
+                <app-bus-card
+                    [busId]="bus.id"
+                    [licencePlate]="bus.licencePlate"
+                    [routes]="bus.routeNames"
+                />
+                <app-bus-card
+                    [busId]="bus.id"
+                    [licencePlate]="bus.licencePlate"
+                    [routes]="bus.routeNames"
+                />
+                <app-bus-card
+                    [busId]="bus.id"
+                    [licencePlate]="bus.licencePlate"
+                    [routes]="bus.routeNames"
+                />
+            }
+        </div>
     </div>
 </div>

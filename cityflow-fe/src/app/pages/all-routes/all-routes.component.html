@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full h-full p-4 font-manrope text-white items-center">
     <div class="flex flex-row w-full h-[13%] justify-between items-center">
         <div class="flex flex-col w-[400px]">
-            <p class="text-[16px] font-normal">Enter route name</p>
+            <p class="text-[16px] text-primaryBlack font-normal">Enter route name</p>
             <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
                         h-[50px] border-white/60 bg-white/0 w-full px-2 py-4 items-center">
                 <input class="bg-white/0"
@@ -16,6 +16,21 @@
             <p class="underline font-semibold text-[24px]">Show all</p>
         </button>
     </div>
+    @if (this.mostFrequentedRoute != null) {
+        <div class="flex flex-col w-full mt-6">
+            <p class="font-manrope text-white text-[16px] font-light">The most frequently chosen route</p>
+            <hr class="w-full text-lightGrey/20 my-2">
+            <app-route-list-item
+                [routeId]="this.mostFrequentedRoute.id"
+                [routeName]="this.mostFrequentedRoute.name"
+                [startTime]="this.mostFrequentedRoute.openingTime"
+                [endTime]="this.mostFrequentedRoute.closingTime"
+                [isUser]="true">
+            </app-route-list-item>
+            <p class="font-manrope text-white text-[16px] font-light mt-12">All routes</p>
+            <hr class="w-full text-lightGrey/20 my-2">
+        </div>
+    }
     <div class="flex flex-col h-[70%] w-full overflow-y-auto mt-6">
         @for (route of routes; track $index) {
             <app-route-list-item

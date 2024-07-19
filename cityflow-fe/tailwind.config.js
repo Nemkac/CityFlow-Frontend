@@ -6,13 +6,13 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily:{
-      manrope: ["Manrope", "sans-serif"]
+      manrope: ["Poppins", "sans-serif"]
     },
     colors:{
       darkGrey: "#2F3640",
       grey: "#353B48",
       lightGrey: "#DCDDE1",
-      white: "#F5F6FA",
+      white: "#FFFFFF",
       yellow: "#FBC531",
       deepGreen: "#44BD32",
       lightGreen: "#4CD137",
@@ -20,6 +20,18 @@ module.exports = {
       lightRed: "#E84118",
       deepBlue: "#192A56",
       lightBlue: "#273C75",
+      cityRoutes: "#E6C79C",
+      suburbanRoutes : "#7389AE",
+
+      primaryDarkGreen : "#025864",
+      primaryLightGreen: "#00D47E",
+      primaryWhite : "#FFFFFF",
+      primaryGrey : "#a6a9ac",
+      sideMenuBg : "#f6f7f9",
+
+      primaryBlue : "#247BA0",
+      primaryGreen : "#39b36a",
+      primaryBlack: "#032123",
     },
     screens: {
       xs: "480px",

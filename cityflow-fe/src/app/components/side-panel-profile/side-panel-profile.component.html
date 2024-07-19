@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center mt-6">
+<!-- <div class="flex flex-col items-center justify-center mt-6">
     <div class="flex rounded-full w-[70px] h-[70px] bg-white"></div>
     <div class="flex flex-col my-4 items-center justify-center my-4">
         <p class="font-manrope font-bold text-[16px] text-white">{{loggedUser?.username}}</p>
@@ -11,4 +11,27 @@
         <p class="font-manrope font-semibold text-[16px]">Sign Out</p>
         <fa-icon [icon]="faSignOut" class="w-[16px] ml-[10px]"/>
     </button>
+</div> -->
+
+<hr class="w-full text-primaryGrey/50 my-4">
+<div class="flex flex-row bg-primaryWhite rounded-md shadow-md p-4 w-full items-center justify-between font-manrope">
+    <div class="flex flex-row gap-4">
+        <div class="flex flex-row w-full gap-2 items-center">
+            @if(isLoggedIn){
+                <div class="rounded-full size-[35px] bg-primaryGreen"></div>  
+                <div class="flex flex-col">
+                    <p class="font-medium text-[14px] text-primaryBlack">{{loggedUser?.username}}</p>
+                    <p class="font-light text-[12px] text-primaryBlack">{{role}}</p>
+                </div>
+            } @else {
+                <app-signin-signup/>
+            }  
+        </div>
+    </div>
+    @if (isLoggedIn) {
+        <div class="flex rounded-full items-center justify-center hover:bg-primaryGrey/20 cursor-pointer transition-[0.5s] p-2"
+            (click)="signOut()">
+            <img src="../../../assets/icons/SignOutIcon.png" class="size-[20px]"/>
+        </div>
+    }
 </div>
