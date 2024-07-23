@@ -1,0 +1,47 @@
+<div *ngIf="isLoading" class="flex justify-center items-center h-screen w-screen">
+    <div class="text-center" style="margin-left: -300px;">
+        <p class="text-3xl sm:text-4xl md:text-5xl lg:text-3xl text-white mb-2">Genetic algorithm is generating charging plan.</p>
+        <p class="text-3xl sm:text-4xl md:text-5xl lg:text-3xl text-white">This can take up to 10 seconds...</p> <br><br>
+        <div class="spinner border-t-4 border-b-4 border-white rounded-full w-16 h-16 mb-4 animate-spin" style="margin-left:260px;"></div>
+    </div>
+</div>
+
+
+<div *ngIf="!isLoading" class="text-white flex flex-col bg-gray-800 rounded-lg p-4 mb-4">
+    <div class="flex flex-wrap items-center mb-2 border-b border-gray-600 pb-2">
+        <div class="w-full sm:w-1/4 px-2">
+            <p class="text-lg sm:text-xl"><b>Charging Station ID</b></p>
+        </div>
+        <div class="w-full sm:w-1/4 px-2">
+            <p class="text-lg sm:text-xl"><b>Charging Time</b></p>
+        </div>
+        <div class="w-full sm:w-1/2 flex px-2">
+            <div class="w-1/2 px-2">
+                <p class="text-lg sm:text-xl"><b>Start Time</b></p>
+            </div>
+            <div class="w-1/2 px-2">
+                <p class="text-lg sm:text-xl"><b>End Time</b></p>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let genOutput of geneticOutputFull" class="flex flex-wrap items-center mb-2">
+        <div class="w-full sm:w-1/4 px-2">
+            <p class="text-lg sm:text-xl"><b>Charging Station ID:</b> {{ genOutput.chStation.chargerId }}</p>
+        </div>
+        <div class="w-full sm:w-1/4 px-2">
+            <p class="text-lg sm:text-xl"><b>Charging Time:</b> {{ genOutput.chargingTime }}</p>
+        </div>
+        <div class="w-full sm:w-1/2 flex px-2">
+            <div class="w-1/2 px-2">
+                <p class="text-lg sm:text-xl"><b>Start Time:</b> {{ genOutput.startTime | date: 'short' }}</p>
+            </div>
+            <div class="w-1/2 px-2">
+                <p class="text-lg sm:text-xl"><b>End Time:</b> {{ genOutput.endTime | date: 'short' }}</p>
+            </div>
+        </div>
+    </div> <br>
+    <button class="flex flex-row w-[344px] h-[44px] rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s] mx-auto"
+    on-click="regenerateChargingPlan()" >
+        <p class="font-manrope text-darkGrey font-semibold text-[24px]">Regenerate charging plan</p>
+    </button>
+</div>
