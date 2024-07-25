@@ -7,6 +7,7 @@ import { Route } from '../../models/route';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-routes',
@@ -24,6 +25,7 @@ export class RoutesComponent implements OnInit{
   routes : Route[] = [];
 
   constructor(private routeService : RoutesService,
+              private toast : NgToastService,
               private router: Router) {}
 
   ngOnInit(): void {
@@ -44,6 +46,11 @@ export class RoutesComponent implements OnInit{
 
   public navigateToNewRoute() : void {
     this.router.navigate(['/newRoute']);
+  }
+
+  public handleRouteDeleted() : void {
+    this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
+    this.fetchRoutes();
   }
 
 }

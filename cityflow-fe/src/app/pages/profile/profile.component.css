@@ -1,0 +1,13 @@
+.icon {
+    filter: invert(53%) sepia(88%) saturate(948%) hue-rotate(112deg) brightness(97%) contrast(102%);
+}
+
+.nav_menu_icon_red{
+    filter: none;
+}
+
+/* Stil koji se primenjuje kada je kursor iznad dugmeta */
+.button-hover-effect:hover .nav_menu_icon_red {
+    opacity: 100;
+    filter: invert(31%) sepia(77%) saturate(1708%) hue-rotate(349deg) brightness(93%) contrast(98%);
+}

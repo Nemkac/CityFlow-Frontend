@@ -1,6 +1,6 @@
-<form #EditProfileForm="ngForm" (ngSubmit)="editProfile(EditProfileForm)" class="flex items-center justify-center w-full h-full">    
+<!-- <form #EditProfileForm="ngForm" (ngSubmit)="editProfile(EditProfileForm)" class="flex items-center justify-center w-full h-full">    
     <div class="flex flex-col w-[900px] h-auto rounded-[10px] bg-lightGrey/20 items-center justify-center p-6">
-        <div class="flex rounded-full w-[78px] h-[78px] bg-white"></div>
+        <div class="flex rounded-md w-[78px] h-[78px] bg-white"></div>
         <div class="flex flex-row my-4 w-full">
             <div class="flex flex-col w-[48%]">
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
@@ -59,7 +59,158 @@
         <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-lightGreen justify-center items-center hover:bg-deepGreen transition-[0.5s]"
                 type="submit">
             <p class="font-manrope text-white font-semibold text-[24px]">Save Changes</p>
-            <!--<fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>-->
         </button>
     </div>
-</form>
+</form> -->
+<div class="flex flex-col w-full font-manrope overflow-y-auto">
+    <div class="flex flex-row justify-between w-full items-center p-4">
+        <div class="flex flex-row items-center gap-2">
+            <img src="../../../assets/icons/user.png" class="size-[24px] icon"/>
+            <p class="text-primaryBlack text-[24px] font-medium">Profile</p>
+        </div>
+    </div>
+    <hr class="text-primaryGrey/50 w-full">
+    <!--General info-->
+    <div class="flex flex-col w-full p-4">
+        <div class="flex flex-row items-center w-full p-4 justify-between border-[1px] border-primaryGrey/50 rounded-md relative">
+            <div class="flex flex-row gap-4 items-center">
+                <div class="flex size-[80px] bg-primaryLightGreen rounded-full border-[1px] border-primaryGrey/50"></div>
+                <div class="flex flex-col">
+                    <p class="text-[22px] text-primaryBlack">{{loggedUser?.name}} {{loggedUser?.lastname}}</p>
+                    <p class="text-[16px] text-primaryGrey">{{loggedUser?.roles}}</p>
+                    <p class="text-[14px] text-primaryGrey font-light">Sremska Mitrovica, Serbia</p>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 bg-primaryDarkGreen 
+                                hover:bg-primaryLightGreen transition-[0.5s]">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] nav_menu_icon"/>
+                    <p class="text-primaryWhite font-manrope text-[16px] transition-[0.5s]">
+                        Change image
+                    </p>
+                </button>
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 
+                                hover:border-lightRed transition-[0.5s] group button-hover-effect">
+                    <img src="../../../assets/icons/TrashIcon.png" class="size-[20px] opacity-50 group-hover:opacity-100 nav_menu_icon_red"/>
+                    <p class="text-primaryBlack group-hover:opacity-100 group-hover:text-lightRed
+                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                        Delete image
+                    </p>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--personal info-->
+    <div class="flex flex-col w-full p-4">
+        <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
+            <div class="flex flex-row w-full justify-between items-center">
+                <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">PERSONAL INFO</p>
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                    <p class="text-primaryBlack group-hover:opacity-100 
+                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                        Edit
+                    </p>
+                </button>
+            </div>
+            <div class="flex flex-row w-full max-h-[500px] overflow-y-auto items-start">
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">First name</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.name}}</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Phone number</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.phoneNumber}}</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Date of birth</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.dateOfBirth}}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Last name</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.lastname}}</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
+                        <p class="text-[18px] text-primaryBlack">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt optio ducimus reiciendis alias illo magni dolorem aut, dicta aspernatur. Alias molestias illum explicabo obcaecati eius eaque placeat assumenda. Ea, officia!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Address-->
+    <div class="flex flex-col w-full p-4">
+        <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
+            <div class="flex flex-row w-full justify-between items-center">
+                <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">Address</p>
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                    <p class="text-primaryBlack group-hover:opacity-100 
+                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                        Edit
+                    </p>
+                </button>
+            </div>
+            <div class="flex flex-row w-full max-h-[500px] overflow-y-scroll gap-4 items-start">
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Country</p>
+                        <p class="text-[18px] text-primaryBlack">Serbia</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Postal code</p>
+                        <p class="text-[18px] text-primaryBlack">22221</p>
+                    </div>
+                </div>
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">City</p>
+                        <p class="text-[18px] text-primaryBlack">Sremska Mitrovica</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Street</p>
+                        <p class="text-[18px] text-primaryBlack">Mitrovacka 29</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Account info-->
+    <div class="flex flex-col w-full p-4">
+        <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
+            <div class="flex flex-row w-full justify-between items-center">
+                <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">Account</p>
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                    <p class="text-primaryBlack group-hover:opacity-100 
+                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                        Edit
+                    </p>
+                </button>
+            </div>
+            <div class="flex flex-row w-full max-h-[500px] overflow-y-scroll gap-4 items-start">
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Username</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.username}}</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Email address</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.email}}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col h-full w-full gap-4">
+                    <div class="flex flex-col">
+                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Password</p>
+                        <p class="text-[18px] text-primaryBlack">{{loggedUser.password}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

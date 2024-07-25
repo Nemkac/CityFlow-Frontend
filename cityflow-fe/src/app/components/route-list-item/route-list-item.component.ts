@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faPen, faTrash, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
@@ -22,6 +22,8 @@ export class RouteListItemComponent implements OnInit{
   @Input() startTime: string = '';
   @Input() endTime: string = '';
   @Input() isUser: boolean = false;
+
+  @Output() routeDeleted = new EventEmitter<void>();
 
   //Icons
   faPlus = faPlus
@@ -60,14 +62,13 @@ export class RouteListItemComponent implements OnInit{
     this.routeService.showRoute(routeId, this.loggedUser.username, this.routeName);
   }
 
-  public deleteRoute(routeId: number): void {
+  public deleteRoute(routeId: number, event : Event): void {
+    event.stopPropagation();
     this.routeService.deleteRoute(routeId).subscribe(response => {
       console.log(response);
-      this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      this.routeDeleted.emit();
     });
+    console.log('deleted');
   }
 
 }

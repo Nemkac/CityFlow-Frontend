@@ -1,12 +1,12 @@
 <div class="flex flex-col items-center font-manrope gap-2 justify-center text-white">
-    <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showHome,
-                    'bg-transparent': !showHome}" 
+    <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showDashboard,
+                    'bg-transparent': !showDashboard}" 
             class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
                     hover:bg-primaryWhite text-primaryBlack transition-[0.5s] items-center"
             (click)="viewHome()">
         <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
-            <img src="../../../assets/icons/home.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showHome}" />
-            <p class="text-[18px] font-medium">Home</p>
+            <img src="../../../assets/icons/DashboardIcon.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showDashboard}" />
+            <p class="text-[18px] font-medium">Dashboard</p>
         </div>
     </button>
 

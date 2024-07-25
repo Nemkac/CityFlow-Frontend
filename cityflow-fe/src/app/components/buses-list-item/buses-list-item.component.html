@@ -1,4 +1,4 @@
-<div class="flex w-full flex-row justify-center justify-between items-center border-b-[1px] border-white/60 py-2">
+<!-- <div class="flex w-full flex-row justify-center justify-between items-center border-b-[1px] border-white/60 py-2">
     <div class="flex flex-row w-full items-center">
         <div class="flex rounded-full size-[40px] bg-[#E6C79C] items-center text-center justify-center">
             <fa-icon class="text-white text-[22px]" [icon]="faBus"/>
@@ -15,4 +15,23 @@
             <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
         </button>
     </div>
+</div> -->
+
+<div class="flex flex-col w-[300px] border-[1px] border-primaryGrey/50 rounded-md p-4 gap-4 relative
+            hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]">
+    <div class="flex flex-row items-center w-auto gap-2">
+        <img src="../../../assets/icons/BusIcon.png" class="size-[25px]"/>
+        <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>
+    </div>
+    <div>
+        <p class="w-full text-[14px] font-semibold font-manrope text-primaryBlack">{{licencePlate}}</p>   
+    </div>
+    <button class="flex flex-row gap-2 absolute top-2 right-2 items-center group button-hover-effect"
+            (click)="deleteBusFromRoute(routeId, busId)">
+        <img src="../../../assets/icons/TrashIcon.png" class="size-[14px] opacity-50 nav_menu_icon_red"/>
+        <p class="text-primaryBlack group-hover:text-lightRed group-hover:opacity-100 
+                opacity-50 font-manrope text-[12px] transition-[0.5s]">
+            Delete from route
+        </p>
+    </button>
 </div>

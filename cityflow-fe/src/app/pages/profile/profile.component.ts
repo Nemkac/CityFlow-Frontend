@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit{
       this.authService.getUserFromToken(this.token).subscribe(
         (response : User) => {
           this.loggedUser = response;
+          console.log(this.loggedUser);
         },
         (error: HttpErrorResponse) => {
           console.log('Error fetching user data:\n', error.message);

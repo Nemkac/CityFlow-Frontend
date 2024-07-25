@@ -28,6 +28,7 @@ export class SigninComponent implements OnInit{
       (response: LoginDTO) => {
         console.log("Successfully signed in!", response);
         window.location.reload();
+        this.router.navigate(['']);
       },
       (error: HttpErrorResponse) => {
         console.log("Error while signing in: ", error);

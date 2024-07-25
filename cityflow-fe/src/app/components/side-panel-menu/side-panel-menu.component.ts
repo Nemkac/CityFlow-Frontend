@@ -30,7 +30,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   faCalendar = faCalendar;
   
   //Menu item selections
-  showHome : boolean = true;
+  showDashboard : boolean = true;
   showProfile : boolean = false;
   showCards : boolean = false;
   showInbox : boolean = false;
@@ -47,10 +47,10 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   loggedUser! : User;
   loggedUserRole : string  = '';
 
-    //PDF DATA
-    routesWithAtLeastThreeStations: String[] = [];
-    longestRouteName: String = '';
-    stationsCount: number = 0;
+  //PDF DATA
+  routesWithAtLeastThreeStations: String[] = [];
+  longestRouteName: String = '';
+  stationsCount: number = 0;
 
   constructor(private authService : AuthService,
               private router: Router,
@@ -80,7 +80,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewHome() : void{
-    this.showHome = true;
+    this.showDashboard = true;
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
@@ -92,10 +92,11 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showBuses = false;
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+    this.navigateToDashboard();
   }
   
   public viewProfile() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = true;
     this.showCards = false;
     this.showInbox = false;
@@ -111,7 +112,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewCards() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showCards = true;
     this.showInbox = false;
@@ -122,7 +123,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewUserRoutes() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
@@ -133,7 +134,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
   
   public viewInbox() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = true;
@@ -148,7 +149,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewRoutes() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showRoutes = true;
     this.showInbox = false;
@@ -158,7 +159,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewBuses() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showRoutes = false;
     this.showInbox = false;
@@ -167,7 +168,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
 
   public viewEmployees() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showEmployees = true;
     this.showInbox = false;
@@ -175,7 +176,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showWorkCalendar = false;
   }
   public viewUserBalance() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showInbox = false;
     this.showUserBalance = true;
@@ -184,7 +185,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.navigateToUserBalance();
   }
   public viewUserRequests() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showInbox = false;
     this.showUserBalance = false;
@@ -194,7 +195,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showWorkCalendar = false;
   }
   public viewUserCardBalance() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showInbox = false;
     this.showUserBalance = false;
@@ -205,7 +206,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showUserRoutes = false;
   }
   public viewWorkCalendar() : void{
-    this.showHome = false;
+    this.showDashboard = false;
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
@@ -247,6 +248,9 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
   public navigateToUserRoutes() : void {
     this.router.navigate(['/allRoutes']);
+  }
+  public navigateToDashboard() : void {
+    this.router.navigate(['/']);
   }
 
   public fetchPdfData() : void {

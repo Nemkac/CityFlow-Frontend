@@ -18,8 +18,10 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { WorkCalendarComponent } from './components/work-calendar/work-calendar.component';
 import { AddShiftFormComponent } from './components/add-shift-form/add-shift-form.component';
 import { AllRoutesComponent } from './pages/all-routes/all-routes.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
+    {path:"", component: DashboardComponent},
     {path:"signin" , component:  SigninComponent},
     {path:"signup", component: SignupComponent},
     {path:"routes", component: RoutesComponent},
