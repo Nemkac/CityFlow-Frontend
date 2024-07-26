@@ -1,0 +1,9 @@
+button:disabled {
+    background-color: #cccccc; /* Svetao sivi ton za onemogućeno dugme */
+    color: #666666; /* Tamniji sivi ton za tekst na onemogućenom dugmetu */
+    cursor: not-allowed; /* Kursor koji pokazuje da nije dozvoljena akcija */
+}
+
+.icon {
+    filter: invert(53%) sepia(88%) saturate(948%) hue-rotate(112deg) brightness(97%) contrast(102%);
+}

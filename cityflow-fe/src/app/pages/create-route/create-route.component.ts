@@ -27,7 +27,7 @@ export class CreateRouteComponent implements AfterViewInit {
   private routingControl: any; // Promenljiva za čuvanje rutiranja
   private coordinates: L.LatLng[] = []; // Niz za čuvanje koordinata
   private toleranceRadius = 30; // Tolerancija u metrima
-  private routeFinished = false; // Promenljiva koja prati da li je ruta završena
+  public routeFinished = false; // Promenljiva koja prati da li je ruta završena
   
   routeName: string = "";
   openingTime: string = "";

@@ -1,48 +1,75 @@
-<div class="flex flex-col w-full h-full items-center overflow-hidden p-4">
-    <div #mapContainer class="flex xl:h-[400px] sm:h-[400px] w-full rounded-md relative"></div>
-    <div class="flex w-full flex-row justify-between items-center my-4 text-white">
-        <div class="flex flex-col justify-start">
-            <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope mb-2">Route name</p>
-            <input class="rounded-md border-[1px] h-[35px] border-primaryGrey/50 w-[300px] px-2 py-4" [(ngModel)]="routeName">
+<body class="flex flex-col gap-4 w-full h-full">
+    <div class="flex flex-row items-center gap-2 pt-4 px-4">
+        <img src="../../../assets/icons/travel.png" class="size-[24px] icon"/>
+        <p class="text-primaryBlack text-[24px] font-medium">Create route</p>
+    </div>
+    <hr class="w-full text-primaryGrey/50">
+    <div class="flex flex-row w-full px-4">
+        <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+            <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+            <p class="text-[14px] text-primaryBlack">Select at least two stops to create a route. You select stations by pressing the station icon on the interactive map, and you end the route by pressing the first station again.</p>
         </div>
-        <div class="flex flex-row items-center w-auto">
-            <div class="flex flex-col justify-start">
-                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope mb-2">Opening time</p>
-                <input class="rounded-md border-[1px] xl:h-[35px] sm:h-[10px] border-primaryGrey/50 w-full px-2 py-4" [(ngModel)]="openingTime">
+    </div>
+    <div class="flex relative w-full h-full gap-4 px-4 pb-4 overflow-hidden font-manrope">
+        <div #mapContainer class="flex h-full w-full rounded-md relative z-[1]"></div>
+        <div class="flex flex-col w-[400px] bg-primaryWhite p-4 rounded-md gap-4 bottom-10 right-10 absolute z-[2] ">
+            <p class="text-primaryGrey font-medium text-[14px] tracking-wider">ROUTE DETAILS</p>
+            <div class="flex flex-col w-full">
+                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Route name</p>
+                <input class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="routeName">
             </div>
-            <div class="flex flex-col justify-start ml-10">
-                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope mb-2">Closing time</p>
-                <input class="rounded-md border-[1px] h-[35px] border-primaryGrey/50 w-full px-2 py-4" [(ngModel)]="closingTime">
+            <div class="flex flex-row justify-between w-full items-center">
+                <div class="flex flex-col w-full justify-start">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Opening time</p>
+                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="openingTime">
+                </div>
+                <div class="flex flex-col w-full justify-start ml-10">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Closing time</p>
+                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="closingTime">
+                </div>
+            </div>
+            <div class="flex flex-row items-center justify-center w-full">
+                <button class="flex flex-row py-2 px-8 h-[45px] rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="saveRoute()" [disabled]="!routeName || !openingTime || !closingTime || !routeFinished">
+                    <fa-icon [icon]="faPlus" class="w-[16px] text-primaryWhite"/>
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save route</p>
+                </button>
             </div>
         </div>
     </div>
-    <div class="flex flex-row w-full justify-center justify-between my-4 font-manrope text-white">
-        <div class="flex flex-col w-[33%] h-auto items-center">
-            <p class="font-semibold text-primaryBlack xl:text-[24px] sm:text-[18px]">Starting position</p>
-            <div class="flex flex-col w-full justify-center items-center my-2">
-                <p class="font-regular xl:text-[18px] sm:text-[14px]">{{startingStation}}</p>
-            </div>
+</body>
+<!-- <div class="flex flex-col w-full h-full p-4 gap-4">
+    <div class="flex flex-row w-full px-4">
+        <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+            <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+            <p class="text-[14px] text-primaryBlack">Select at least two stops to create a route. You select stations by pressing the station icon on the interactive map, and you end the route by pressing the first station again.</p>
         </div>
-        <div class="flex flex-col w-[33%] h-auto items-center border-x-[1px] border-white">
-            <p class="font-semibold xl:text-[24px] sm:text-[18px]">Stations</p>
-            <div class="flex flex-col w-full justify-center items-center my-2">
-                @for (station of stations; track $index) {
-                    <p class="font-regular xl:text-[18px] sm:text-[14px]">{{station}}</p>
-                }
+    </div>
+    <div class="flex relative w-full h-full gap-4 px-4 pb-4 overflow-hidden font-manrope">
+        <div #mapContainer class="flex h-full w-full rounded-md relative z-[1]"></div>
+        <div class="flex flex-col w-[400px] bg-primaryWhite p-4 rounded-md gap-4 bottom-10 right-10 absolute z-[2] ">
+            <p class="text-primaryGrey font-medium text-[14px] tracking-wider">ROUTE DETAILS</p>
+            <div class="flex flex-col w-full">
+                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Route name</p>
+                <input class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="routeName">
             </div>
-        </div>
-        <div class="flex flex-col w-[33%] h-auto items-center">
-            <p class="font-semibold xl:text-[24px] sm:text-[18px]">Ending position</p>
-            <div class="flex flex-col w-full justify-center items-center my-2">
-                <p class="font-regular xl:text-[18px] sm:text-[14px]">{{endingStation}}</p>
+            <div class="flex flex-row justify-between w-full items-center">
+                <div class="flex flex-col w-full justify-start">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Opening time</p>
+                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="openingTime">
+                </div>
+                <div class="flex flex-col w-full justify-start ml-10">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Closing time</p>
+                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="closingTime">
+                </div>
+            </div>
+            <div class="flex flex-row items-center justify-center w-full">
+                <button class="flex flex-row py-2 px-8 h-[45px] rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="saveRoute()" [disabled]="!routeName || !openingTime || !closingTime || !routeFinished">
+                    <fa-icon [icon]="faPlus" class="w-[16px] text-primaryWhite"/>
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save route</p>
+                </button>
             </div>
         </div>
     </div>
-    <div class="flex w-full items-center justify-end">
-        <button class="flex flex-row w-[258px] h-[43px] rounded-[10px] bg-white justify-center items-center mt-20 hover:bg-lightGrey transition-[0.5s]"
-                (click)="saveRoute()">
-            <p class="font-manrope text-darkGrey font-semibold text-[16px]">Save route</p>
-            <fa-icon [icon]="faPlus" class="w-[16px] ml-[10px] text-darkGrey"/>
-        </button>
-    </div>
-</div>
+</div> -->
