@@ -1,22 +1,48 @@
-<form #SignInForm="ngForm" (ngSubmit)="signIn(SignInForm)" class="flex items-center justify-center w-full h-full">
-    <div class="flex flex-col items-center justify-center px-16 py-12 bg-lightGrey/20 rounded-[16px] w-[510px]">
-        <img src="../../../assets/Logo.png" class="w-[74px]">
-        <div class="flex flex-col font-manrope font-regular w-full my-8 text-white">
-            <p class="text-[14px] mb-2">Username</p>
-            <input class="rounded-[10px] border-[1px] h-[50px] border-white/60 w-full w-full bg-lightGrey/20 px-2 py-4"
-                    placeholder="Enter your username" ngModel name="username"
-                    type="text" required>
-        </div>
-        <div class="flex flex-col font-manrope font-regular text-white w-full">
-            <p class="text-[14px] mb-2">Password</p>
-            <input class="rounded-[10px] border-[1px] h-[50px] border-white/60 w-full w-full bg-lightGrey/20 px-2 py-4"
-                    placeholder="Enter your password" ngModel name="password"
-                    type="text" required>
-        </div>
-        <button class="flex flex-row w-full h-[64px] rounded-[10px] bg-white justify-center items-center mt-24 hover:bg-lightGrey transition-[0.5s]"
-                type="submit">
-            <p class="font-manrope text-darkGrey font-semibold text-[24px]">Sign In</p>
-            <fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>
-        </button>
+<form #SignInForm="ngForm" (ngSubmit)="signIn(SignInForm)" class="flex flex-col font-manrope w-full h-full items-center justify-center gap-4">
+    <div class="flex flex-row bg-primaryDarkGreen items-center  size-[150px] justify-center rounded-full">
+        <img src="../../../assets/Logo.png" class="w-[70px]"/>
     </div>
+    <div class="flex flex-col items-center justify-center w-full">
+        <p class="text-[24px] text-primaryBlack font-medium">Sign in to your account</p>
+        <p class="text-[16px] text-primaryBlack font-light">Enter your username and password to sign in to your account</p>
+    </div>
+    <div class="flex flex-col w-full items-center justify-center gap-4">
+        <div class="flex flex-col lg:w-[50%] xl:w-[35%]">
+            <label for="username" class="text-primaryBlack/70 font-regular text-[12px]">Username</label>
+            <input ngModel name="username" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-primaryLightGreen" 
+                    placeholder="Enter your username here" type="text"/>
+        </div>
+        <div class="flex flex-col lg:w-[50%] xl:w-[35%]">
+            <label for="password" class="text-primaryBlack/70 font-regular text-[12px]">Password</label>
+            <input ngModel name="password" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-primaryLightGreen" 
+                    placeholder="Enter your passwort here" type="password"/>
+        </div>
+        <div class="flex lg:w-[50%] xl:w-[35%] items-center justify-center">
+            <button class="flex flex-row w-full h-[45px] rounded-md bg-primaryDarkGreen justify-center items-center hover:bg-primaryLightGreen transition-[0.5s]"
+                    type="submit">
+                <p class="font-manrope text-primaryWhite font-medium text-[18px]">Sign In</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex lg:w-[50%] xl:w-[35%] items-center justify-end">
+        <p class="text-[12px] font-light text-primaryBlack hover:text-primaryLightGreen transition-[0.5s] cursor-pointer">Forgot password?</p>
+    </div>
+
+    <div class="flex flex-row sm:w-[50%] xl:w-[35%] justify-between items-center justify-center">
+        <hr class="w-[35%] text-primaryBlack">
+        <p class="text-[14px] text-primaryBlack font-light">Or continue with</p>
+        <hr class="w-[35%] text-primaryBlack">
+    </div>
+
+    <div class="flex w-full items-center justify-center lg:w-[100%] xl:w-[35%] h-[45px]" id="buttonDiv"></div>
+
+    <div class="flex flex-row lg:w-[50%] xl:w-[35%] items-center justify-center">
+        <p class="text-[14px] text-primaryBlack font-light">Don't have an account yet?</p>
+        <p class="text-[14px] text-primaryDarkGreen font-bold ml-2 hover:text-primaryLightGreen transition-[0.5s] cursor-pointer"
+            (click)="navigationService.navigateToSignUp()">
+            Sign up
+        </p>
+    </div>
+    
 </form>

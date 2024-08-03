@@ -4,16 +4,19 @@ import { LoginDTO } from '../dtos/loginDTO';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
 import { RegisterDTO } from '../dtos/registerDTO';
+import { NavigationService } from './navigation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public authStatus: Observable<boolean> = this.authStatusSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private navigationService : NavigationService
+  ) { }
 
   private apiServerUrl = 'http://localhost:8081'; 
 
@@ -38,5 +41,11 @@ export class AuthService {
   public isLoggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
+  }
+
+  public signOut() : void {
+    localStorage.removeItem('token');
+    this.authStatusSubject.next(false);
+    this.navigationService.navigateToSignIn();
   }
 }

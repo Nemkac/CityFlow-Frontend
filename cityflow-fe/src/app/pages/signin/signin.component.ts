@@ -7,6 +7,8 @@ import { LoginDTO } from '../../dtos/loginDTO';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../service/navigation.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-signin',
@@ -21,17 +23,24 @@ export class SigninComponent implements OnInit{
 
   ngOnInit(): void {}
 
-  constructor(private authService : AuthService, private router : Router){}
+  constructor(private authService : AuthService, 
+    private router : Router,
+    private toast : NgToastService,
+    public navigationService : NavigationService
+  ){}
 
   public signIn(SignInForm: NgForm) : void{
     this.authService.logIn(SignInForm.value).subscribe(
       (response: LoginDTO) => {
         console.log("Successfully signed in!", response);
-        window.location.reload();
-        this.router.navigate(['']);
+        this.toast.success({detail:"Welcome back!",summary:'Successfully signed in!', duration: 3000});
+        this.authService.authStatusSubject.next(true);
+        this.navigationService.navigateToDashboard();
       },
       (error: HttpErrorResponse) => {
         console.log("Error while signing in: ", error);
+        this.toast.error({detail:"Error!",summary:'Incorrect username or password!', duration: 3000});
+
       }
     )
   }

@@ -21,7 +21,8 @@ import { AllRoutesComponent } from './pages/all-routes/all-routes.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path:"", component: DashboardComponent},
+    // {path:"", component: DashboardComponent},
+    {path:"dashboard", component: DashboardComponent},
     {path:"signin" , component:  SigninComponent},
     {path:"signup", component: SignupComponent},
     {path:"routes", component: RoutesComponent},

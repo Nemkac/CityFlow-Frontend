@@ -22,7 +22,7 @@ export class SidePanelProfileComponent implements OnInit{
   isLoggedIn: boolean = false;
 
 
-  constructor(private authService : AuthService){}
+  constructor(public authService : AuthService){}
 
   ngOnInit(): void {
     this.isUserLogged();
@@ -54,7 +54,6 @@ export class SidePanelProfileComponent implements OnInit{
   }
 
   public signOut() : void {
-    localStorage.removeItem('token');
-    window.location.reload();
+    this.authService.signOut();
   }
 }

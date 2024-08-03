@@ -35,12 +35,17 @@ export class SidePannelComponent implements OnInit{
   constructor(private authService : AuthService){}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'token') {
-        this.isLoggedIn = !!localStorage.getItem('token');
+    this.authService.authStatus.subscribe(
+      status => {
+        this.isLoggedIn = status;
       }
-    });
+    )
+    // this.isLoggedIn = this.authService.isLoggedIn();
+    
+    // window.addEventListener('storage', (event) => {
+    //   if (event.key === 'token') {
+    //     this.isLoggedIn = !!localStorage.getItem('token');
+    //   }
+    // });
   }
 }
