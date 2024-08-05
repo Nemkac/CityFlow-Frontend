@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { RouteDTO } from '../dtos/routeDTO';
 import { deleteBusFromRouteDTO } from '../dtos/deleteBusFromRouteDTO';
 import { SearchDTO } from '../dtos/searchDTO';
+import { Location } from '../models/location';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,9 @@ export class RoutesService {
 
   public getStationsCount(routeName: String) : Observable<any>{
     return this.http.get<any>(`${this.apiServerUrl}/CityFlow/stationsCount/${routeName}`)
+  }
+
+  public getAllStations() : Observable<Location[]>{
+    return this.http.get<Location[]>(`${this.apiServerUrl}/CityFlow/getStations`);
   }
 }

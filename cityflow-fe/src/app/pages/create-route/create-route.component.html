@@ -7,7 +7,7 @@
     <div class="flex flex-row w-full px-4">
         <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
             <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
-            <p class="text-[14px] text-primaryBlack">Select at least two stops to create a route. You select stations by pressing the station icon on the interactive map, and you end the route by pressing the first station again or by pressing the last station two times.</p>
+            <p class="text-[14px] text-primaryBlack">Select at least two stops to create a route. You select stations by pressing the station icon on the interactive map. When you have finished selecting stations, press the finish button that will appear in the lower left corner of the map to save the route path.</p>
         </div>
     </div>
     <div class="flex relative w-full h-full gap-4 px-4 pb-4 overflow-hidden font-manrope">
@@ -28,13 +28,25 @@
                     <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="closingTime">
                 </div>
             </div>
-            <div class="flex flex-row items-center justify-center w-full">
-                <button class="flex flex-row py-2 px-8 h-[45px] rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
+            <div class="flex flex-row items-center gap-4 w-full justify-between">
+                <button class="flex flex-row py-2 h-[45px] w-full rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
                         (click)="saveRoute()" [disabled]="!routeName || !openingTime || !closingTime || !routeFinished">
                     <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save route</p>
                 </button>
+                <button class="flex h-[45px] w-full items-center justify-center rounded-md border-[1px] transition-[0.5s]
+                                text-primaryWhite bg-primaryBlack/70 font-medium text-[14px] hover:bg-primaryBlack/40"
+                        (click)="cancelRouteCreation()">
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Cancel</p>
+                </button>
             </div>
         </div>
+        @if(possibleToSave){
+            <button class="flex h-[45px] w-[220px] rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]
+                            text-primaryWhite font-medium items-center justify-center text-[24px] absolute bottom-10 left-10 z-[2]"
+                    (click)="finishCreatingRoute()">
+                Finish
+            </button>
+        }
     </div>
 </body>
 <!-- <div class="flex flex-col w-full h-full p-4 gap-4">
