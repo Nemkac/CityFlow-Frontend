@@ -11,7 +11,7 @@ import { NavigationService } from './navigation.service';
 })
 export class AuthService {
 
-  public authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn());
   public authStatus: Observable<boolean> = this.authStatusSubject.asObservable();
 
   constructor(private http: HttpClient,

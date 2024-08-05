@@ -19,6 +19,7 @@ import { WorkCalendarComponent } from './components/work-calendar/work-calendar.
 import { AddShiftFormComponent } from './components/add-shift-form/add-shift-form.component';
 import { AllRoutesComponent } from './pages/all-routes/all-routes.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { StationsComponent } from './pages/stations/stations.component';
 
 export const routes: Routes = [
     // {path:"", component: DashboardComponent},
@@ -41,5 +42,6 @@ export const routes: Routes = [
     {path:"fileUpload", component: FileUploadComponent},
     {path:"work-calendar", component: WorkCalendarComponent},
     {path:"add-shift", component: AddShiftFormComponent},
-    {path:"allRoutes", component: AllRoutesComponent}
+    {path:"allRoutes", component: AllRoutesComponent},
+    {path:"stations", component: StationsComponent}
 ];

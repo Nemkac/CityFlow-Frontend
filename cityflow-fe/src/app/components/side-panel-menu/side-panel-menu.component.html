@@ -84,6 +84,16 @@
                 <p class="text-[18px] font-medium">Buses</p>
             </div>
         </button>
+        <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showStations,
+                    'bg-transparent': !showStations}" 
+                class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
+                        hover:bg-primaryWhite text-primaryBlack transition-[0.5s]"
+                (click)="viewStations()">
+            <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
+                <img src="../../../assets/icons/StationsIcon.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showBuses}"/>
+                <p class="text-[18px] font-medium">Stations</p>
+            </div>
+        </button>
 
     } @else if (loggedUserRole == 'ROLE_HRAdministrator') {
         <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showWorkCalendar,

@@ -42,6 +42,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   showRequests : boolean = false;
   showWorkCalendar: boolean = false
   showUserRoutes : boolean = false;
+  showStations : boolean  = false;
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -92,6 +93,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showBuses = false;
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+    this.showStations = false;
     this.navigateToDashboard();
   }
   
@@ -109,6 +111,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.navigateToProfile();
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+    this.showStations = false;
   }
 
   public viewCards() : void{
@@ -146,6 +149,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showBuses = false;
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+    this.showStations = false;
   }
 
   public viewRoutes() : void{
@@ -154,6 +158,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showRoutes = true;
     this.showInbox = false;
     this.showBuses = false;
+    this.showStations = false;
     this.navigateToRoutes();
     this.showWorkCalendar = false;
   }
@@ -164,7 +169,18 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.showRoutes = false;
     this.showInbox = false;
     this.showBuses = true;
+    this.showStations = false;
     this.navigateToBuses();
+  }
+
+  public viewStations() : void{
+    this.showDashboard = false;
+    this.showProfile = false;
+    this.showRoutes = false;
+    this.showInbox = false;
+    this.showBuses = false;
+    this.showStations = true;
+    this.navigateToStations();
   }
 
   public viewEmployees() : void{
@@ -251,6 +267,9 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   }
   public navigateToDashboard() : void {
     this.router.navigate(['/dashboard']);
+  }
+  public navigateToStations() : void {
+    this.router.navigate(['/stations']);
   }
 
   public fetchPdfData() : void {

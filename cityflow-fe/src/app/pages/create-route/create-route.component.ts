@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -33,6 +33,7 @@ L.Marker.prototype.options.icon = new L.Icon({
 })
 export class CreateRouteComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+
   faPlus = faPlus;
 
   private map!: L.Map;
@@ -44,6 +45,7 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
   private markerMap = new Map<string, L.Marker>();
 
   public fetchedStations : Location[] = [];
+  public selectedStationsLocations : any[] = [];
   public possibleToSave : boolean = false;
 
   routeName: string = "";
@@ -69,30 +71,8 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
 
   public fetchStations() {
     this.routeService.getAllStations().subscribe(
-      (response : Location[]) => {
-        this.fetchedStations = response;
-        console.log(this.fetchedStations);
-      },
-      (error : HttpErrorResponse) => {
-        console.log("Error while fetching stations, ", error.message);
-      }
-    )
-  }
-
-  loadMap() {
-    this.map = L.map(this.mapContainer.nativeElement).setView(
-      [45.267136, 19.833549],
-      16
-    );
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
-  
-    this.routingControl = L.Routing.control({
-      waypoints: [],
-      routeWhileDragging: true,
-    }).addTo(this.map);
-    
-    this.routeService.getAllStations().subscribe(
       (stations) => {
+        this.fetchedStations = stations;
         stations.forEach(station => {
           const marker = L.marker([station.latitude, station.longitude], {icon : this.busIcon})
             .addTo(this.map)
@@ -108,6 +88,22 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
         console.log("Error while fetching stations: ", error.message);
       }
     );
+  }
+
+  loadMap() {
+    this.map = L.map(this.mapContainer.nativeElement).setView(
+      [45.267136, 19.833549],
+      16
+    );
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+  
+    this.routingControl = L.Routing.control({
+      waypoints: [],
+      routeWhileDragging: true,
+      addWaypoints: false
+    }).addTo(this.map);
+    
+    this.fetchStations();
   }
 
 
@@ -136,9 +132,14 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
   
 
   addPointToRoute(marker: L.Marker): void {
-    const latLng = marker.getLatLng();  
+    const latLng = marker.getLatLng(); 
+    const stationInfo = this.fetchedStations.find(station =>
+      station.latitude === latLng.lat && station.longitude === latLng.lng
+    ); 
+
     if (!this.coordinates.some(coord => coord.equals(latLng))) {
       this.coordinates.push(latLng);
+      this.selectedStationsLocations.push(stationInfo);
       this.routingControl.setWaypoints(this.coordinates);
   
       if (this.coordinates.length > 1) {
@@ -168,11 +169,11 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
     L.marker(endingPoint, { icon: this.endingIcon }).addTo(this.map).bindPopup('Ending Point');
   }
 
-  public saveRoute() : void {
-    const startingPoint: Location = {address: "Address", latitude: this.startingStation!.lat, longitude: this.startingStation!.lng };
-    const endingPoint: Location = {address:"Address", latitude: this.endingStation!.lat, longitude: this.endingStation!.lng };
-
-    const stationsArray: Location[] = this.selectedStations.map(station => ({address:"Address", latitude: station.lat, longitude: station.lng }));
+  public saveRoute() : void {   
+    const startingPoint = this.selectedStationsLocations[0];
+    const endingPoint = this.selectedStationsLocations[this.selectedStationsLocations.length - 1];
+    const stationsArray = this.selectedStationsLocations.slice(1, -1);
+    
     const routeDTO: RouteDTO = {
       routeName: this.routeName,
       startingPoint: startingPoint,
@@ -184,18 +185,16 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
 
     console.log(routeDTO);
 
-    // this.routeService.saveRoute(routeDTO).subscribe(
-    //   (response : Route) => {
-    //     console.log(response);
-    //     this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
-    //     setTimeout(() => {
-    //       this.router.navigate(['/routes'])
-    //     }, 3000);
-    //   },
-    //   (error : HttpErrorResponse) => {
-    //     console.log("Error while creating route: \n", error.message);
-    //   }
-    // );
+    this.routeService.saveRoute(routeDTO).subscribe(
+      (response : Route) => {
+        console.log(response);
+        this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
+        this.router.navigate(['/routes'])
+      },
+      (error : HttpErrorResponse) => {
+        console.log("Error while creating route: \n", error.message);
+      }
+    );
   } 
 
   public cancelRouteCreation(): void {
