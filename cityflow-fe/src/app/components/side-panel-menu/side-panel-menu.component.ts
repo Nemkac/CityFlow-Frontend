@@ -250,7 +250,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.router.navigate(['/allRoutes']);
   }
   public navigateToDashboard() : void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 
   public fetchPdfData() : void {

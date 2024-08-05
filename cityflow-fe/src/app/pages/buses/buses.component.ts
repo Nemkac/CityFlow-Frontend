@@ -7,6 +7,7 @@ import { BusService } from '../../service/bus.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateBusFormComponent } from '../../components/create-bus-form/create-bus-form.component';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
 	selector: 'app-buses',
@@ -22,7 +23,9 @@ export class BusesComponent implements OnInit{
 	buses : Bus[] = [];
 
 	constructor(private busService : BusService,
-				private modalService: NgbModal,){}
+		private modalService: NgbModal,
+		private toast : NgToastService
+	){}
 	
 	ngOnInit(): void {
 		this.fetchBuses();
@@ -45,5 +48,16 @@ export class BusesComponent implements OnInit{
 		  CreateBusFormComponent,
 		  { backdrop: 'static', keyboard: true }
 		);
+
+		modalRef.componentInstance.busCreated.subscribe(
+			() => {
+				this.fetchBuses();
+			}
+		)
+	}
+
+	public handleBusDeleted() : void {
+		this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
+		this.fetchBuses();
 	}
 }

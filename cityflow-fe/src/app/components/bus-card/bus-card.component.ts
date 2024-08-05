@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { BusService } from '../../service/bus.service';
 import { NgToastService } from 'ng-angular-popup';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WaringnComponent } from '../modals/waringn/waringn.component';
 
 @Component({
 	selector: 'app-bus-card',
@@ -21,18 +23,30 @@ export class BusCardComponent implements OnInit{
 	@Input() licencePlate: string = '';
   	@Input() routes: string[] = [];
 
+	@Output() busDeleted = new EventEmitter<string>();
+
 	constructor(private busService : BusService,
-				private toast : NgToastService){}
+		private toast : NgToastService,
+		private modalService : NgbModal
+	){}
 
 	ngOnInit(): void {}
 
-	public deleteBus(busId: number): void {
-		this.busService.deleteBus(busId).subscribe(response => {
-		  console.log(response);
-		  this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
-		  setTimeout(() => {
-			window.location.reload();
-		  }, 3000);
-		});
+	public deleteBus(busId: number, event : Event): void {
+		event.stopPropagation();
+
+		const modalRef = this.modalService.open(
+			  WaringnComponent,
+			  { backdrop: 'static', keyboard: true }
+			);
+		
+		modalRef.componentInstance.confirmation.subscribe(
+			() => {
+				this.busService.deleteBus(busId).subscribe(response => {
+					console.log(response);
+					this.busDeleted.emit();
+				});
+			}
+		)
 	}
 }

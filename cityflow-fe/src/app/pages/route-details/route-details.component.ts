@@ -320,4 +320,8 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     iconAnchor: [17, 35],
     popupAnchor: [0, -35]
   });
+
+  public handleBusListUpdate() {
+    this.fetchRoute();
+  }
 }

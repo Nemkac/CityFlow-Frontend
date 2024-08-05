@@ -1,24 +1,28 @@
 <div class="flex flex-col w-full h-auto p-4 overflow-y-scroll gap-4">
     <div class="flex w-full flex-row items-center border-b-[1px] border-white/60 py-2 justify-between">
-        <div class="flex flex-row w-full items-center">
-            <div class="flex rounded-full size-[40px] bg-[#E6C79C] items-center text-center justify-center">
-                <fa-icon class="text-white text-[24px]" [icon]="faRoute"/>
+        <div class="flex flex-row w-full items-center gap-4">
+            <div class="flex flex-row items-center gap-2">
+                <div class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+                    <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[20px]"/>
+                </div>
+                <p class="text-primaryBlack font-manrope font-semibold text-[24px]">{{route.name}}</p>
             </div>
-            <p class="text-white font-manrope font-semibold text-[32px] ml-5">{{route.name}}</p>
+            <p class="text-[16px] font-light font-manrope text-primaryBlack">Futoska pijaca - Centar</p>
+            <p class="text-[16px] font-semibold font-manrope text-primaryBlack"> {{route.openingTime}} - {{route.closingTime}}</p>
         </div>
-        <p class="w-full text-[24] font-light font-manrope text-lightGrey">Futoska pijaca - Centar</p>
-        <p class="w-full text-[32px] font-semibold font-manrope text-white"> {{route.openingTime}} - {{route.closingTime}}</p>
         @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
-            <div class="flex flex-row w-full justify-end justify-end">
-                <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10"
+            <div class="flex flex-row w-full gap-4 justify-end">
+                <button class="flex rounded-md bg-deepRed hover:bg-lightRed transition-[0.5s] items-center gap-2 py-2 px-4 justify-center"
                         (click)="generatePDF()">
-                    <fa-icon [icon]="faFilePdf" class="text-grey font-bold text-[24px]"/>
+                    <img src="../../../assets/icons/PDFIcon.png" class="size-[16px] nav_menu_icon"/>
+                    <p class="text-primaryWhite text-[14px]">Generate PDF report</p>
                 </button>
-                <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10">
-                    <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
-                </button>
-                <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center">
-                    <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
+                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[16px] opacity-50 group-hover:opacity-100"/>
+                    <p class="text-primaryBlack group-hover:opacity-100 
+                            opacity-50 font-manrope text-[14px] transition-[0.5s]">
+                        Edit
+                    </p>
                 </button>
             </div>
         }
@@ -31,6 +35,7 @@
                 [routeId]="routeId"
                 [busId]="bus.id"
                 [licencePlate]="bus.licencePlate"
+                (busRemovedFromRoute)="handleBusListUpdate()"
             />
         }
     } -->
@@ -46,31 +51,37 @@
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
                     />
                 }
             </div>

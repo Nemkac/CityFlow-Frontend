@@ -1,8 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
 import { Route } from '../../models/route';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,14 +14,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-create-bus-form',
   standalone: true,
-  imports: [FormsModule, NgClass, FontAwesomeModule],
+  imports: [FormsModule, NgClass],
   templateUrl: './create-bus-form.component.html',
   styleUrl: './create-bus-form.component.css'
 })
 export class CreateBusFormComponent implements OnInit{
 
-  faArrowDown = faArrowDown;
-  faArrowUp = faArrowUp;
+  @Output() busCreated = new EventEmitter<void>();
 
   licencePlate : string = '';
   routes : Route[] = [];
@@ -82,10 +79,8 @@ export class CreateBusFormComponent implements OnInit{
       (response : Bus) => {
         console.log(response);
         this.toast.success({detail:"SUCCESS",summary:'Bus created successfully!'});
-        setTimeout(() => {
-          this.modalService.close();
-          window.location.reload();
-        }, 3000);
+        this.busCreated.emit();
+        this.closeModal();
       },
       (error : HttpErrorResponse) => {
         console.log("Error while creating new bus: ", error.message);
@@ -96,6 +91,10 @@ export class CreateBusFormComponent implements OnInit{
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
+  }
+
+  public closeModal() {
+    this.modalService.close()
   }
 
 }

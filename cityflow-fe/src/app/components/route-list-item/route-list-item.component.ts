@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPlus, faPen, faTrash, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { RoutesService } from '../../service/routes.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgToastService } from 'ng-angular-popup'
 import { User } from '../../models/user';
 import { SearchDTO } from '../../dtos/searchDTO';
 import { AuthService } from '../../service/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WaringnComponent } from '../modals/waringn/waringn.component';
 
 @Component({
   selector: 'app-route-list-item',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [],
   templateUrl: './route-list-item.component.html',
   styleUrl: './route-list-item.component.css'
 })
@@ -25,18 +25,13 @@ export class RouteListItemComponent implements OnInit{
 
   @Output() routeDeleted = new EventEmitter<void>();
 
-  //Icons
-  faPlus = faPlus
-  faPen = faPen;
-  faTrash = faTrash;
-  faRoute = faRoute;
-
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
 
   constructor(private routeService: RoutesService,
               private toast: NgToastService,
+              private modalService : NgbModal,
               private authService: AuthService){}
 
   ngOnInit(): void {
@@ -64,11 +59,23 @@ export class RouteListItemComponent implements OnInit{
 
   public deleteRoute(routeId: number, event : Event): void {
     event.stopPropagation();
-    this.routeService.deleteRoute(routeId).subscribe(response => {
-      console.log(response);
-      this.routeDeleted.emit();
-    });
-    console.log('deleted');
+
+    const modalRef = this.modalService.open(
+		  WaringnComponent,
+		  { backdrop: 'static', keyboard: true }
+		);
+
+    modalRef.componentInstance.confirmation.subscribe(
+      () => {
+          this.routeService.deleteRoute(routeId).subscribe(
+            response => {
+              console.log(response);
+              this.routeDeleted.emit();
+              console.log('deleted');
+            }
+        );
+      } 
+    )
   }
 
 }

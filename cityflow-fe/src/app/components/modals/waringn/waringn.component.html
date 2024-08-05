@@ -1,0 +1,35 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-50 font-manrope text-white">
+    <div class="flex flex-col bg-primaryWhite rounded-[10px] items-center justify-between justify-center p-4">
+        <div class="flex w-full h-full items-center justify-center">
+            <div class="flex flex-col w-full h-full bg-white items-center justify-center rounded-md p-4 gap-6">
+                <div class="flex flex-row w-full items-center justify-end">
+                    <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                                    hover:bg-primaryLightGreen transition-[0.5s]"
+                            (click)="closeModal()">
+                        <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+                    </button>        
+                </div>
+                <div class="flex flex-col items-center justify-center w-full h-full gap-4">
+                    <img src="../../../../assets/icons/WarningIcon.png" class="size-[70px]"/>
+                </div>
+                <div class="flex flex-col w-full items-center justify-center">
+                    <p class="text-[20px] font-medium text-lightRed">Warning!</p>
+                    <p class="text-[16px] text-primaryBlack text-balance mt-2">The action you want to take will be irreversible.</p>
+                    <p class="text-[16px] text-primaryBlack text-balance">Are you sure you want to perform this action?</p>
+                </div>
+                <div class="flex flex-row gap-4 w-full items-center justify-center">
+                    <button class="flex px-4 h-[45px] items-center justify-center rounded-md bg-lightRed text-primaryWhite font-medium 
+                                    text-[14px] transition-[0.5s] hover:bg-deepRed"
+                            (click)="performAction()">
+                        Yes, I'm sure
+                    </button>
+                    <button class="flex px-4 h-[45px] items-center justify-center rounded-md border-[1px] transition-[0.5s]
+                                    text-primaryWhite bg-primaryBlack/70 font-medium text-[14px] hover:bg-primaryBlack/40"
+                            (click)="closeModal()">
+                        No, cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
