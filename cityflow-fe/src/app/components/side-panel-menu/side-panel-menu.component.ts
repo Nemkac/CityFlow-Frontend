@@ -59,11 +59,11 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     this.fetchUser();
-    this.fetchPdfData();
+    // this.fetchPdfData();
   }
 
   ngAfterViewInit(): void {
-    this.fetchLongestRouteStationCount();
+    // this.fetchLongestRouteStationCount();
   }
 
   public fetchUser() : void {
@@ -272,25 +272,25 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     this.router.navigate(['/stations']);
   }
 
-  public fetchPdfData() : void {
-    this.routeService.getRouteWithAtLeastThreeStations().subscribe(
-      (response : String[]) => {
-        this.routesWithAtLeastThreeStations = response;
-        console.log("Three stations successful");
-      }, (error: HttpErrorResponse) => {
-        console.log("Error 1", error.message)
-      }
-    );
+  // public fetchPdfData() : void {
+  //   this.routeService.getRouteWithAtLeastThreeStations().subscribe(
+  //     (response : String[]) => {
+  //       this.routesWithAtLeastThreeStations = response;
+  //       console.log("Three stations successful");
+  //     }, (error: HttpErrorResponse) => {
+  //       console.log("Error 1", error.message)
+  //     }
+  //   );
 
-    this.routeService.getLongestRoute().subscribe(
-      (response: String) => {
-        this.longestRouteName = response;
-        console.log("Longest route successful");
-      }, (error: HttpErrorResponse) => {
-        console.log("Error 2", error.message);
-      }
-    );
-  }
+  //   this.routeService.getLongestRoute().subscribe(
+  //     (response: String) => {
+  //       this.longestRouteName = response;
+  //       console.log("Longest route successful");
+  //     }, (error: HttpErrorResponse) => {
+  //       console.log("Error 2", error.message);
+  //     }
+  //   );
+  // }
   
   public generatePDF() : void {
     const doc = new jsPDF();
@@ -309,14 +309,14 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
     doc.save('Route_statistics.pdf');
   }
 
-  public fetchLongestRouteStationCount() : void {
-    this.routeService.getStationsCount(this.longestRouteName).subscribe(
-      (response : number) => {
-        this.stationsCount = response;
-        console.log("Stations count successful");
-      }, (error: HttpErrorResponse) => {
-        console.log("Error 3", error.message);
-      }
-    )
-  }
+  // public fetchLongestRouteStationCount() : void {
+  //   this.routeService.getStationsCount(this.longestRouteName).subscribe(
+  //     (response : number) => {
+  //       this.stationsCount = response;
+  //       console.log("Stations count successful");
+  //     }, (error: HttpErrorResponse) => {
+  //       console.log("Error 3", error.message);
+  //     }
+  //   )
+  // }
 }

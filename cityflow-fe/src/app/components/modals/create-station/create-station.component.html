@@ -1,5 +1,5 @@
-<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-50 font-manrope text-white">
-    <div class="flex flex-col w-[600px] h-auto bg-primaryWhite rounded-[10px] items-center justify-between justify-center p-4 gap-4">
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[1] font-manrope text-white">
+    <div class="flex flex-col w-[900px] h-[700px] bg-primaryWhite rounded-[10px] items-center justify-between justify-center p-4 gap-4 relative">
         <div class="flex flex-row w-full items-center justify-between">
             <p class="text-[24px] font-semibold text-primaryDarkGreen">Add new station</p>
             <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
@@ -7,6 +7,41 @@
                 (click)="closeModal()">
                 <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
             </button>    
+        </div>
+        <div class="flex flex-row w-full">
+            <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+                <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+                <p class="text-[14px] text-primaryBlack">Mark the station you want to save on the map and enter the address where it is located. The stations are represented by a blue bus icon.</p>
+            </div>
+        </div>
+        <div #mapContainer class="flex h-full w-full rounded-md z-[2]"></div>
+        <div class="flex flex-col w-[400px] bg-primaryWhite p-4 rounded-tl-md gap-4 bottom-0 right-0 absolute z-[2] ">
+            <p class="text-primaryGrey font-medium text-[14px] tracking-wider">STATION DETAILS</p>
+            <div class="flex flex-col w-full">
+                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Address</p>
+                <input class="rounded-md text-primaryBlack border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="address">
+            </div>
+            <div class="flex flex-row justify-between w-full items-center">
+                <div class="flex flex-col w-full justify-start">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Latitude</p>
+                    <input type="text"  class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 text-primaryBlack focus:outline-none" [(ngModel)]="latitude" [placeholder]="latitude">
+                </div>
+                <div class="flex flex-col w-full justify-start ml-10">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Longitude</p>
+                    <input type="text" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 text-primaryBlack focus:outline-none" [(ngModel)]="longitude" [placeholder]="longitude">
+                </div>
+            </div>
+            <div class="flex flex-row items-center gap-4 w-full justify-between">
+                <button class="flex flex-row py-2 h-[45px] w-full rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="saveStation()" [disabled]="!address || latitude === 0 || longitude === 0">
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save station</p>
+                </button>
+                <button class="flex h-[45px] w-full items-center justify-center rounded-md border-[1px] transition-[0.5s]
+                                text-primaryWhite bg-primaryBlack/70 font-medium text-[14px] hover:bg-primaryBlack/40"
+                        (click)="cancelStationCreation()">
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Cancel</p>
+                </button>
+            </div>
         </div>
     </div>
 </div>

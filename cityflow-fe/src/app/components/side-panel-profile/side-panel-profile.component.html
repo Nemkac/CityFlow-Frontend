@@ -20,7 +20,7 @@
             @if(isLoggedIn){
                 <div class="rounded-full size-[35px] bg-primaryGreen"></div>  
                 <div class="flex flex-col">
-                    <p class="font-medium text-[14px] text-primaryBlack">{{loggedUser.username}}</p>
+                    <p class="font-medium text-[14px] text-primaryBlack">{{loggedUser?.username}}</p>
                     <p class="font-light text-[12px] text-primaryBlack">{{role}}</p>
                 </div>
             } @else {

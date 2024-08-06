@@ -16,7 +16,7 @@ import { SigninSignupComponent } from '../signin-signup/signin-signup.component'
 export class SidePanelProfileComponent implements OnInit{
   //Icons
   faSignOut = faSignOut;
-  loggedUser! : User;
+  loggedUser? : User;
   token = localStorage.getItem('token');
   public role : string = '';
   isLoggedIn: boolean = false;

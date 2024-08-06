@@ -75,7 +75,7 @@ export class SignupComponent implements OnInit{
 
       console.log(dto);
       this.authService.register(dto).subscribe(
-        (response: RegisterDTO) => {
+        (response: any) => {
           console.log('User registered successfully:', response);
           this.toast.success({detail:"Success!",summary:'Profile successfully created! You can now sign in.', duration: 3000});
           this.navigationService.navigateToSignIn();

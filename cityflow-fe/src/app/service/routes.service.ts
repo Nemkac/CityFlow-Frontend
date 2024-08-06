@@ -55,17 +55,17 @@ export class RoutesService {
     return this.http.put<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
   }
 
-  public getRouteWithAtLeastThreeStations() : Observable<String[]>{
-    return this.http.get<String[]>(`${this.apiServerUrl}/CityFlow/atLeastThreeStations`)
-  }
+  // public getRouteWithAtLeastThreeStations() : Observable<String[]>{
+  //   return this.http.get<String[]>(`${this.apiServerUrl}/CityFlow/atLeastThreeStations`)
+  // }
 
-  public getLongestRoute() : Observable<String>{
-    return this.http.get(`${this.apiServerUrl}/CityFlow/longest`, {responseType: 'text'})
-  }
+  // public getLongestRoute() : Observable<String>{
+  //   return this.http.get(`${this.apiServerUrl}/CityFlow/longest`, {responseType: 'text'})
+  // }
 
-  public getStationsCount(routeName: String) : Observable<any>{
-    return this.http.get<any>(`${this.apiServerUrl}/CityFlow/stationsCount/${routeName}`)
-  }
+  // public getStationsCount(routeName: String) : Observable<any>{
+  //   return this.http.get<any>(`${this.apiServerUrl}/CityFlow/stationsCount/${routeName}`)
+  // }
 
   public getAllStations() : Observable<Location[]>{
     return this.http.get<Location[]>(`${this.apiServerUrl}/CityFlow/getStations`);

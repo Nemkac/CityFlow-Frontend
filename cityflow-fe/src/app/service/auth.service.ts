@@ -30,8 +30,8 @@ export class AuthService {
     )
   }
 
-  public register(requestBody:RegisterDTO):Observable<RegisterDTO>{
-    return this.http.post<RegisterDTO>(`${this.apiServerUrl}/CityFlow/RegisterUser`, requestBody);
+  public register(requestBody : RegisterDTO) : Observable<any>{
+    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/RegisterUser`, requestBody);
   }
 
   public getUserFromToken(token: String): Observable<User>{
