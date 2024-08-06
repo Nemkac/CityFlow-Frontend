@@ -70,4 +70,8 @@ export class RoutesService {
   public getAllStations() : Observable<Location[]>{
     return this.http.get<Location[]>(`${this.apiServerUrl}/CityFlow/getStations`);
   }
+
+  public saveStation(body : Location) : Observable<Location>{
+    return this.http.post<Location>(`${this.apiServerUrl}/CityFlow/station/save`, body);
+  }
 }

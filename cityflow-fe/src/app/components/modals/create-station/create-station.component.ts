@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as L from 'leaflet';
 import { WaringnComponent } from '../waringn/waringn.component';
 import { Location } from '../../../models/location';
+import { RoutesService } from '../../../service/routes.service';
 
 @Component({
   selector: 'app-create-station',
@@ -16,6 +17,8 @@ export class CreateStationComponent implements AfterViewInit{
   
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
+  @Output() stationCreated = new EventEmitter<void>();
+
   private map!: L.Map;
   private marker?: L.Marker;
 
@@ -25,7 +28,8 @@ export class CreateStationComponent implements AfterViewInit{
 
 
   constructor(private activeModalService : NgbActiveModal,
-    private modalService : NgbModal
+    private modalService : NgbModal,
+    private routeService : RoutesService
   ){}
 
   public closeModal(){
@@ -70,6 +74,14 @@ export class CreateStationComponent implements AfterViewInit{
     }
 
     console.log(body);
+
+    this.routeService.saveStation(body).subscribe(
+      (response : Location) => {
+        console.log("Location successfully created!", response);
+        this.stationCreated.emit();
+        this.closeModal();
+      }
+    )
   }
 
   public cancelStationCreation() : void {

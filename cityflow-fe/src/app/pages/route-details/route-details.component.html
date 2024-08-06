@@ -27,7 +27,7 @@
             </div>
         }
     </div>
-    <div #mapContainer class="flex h-[400px] w-full rounded-md"></div>
+    <div #mapContainer class="flex h-[400px] w-full rounded-md z-[20]"></div>
     <!-- @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
         <p class="font-manrope font-regular text-[18px] text-white mb-4">Scheduled buses</p>
         @for (bus of routeBuses; track $index) {
@@ -47,36 +47,6 @@
             </div>
             <div class="flex flex-row flex-wrap w-full justify-evenly">
                 @for (bus of routeBuses; track $index) {
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
                     <app-buses-list-item class="mb-4"
                         [routeId]="routeId"
                         [busId]="bus.id"

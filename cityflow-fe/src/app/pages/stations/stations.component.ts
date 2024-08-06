@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import * as L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { StationsMapComponent } from '../../components/stations-map/stations-map.component';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class StationsComponent implements OnInit{
   constructor(private modalService : NgbModal,
     private routeService : RoutesService,
     private cdr: ChangeDetectorRef,
+    private toast : NgToastService,
   ){}
 
 
@@ -54,10 +56,20 @@ export class StationsComponent implements OnInit{
   }
 
   public openCreateStationForm(){
-    this.modalService.open(
+    const modalRef = this.modalService.open(
       CreateStationComponent,
       { backdrop : 'static', keyboard : true }
     );
+
+    modalRef.componentInstance.stationCreated.subscribe(
+      () => {
+        this.fetchStations();
+        this.toast.success({detail: "Station successfully created!", summary: "Success!", duration: 3000});
+      },
+      (error : any) => {
+        this.toast.error({detail: "Error while creating station!", summary: "Error!", duration: 3000});
+      }
+    )
   }
 
   public onViewChanged() {
