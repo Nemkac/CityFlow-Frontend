@@ -9,4 +9,5 @@ export interface Route{
     endPoint: Location;
     openingTime: string;
     closingTime: string;
+    departureFromStartingStation : number;
 }
