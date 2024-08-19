@@ -21,6 +21,8 @@ export class SigninComponent implements OnInit{
   //Icons
   faArrowRight = faArrowRight;
 
+  public showPassword : boolean = false;
+
   ngOnInit(): void {}
 
   constructor(private authService : AuthService, 
@@ -43,5 +45,13 @@ export class SigninComponent implements OnInit{
 
       }
     )
+  }
+
+  public toggleShowPassword(){
+    this.showPassword = !this.showPassword;
+  }
+
+  public getPasswordInputFieldType(){
+    return this.showPassword ? "tekst" : "password";
   }
 }

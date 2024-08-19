@@ -1,38 +1,3 @@
-<!-- <div class="flex w-auto flex-row justify-between items-center border-[1px] border-primaryGrey/50 rounded-md p-4
-            hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]">
-    <div class="flex flex-row items-center gap-2">
-        <div class="flex rounded-full size-[40px] bg-[#E6C79C] items-center text-center justify-center">
-            <fa-icon class="text-white text-[22px]" [icon]="faRoute"/>
-        </div>
-        <div class="flex flex-col gap-2 w-full">
-            <p class="text-primaryBlack font-manrope font-semibold text-[24px]">{{routeName}}</p>
-            <p class="w-full text-[24] font-light font-manrope text-lightGrey">Futoska pijaca - Centar</p>
-        </div>
-    </div>
-
-    <p class="text-[32px] font-semibold font-manrope text-white"> {{startTime}} - {{endTime}}</p>
-    <div class="flex flex-row w-full justify-end justify-end">
-        @if (!isUser) {
-            <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center"
-                    (click)="showRoute(routeId)">
-                <fa-icon [icon]="faPlus" class="text-white font-bold text-[24px]"/>
-            </button>
-            <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mx-10">
-                <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
-            </button>
-            <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center"
-                    (click)="deleteRoute(routeId)">
-                <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
-            </button>
-        } @else {
-            <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center"
-                    (click)="showRoute(routeId)">
-                <fa-icon [icon]="faPlus" class="text-white font-bold text-[24px]"/>
-            </button>
-        }
-    </div>
-</div> -->
-
 <div class="flex flex-col w-[300px] border-[1px] border-primaryGrey/50 rounded-md p-4 gap-4 relative
             hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]"
     (click)="showRoute(routeId)">
