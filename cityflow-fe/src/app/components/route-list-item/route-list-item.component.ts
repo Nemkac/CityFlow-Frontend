@@ -7,11 +7,13 @@ import { SearchDTO } from '../../dtos/searchDTO';
 import { AuthService } from '../../service/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WaringnComponent } from '../modals/waringn/waringn.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-route-list-item',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './route-list-item.component.html',
   styleUrl: './route-list-item.component.css'
 })

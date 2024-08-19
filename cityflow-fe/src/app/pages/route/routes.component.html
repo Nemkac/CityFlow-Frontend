@@ -7,7 +7,10 @@
                 <button class="w-[25px] text-primaryBlack">
                     <fa-icon [icon]="faSearch"/>
                 </button>
-                <input class="focus:outline-none text-primaryBlack" placeholder="e.g. 7A" ngModel name="password" type="text">
+                <input class="focus:outline-none text-primaryBlack" 
+                        [(ngModel)]="searchText" (input)="searchRoutes()" 
+                        placeholder="e.g. 7A" 
+                        ngModel name="password" type="text">
             </div>
         </div>
     </div>
@@ -37,7 +40,7 @@
             </div>
         </div>
         <div class="flex flex-row gap-4 justify-evenly flex-wrap ">
-            @for (route of routes; track $index) {
+            @for (route of filteredRoutes; track $index) {
                 <app-route-list-item
                     [routeId]="route.id"
                     [routeName]="route.name"

@@ -17,9 +17,14 @@ export class UserService {
 
   constructor(private http: HttpClient,
               private router: Router) { }
-  
-  public updateProfile(requestBody : EditProfileDTO,headers : HttpHeaders) : Observable<string>{
-    return this.http.post<string>(`${this.apiServerUrl}/Account/updateProfile`, requestBody,{headers});  
+
+  public updateProfile(requestBody: EditProfileDTO): Observable<any> { 
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<any>(`${this.apiServerUrl}/Account/updateProfile`, requestBody, {headers});
   }
   
   public getUsersByRole(): Observable<User[]> {

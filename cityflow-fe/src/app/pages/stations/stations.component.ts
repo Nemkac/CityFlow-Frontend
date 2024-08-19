@@ -30,7 +30,9 @@ export class StationsComponent implements OnInit{
   private markerMap = new Map<string, L.Marker>();
   
   public stations : Location[] = []
+  public filteredStations : Location[] = [];
   public toggleMapView : boolean = false;
+  public searchText : string = '';
 
   constructor(private modalService : NgbModal,
     private routeService : RoutesService,
@@ -44,15 +46,27 @@ export class StationsComponent implements OnInit{
   }
 
   public fetchStations() : void {
+    this.filteredStations = [];
     this.routeService.getAllStations().subscribe(
       (response : Location[]) => {
         this.stations = response;
+        this.filteredStations = this.stations;
         console.log(this.stations);
       },
       (error : HttpErrorResponse) => {
         console.log("Error while fetching stations, ", error.message);
       }
     )
+  }
+
+  public searchStations() : void{
+    if(!this.searchText) {
+      this.filteredStations = this.stations;
+    } else {
+      this.filteredStations = this.stations.filter(station => 
+        station.address.toLowerCase().includes(this.searchText.toLowerCase())
+      )
+    }
   }
 
   public openCreateStationForm(){

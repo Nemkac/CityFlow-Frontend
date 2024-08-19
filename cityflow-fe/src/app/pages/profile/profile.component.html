@@ -70,6 +70,7 @@
         </div>
     </div>
     <hr class="text-primaryGrey/50 w-full">
+
     <!--General info-->
     <div class="flex flex-col w-full p-4">
         <div class="flex flex-row items-center w-full p-4 justify-between border-[1px] border-primaryGrey/50 rounded-md relative">
@@ -100,44 +101,99 @@
             </div>
         </div>
     </div>
+
     <!--personal info-->
     <div class="flex flex-col w-full p-4">
         <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
             <div class="flex flex-row w-full justify-between items-center">
                 <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">PERSONAL INFO</p>
-                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
-                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
-                    <p class="text-primaryBlack group-hover:opacity-100 
-                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
-                        Edit
-                    </p>
-                </button>
+                @if(!toggleEditPersonal){
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('personal')">
+                        <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Edit
+                        </p>
+                    </button>
+                } @else {
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('personal')">
+                        <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Cancel
+                        </p>
+                    </button>
+                }
             </div>
-            <div class="flex flex-row w-full max-h-[500px] overflow-y-auto items-start">
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">First name</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.name}}</p>
-                    </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Phone number</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.phoneNumber}}</p>
-                    </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Date of birth</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.dateOfBirth}}</p>
-                    </div>
+            <div class="flex flex-col w-full max-h-[500px] gap-4 overflow-y-auto items-start">
+                <div class="flex flex-row w-full max-h-[500px]">
+                    @if(!this.toggleEditPersonal){
+                        <div class="flex flex-col h-full w-full gap-4">
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">First name</p>
+                                <p class="text-[18px] text-primaryBlack">{{loggedUser?.name}}</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Last name</p>
+                                <p class="text-[18px] text-primaryBlack">{{loggedUser?.lastname}}</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Date of birth</p>
+                                <p class="text-[18px] text-primaryBlack">{{loggedUser?.dateOfBirth}}</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col h-full w-full gap-4">
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Phone number</p>
+                                <p class="text-[18px] text-primaryBlack">{{loggedUser?.phoneNumber}}</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
+                                <p class="text-[18px] text-primaryBlack">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt optio ducimus reiciendis alias illo magni dolorem aut, dicta aspernatur. Alias molestias illum explicabo obcaecati eius eaque placeat assumenda. Ea, officia!</p>
+                            </div>
+                        </div>
+                    } @else {
+                        <div class="flex flex-col h-full w-full gap-4">
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">First name</p>
+                                <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                        [placeholder]="loggedUser?.name" [(ngModel)]="firstname" name="name"/>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Last name</p>
+                                <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                        [placeholder]="loggedUser?.lastname" [(ngModel)]="lastname" name="name"/>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Date of birth</p>
+                                <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                        [placeholder]="loggedUser?.dateOfBirth" [(ngModel)]="dateOfBirth" name="name" type="date"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-col h-full w-full gap-4">
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Phone number</p>
+                                <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                        [placeholder]="loggedUser?.phoneNumber" [(ngModel)]="phoneNumber" name="name"/>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
+                                <textarea class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-full px-4 h-[200px] max-h-[300px]"
+                                            placeholder="Lorem ipsum "></textarea>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Last name</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.lastname}}</p>
+                @if (toggleEditPersonal) {
+                    <div class="flex flex-row w-full items-center justify-end">
+                        <button class="rounded-md py-2 px-8 flex items-center bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s] text-primaryWhite"
+                                (click)="saveChanges()">
+                            Save changes
+                        </button>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
-                        <p class="text-[18px] text-primaryBlack">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt optio ducimus reiciendis alias illo magni dolorem aut, dicta aspernatur. Alias molestias illum explicabo obcaecati eius eaque placeat assumenda. Ea, officia!</p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -147,36 +203,83 @@
         <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
             <div class="flex flex-row w-full justify-between items-center">
                 <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">Address</p>
-                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
-                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
-                    <p class="text-primaryBlack group-hover:opacity-100 
-                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
-                        Edit
-                    </p>
-                </button>
+                @if(!toggleEditAddress){
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('address')">
+                        <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Edit
+                        </p>
+                    </button>
+                } @else {
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('address')">
+                        <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Cancel
+                        </p>
+                    </button>
+                }
             </div>
-            <div class="flex flex-row w-full max-h-[500px] overflow-y-scroll gap-4 items-start">
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Country</p>
-                        <p class="text-[18px] text-primaryBlack">Serbia</p>
+            <div class="flex flex-row w-full max-h-[500px] gap-4 items-start">
+                @if (!toggleEditAddress) {
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Country</p>
+                            <p class="text-[18px] text-primaryBlack">Serbia</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Postal code</p>
+                            <p class="text-[18px] text-primaryBlack">22221</p>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Postal code</p>
-                        <p class="text-[18px] text-primaryBlack">22221</p>
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">City</p>
+                            <p class="text-[18px] text-primaryBlack">Sremska Mitrovica</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Street</p>
+                            <p class="text-[18px] text-primaryBlack">Mitrovacka 29</p>
+                        </div>
                     </div>
-                </div>
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">City</p>
-                        <p class="text-[18px] text-primaryBlack">Sremska Mitrovica</p>
+                } @else {
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Country</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    placeholder="Serbia"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Postal code</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    placeholder="22221"/>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Street</p>
-                        <p class="text-[18px] text-primaryBlack">Mitrovacka 29</p>
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">City</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    placeholder="Sremska Mitrovica"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Street</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    placeholder="Mitrovacka 29"/>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
+            @if(toggleEditAddress){
+                <div class="flex flex-row w-full items-center justify-end">
+                    <button class="rounded-md py-2 px-8 flex items-center bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s] text-primaryWhite"
+                            (click)="saveChanges()">
+                        Save changes
+                    </button>
+                </div>
+            }
         </div>
     </div>
 
@@ -185,32 +288,74 @@
         <div class="flex flex-col w-full p-4 gap-4 border-[1px] border-primaryGrey/50 rounded-md relative">
             <div class="flex flex-row w-full justify-between items-center">
                 <p class="text-[18px] font-light text-primaryGrey tracking-wider uppercase">Account</p>
-                <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]">
-                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
-                    <p class="text-primaryBlack group-hover:opacity-100 
-                            opacity-50 font-manrope text-[16px] transition-[0.5s]">
-                        Edit
-                    </p>
-                </button>
+                @if(!toggleEditAccount){
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('account')">
+                        <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Edit
+                        </p>
+                    </button>
+                } @else {
+                    <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 hover:border-primaryGrey transition-[0.5s]"
+                            (click)="toggleEditing('account')">
+                        <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] opacity-50 group-hover:opacity-100"/>
+                        <p class="text-primaryBlack group-hover:opacity-100 
+                                opacity-50 font-manrope text-[16px] transition-[0.5s]">
+                            Cancel
+                        </p>
+                    </button>
+                }
             </div>
-            <div class="flex flex-row w-full max-h-[500px] overflow-y-scroll gap-4 items-start">
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Username</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.username}}</p>
+            <div class="flex flex-row w-full max-h-[500px] gap-4 items-start">
+                @if(!toggleEditAccount){
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Username</p>
+                            <p class="text-[18px] text-primaryBlack">{{loggedUser?.username}}</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Email address</p>
+                            <p class="text-[18px] text-primaryBlack">{{loggedUser?.email}}</p>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Email address</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser?.email}}</p>
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Password</p>
+                            <p class="text-[18px] text-primaryBlack">{{loggedUser?.password}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="flex flex-col h-full w-full gap-4">
-                    <div class="flex flex-col">
-                        <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Password</p>
-                        <p class="text-[18px] text-primaryBlack">{{loggedUser.password}}</p>
+                } @else {
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Username</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    [placeholder]="loggedUser?.username" [(ngModel)]="username" name="name"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Email address</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    [placeholder]="loggedUser?.email" [(ngModel)]="email" name="name"/>
+                        </div>
                     </div>
-                </div>
+                    <div class="flex flex-col h-full w-full gap-4">
+                        <div class="flex flex-col">
+                            <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Password</p>
+                            <input class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-[50%] px-4 h-[35px]"
+                                    [placeholder]="loggedUser?.password" [(ngModel)]="password" name="name"/>
+                        </div>
+                    </div>
+                }
             </div>
+            @if(toggleEditAccount){
+                <div class="flex flex-row w-full items-center justify-end">
+                    <button class="rounded-md py-2 px-8 flex items-center bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s] text-primaryWhite"
+                            (click)="saveChanges()">
+                        Save changes
+                    </button>
+                </div>
+            }
         </div>
     </div>
 </div>

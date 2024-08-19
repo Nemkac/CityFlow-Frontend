@@ -8,11 +8,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-routes',
   standalone: true,
-  imports: [FontAwesomeModule, RouteListItemComponent, NgClass],
+  imports: [FontAwesomeModule, RouteListItemComponent, NgClass, FormsModule],
   templateUrl: './routes.component.html',
   styleUrl: './routes.component.css'
 })
@@ -23,6 +24,8 @@ export class RoutesComponent implements OnInit{
   faPlus = faPlus;
 
   routes : Route[] = [];
+  public filteredRoutes : Route[] = [];
+  public searchText : string = '';
 
   constructor(private routeService : RoutesService,
               private toast : NgToastService,
@@ -33,15 +36,27 @@ export class RoutesComponent implements OnInit{
   }
 
   public fetchRoutes() : void {
+    this.filteredRoutes = [];
     this.routeService.getAll().subscribe(
       (response: Route[]) => {
         this.routes = response;
+        this.filteredRoutes = this.routes;
         console.log("ROUTES: \n", this.routes);
       },
       (error: HttpErrorResponse) => {
         console.log("Error while fetching routes:\n", error.message);
       }
     )
+  }
+
+  public searchRoutes() : void {
+    if(!this.searchText) {
+      this.filteredRoutes = this.routes;
+    } else {
+      this.filteredRoutes = this.routes.filter(route => 
+        route.name.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
   }
 
   public navigateToNewRoute() : void {
