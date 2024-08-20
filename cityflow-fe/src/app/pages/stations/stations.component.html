@@ -41,7 +41,7 @@
             </label>
         </div>
         @if (!toggleMapView) {
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 @for (station of filteredStations; track $index) {
                     <app-station-card
                         [address]="station.address"
