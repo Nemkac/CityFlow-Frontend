@@ -26,6 +26,9 @@ export class CreateStationComponent implements AfterViewInit{
   public latitude : number = 0;
   public longitude : number = 0;
 
+  public fetchedStations : Location[] = [];
+  private markerMap = new Map<string, L.Marker>();
+
 
   constructor(private activeModalService : NgbActiveModal,
     private modalService : NgbModal,
@@ -38,6 +41,26 @@ export class CreateStationComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     this.loadMap();
+    this.fetchStations();
+  }
+
+  public fetchStations() {
+    this.routeService.getAllStations().subscribe(
+      (stations) => {
+        this.fetchedStations = stations;
+        stations.forEach(station => {
+          const marker = L.marker([station.latitude, station.longitude], {icon : this.busIcon})
+            .addTo(this.map)
+            .bindPopup(station.address);
+  
+          const key = `${station.latitude},${station.longitude}`;
+          this.markerMap.set(key, marker);
+        });
+      },
+      (error) => {
+        console.log("Error while fetching stations: ", error.message);
+      }
+    );
   }
 
   loadMap() {
@@ -101,4 +124,12 @@ export class CreateStationComponent implements AfterViewInit{
       }
     )
   }
+
+  private busIcon = L.icon({
+    iconUrl: 'assets/bus.png',
+    iconSize: [30, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
 }
