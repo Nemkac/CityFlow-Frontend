@@ -7,6 +7,7 @@ import { LoginDTO } from '../../dtos/loginDTO';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-signin',
@@ -16,21 +17,28 @@ import { Router } from '@angular/router';
   styleUrl: './signin.component.css'
 })
 export class SigninComponent implements OnInit{
-  //Icons
+
   faArrowRight = faArrowRight;
 
   ngOnInit(): void {}
 
-  constructor(private authService : AuthService, private router : Router){}
+  constructor(private authService : AuthService, private router: Router, private toast: NgToastService){}
 
   public signIn(SignInForm: NgForm) : void{
     this.authService.logIn(SignInForm.value).subscribe(
       (response: LoginDTO) => {
-        console.log("Successfully signed in!", response);
-        window.location.reload();
+        this.toast.success({ detail: "SUCCESS", summary: 'WELCOME!' });
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 990);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); 
+        
+
       },
       (error: HttpErrorResponse) => {
-        console.log("Error while signing in: ", error);
+        this.toast.error({ detail: "ERROR", summary: 'Failed to sign in: ' + error.message });
       }
     )
   }

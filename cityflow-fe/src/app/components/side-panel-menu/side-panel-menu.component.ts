@@ -26,8 +26,6 @@ export class SidePanelMenuComponent implements OnInit{
   faRoute = faRoute;
 
   faCalendar = faCalendar;
-  
-  //Menu item selections
   showHome : boolean = true;
   showProfile : boolean = false;
   showCards : boolean = false;
@@ -67,7 +65,7 @@ export class SidePanelMenuComponent implements OnInit{
   }
 
   public viewHome() : void{
-    this.showHome = true;
+    this.navigateToHome();
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
@@ -204,7 +202,9 @@ export class SidePanelMenuComponent implements OnInit{
     this.navigateToWorkCalendar();
   }
  
-
+  public navigateToHome() : void {
+    this.router.navigate(['/home']);
+  }
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
   }

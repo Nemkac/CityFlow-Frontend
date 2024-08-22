@@ -12,8 +12,6 @@ import { BusesListItemComponent } from '../../components/buses-list-item/buses-l
 import { User } from '../../models/user';
 import { AuthService } from '../../service/auth.service';
 
-import * as SockJS from 'sockjs-client';
-import * as Stomp from '@stomp/stompjs'
 import { LiveLocation } from '../../models/liveLocation';
 import { RabbitmqLiveLocationService } from '../../service/rabbitmq-live-location.service';
 
@@ -72,7 +70,6 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       this.fetchRoute();
     }
 
-    this.establishWebSocketConnection();
     this.simulate();
   }
 
@@ -175,37 +172,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     });
   }
 
-  public establishWebSocketConnection(): void {
-    const client = new Stomp.Client({
-      webSocketFactory: () => new SockJS.default('http://localhost:8081/livelocation-websocket'),
-      connectHeaders: {
-          login: 'guest',
-          passcode: 'guest',
-      },
-      debug: (str) => {
-          console.log(new Date(), str);
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-    });
-    client.onConnect = (frame) => {
-        console.log('Connected to WebSocket');
-        client.subscribe('/livelocation-websocket', (message) => {
-            console.log("Subscribed to topic");
-            const location: LiveLocation = JSON.parse(message.body);
-            console.log('New location received:', location);
-            this.updateMarkerPosition(location.latitude, location.longitude);
-        });
-    };
 
-    client.onStompError = (frame) => {
-        console.error('Broker reported error: ' + frame.headers['message']);
-        console.error('Additional details: ' + frame.body);
-    };
-
-    client.activate();
-	}
 
   private updateMarkerPosition(latitude: number, longitude: number): void {
     if (this.map) {

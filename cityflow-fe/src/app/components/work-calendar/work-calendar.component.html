@@ -7,7 +7,7 @@
     </button>
   </div>
 
-  <full-calendar class="w-full " [options]="calendarOptions">
+  <full-calendar class="w-full" [options]="calendarOptions">
     <ng-template #eventContent let-arg class="overflow-y-scroll">
       <div *ngIf="arg.event.extendedProps"
             [ngStyle]="getEventStyles(arg.event.extendedProps)"

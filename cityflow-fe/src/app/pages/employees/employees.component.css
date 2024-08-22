@@ -1,0 +1,78 @@
+.no-image-placeholder {
+    background-color: #e0e0e0; 
+    width: 47px;
+    height: 47px; 
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3f4352; 
+    font-size: 30px; 
+    font-weight: bold;
+  }
+  .clickable {
+    cursor: pointer;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 90%; /* Povećano sa 80% na 90% */
+    max-width: 960px; /* Povećano za veći prikaz modala */
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-body img {
+    max-width: 100%;
+    max-height: 90vh;
+  }
+  
+  .close {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5em;
+    cursor: pointer;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out, background-color 250ms ease-in-out;
+  }
+  
+  .modal-overlay.open {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
