@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column; /* Slaganje elemenata vertikalno */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Koristi celu dostupnu širinu */
+  max-width: 800px; /* Maksimalna širina kontejnera da spreči preveliko širenje na većim ekranima */
+  margin: initial; /* Centriranje kontejnera */
+}
+
+.top-row, .bottom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Ravnomerno raspoređuje sekcije unutar reda */
+  align-items: center;
+  width: 100%;
+}
+
+.statistics-section {
+  flex: 1; /* Svaka sekcija dobija jednaku širinu */
+  margin: 10px; /* Smanjenje margine */
+  padding: 10px; /* Smanjenje paddinga */
+  border: 0.5px solid rgba(10, 9, 9, 0.228);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(10, 9, 9, 0.228);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(10, 9, 9, 0.228); 
+  color: #fff;  
+}
+
+#employmentChartCanvas, #rolesChartCanvas, #employmentAgeChartCanvas {
+  width: 100%; /* Podesite širinu na maksimalnu unutar svoje sekcije */
+  height: auto; /* Automatska visina, prilagođena sadržaju */
+}

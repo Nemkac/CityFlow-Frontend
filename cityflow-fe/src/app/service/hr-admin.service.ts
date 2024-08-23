@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDTO } from '../dtos/userDTO';
@@ -58,10 +58,12 @@ export class HrAdminService {
   public getUserProfilePicture(userId: number): Observable<string> {
     return this.http.get(`${this.apiServerUrl}/CityFlow/getUserProfilePicture/${userId}`, { responseType: 'text' });
   }
-  getEmploymentStatistics(): Observable<EmploymentStatisticsDTO> {
+  /*getEmploymentStatistics(): Observable<EmploymentStatisticsDTO> {
     return this.http.get<EmploymentStatisticsDTO>(this.apiServerUrl + '/employmentStatistics');
+}*/
+getEmploymentStatistics(headers?: HttpHeaders): Observable<EmploymentStatisticsDTO> {
+  return this.http.get<EmploymentStatisticsDTO>(`${this.apiServerUrl}/CityFlow/employmentStatistics`, { headers });
 }
-  
   
 }
 

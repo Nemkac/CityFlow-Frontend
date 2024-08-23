@@ -26,7 +26,6 @@ export class NewEmployeeFormComponent implements OnInit{
   ngOnInit(): void {}
 
   public registerUser(RegisterForm : NgForm) : void {
-    console.log(this.newUser);
     this.hrService.addUser(RegisterForm.value).subscribe(
       (response: UserDTO) => {
         this.toast.success({ detail: "SUCCESS", summary: 'New employee added successfully!' });

@@ -2,24 +2,27 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Dodaj ako planiraš da koristiš ruting
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { NgToastComponent } from 'ng-angular-popup';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
-  declarations: [ // Dodaj AppComponent u deklaracije
+  declarations: [ 
   ],
   imports: [
-    BrowserModule,  // Neophodno za pokretanje aplikacije u pregledaču
+    BrowserModule, 
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([]),  // Dodaj prazan niz ruta ili konfiguriši rute
+    RouterModule.forRoot([]), 
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    NgChartsModule
   ],
   providers: [NgToastComponent],
-  bootstrap: []  // Definiše root komponentu koja se pokreće
+  bootstrap: [] 
 })
 export class AppModule { }

@@ -63,11 +63,9 @@ export class EmployeesComponent implements OnInit {
   loadUsersAndImages(): void {
     this.users$ = this.hrAdminService.searchUsersByName('').pipe(
       map(users => {
-        console.log("Original users:", users); // Log originalnih podataka
         return users.filter(user => user.employed);
       }),
       tap((users: any[]) => {
-        console.log("Filtered users:", users); // Log filtriranih podataka
         users.forEach(user => {
           if (user.profilePicture) {
             this.hrAdminService.getUserProfilePicture(user.id).subscribe(
@@ -119,20 +117,6 @@ export class EmployeesComponent implements OnInit {
     this.router.navigate(['/assign-salary', userId]);
   }
 
- /* deleteUser(userId: number, reason: string): void {
-    if (confirm('Are you sure you want to terminate this employee? This action cannot be undone.')) {
-      this.hrAdminService.deleteUser(userId, reason).subscribe(
-        () => {
-          console.log('Employee terminated successfully.');
-          this.users$ = this.userService.getUsersByRole();
-        },
-        error => {
-          console.error('An error occurred while terminating the employee:', error);
-        }
-      );
-    }
-  }*/
-
   navigateToAddNewEmployee(): void {
     this.router.navigate(['/newEmployee']);
   }
@@ -142,14 +126,14 @@ export class EmployeesComponent implements OnInit {
     this.isModalOpen = true;
     setTimeout(() => {
       this.modalElement.nativeElement.classList.add('open');
-    }, 10); // Koristi setTimeout da osiguraš da se CSS tranzicija pokrene nakon renderovanja
+    }, 10); 
   }
   
   closeModal(): void {
     this.modalElement.nativeElement.classList.remove('open');
     setTimeout(() => {
       this.isModalOpen = false;
-    }, 250); // Ovde je 300ms isto kao vreme trajanja tranzicije
+    }, 250);
   }
   navigateToDeleteEmployee(userId: number): void {
     this.router.navigate(['/deleteEmployee', userId]);
