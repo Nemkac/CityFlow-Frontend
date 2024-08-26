@@ -47,7 +47,7 @@ export class StationsMapComponent implements OnInit, AfterViewInit{
 
   loadMap() {
     if (this.map) {
-      this.map.remove(); // Ukloni prethodnu mapu ako postoji
+      this.map.remove();
     }
     if (this.mapContainer && this.mapContainer.nativeElement) {
       this.map = L.map(this.mapContainer.nativeElement).setView([45.267136, 19.833549], 16);

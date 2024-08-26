@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full h-auto p-4 overflow-y-scroll gap-4">
+<div class="flex flex-col w-full h-full p-4 overflow-y-auto gap-4">
     <div class="flex w-full flex-row items-center border-b-[1px] border-white/60 py-2 justify-between">
         <div class="flex flex-row w-full items-center gap-4">
             <div class="flex flex-row items-center gap-2">
@@ -27,7 +27,7 @@
             </div>
         }
     </div>
-    <div #mapContainer class="flex h-[400px] w-full rounded-md z-[20]"></div>
+    <div #mapContainer class="flex h-[45%] w-full rounded-md z-[20]"></div>
     <!-- @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
         <p class="font-manrope font-regular text-[18px] text-white mb-4">Scheduled buses</p>
         @for (bus of routeBuses; track $index) {
@@ -40,6 +40,67 @@
         }
     } -->
     @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
+        <!-- <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4">
+            <div class="flex flex-row w-full items-center gap-2">
+                <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
+                <p class="font-manrope font-regular text-[18px] text-primaryBlack">Scheduled buses</p>
+            </div>
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                @for (bus of routeBuses; track $index) {
+                    <app-buses-list-item class="mb-4"
+                        [routeId]="routeId"
+                        [busId]="bus.id"
+                        [licencePlate]="bus.licencePlate"
+                        (busRemovedFromRoute)="handleBusListUpdate()"
+                    />
+                }
+            </div>
+        </div> -->
+
+
+        <div class="border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                <li class="me-2" (click)="toggleTimeTable()">
+                    <a class="inline-flex items-center justify-center p-4 hover:border-b-2 hover:border-primaryBlack/30 cursor-pointer transition-[0.5s] rounded-t-lg hover:text-primaryBlack/60 group"
+                        [ngClass]="{'text-lightGreen border-b-2 border-lightGreen' : showTimeTable,
+                                    'hover:text-primaryBlack/60 hover:border-b-2 hover:border-primaryBlack/30' : !showTimeTable}">                    
+                        <!-- <svg class="w-4 h-4 me-2"
+                            [ngClass]="{'text-lightGreen':showTimeTable,
+                                        'group-hover:text-bg-primaryBlack/60' : showTimeTable}" 
+                            fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V3zM0 5h16v3H0V5zm0 4h16v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-3zm0 0v3v-3z"/>
+                        </svg> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 me-2"
+                            [ngClass]="{'text-lightGreen':showTimeTable,
+                                        'group-hover:text-bg-primaryBlack/60' : showTimeTable}" 
+                            xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" height="15px" width="15px" version="1.1" id="Capa_1" viewBox="0 0 490 490" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M245,0C109.5,0,0,109.5,0,245s109.5,245,245,245s245-109.5,245-245S380.5,0,245,0z M245,449.3    c-112.6,0-204.3-91.7-204.3-204.3S132.4,40.7,245,40.7S449.3,132.4,449.3,245S357.6,449.3,245,449.3z"/>
+                                    <path d="M290.9,224.1h-25v-95.9c0-11.5-9.4-20.9-20.9-20.9s-20.9,9.4-20.9,20.9V245c0,11.5,9.4,20.9,20.9,20.9h45.9    c11.5,0,20.9-9.4,20.9-20.9S302.3,224.1,290.9,224.1z"/>
+                                </g>
+                            </g>
+                        </svg>
+                        Time table
+                    </a>
+                </li>
+                <li class="me-2" (click)="toggleBusSchedule()">
+                    <a class="inline-flex items-center justify-center p-4 hover:border-b-2 hover:border-primaryBlack/30 cursor-pointer transition-[0.5s] rounded-t-lg hover:text-primaryBlack/60 group"
+                        [ngClass]="{'text-lightGreen border-b-2 border-lightGreen' : showBusSchedule,
+                                    'hover:text-primaryBlack/60 hover:border-b-2 hover:border-primaryBlack/30' : !showBusSchedule}">                    
+                        <svg [ngClass]="{'text-lightGreen':showBusSchedule,
+                                        'group-hover:text-bg-primaryBlack/60' : showBusSchedule}"  class="me-2"
+                            xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 6V15.8C5 16.9201 5 17.4802 5.21799 17.908C5.40973 18.2843 5.71569 18.5903 6.09202 18.782C6.51984 19 7.07989 19 8.2 19H15.8C16.9201 19 17.4802 19 17.908 18.782C18.2843 18.5903 18.5903 18.2843 18.782 17.908C19 17.4802 19 16.9201 19 15.8V6M5 6C5 6 5 3 12 3C19 3 19 6 19 6M5 6H19M5 13H19M17 21V19M7 21V19M8 16H8.01M16 16H16.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Bus schedule
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    } 
+    @if(showBusSchedule){
         <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4">
             <div class="flex flex-row w-full items-center gap-2">
                 <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
@@ -56,15 +117,40 @@
                 }
             </div>
         </div>
+    } @else if (showTimeTable) {
+        <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4 max-h-[35%] overflow-y-auto">
+            <div class="flex flex-row w-full items-center gap-2">
+                <img src="../../../assets/icons/ClockIcon.png" class="size-[25px] icon"/>
+                <p class="font-manrope font-regular text-[18px] text-primaryBlack">Time table</p>
+            </div>
+            <div class="flex flex-col w-full h-full gap-4">
+                <div class="flex flex-col w-full items-start justify-start gap-2">
+                    <div class="flex flex-row gap-2 items-center">
+                        <div class="flex size-[20px] rounded-full bg-cityRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[16px]">Monday - Friday</p>
+                    </div>
+                    <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
+                        <div *ngFor="let time of getTimeTable(false)" 
+                             class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
+                             [ngClass]="{'bg-primaryLightGreen text-white': time.isNext}">
+                            <p class="cursor-default">{{ time.time }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full items-start justify-start gap-2">
+                    <div class="flex flex-row gap-2 items-center">
+                        <div class="flex size-[20px] rounded-full bg-suburbanRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[16px]">Weekend</p>
+                    </div>
+                    <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
+                        <div *ngFor="let time of getTimeTable(true)" 
+                             class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
+                             [ngClass]="{'bg-primaryLightGreen  text-white': time.isNext}">
+                            <p class="cursor-default">{{ time.time }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
-    <!-- <div class="w-full flex flex-row justify-end">
-        <button class="w-[200px] h-[35px] font-manrope font-medium text-[16px] text-grey rounded-[4px] bg-white hover:bg-lightGrey/10 transition-[0.5s]"
-                (click)="increaseNumberOfPassengers()">
-            Buy ticket
-        </button>
-        <button class="w-[200px] h-[35px] font-manrope font-medium text-[16px] text-grey rounded-[4px] ml-4 bg-white hover:bg-lightGrey/10 transition-[0.5s]"
-                (click)="increaseNumberOfPassengersWithCard()">
-            Scan card
-        </button>
-    </div> -->
 </div>

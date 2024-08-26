@@ -11,6 +11,7 @@ import { Bus } from '../../models/bus';
 import { BusesListItemComponent } from '../../components/buses-list-item/buses-list-item.component';
 import { User } from '../../models/user';
 import { AuthService } from '../../service/auth.service';
+import moment, { Moment } from 'moment';
 
 import * as SockJS from 'sockjs-client';
 import * as Stomp from '@stomp/stompjs'
@@ -18,12 +19,12 @@ import { LiveLocation } from '../../models/liveLocation';
 import { RabbitmqLiveLocationService } from '../../service/rabbitmq-live-location.service';
 
 import {jsPDF} from 'jspdf';
-import html2canvas from 'html2canvas';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-route-details',
   standalone: true,
-  imports: [FontAwesomeModule, BusesListItemComponent],
+  imports: [FontAwesomeModule, BusesListItemComponent, CommonModule],
   templateUrl: './route-details.component.html',
   styleUrl: './route-details.component.css'
 })
@@ -43,6 +44,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   endingPoint!: L.LatLng;
   stations: L.LatLng[] = []; 
   routeBuses : Bus[] = [];
+  times : string[] = [];
 
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
@@ -59,6 +61,9 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   numberOfBusesOnRoute : number = 0;
   averageNumberOfPassengersPerBus : number = 0;
 
+  public showTimeTable : boolean = true;
+  public showBusSchedule : boolean = false;
+
   constructor(private routeService: RoutesService,
               private routes: ActivatedRoute,
               private authService: AuthService,
@@ -71,9 +76,12 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       this.routeId =+ idFromRoute;
       this.fetchRoute();
     }
+    // this.establishWebSocketConnection();
+    // this.simulate();
+  }
 
-    this.establishWebSocketConnection();
-    this.simulate();
+  ngAfterViewInit(): void {
+    this.loadMap();
   }
 
   public fetchUser() : void {
@@ -119,10 +127,6 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     console.log('Starting station: \n', this.startingPoint);
     console.log('Ending station: \n', this.endingPoint);
     console.log('Stations: \n', this.stations);
-  }
-
-  ngAfterViewInit(): void {
-    this.loadMap();
   }
 
   loadMap() {
@@ -290,6 +294,73 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     this.numberOfPassengers ++;
   }
 
+  public getTimeTable(isWeekend : boolean) : { time: string, isNext: boolean }[] {
+    const openingTime = this.route.openingTime;  
+    const closingTime = this.route.closingTime;  
+    const interval = isWeekend ? this.route.departureFromStartingStation * 2 : this.route.departureFromStartingStation;
+
+    let times: { time: string, isNext: boolean }[] = [];
+
+    const timeToDate = (time: string): Date => {
+      const [hours, minutes] = time.split(':').map(Number);
+      const date = new Date();
+      date.setHours(hours, minutes, 0, 0);
+      return date;
+    };
+
+    const dateToTimeString = (date: Date): string => {
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    };
+
+    const openingDate = timeToDate(openingTime);
+    const closingDate = timeToDate(closingTime === "00:00" ? "23:59" : closingTime);  
+
+    let currentTime = new Date(openingDate.getTime());
+    const now = new Date(); 
+
+    while (currentTime <= closingDate) {
+      const timeString = dateToTimeString(currentTime);
+      times.push({ time: timeString, isNext: false });
+
+      currentTime.setMinutes(currentTime.getMinutes() + interval);
+    }
+
+    const isTodayWeekend = this.isTodayWeekend();
+
+    if ((isTodayWeekend && isWeekend) || (!isTodayWeekend && !isWeekend)) {
+      const nextDeparture = this.findNextDeparture(times, now);
+      if (nextDeparture !== -1) {
+        times[nextDeparture].isNext = true;
+      }
+    }
+
+    return times;
+  }
+
+  public isTodayWeekend(): boolean {
+    const today = new Date().getDay(); 
+    return today === 6 || today === 0;  
+  }
+
+  public findNextDeparture(times: { time: string, isNext: boolean }[], current: Date): number {
+    for (let i = 0; i < times.length; i++) {
+      const timeDate = this.timeToDate(times[i].time);
+      if (timeDate > current) {
+        return i;
+      }
+    }
+    return -1; 
+  }
+
+  public timeToDate(time: string): Date {
+    const [hours, minutes] = time.split(':').map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
+
   private startingIcon = L.icon({
     iconUrl: 'assets/flag.png',
     iconSize: [25, 41],
@@ -323,5 +394,15 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
   public handleBusListUpdate() {
     this.fetchRoute();
+  }
+
+  public toggleBusSchedule(){
+    this.showBusSchedule  = true;
+    this.showTimeTable = false;
+  }
+
+  public toggleTimeTable(){
+    this.showBusSchedule  = false;
+    this.showTimeTable = true;
   }
 }

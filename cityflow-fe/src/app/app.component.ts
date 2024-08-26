@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from './models/user';
 import { AuthService } from './service/auth.service';
 import { SigninSignupComponent } from './components/signin-signup/signin-signup.component';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,11 @@ import { SigninSignupComponent } from './components/signin-signup/signin-signup.
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title = 'cityflow-fe';
   public isLoggedIn : boolean = false;
+  
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
