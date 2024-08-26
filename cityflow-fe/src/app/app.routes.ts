@@ -19,6 +19,7 @@ import { AddShiftFormComponent } from './components/add-shift-form/add-shift-for
 import { AllRoutesComponent } from './pages/all-routes/all-routes.component';
 import { DeleteEmployeeFormComponent } from './components/delete-employee-form/delete-employee-form.component';
 import { HomeComponent } from './pages/home/home.component';
+import { InboxComponent } from './pages/inbox/inbox.component';
 
 export const routes: Routes = [
     {path:"signin" , component:  SigninComponent},
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path:"routes", component: RoutesComponent},
     {path:"employees", component: EmployeesComponent},
     {path:"route/:id", component: RouteDetailsComponent},
+    {path:"inbox", component: InboxComponent},
     {path:"home", component: HomeComponent},
     {path:"profile", component: ProfileComponent},
     {path:"newEmployee", component: NewEmployeeFormComponent},
@@ -40,5 +42,6 @@ export const routes: Routes = [
     {path:"work-calendar", component: WorkCalendarComponent},
     {path:"add-shift", component: AddShiftFormComponent},
     {path:"allRoutes", component: AllRoutesComponent},
-    {path:"deleteEmployee/:id", component: DeleteEmployeeFormComponent}
+    {path:"deleteEmployee/:id", component: DeleteEmployeeFormComponent},
+
 ];

@@ -15,10 +15,4 @@
         <p class="username font-manrope font-bold text-lg text-white">{{ loggedUser.username }}</p>
         <p class="role font-manrope font-light text-sm text-white">{{ getRoleDisplayName(loggedUser.roles) }}</p>
     </div>
-    <button class="signout-button flex flex-row w-64 h-11 rounded-lg border border-white justify-center items-center text-white
-                    hover:bg-white hover:text-darkGrey transition-all duration-500"
-            (click)="signOut()">
-        <p class="font-manrope font-semibold text-base">Sign Out</p>
-        <fa-icon [icon]="faSignOut" class="w-4 ml-2"></fa-icon>
-    </button>
 </div>

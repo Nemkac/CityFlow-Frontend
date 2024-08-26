@@ -9,9 +9,9 @@ module.exports = {
       manrope: ["Manrope", "sans-serif"]
     },
     colors:{
-      darkGrey: "#2F3640",
-      grey: "#353B48",
-      lightGrey: "#DCDDE1",
+      darkGrey: "#22272e",
+      grey: "#363d4a",
+      lightGrey: "#c5d7fc",
       white: "#F5F6FA",
       yellow: "#FBC531",
       deepGreen: "#44BD32",

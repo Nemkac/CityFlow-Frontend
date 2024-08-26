@@ -46,13 +46,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    //this.fetchUser();
     this.loadEmploymentStatistics();
     this.createDoughnutChart();
     this.createBarChart();
   }
   ngAfterViewInit(): void {
-    //this.createTestChart(); // Kreirajte grafikon nakon što se view inicijalizuje
   }
  createChart(employedCount: number, terminatedCount: number): void {
   const data = {
@@ -199,7 +197,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             }
           },
           y: {
-            type: 'linear',  // Ensure the linear scale is correctly registered
+            type: 'linear',
             display: true,
             beginAtZero: true,
             title: {

@@ -8,6 +8,8 @@ import { User } from '../models/user';
 import { newUserDTO } from '../dtos/newUserDTO';
 import { SalaryDTO } from '../dtos/salaryDTO';
 import { EmploymentStatisticsDTO } from '../dtos/employmentStatisticsDTO';
+import { Message } from 'ng-angular-popup';
+import { UserMessages } from '../models/userMessages';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,9 @@ export class HrAdminService {
 
   public register(requestBody:UserDTO):Observable<UserDTO>{
     return this.http.post<UserDTO>(`${this.apiServerUrl}/CityFlow/RegisterUser`, requestBody);
+  }
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('/api/users');
   }
 
   public addUser(requestBody: newUserDTO): Observable<any> {
@@ -58,12 +63,29 @@ export class HrAdminService {
   public getUserProfilePicture(userId: number): Observable<string> {
     return this.http.get(`${this.apiServerUrl}/CityFlow/getUserProfilePicture/${userId}`, { responseType: 'text' });
   }
-  /*getEmploymentStatistics(): Observable<EmploymentStatisticsDTO> {
-    return this.http.get<EmploymentStatisticsDTO>(this.apiServerUrl + '/employmentStatistics');
-}*/
+
 getEmploymentStatistics(headers?: HttpHeaders): Observable<EmploymentStatisticsDTO> {
   return this.http.get<EmploymentStatisticsDTO>(`${this.apiServerUrl}/CityFlow/employmentStatistics`, { headers });
 }
-  
+sendMessage(senderId: number, receiverId: number, content: string, headers?: HttpHeaders): Observable<any> {
+  return this.http.post(`${this.apiServerUrl}/CityFlow/send`, { senderId, receiverId, content });
+}
+
+getReceivedMessages(userId: number, page: number, pageSize: number): Observable<any> {
+  return this.http.get(`${this.apiServerUrl}/CityFlow/received/${userId}?page=${page}&size=${pageSize}`);
+}
+
+getSentMessages(userId: number, page: number, pageSize: number): Observable<any> {
+  return this.http.get(`${this.apiServerUrl}/CityFlow/sent/${userId}?page=${page}&size=${pageSize}`);
+}
+getMessagesBetweenUsers(userId1: number, userId2: number): Observable<UserMessages[]> {
+  return this.http.get<UserMessages[]>(`${this.apiServerUrl}/CityFlow/messages/${userId1}/${userId2}`);
+
+}  
+getCommunicationPartners(userId: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiServerUrl}/CityFlow/communicationPartners/${userId}`);
+}
+
+
 }
 
