@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center text-white">
+<div class="flex flex-col items-center justify-center w-full text-white">
     <button [ngClass]="{'bg-lightGrey/30' : showHome,
                     'bg-transparent': !showHome}" 
             class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
@@ -159,12 +159,4 @@
             <p class="ml-[20px] text-[28px]">Inbox</p>
         </div>
     </button>
-</div>
-<div bottom-0 >
-    <button class="flex flex-row w-[258px] h-[43px] rounded-[10px] border border-white justify-center items-center text-white
-    hover:bg-white hover:text-darkGrey transition-all duration-500"
-(click)="signOut()">
-<p class="font-manrope font-semibold text-[16px]">Sign Out</p>
-<fa-icon [icon]="faSignOut" class="w-[16px] ml-[10px]"/>
-</button>
 </div>

@@ -252,12 +252,4 @@ export class SidePanelMenuComponent implements OnInit{
     this.router.navigate(['/inbox']);
   }
 
-  public signOut() : void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/signin']);
-    setTimeout(() => {
-			window.location.reload();
-		  }, 5);
-  }
-
 }

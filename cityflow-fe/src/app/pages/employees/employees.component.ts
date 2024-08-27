@@ -62,10 +62,8 @@ export class EmployeesComponent implements OnInit {
   }
   loadUsersAndImages(): void {
     this.users$ = this.hrAdminService.searchUsersByName('').pipe(
-      map(users => {
-        return users.filter(user => user.employed);
-      }),
-      tap((users: any[]) => {
+      map(users => users.filter(user => user.employed)),  // Ensure only employed users are included
+      tap(users => {
         users.forEach(user => {
           if (user.profilePicture) {
             this.hrAdminService.getUserProfilePicture(user.id).subscribe(
@@ -81,16 +79,22 @@ export class EmployeesComponent implements OnInit {
   }
   
   
+  
 
   onNameFilterChange(newFilter: string): void {
     this.nameFilter = newFilter;
     this.refreshData();
   }
-  searchUsersByRole(): void {
-    this.users$ = this.hrAdminService.searchUsersByRole(this.roleFilter);
-  }
   searchUsersByName(): void {
-    this.users$ =this.hrAdminService.searchUsersByName(this.nameFilter);
+    this.users$ = this.hrAdminService.searchUsersByName(this.nameFilter).pipe(
+      map(users => users.filter(user => user.employed))
+    );
+  }
+  
+  searchUsersByRole(): void {
+    this.users$ = this.hrAdminService.searchUsersByRole(this.roleFilter).pipe(
+      map(users => users.filter(user => user.employed))
+    );
   }
 
 
@@ -100,12 +104,9 @@ export class EmployeesComponent implements OnInit {
   }
 
   private refreshData(): void {
-    this.users$ = combineLatest([
-      this.hrAdminService.searchUsersByName(this.nameFilter),
-    ]).pipe(
-      map(([nameResults]) => {
-        return [...new Set([...nameResults])]; 
-      })
+    this.users$ = this.hrAdminService.searchUsersByName(this.nameFilter).pipe(
+      map(users => users.filter(user => user.employed)),  // Apply the employed filter
+      map(users => [...new Set(users)])  // Remove duplicates if necessary
     );
   }
 
@@ -138,4 +139,15 @@ export class EmployeesComponent implements OnInit {
   navigateToDeleteEmployee(userId: number): void {
     this.router.navigate(['/deleteEmployee', userId]);
   }
+  getRoleDisplayName(role: string): string {
+    const roleMap: { [key: string]: string } = {
+      'ROLE_ROUTEADMINISTRATOR': 'Route Administrator',
+      'ROLE_HRAdministrator': 'HR Administrator',
+      'ROLE_DRIVER': 'Driver',
+      'ROLE_SERVICER': 'Servicer',
+      'ROLE_ACCOUNTANT': 'Accountant'
+    };
+    return roleMap[role] || role;
+  }
+
 }

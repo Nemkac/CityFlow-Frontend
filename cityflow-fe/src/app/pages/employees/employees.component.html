@@ -1,67 +1,45 @@
-<div class="flex flex-col w-full h-full p-4 font-manrope text-white items-center justify-start">
-    <div class="flex flex-row w-full justify-left">
-        <div class="flex flex-col w-[300px]">
-            <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
-                        h-[50px] border-white/60 bg-white/0 w-full px-2 py-4 items-center">
-                <input class="bg-white/0"
-                        type="text" [(ngModel)]="nameFilter" (ngModelChange)="onNameFilterChange($event)" placeholder="Search by name">
-                <button class="w-[25px]">
-                    <fa-icon [icon]="faSearch"/>
-                </button>
-            </div>
+<div class="flex flex-col w-full h-full p-4 gap-8 font-manrope text-white justify-start">
+    <div class="flex flex-row w-full justify-between">
+        <!-- Search fields and buttons -->
+        <div class="search-field">
+            <input class="search-input" type="text" [(ngModel)]="nameFilter" (ngModelChange)="onNameFilterChange($event)" placeholder="Search by name">
+            <button class="search-btn">
+                <fa-icon [icon]="faSearch"/>
+            </button>
         </div>
-        <div class="flex flex-row ml-[10px] items-end">
-            <div class="flex flex-col w-[300px]">
-                <div class="flex flex-row justify-between w-full rounded-[10px] border-[1px] 
-                        h-[50px] border-white/60 bg-white/0 w-full px-2 py-4 items-center">
-                    <input class="bg-white/0"
-                    type="text" [(ngModel)]="roleFilter" (ngModelChange)="searchUsersByRole()" placeholder="Search by role">
-                    <button class="w-[25px]">
-                        <fa-icon [icon]="faSearch"/>
-                    </button>
-                </div>
-            </div>
-            <div class="flex flex-col ml-[685px] w-[200px]">
-                <button class="flex flex-row items-center justify-center bg-white rounded-[10px] text-darkGrey h-[50px] font-manrope"
-                        (click)="navigateToAddNewEmployee()">
-                    <p class="font-medium">New employee</p>
-                    <fa-icon [icon]="faPlus" class="ml-4"></fa-icon>
-                </button>
-            </div>
+        <div class="search-field">
+            <input class="search-input" type="text" [(ngModel)]="roleFilter" (ngModelChange)="searchUsersByRole()" placeholder="Search by role">
+            <button class="search-btn">
+                <fa-icon [icon]="faSearch"/>
+            </button>
         </div>
+        <!-- New employee button -->
+        <button class="new-employee-btn" (click)="navigateToAddNewEmployee()">
+            New Employee <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
     </div>
 
-    <div class="flex flex-row w-full mt-6">
-        <div class="flex flex-col p-4 font-manrope text-white justify-start w-full">
-            <div *ngFor="let user of users$ | async" class="flex flex-col sm:flex-row justify-between items-center border-b-[1px] border-white/60 py-2">
-                <div class="flex flex-row items-center mb-2 sm:mb-0 w-full">
-                    <div class="image-container mr-3">
-                        <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" alt="User Image" class="rounded-full w-12 h-12" (click)="openImageModal(userImages.get(user.id))">
-                        <div *ngIf="!userImages.get(user.id)" class="no-image-placeholder">
-                            X
-                          </div>
-                      </div>
-                    <p class="text-white font-manrope font-semibold text-[32px]">{{ user.name }} {{ user.lastname }}</p>
+    <!-- Employee cards grid -->
+    <div class="grid grid-cols-4 gap-6 justify-between h-full">
+        <div *ngFor="let user of users$ | async" class="card hover:translate-y-[-5px] transition-[0.5s]">
+            <div class="image-container">
+                <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" alt="{{ user.name }}" class="user-image" (click)="openImageModal(userImages.get(user.id))">
+                <div *ngIf="!userImages.get(user.id)" class="no-image-placeholder">X</div>
+            </div>
+            <div class="card-content">
+                <h5 class="card-title">{{ user.name }} {{ user.lastname }}</h5>
+                <p class="card-role">{{ getRoleDisplayName(user.roles) }}</p>
+                <div class="action-buttons">
+                    <button class="edit-btn" (click)="editEmployee(user.id)">
+                        <img src="assets/EditEmployee.png" alt="Edit">
+                    </button>
+                    <button class="salary-btn" (click)="openAssignSalaryForm(user.id)">
+                        <img src="assets/UserSalary.png" alt="Salary">
+                    </button>
+                    <button class="terminate-btn" (click)="navigateToDeleteEmployee(user.id)">
+                        <img src="assets/TerminateEmployee.png" alt="Terminate">
+                    </button>
                 </div>
-                <ng-container [ngSwitch]="user.roles">
-                    <p *ngSwitchCase="'ROLE_ROUTEADMINISTRATOR'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Route Administrator</p>
-                    <p *ngSwitchCase="'ROLE_HRAdministrator'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">HR Administrator</p>
-                    <p *ngSwitchCase="'ROLE_DRIVER'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Driver</p>
-                    <p *ngSwitchCase="'ROLE_SERVICER'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Servicer</p>
-                    <p *ngSwitchCase="'ROLE_Accountant'" class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Accountant</p>
-                    <p *ngSwitchDefault class="w-full text-[24] font-light font-manrope text-lightGrey sm:ml-5">Unknown Role</p>
-                </ng-container>
-                <div class="flex flex-row justify-center sm:justify-end mt-2 sm:mt-0 w-full">
-                    <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="editEmployee(user.id)">
-                        <img src="assets/EditEmployee.png" alt="Edit Employee" class="w-7 h-7">
-                    </button>
-                    <button class="flex rounded-[10px] bg-lightGreen size-[40px] items-center justify-center mr-2 sm:mr-2" (click)="openAssignSalaryForm(user.id)">
-                        <img src="assets/UserSalary.png" alt="Edit Salary" class="w-6 h-6">
-                    </button>
-                    <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center" (click)="navigateToDeleteEmployee(user.id)">
-                        <img src="assets/TerminateEmployee.png" alt="Terminate Employee" class="w-7 h-7">
-                    </button>
-                </div>    
             </div>
             <div #modal *ngIf="isModalOpen" class="modal-overlay">
                 <div class="modal-content">
@@ -70,8 +48,7 @@
                     <img [src]="selectedImage" alt="Full size image">
                   </div>
                 </div>
-              </div>
-              
+              </div>        
         </div>
     </div>
 </div>

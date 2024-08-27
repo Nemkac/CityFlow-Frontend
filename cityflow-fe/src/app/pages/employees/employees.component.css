@@ -1,19 +1,8 @@
-.no-image-placeholder {
-    background-color: #e0e0e0; 
-    width: 47px;
-    height: 47px; 
-    border-radius: 50%; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #3f4352; 
-    font-size: 30px; 
-    font-weight: bold;
-  }
-  .clickable {
+.clickable {
     cursor: pointer;
-  }
-  .modal-overlay {
+}
+
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -24,28 +13,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     position: relative;
-    width: 90%; /* Povećano sa 80% na 90% */
-    max-width: 960px; /* Povećano za veći prikaz modala */
+    width: 90%;
+    /* Povećano sa 80% na 90% */
+    max-width: 960px;
+    /* Povećano za veći prikaz modala */
     border-radius: 8px;
     overflow: hidden;
-  }
-  
-  .modal-body {
+}
+
+.modal-body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-body img {
+}
+
+.modal-body img {
     max-width: 100%;
     max-height: 90vh;
-  }
-  
-  .close {
+}
+
+.close {
     position: absolute;
     top: 1px;
     right: 10px;
@@ -54,9 +45,9 @@
     color: white;
     font-size: 2.5em;
     cursor: pointer;
-  }
+}
 
-  .modal-overlay {
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -69,10 +60,93 @@
     align-items: center;
     opacity: 0;
     transition: opacity 250ms ease-in-out, background-color 250ms ease-in-out;
-  }
-  
-  .modal-overlay.open {
+}
+
+.modal-overlay.open {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.8);
-  }
-  
+}
+
+
+.card-content{
+    width: 100%;
+    flex-direction: column;
+}
+
+.search-input,
+.new-employee-btn,
+.user-image,
+.card-title,
+.card-role,
+.edit-btn,
+.salary-btn,
+.terminate-btn {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+.user-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.no-image-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #3f4352;
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.card {
+    background: linear-gradient(145deg, #22272e, #2d343d);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    gap: 20px;
+    
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    /* Added margin for better readability */
+}
+
+.card-role {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    /* Added margin for spacing before buttons */
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.edit-btn img,
+.salary-btn img,
+.terminate-btn img {
+    width: 30px;
+    height: 30px;
+}

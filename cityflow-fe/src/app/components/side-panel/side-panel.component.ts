@@ -5,12 +5,12 @@ import { SidePanelMenuComponent } from '../side-panel-menu/side-panel-menu.compo
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-profile.component';
-
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-side-panel',
@@ -31,8 +31,11 @@ import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-prof
 export class SidePannelComponent implements OnInit{
 
   isLoggedIn: boolean = false;
+  faSignOut = faSignOut;
   
-  constructor(private authService : AuthService){}
+  constructor(private authService : AuthService,
+    private router : Router
+  ){}
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -42,5 +45,13 @@ export class SidePannelComponent implements OnInit{
         this.isLoggedIn = !!localStorage.getItem('token');
       }
     });
+  }
+
+  public signOut() : void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/signin']);
+    setTimeout(() => {
+			window.location.reload();
+		  }, 5);
   }
 }

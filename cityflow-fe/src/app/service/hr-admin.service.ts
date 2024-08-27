@@ -15,12 +15,12 @@ import { UserMessages } from '../models/userMessages';
   providedIn: 'root'
 })
 export class HrAdminService {
-  private apiServerUrl = 'http://localhost:8081'; 
+  private apiServerUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+    private router: Router) { }
 
-  public register(requestBody:UserDTO):Observable<UserDTO>{
+  public register(requestBody: UserDTO): Observable<UserDTO> {
     return this.http.post<UserDTO>(`${this.apiServerUrl}/CityFlow/RegisterUser`, requestBody);
   }
   getUsers(): Observable<User[]> {
@@ -43,7 +43,7 @@ export class HrAdminService {
   public searchUsersByName(name: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiServerUrl}/CityFlow/searchByName?name=${encodeURIComponent(name)}`);
   }
-  
+
   public searchUsersByRole(role: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiServerUrl}/CityFlow/searchByRole?role=${encodeURIComponent(role)}`);
   }
@@ -64,27 +64,27 @@ export class HrAdminService {
     return this.http.get(`${this.apiServerUrl}/CityFlow/getUserProfilePicture/${userId}`, { responseType: 'text' });
   }
 
-getEmploymentStatistics(headers?: HttpHeaders): Observable<EmploymentStatisticsDTO> {
-  return this.http.get<EmploymentStatisticsDTO>(`${this.apiServerUrl}/CityFlow/employmentStatistics`, { headers });
-}
-sendMessage(senderId: number, receiverId: number, content: string, headers?: HttpHeaders): Observable<any> {
-  return this.http.post(`${this.apiServerUrl}/CityFlow/send`, { senderId, receiverId, content });
-}
+  getEmploymentStatistics(headers?: HttpHeaders): Observable<EmploymentStatisticsDTO> {
+    return this.http.get<EmploymentStatisticsDTO>(`${this.apiServerUrl}/CityFlow/employmentStatistics`, { headers });
+  }
+  sendMessage(senderId: number, receiverId: number, content: string, headers?: HttpHeaders): Observable<any> {
+    return this.http.post(`${this.apiServerUrl}/CityFlow/send`, { senderId, receiverId, content });
+  }
 
-getReceivedMessages(userId: number, page: number, pageSize: number): Observable<any> {
-  return this.http.get(`${this.apiServerUrl}/CityFlow/received/${userId}?page=${page}&size=${pageSize}`);
-}
+  getReceivedMessages(userId: number, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/CityFlow/received/${userId}?page=${page}&size=${pageSize}`);
+  }
 
-getSentMessages(userId: number, page: number, pageSize: number): Observable<any> {
-  return this.http.get(`${this.apiServerUrl}/CityFlow/sent/${userId}?page=${page}&size=${pageSize}`);
-}
-getMessagesBetweenUsers(userId1: number, userId2: number): Observable<UserMessages[]> {
-  return this.http.get<UserMessages[]>(`${this.apiServerUrl}/CityFlow/messages/${userId1}/${userId2}`);
+  getSentMessages(userId: number, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/CityFlow/sent/${userId}?page=${page}&size=${pageSize}`);
+  }
+  getMessagesBetweenUsers(userId1: number, userId2: number): Observable<UserMessages[]> {
+    return this.http.get<UserMessages[]>(`${this.apiServerUrl}/CityFlow/messages/${userId1}/${userId2}`);
 
-}  
-getCommunicationPartners(userId: number): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiServerUrl}/CityFlow/communicationPartners/${userId}`);
-}
+  }
+  getCommunicationPartners(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiServerUrl}/CityFlow/communicationPartners/${userId}`);
+  }
 
 
 }
