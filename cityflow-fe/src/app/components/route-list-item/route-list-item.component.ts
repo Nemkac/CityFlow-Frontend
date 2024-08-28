@@ -27,6 +27,8 @@ export class RouteListItemComponent implements OnInit{
 
   @Output() routeDeleted = new EventEmitter<void>();
 
+  public toggledDropdown : boolean = false;
+
   token : string | null = localStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
@@ -78,6 +80,11 @@ export class RouteListItemComponent implements OnInit{
         );
       } 
     )
+  }
+
+  public toggleDropdown(event : Event) : void {
+    event.stopPropagation();
+    this.toggledDropdown = !this.toggledDropdown;
   }
 
 }

@@ -64,6 +64,9 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   public showTimeTable : boolean = true;
   public showBusSchedule : boolean = false;
 
+  public weekendTimeTable : { time: string, isNext: boolean }[] = [];
+  public nonWeekendTimeTable : { time: string, isNext: boolean }[] = [];
+
   constructor(private routeService: RoutesService,
               private routes: ActivatedRoute,
               private authService: AuthService,
@@ -76,12 +79,16 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       this.routeId =+ idFromRoute;
       this.fetchRoute();
     }
+
     // this.establishWebSocketConnection();
     // this.simulate();
   }
 
   ngAfterViewInit(): void {
     this.loadMap();
+    this.weekendTimeTable = this.getTimeTable(true);
+    console.log(this.weekendTimeTable);
+    this.nonWeekendTimeTable = this.getTimeTable(false);
   }
 
   public fetchUser() : void {
@@ -294,48 +301,51 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     this.numberOfPassengers ++;
   }
 
-  public getTimeTable(isWeekend : boolean) : { time: string, isNext: boolean }[] {
-    const openingTime = this.route.openingTime;  
-    const closingTime = this.route.closingTime;  
+  public getTimeTable(isWeekend: boolean): { time: string, isNext: boolean }[] {
+    const openingTime = this.route.openingTime;
+    const closingTime = this.route.closingTime;
     const interval = isWeekend ? this.route.departureFromStartingStation * 2 : this.route.departureFromStartingStation;
 
     let times: { time: string, isNext: boolean }[] = [];
 
-    const timeToDate = (time: string): Date => {
-      const [hours, minutes] = time.split(':').map(Number);
-      const date = new Date();
-      date.setHours(hours, minutes, 0, 0);
-      return date;
-    };
-
-    const dateToTimeString = (date: Date): string => {
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      return `${hours}:${minutes}`;
-    };
-
-    const openingDate = timeToDate(openingTime);
-    const closingDate = timeToDate(closingTime === "00:00" ? "23:59" : closingTime);  
-
-    let currentTime = new Date(openingDate.getTime());
-    const now = new Date(); 
-
-    while (currentTime <= closingDate) {
-      const timeString = dateToTimeString(currentTime);
-      times.push({ time: timeString, isNext: false });
-
-      currentTime.setMinutes(currentTime.getMinutes() + interval);
-    }
-
-    const isTodayWeekend = this.isTodayWeekend();
-
-    if ((isTodayWeekend && isWeekend) || (!isTodayWeekend && !isWeekend)) {
-      const nextDeparture = this.findNextDeparture(times, now);
-      if (nextDeparture !== -1) {
-        times[nextDeparture].isNext = true;
+    if(interval > 0){
+      const timeToDate = (time: string, isClosing = false): Date => {
+        const [hours, minutes] = time.split(':').map(Number);
+        const date = new Date();
+        date.setHours(hours, minutes, 0, 0);
+        if (isClosing && hours < 12) { // Assume closing times less than 12 are early next day
+            date.setDate(date.getDate() + 1);
+        }
+        return date;
+      };
+  
+      const dateToTimeString = (date: Date): string => {
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+      };
+  
+      const now = new Date();
+      const openingDate = timeToDate(openingTime);
+      const closingDate = timeToDate(closingTime, true);
+  
+      let currentTime = new Date(openingDate);
+  
+      while (currentTime <= closingDate) {
+        const timeString = dateToTimeString(currentTime);
+        times.push({ time: timeString, isNext: false });
+        currentTime.setMinutes(currentTime.getMinutes() + interval);
       }
+  
+      const isTodayWeekend = this.isTodayWeekend();
+      if ((isTodayWeekend && isWeekend) || (!isTodayWeekend && !isWeekend)) {
+        const nextDeparture = this.findNextDeparture(times, now);
+        if (nextDeparture !== -1) {
+          times[nextDeparture].isNext = true;
+        }
+      }
+  
     }
-
     return times;
   }
 

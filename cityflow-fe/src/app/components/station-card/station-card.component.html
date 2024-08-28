@@ -8,12 +8,35 @@
         <p class="w-full text-[14px] font-light font-manrope text-primaryBlack">Latitude: <span class="font-semibold">{{latitude}}</span></p>
         <p class="w-full text-[14px] font-light font-manrope text-primaryBlack">Longitude: <span class="font-semibold">{{longitude}}</span></p>
     </div>
-    <button class="flex flex-row gap-2 absolute top-2 right-2 items-center group button-hover-effect"
+    <!-- <button class="flex flex-row gap-2 absolute top-2 right-2 items-center group button-hover-effect"
             (click)="deleteStation()">
         <img src="../../../assets/icons/TrashIcon.png" class="size-[14px] opacity-50 nav_menu_icon_red"/>
         <p class="text-primaryBlack group-hover:text-lightRed group-hover:opacity-100 
                 opacity-50 font-manrope text-[12px] transition-[0.5s]">
             Delete station
         </p>
+    </button> -->
+    <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" (click)="toggleDropdown()"
+            class="inline-flex absolute top-2 right-2 items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:outline-none" type="button"> 
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+        </svg>
     </button>
+
+        <!-- Dropdown menu -->
+    <div id="dropdownDotsHorizontal" [ngClass]="{'hidden' : !toggledDropdown}"
+        class="z-20 absolute top-10 right-2 bg-white divide-y divide-gray-100 shadow-xl border-[1px] rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
+            <li>
+                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2">
+                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px]"/>
+                    <p class="block">Edit station</p>
+                </div>
+            </li>
+        </ul>
+        <div class="flex flex-row items-center hover:bg-gray-100 px-4 gap-2 py-2 button-hover-effect" (click)="deleteStation()">
+            <img src="../../../assets/icons/TrashIcon.png" class="size-[16px] nav_menu_icon_red"/>
+            <a class="block py-2 text-sm text-lightRed hover:bg-gray-100">Delete station</a>
+        </div>
+    </div>
 </div>

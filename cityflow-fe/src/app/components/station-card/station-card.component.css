@@ -1,5 +1,9 @@
-.nav_menu_icon_red{
+/* .nav_menu_icon_red{
     filter: none;
+} */
+
+.nav_menu_icon_red{
+    filter: invert(31%) sepia(77%) saturate(1708%) hue-rotate(349deg) brightness(93%) contrast(98%);
 }
 
 /* Stil koji se primenjuje kada je kursor iznad dugmeta */

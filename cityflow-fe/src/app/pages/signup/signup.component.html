@@ -80,7 +80,7 @@
                     } @else {
                         <label for="name" class="text-primaryBlack/70 font-regular text-[12px]">First name</label>
                     }
-                    <input formControlName="name" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="First name"/>
+                    <input formControlName="name" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="First name"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('lastname')?.touched && form.get('lastname')?.invalid) {
@@ -88,7 +88,7 @@
                     } @else {
                         <label for="lastname" class="text-primaryBlack/70 font-regular text-[12px]">Last name</label>
                     }
-                    <input formControlName="lastname" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Last name"/>
+                    <input formControlName="lastname" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Last name"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('phone')?.touched && form.get('phone')?.invalid) {
@@ -96,7 +96,7 @@
                     } @else {
                         <label for="phone" class="text-primaryBlack/70 font-regular text-[12px]">Phone number</label>
                     }
-                    <input formControlName="phone" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Phone number"/>
+                    <input formControlName="phone" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Phone number"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.invalid) {
@@ -104,7 +104,7 @@
                     } @else {
                         <label for="dateInput" class="text-primaryBlack/70 font-regular text-[12px]">Date of birth</label>
                     }
-                    <input formControlName="dateOfBirth" type="date" id="dateInput" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen">
+                    <input formControlName="dateOfBirth" type="date" id="dateInput" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen">
                 </div>            
             </div>
             <div class="flex flex-col w-full xl:w-[50%] items-start h-full gap-4">
@@ -115,7 +115,7 @@
                     } @else {
                         <label for="username" class="text-primaryBlack/70 font-regular text-[12px]">Username</label>
                     }
-                    <input formControlName="username" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Name"/>
+                    <input formControlName="username" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Name"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('email')?.touched && form.get('email')?.invalid) {
@@ -123,7 +123,7 @@
                     } @else {
                         <label for="email" class="text-primaryBlack/70 font-regular text-[12px]">Email address</label>
                     }
-                    <input type="email" formControlName="email" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="email@domain.com"/>
+                    <input type="email" formControlName="email" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="email@domain.com"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('password')?.touched && form.get('password')?.invalid) {
@@ -145,7 +145,7 @@
                     @else {
                         <label for="password" class="text-primaryBlack/70 font-regular text-[12px]">Password</label>
                     }
-                    <input formControlName="password" type="password" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Password"/>
+                    <input formControlName="password" type="password" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Password"/>
                 </div>
                 <div class="flex flex-col w-full">
                     @if (form.get('repeatPassword')?.touched && form.get('repeatPassword')?.invalid) {
@@ -156,7 +156,7 @@
                     @else {
                         <label for="repeatPassword" class="text-primaryBlack/70 font-regular text-[12px]">Repeated password</label>
                     }
-                    <input formControlName="repeatPassword" class="w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Repeat password"/>
+                    <input formControlName="repeatPassword" class="w-full placeholder:italic rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" placeholder="Repeat password"/>
                 </div>    
             </div>
         </div>
@@ -169,7 +169,7 @@
         <div class="flex lg:w-[75%] justify-end">
             <button [disabled]="!form.valid" (click)="signUp()"
                     [ngClass]="{'bg-primaryBlack/20 text-primaryBlack/50': !form.valid, 'bg-primaryDarkGreen hover:bg-primaryLightGreen text-primaryWhite': form.valid}"
-                    class="flex items-center justify-center px-16 py-2 rounded-md transition-[0.5s] font-medium text-[18px]">
+                    class="flex items-center justify-center px-16 py-2 rounded-md transition-[0.5s] font-medium text-[18px]" type="submit">
                 Sign Up
             </button>
         </div>
