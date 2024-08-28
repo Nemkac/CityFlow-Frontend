@@ -1,6 +1,5 @@
 <div class="flex flex-col w-full h-full p-4 gap-8 font-manrope text-white justify-start">
     <div class="flex flex-row w-full justify-between">
-        <!-- Search fields and buttons -->
         <div class="search-field">
             <input class="search-input" type="text" [(ngModel)]="nameFilter" (ngModelChange)="onNameFilterChange($event)" placeholder="Search by name">
             <button class="search-btn">
@@ -13,17 +12,15 @@
                 <fa-icon [icon]="faSearch"/>
             </button>
         </div>
-        <!-- New employee button -->
         <button class="new-employee-btn" (click)="navigateToAddNewEmployee()">
             New Employee <fa-icon [icon]="faPlus"></fa-icon>
         </button>
     </div>
 
-    <!-- Employee cards grid -->
     <div class="grid grid-cols-4 gap-6 justify-between h-full">
         <div *ngFor="let user of users$ | async" class="card hover:translate-y-[-5px] transition-[0.5s]">
             <div class="image-container">
-                <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" alt="{{ user.name }}" class="user-image" (click)="openImageModal(userImages.get(user.id))">
+                <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" alt="{{ user.name }}" class="user-image bg-fixed opacity-100 transition-[0.5] ease-in-out hover:opacity-50 cursor-pointer" (click)="openImageModal(userImages.get(user.id))">
                 <div *ngIf="!userImages.get(user.id)" class="no-image-placeholder">X</div>
             </div>
             <div class="card-content">
