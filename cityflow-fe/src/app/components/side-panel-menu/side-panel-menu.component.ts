@@ -4,6 +4,7 @@ import { faUser, faHome, faIdCard, faInbox, faCalendar, faBus, faMoneyBillTransf
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class SidePanelMenuComponent implements OnInit{
   //Icons
+  faSignOut = faSignOut;
   faUser = faUser;
   faHome = faHome;
   faIdCard = faIdCard;
@@ -26,8 +28,6 @@ export class SidePanelMenuComponent implements OnInit{
   faRoute = faRoute;
 
   faCalendar = faCalendar;
-  
-  //Menu item selections
   showHome : boolean = true;
   showProfile : boolean = false;
   showCards : boolean = false;
@@ -67,7 +67,7 @@ export class SidePanelMenuComponent implements OnInit{
   }
 
   public viewHome() : void{
-    this.showHome = true;
+    this.navigateToHome();
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = false;
@@ -95,6 +95,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.navigateToProfile();
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+
   }
 
   public viewCards() : void{
@@ -106,6 +107,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
     this.showUserCardBalance = false;
+
   }
 
   public viewUserRoutes() : void{
@@ -117,6 +119,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showWorkCalendar = false;
     this.showUserRoutes = true;
     this.showUserCardBalance = false;
+
   }
   
   public viewInbox() : void{
@@ -124,6 +127,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showProfile = false;
     this.showCards = false;
     this.showInbox = true;
+    this.navigateInbox();
     this.showRoutes = false;
     this.showEmployees = false;
     this.showUserBalance = false;
@@ -132,6 +136,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showBuses = false;
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+
   }
 
   public viewRoutes() : void{
@@ -142,6 +147,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showBuses = false;
     this.navigateToRoutes();
     this.showWorkCalendar = false;
+
   }
 
   public viewBuses() : void{
@@ -151,6 +157,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.showBuses = true;
     this.navigateToBuses();
+
   }
 
   public viewEmployees() : void{
@@ -160,6 +167,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showInbox = false;
     this.navigateToEmployees();
     this.showWorkCalendar = false;
+
   }
   public viewUserBalance() : void{
     this.showHome = false;
@@ -169,6 +177,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showRequests = false;
     this.navigateToUserBalance();
+
   }
   public viewUserRequests() : void{
     this.showHome = false;
@@ -190,6 +199,7 @@ export class SidePanelMenuComponent implements OnInit{
     this.navigateToUserCardBalance();
     this.showWorkCalendar = false;
     this.showUserRoutes = false;
+
   }
   public viewWorkCalendar() : void{
     this.showHome = false;
@@ -202,9 +212,12 @@ export class SidePanelMenuComponent implements OnInit{
     this.showUserCardBalance = false;
     this.showWorkCalendar = true;
     this.navigateToWorkCalendar();
+
   }
  
-
+  public navigateToHome() : void {
+    this.router.navigate(['/home']);
+  }
   public navigateToRoutes() : void {
     this.router.navigate(['/routes']);
   }
@@ -235,4 +248,8 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToUserRoutes() : void {
     this.router.navigate(['/allRoutes']);
   }
+  public navigateInbox() : void {
+    this.router.navigate(['/inbox']);
+  }
+
 }

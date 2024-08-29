@@ -28,7 +28,6 @@ export class BusCardComponent implements OnInit{
 
 	public deleteBus(busId: number): void {
 		this.busService.deleteBus(busId).subscribe(response => {
-		  console.log(response);
 		  this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
 		  setTimeout(() => {
 			window.location.reload();

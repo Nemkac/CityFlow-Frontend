@@ -9,6 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddShiftFormComponent } from '../add-shift-form/add-shift-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { isWeekend } from 'date-fns';
+
 
 @Component({
   standalone: true,
@@ -24,9 +26,29 @@ export class WorkCalendarComponent implements OnInit {
     editable: true,
     selectable: true,
     events: [],
+    dayCellDidMount: (arg) => this.customizeDayCell(arg),
   };
+
+  customizeDayCell(arg: any): void {
+    const isWeekendDay = isWeekend(arg.date);
+    if (isWeekendDay) {
+      arg.el.classList.add('bg-white-500', 'text-white');
+      arg.el.style.backgroundColor = '#37404f'; // Fallback if Tailwind doesn't apply
+      arg.el.style.color = '#ffffff';
+    } else {
+      arg.el.classList.add('bg-white/20', 'text-white');
+      arg.el.style.backgroundColor = ''; // Fallback if Tailwind doesn't apply
+      arg.el.style.color = 'white';
+    }
+  }
+
+  
+
   currentMonth: string = '';
   currentYear: number = 0;
+
+  appointmentSelected: boolean = false;  // To track if any appointment is selected
+  selectedAppointment: any = null;
 
   constructor(private workCalendarService: WorkCalendarService, 
               private router: Router,
@@ -59,20 +81,14 @@ export class WorkCalendarComponent implements OnInit {
       AddShiftFormComponent,
       { backdrop: 'static', keyboard: true }
     );
-   // modalRef.componentInstance.userId = userId;
   }
-
   public getEventStyles(extendedProps: any): any {
-    return { 'background-color': '#00A6FB' };
-    // if (!extendedProps.reservedBy) {
-    //   if (this.appointmentSelected && this.selectedAppointment === extendedProps.slot.id) {
-    //     return { 'background-color': '#00A6FB' };
-    //   } else {
-    //     return { 'background-color': '#037971' };
-    //   }
-    // } else {
-    //   return { 'background-color' : '#003554' };
-    // }
+    return {
+      'background-image': 'linear-gradient(to right, #ffffff, #f7fafc)',
+      'border': '1px solid #404752',
+      'border-radius': '0.375rem', // Tailwind rounded-md equivalent
+      'color': '#1f2937' // Tailwind gray-800 equivalent for better contrast
+    };
   }
-
+  
 }

@@ -1,5 +1,6 @@
-<form #UpdateEmployeeForm="ngForm" (ngSubmit)="updateUser(UpdateEmployeeForm)">    
-    <div class="flex flex-col w-[900px] rounded-[10px] bg-lightGrey/20 items-center justify-center p-6">
+<div class="flex flex-col justify-center items-center pb-12 min-h-screen bg-grey" *ngIf="userDTO"> 
+    <form (ngSubmit)="updateUser(updateEmployeeForm)" #updateEmployeeForm="ngForm">
+        <div class="flex flex-col w-[900px] rounded-[10px] bg-lightGrey/20 items-center justify-center p-6">
         <div class="flex felx-col items-center justify-center w-full border-b-[1px] border-white">
             <p class="text-white font-manrope font-semibold text-[32px]">Edit employee information</p>
         </div>
@@ -63,9 +64,10 @@
                 </div>
             </div>
         </div>
-        <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s]"
+        <button class="flex flex-row w-[444px] h-[64px] rounded-[10px] bg-deepYellow justify-center items-center hover:bg-lightYellow transition-[0.5s]"
                 type="submit">
-            <p class="font-manrope text-darkGrey font-semibold text-[24px]">Update</p>
+            <p class="font-manrope text-white font-semibold text-[24px]">Update</p>
         </button>
     </div>
 </form>
+</div>

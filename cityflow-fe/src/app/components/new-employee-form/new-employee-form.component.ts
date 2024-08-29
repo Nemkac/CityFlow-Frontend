@@ -3,6 +3,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { HrAdminService } from '../../service/hr-admin.service';
 import { UserDTO } from '../../dtos/userDTO';
 import { newUserDTO } from '../../dtos/newUserDTO';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-new-employee-form',
@@ -16,18 +18,21 @@ export class NewEmployeeFormComponent implements OnInit{
 
   newUser!: newUserDTO;
 
-  constructor(private hrService : HrAdminService){}
+  constructor(private hrService : HrAdminService,
+              private router: Router,
+              private toast: NgToastService
+  ){}
 
   ngOnInit(): void {}
 
   public registerUser(RegisterForm : NgForm) : void {
-    console.log(this.newUser);
     this.hrService.addUser(RegisterForm.value).subscribe(
       (response: UserDTO) => {
-        console.log('User registered successfully:', response);
+        this.toast.success({ detail: "SUCCESS", summary: 'New employee added successfully!' });
+        this.router.navigate(['/employees']);  
       },
-      (error) => {
-        console.error('Error registering user:', error);
+      error => {
+        this.toast.error({ detail: "ERROR", summary: 'Failed to add new employee: ' + error.message });
       }
     );
   }

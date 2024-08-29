@@ -7,5 +7,7 @@ export interface User{
     roles: string,
     dateOfBirth: string, 
     email: string, 
-    phoneNumber: string 
+    employed: boolean,
+    phoneNumber: string,
+    profilePicture?: string
 }
