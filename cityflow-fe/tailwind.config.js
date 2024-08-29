@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{html, ts}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
@@ -9,11 +10,12 @@ module.exports = {
       manrope: ["Manrope", "sans-serif"]
     },
     colors:{
-      darkGrey: "#22272e",
+      darkGrey: "#1f2630",
       grey: "#363d4a",
       lightGrey: "#c5d7fc",
       white: "#F5F6FA",
       yellow: "#FBC531",
+      deepYellow: "#FBC531",
       deepGreen: "#44BD32",
       lightGreen: "#4CD137",
       deepRed: "#C23616",
@@ -30,6 +32,8 @@ module.exports = {
       xl: "1700px",
     }
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin') 
+  ],
 }
 

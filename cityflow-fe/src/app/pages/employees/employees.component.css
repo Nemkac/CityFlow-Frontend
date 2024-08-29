@@ -18,9 +18,7 @@
 .modal-content {
     position: relative;
     width: 90%;
-    /* Povećano sa 80% na 90% */
     max-width: 960px;
-    /* Povećano za veći prikaz modala */
     border-radius: 8px;
     overflow: hidden;
 }
@@ -78,7 +76,6 @@
 .user-image,
 .card-title,
 .card-role,
-.edit-btn,
 .salary-btn,
 .terminate-btn {
     background-color: transparent;
@@ -107,7 +104,7 @@
 }
 
 .card {
-    background: linear-gradient(145deg, #22272e, #2d343d);
+    background: linear-gradient(145deg, #1f2630, #313b4a);
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -126,14 +123,12 @@
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    /* Added margin for better readability */
 }
 
 .card-role {
     color: #aaa;
     font-size: 1rem;
     margin-bottom: 1rem;
-    /* Added margin for spacing before buttons */
 }
 
 .action-buttons {

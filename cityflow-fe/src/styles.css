@@ -4,13 +4,12 @@
 @tailwind utilities;
 
 .fc-daygrid-day {
-    height: 80px; /* Prilagodite visinu prema potrebi */
+    height: 80px; 
   }
   
-/* Omogućavanje scroll-a unutar polja za datum */
 .fc-daygrid-day-events {
     overflow-y: auto;
-    max-height: 140px; /* Prilagodite visinu prema potrebi */
+    max-height: 140px;
 }
 
 .fc-more {
@@ -37,7 +36,7 @@
 }
   
 .full-calendar-button:hover {
-    background-color: #e74c3c; /* Crvena boja dugmeta pri hoveru */
+    background-color: #e74c3c;
 }
   
 .full-calendar-event {
@@ -45,5 +44,5 @@
 }
   
 .full-calendar-event:hover {
-    background-color: #f39c12; /* Žuta boja eventa pri hoveru */
+    background-color: #f39c12; 
 }

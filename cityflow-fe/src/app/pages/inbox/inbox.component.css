@@ -5,7 +5,7 @@
 
 .user-list-section {
     width: 300px;
-    background: linear-gradient(145deg, #22272e, #2d343d);
+    background: linear-gradient(165deg, #1f2630, #313b4a);
     padding: 10px;
     border-right: 1px solid #363d4a;
 
@@ -20,7 +20,7 @@
     width: 100%;
     padding: 8px 30px 8px 10px;
     color: white;
-    background: linear-gradient(145deg, #22272e, #2d343d);
+    background: linear-gradient(165deg, #1f2630, #313b4a);
     border: 1px solid #363d4a;
     box-sizing: border-box;
 }
@@ -82,7 +82,7 @@
     overflow-y: auto;
 
     padding: 20px;
-    background-color: #22272e;
+    background-color: #1f2630;
     border-left: 1px solid #363d4a;
     color: white;
 
@@ -106,7 +106,7 @@
 }
 
 .mine {
-    background-color: #4CD137;
+    background-color: #049f21;
     align-self: flex-end;
     color: white;
     margin-left: auto;
@@ -167,7 +167,7 @@ button:hover {
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #2F3640;
+    background: linear-gradient(180deg, #252d38, #313b4a);
     border-bottom: 1px solid #363d4a;
     margin-bottom: 10px;
 }

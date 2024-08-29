@@ -1,17 +1,17 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSearch, faArrowDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faArrowDown, faPlus, faEllipsis, faPen } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../models/user';
 import { UserService } from '../../service/user.service';
 import { combineLatest, map, Observable, tap } from 'rxjs';
 import { HrAdminService } from '../../service/hr-admin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AssignSalaryFormComponent } from '../../components/assign-salary-form/assign-salary-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SalaryDTO } from '../../dtos/salaryDTO';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FlowbiteService } from '../../service/flowbite.service';
 
 
 @Component({
@@ -22,8 +22,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./employees.component.css'],
 })
 export class EmployeesComponent implements OnInit {
+  
   users$!: Observable<User[]>;
-
+  dropdownOpen: boolean[] = [];
   user$!: Observable<Array<{ user: User; salary: SalaryDTO }>>;
   reason: string = '';
   selectedEmployee: User | null = null;
@@ -33,10 +34,16 @@ export class EmployeesComponent implements OnInit {
   faSearch = faSearch;
   faArrowDown = faArrowDown;
   faPlus = faPlus;
+  faEllipsis = faEllipsis;
+  faPen = faPen;
 
   userImages = new Map<number, any>();
   selectedImage: any;
   isModalOpen = false;
+  roleDropdownOpen = false;
+
+  selectedRoles: Set<string> = new Set();
+  roles: string[] = ['Route Administrator', 'HR Administrator', 'Driver', 'Servicer', 'Accountant'];
 
   @ViewChild('modal') modalElement!: ElementRef;
 
@@ -45,11 +52,12 @@ export class EmployeesComponent implements OnInit {
     private userService: UserService,
     private hrAdminService: HrAdminService,
     private sanitizer: DomSanitizer, 
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private flowbiteService: FlowbiteService
   ) {}
 
   ngOnInit(): void {
-    
+    this.flowbiteService.loadFlowbite(flowbite => {
     this.users$ = combineLatest([
       this.hrAdminService.searchUsersByName(this.nameFilter),
     ]).pipe(
@@ -58,11 +66,35 @@ export class EmployeesComponent implements OnInit {
       })
     );
     this.loadUsersAndImages();
+    this.users$.subscribe(users => {
+      this.dropdownOpen = new Array(users.length).fill(false); 
+    });
+    console.log('Flowbite loaded', flowbite);
+    });
 
   }
+
+  toggleRoleDropdown(): void {
+    this.roleDropdownOpen = !this.roleDropdownOpen;
+  }
+
+  onRoleChange(event: any): void {
+    const role = event.target.value;
+    if (event.target.checked) {
+      this.selectedRoles.add(role);
+    } else {
+      this.selectedRoles.delete(role);
+    }
+    this.searchUsersByRole();
+  }
+
+  toggleDropdown(index: number): void {
+    this.dropdownOpen = this.dropdownOpen.map((open, i) => i === index ? !open : false);
+  }
+
   loadUsersAndImages(): void {
     this.users$ = this.hrAdminService.searchUsersByName('').pipe(
-      map(users => users.filter(user => user.employed)),  // Ensure only employed users are included
+      map(users => users.filter(user => user.employed)), 
       tap(users => {
         users.forEach(user => {
           if (user.profilePicture) {
@@ -78,8 +110,7 @@ export class EmployeesComponent implements OnInit {
     );
   }
   
-  
-  
+
 
   onNameFilterChange(newFilter: string): void {
     this.nameFilter = newFilter;
@@ -92,11 +123,25 @@ export class EmployeesComponent implements OnInit {
   }
   
   searchUsersByRole(): void {
-    this.users$ = this.hrAdminService.searchUsersByRole(this.roleFilter).pipe(
-      map(users => users.filter(user => user.employed))
-    );
+    // Check if any roles are selected
+    if (this.selectedRoles.size === 0) {
+      this.users$ = this.hrAdminService.searchUsersByName(this.nameFilter).pipe(
+        map(users => users.filter(user => user.employed))
+      );
+    } else {
+      // Create a comma-separated string of roles
+      const rolesQuery = [...this.selectedRoles].join(',');
+  
+      // Log the roles to verify
+      console.log('Selected roles:', rolesQuery);
+  
+      // Make the API call with the roles query
+      this.users$ = this.hrAdminService.searchUsersByRole(rolesQuery).pipe(
+        map(users => users.filter(user => user.employed))
+      );
+    }
   }
-
+  
 
   onRoleFilterChange(newFilter: string): void {
     this.roleFilter = newFilter;
@@ -105,9 +150,11 @@ export class EmployeesComponent implements OnInit {
 
   private refreshData(): void {
     this.users$ = this.hrAdminService.searchUsersByName(this.nameFilter).pipe(
-      map(users => users.filter(user => user.employed)),  // Apply the employed filter
-      map(users => [...new Set(users)])  // Remove duplicates if necessary
+      map(users => users.filter(user => user.employed)),
+      map(users => [...new Set(users)])  
     );
+    this.searchUsersByRole();
+
   }
 
   editEmployee(userId: number): void {
@@ -149,5 +196,6 @@ export class EmployeesComponent implements OnInit {
     };
     return roleMap[role] || role;
   }
+  
 
 }
