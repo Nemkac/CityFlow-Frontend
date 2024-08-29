@@ -7,7 +7,10 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily:{
-      manrope: ["Manrope", "sans-serif"]
+      manrope: ['Gilmer Regular', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
+      gilmer: ['Gilmer Regular', 'sans-serif']
+
     },
     colors:{
       darkGrey: "#1f2630",
@@ -15,7 +18,8 @@ module.exports = {
       lightGrey: "#c5d7fc",
       white: "#F5F6FA",
       yellow: "#FBC531",
-      deepYellow: "#FBC531",
+      deepYellow: "#d1a42a",
+      lightYellow: "#FBC531",
       deepGreen: "#44BD32",
       lightGreen: "#4CD137",
       deepRed: "#C23616",

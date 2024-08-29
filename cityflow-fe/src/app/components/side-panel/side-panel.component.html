@@ -6,14 +6,13 @@
         } @else {
             <app-signin-signup class="justify-end items-end h-full"/>
         }
-        <hr class="flex w-full text-lightGrey/20">
         @if(isLoggedIn) {
             <app-side-panel-menu class="w-full"></app-side-panel-menu>
         }
     </div>
     @if (isLoggedIn) {
-        <button class="flex flex-row w-[258px] h-[43px] rounded-[10px] border border-white justify-center items-center text-white
-                hover:bg-white hover:text-darkGrey transition-all duration-500"
+        <button class="flex flex-row w-[258px] h-[43px] rounded-[10px] border border-deepRed justify-center items-center text-deepRed
+                hover:bg-deepRed/20 hover:text-deepRed transition-all duration-500"
             (click)="signOut()">
             <p class="font-manrope font-semibold text-[16px]">Sign Out</p>
             <fa-icon [icon]="faSignOut" class="w-[16px] ml-[10px]"/>

@@ -1,22 +1,20 @@
 <div class="flex flex-col w-full h-full p-4 gap-8 font-manrope text-white justify-start">
 
-    <div class="flex flex-row w-full justify-between">
-        <div class="search-field">
-            <input class="search-input" type="text" [(ngModel)]="nameFilter"
-                (ngModelChange)="onNameFilterChange($event)" placeholder="Search by name">
-            <button class="search-btn">
-                <fa-icon [icon]="faSearch" />
+    <div class="flex flex-row w-full justify-center items-center">
+        <div class="search-field relative" style="width: 50%;">
+            <input class="w-full pl-10 pr-4 py-2 rounded-lg bg-transparent text-white" type="text" [(ngModel)]="nameFilter" (ngModelChange)="onNameFilterChange($event)" placeholder="Search by name">
+            <button class="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <fa-icon [icon]="faSearch" class="text-white"/>
             </button>
         </div>
-        <div class="relative">
-            <button (click)="toggleRoleDropdown()" class="search-btn">
-                <fa-icon [icon]="faArrowDown" />
-                Filter by Role
+        <div class="relative ml-4">
+            <button (click)="toggleRoleDropdown()" class="filter-btn bg-white p-2 rounded-lg">
+                <fa-icon [icon]="faFilter" class="text-gray-900"/>
             </button>
-            <div *ngIf="roleDropdownOpen" class="absolute top-12 right-0 bg-gray-800 rounded-lg shadow-lg z-20">
+            <div *ngIf="roleDropdownOpen" class="absolute top-full right-0 bg-gray-800 rounded-lg shadow-lg z-20">
                 <ul class="py-2 text-sm">
                     <li *ngFor="let role of roles">
-                        <label class="flex items-center px-4 py-2 text-white">
+                        <label class="flex items-center px-4 py-2 text-white w-35">
                             <input type="checkbox" [value]="role" (change)="onRoleChange($event)" class="mr-2">
                             {{ role }}
                         </label>
@@ -27,7 +25,7 @@
     </div>
 
     <div class="grid grid-cols-4 gap-6 justify-between h-full">
-        <div class="card hover:text-lightGreen hover:border-[3px] hover:border-deepGreen [0.5s] relative cursor-pointer"
+        <div class="card hover:text-lightGreen hover:border-[3px] hover:border-deepGreen transition-[0.5s] relative cursor-pointer"
             (click)="navigateToAddNewEmployee()">
             <div class="flex flex-col justify-center items-center h-full">
                 <fa-icon [icon]="faPlus" class="text-[40px] mb-4"></fa-icon>
@@ -40,28 +38,28 @@
                 <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
             </head>
             <button id="dropdownOffsetButton{{i}}" (click)="toggleDropdown(i)"
-                class="text-whitefocus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-centeritems-center  absolute top-5 right-5"
+                class="text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-centeritems-center  absolute top-5 right-5"
                 type="button">
-                <fa-icon [icon]="faEllipsis" class="text-[28px] hover:text-[30px]" />
+                <fa-icon [icon]="faEllipsis" class="text-[28px] hover:text-lightGrey/50 transition-[0.5s]" />
             </button>
 
             <body>
                 <div *ngIf="dropdownOpen[i]"
                     class="z-10 bg-grey divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700 absolute top-[70px] right-6">
                     <ul class="py-2 text-[16px]">
-                        <li class="text-deepYellow hover:bg-white/5">
+                        <li class="text-deepYellow hover:bg-white/5 transition-[0.5s]">
                             <button class="edit-btn " (click)="editEmployee(user.id)">
                                 <p class="block px-4 py-2">
                                     Edit Profile</p>
                             </button>
                         </li>
-                        <li class="text-white hover:bg-white/5">
+                        <li class="text-white hover:bg-white/5 transition-[0.5s]">
                             <button class="salary-btn" (click)="openAssignSalaryForm(user.id)">
                                 <p class="block px-4 py-2">
                                     Change Salary</p>
                             </button>
                         </li>
-                        <li class="text-deepRed hover:bg-white/5">
+                        <li class="text-deepRed hover:bg-white/5 transition-[0.5s]">
                             <button class="terminate-btn" (click)="navigateToDeleteEmployee(user.id)">
                                 <p class="block px-4 py-2">Delete</p>
                             </button>
@@ -73,7 +71,7 @@
 
             <div class="image-container">
                 <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" alt="{{ user.name }}"
-                    class="user-image bg-fixed opacity-100 transition-[0.5] ease-in-out hover:opacity-50 cursor-pointer"
+                    class="user-image bg-fixed opacity-100 transition-[0.5] ease-in-out hover:opacity-50 transition-[0.5s] cursor-pointer"
                     (click)="openImageModal(userImages.get(user.id))">
                 <div *ngIf="!userImages.get(user.id)" class="no-image-placeholder">X</div>
             </div>

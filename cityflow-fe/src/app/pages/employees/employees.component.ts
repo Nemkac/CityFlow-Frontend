@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSearch, faArrowDown, faPlus, faEllipsis, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faArrowDown, faPlus, faEllipsis, faPen, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../../models/user';
 import { UserService } from '../../service/user.service';
 import { combineLatest, map, Observable, tap } from 'rxjs';
@@ -32,7 +32,7 @@ export class EmployeesComponent implements OnInit {
   roleFilter: string = '';
 
   faSearch = faSearch;
-  faArrowDown = faArrowDown;
+  faFilter = faFilter;
   faPlus = faPlus;
   faEllipsis = faEllipsis;
   faPen = faPen;
@@ -123,19 +123,13 @@ export class EmployeesComponent implements OnInit {
   }
   
   searchUsersByRole(): void {
-    // Check if any roles are selected
     if (this.selectedRoles.size === 0) {
       this.users$ = this.hrAdminService.searchUsersByName(this.nameFilter).pipe(
         map(users => users.filter(user => user.employed))
       );
     } else {
-      // Create a comma-separated string of roles
       const rolesQuery = [...this.selectedRoles].join(',');
   
-      // Log the roles to verify
-      console.log('Selected roles:', rolesQuery);
-  
-      // Make the API call with the roles query
       this.users$ = this.hrAdminService.searchUsersByRole(rolesQuery).pipe(
         map(users => users.filter(user => user.employed))
       );
