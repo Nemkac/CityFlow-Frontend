@@ -4,13 +4,13 @@
 .profile-pic {
   width: 8rem;
   height: 8rem;
-  position: relative;
   border-radius: 50%;
   overflow: hidden;
   background: black; 
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 .no-image-plus {
   display: flex;

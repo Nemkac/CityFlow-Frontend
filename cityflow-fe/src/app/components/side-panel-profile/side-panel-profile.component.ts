@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -21,6 +21,8 @@ import { Router } from '@angular/router';
 
 export class SidePanelProfileComponent implements OnInit{
   faSignOut = faSignOut;
+  faCircle = faCircle;
+
   token = localStorage.getItem('token');
   userImage: any;
   loggedUser: User = {

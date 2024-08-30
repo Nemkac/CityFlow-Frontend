@@ -76,18 +76,12 @@ export class WorkCalendarComponent implements OnInit {
     this.router.navigate(['/add-shift']);
   }
 
-  openAddShiftForm() {
-    const modalRef = this.modalService.open(
-      AddShiftFormComponent,
-      { backdrop: 'static', keyboard: true }
-    );
-  }
   public getEventStyles(extendedProps: any): any {
     return {
       'background-image': 'linear-gradient(to right, #ffffff, #f7fafc)',
       'border': '1px solid #404752',
-      'border-radius': '0.375rem', // Tailwind rounded-md equivalent
-      'color': '#1f2937' // Tailwind gray-800 equivalent for better contrast
+      'border-radius': '0.375rem',
+      'color': '#1f2937' 
     };
   }
   

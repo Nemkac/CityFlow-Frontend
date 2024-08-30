@@ -1,61 +1,87 @@
-<div *ngIf="formOpen" class="fixed inset-0 flex items-center justify-center bg-opacity-40 z-50 font-manrope text-white">
-  <div class="flex flex-col bg-[#A0A0A0] rounded-[10px] w-[30%] h-[90%] items-center p-4">
-    <h2 class="text-[36px] font-semibold">Add New Shift</h2>
-    <form #newShiftForm="ngForm" (ngSubmit)="addShift(newShiftForm)" class="flex flex-col justify-evenly w-full h-full">
-      <div class="flex flex-col justify-center w-full">
-        <p class="font-light text-[16px] mb-2">User ID</p>
-        <div class="flex flex-row items-center w-full">
-          <input type="text" id="userId" name="userId" [(ngModel)]="newShift.userId"
-                 class="rounded-[10px] w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
-                 placeholder="User ID" required>
+
+<div *ngIf="formOpen" class="flex items-center justify-center min-h-screen bg-grey">
+  <div class="flex flex-col bg-lightGrey/20 rounded-[10px] w-[900px] items-center justify-center p-6">
+    <form #newShiftForm="ngForm" (ngSubmit)="addShift(newShiftForm)">
+      <div class="flex flex-col items-center justify-center w-full border-b-[1px] border-white pb-4">
+        <p class="text-white font-manrope font-semibold text-[24px]">Add New Shift</p>
+      </div>
+      
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <button (click)="toggleUserModal()" class="w-[444px] h-[64px] font-manrope font-semibold text-white rounded-[10px] bg-lightGreen hover:bg-deepGreen transition-[0.5s] my-4">
+            Select User
+          </button>
+          <div *ngIf="selectedUser" class="text-center">
+            <p class="font-medium">Selected User:</p>
+            <p>{{ selectedUser.name }} {{ selectedUser.lastname }} - {{ selectedUser.roles }}</p>
+          </div>
+          <div *ngIf="userModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg max-w-lg w-full overflow-auto">
+              <div class="border-b p-4 flex justify-between items-center">
+                <span class="text-lg font-medium">Select a User</span>
+                <button (click)="toggleUserModal()" class="text-sm text-gray-600 hover:text-gray-800">Close</button>
+              </div>
+              <ul class="list-none p-2 space-y-2">
+                <li *ngFor="let user of users$ | async" (click)="selectUser(user)" class="flex items-center space-x-2 cursor-pointer p-2 hover:bg-gray-100">
+                  <img *ngIf="userImages.get(user.id)" [src]="userImages.get(user.id)" [alt]="user.name" class="h-10 w-10 rounded-full object-cover">
+                  <div *ngIf="!userImages.get(user.id)" class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center text-white">N/A</div>
+                  <div>{{ user.name }} {{ user.lastname }} - {{ user.roles }}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <hr class="w-full text-white my-4"/>
       </div>
 
-      <div class="flex flex-col justify-start w-full">
-        <p class="font-light text-[16px] mb-2">Route ID</p>
-        <div class="flex flex-row items-center w-full">
-          <input type="text" id="routeId" name="routeId" [(ngModel)]="newShift.routeId"
-                 class="rounded-[10px] w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
-                 placeholder="Route ID">
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <p class="text-[16px] mb-2">Bus ID</p>
+          <input type="text" id="busId" name="busId" [(ngModel)]="newShift.busId"
+                 class="rounded-[10px] border-[1px] border-white/60 w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
+                 placeholder="Bus ID">
         </div>
-        <hr class="w-full text-white my-4"/>
       </div>
 
-      <div class="flex flex-col justify-start w-full">
-        <p class="font-light text-[16px] mb-2">Start Time</p>
-        <div class="flex flex-row items-center w-full">
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <p class="text-[16px] mb-2">Start Time</p>
           <input type="datetime-local" id="startTime" name="startTime" [(ngModel)]="newShift.startTime"
-                 class="rounded-[10px] w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
+                 class="rounded-[10px] border-[1px] border-white/60 w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
                  placeholder="Start Time">
         </div>
-        <hr class="w-full text-white my-4"/>
       </div>
 
-      <div class="flex flex-col justify-start w-full">
-        <p class="font-light text-[16px] mb-2">End Time</p>
-        <div class="flex flex-row items-center w-full">
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <p class="text-[16px] mb-2">End Time</p>
           <input type="datetime-local" id="endTime" name="endTime" [(ngModel)]="newShift.endTime"
-                 class="rounded-[10px] w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
+                 class="rounded-[10px] border-[1px] border-white/60 w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
                  placeholder="End Time">
         </div>
-        <hr class="w-full text-white my-4"/>
+      </div>
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <p class="text-[16px] mb-2">Extra hours</p>
+          <input type="number" id="extraHours" name="extraHours" [(ngModel)]="newShift.extraHours"
+                 class="rounded-[10px] border-[1px] border-white/60 w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
+                 placeholder="Extra Hours">
+        </div>
       </div>
 
-      <div class="flex flex-col justify-start w-full">
-        <p class="font-light text-[16px] mb-2">Location</p>
-        <div class="flex flex-row items-center w-full">
+      <div class="flex flex-col w-full">
+        <div class="flex flex-col font-manrope font-regular text-white my-4">
+          <p class="text-[16px] mb-2">Location</p>
           <input type="text" id="location" name="location" [(ngModel)]="newShift.location"
-                 class="rounded-[10px] w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
+                 class="rounded-[10px] border-[1px] border-white/60 w-full h-[40px] bg-lightGrey/20 px-2 py-4 text-white"
                  placeholder="Location">
         </div>
       </div>
-      <div class="flex w-full justify-center items-center">
-        <button type="submit" class="w-[300px] h-[50px] font-manrope font-semiLight text-white rounded-[10px] text-[25px] 
-                bg-lightGreen hover:bg-deepGreen transition-[0.5s] mt-4">
-          Add Shift
-        </button>
-      </div>
+      
+      <button type="submit" class="w-[444px] h-[64px] font-manrope font-semibold text-white rounded-[10px] 
+              bg-lightGreen hover:bg-deepGreen transition-[0.5s] my-4">
+        Add Shift
+      </button>
     </form>
   </div>
 </div>
+

@@ -1,8 +1,9 @@
 export interface Shift{
     id: number,
     userId: number,
-    routeId: number,
+    busId: number,
     startTime: string,
     endTime: string,
-    location: string
+    location: string,
+    extraHours: number
 }
