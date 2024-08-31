@@ -19,7 +19,7 @@ export class UserService {
               private router: Router) { }
 
   public updateProfile(requestBody: EditProfileDTO): Observable<any> { 
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

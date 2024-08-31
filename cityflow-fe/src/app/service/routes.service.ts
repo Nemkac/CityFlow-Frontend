@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Route } from '../models/route';
 import { Observable } from 'rxjs';
@@ -18,12 +18,20 @@ export class RoutesService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  public getAll() : Observable<Route[]> {
-    return this.http.get<Route[]>(`${this.apiServerUrl}/CityFlow/allRoutes`);
+  public getHeaders() : HttpHeaders{
+    const token = sessionStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization' : `Bearer ${token}`
+    });
   }
 
-  public getRoute(id : number) : Observable<Route>{
-    return this.http.get<Route>(`${this.apiServerUrl}/CityFlow/route/${id}`);
+  public getAll() : Observable<Route[]> {
+    return this.http.get<Route[]>(`${this.apiServerUrl}/route/get/all`, { headers : this.getHeaders() });
+  }
+
+  public getById(id : number) : Observable<Route>{
+    return this.http.get<Route>(`${this.apiServerUrl}/route/get/${id}`, { headers : this.getHeaders() });
   }
 
   public showRoute(id: number, username: string, routename: string) : void{
@@ -36,42 +44,30 @@ export class RoutesService {
   }
 
   public getMostFrequentedRoute(username : String) : Observable<String> {
-    return this.http.get(`${this.apiServerUrl}/CityFlow/mostFrequented/${username}`, { responseType: 'text' });
+    return this.http.get(`${this.apiServerUrl}/route/mostFrequented/${username}`, { responseType: 'text' });
   }
 
   public searchRoute(dto : SearchDTO) : Observable<any>{
-    return this.http.post<any>(`${this.apiServerUrl}/CityFlow/route/search`, dto)
+    return this.http.post<any>(`${this.apiServerUrl}/route/route/search`, dto)
   }
 
   public saveRoute(route: RouteDTO) : Observable<Route> {
-    return this.http.post<Route>(`${this.apiServerUrl}/CityFlow/saveRoute`, route);
+    return this.http.post<Route>(`${this.apiServerUrl}/route/save`, route, { headers : this.getHeaders() });
   }
 
   public deleteRoute(id: number) : Observable<any>{
-    return this.http.delete<any>(`${this.apiServerUrl}/CityFlow/deleteRoute/${id}`);
+    return this.http.delete<any>(`${this.apiServerUrl}/route/deleteRoute/${id}`, { headers : this.getHeaders() });
   }
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
-    return this.http.put<any>(`${this.apiServerUrl}/CityFlow/deleteBusFromRoute`, dto);
+    return this.http.put<any>(`${this.apiServerUrl}/route/deleteBusFromRoute`, dto, { headers : this.getHeaders() });
   }
 
-  // public getRouteWithAtLeastThreeStations() : Observable<String[]>{
-  //   return this.http.get<String[]>(`${this.apiServerUrl}/CityFlow/atLeastThreeStations`)
-  // }
-
-  // public getLongestRoute() : Observable<String>{
-  //   return this.http.get(`${this.apiServerUrl}/CityFlow/longest`, {responseType: 'text'})
-  // }
-
-  // public getStationsCount(routeName: String) : Observable<any>{
-  //   return this.http.get<any>(`${this.apiServerUrl}/CityFlow/stationsCount/${routeName}`)
-  // }
-
   public getAllStations() : Observable<Location[]>{
-    return this.http.get<Location[]>(`${this.apiServerUrl}/CityFlow/getStations`);
+    return this.http.get<Location[]>(`${this.apiServerUrl}/route/stations/get/all`, { headers : this.getHeaders() });
   }
 
   public saveStation(body : Location) : Observable<Location>{
-    return this.http.post<Location>(`${this.apiServerUrl}/CityFlow/station/save`, body);
+    return this.http.post<Location>(`${this.apiServerUrl}/route/station/save`, body, { headers : this.getHeaders() });
   }
 }

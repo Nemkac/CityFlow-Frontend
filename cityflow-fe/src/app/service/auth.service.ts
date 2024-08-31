@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post<LoginDTO>(`${this.apiServerUrl}/CityFlow/Login`, logInDTO).pipe(
       tap(
         (response:LoginDTO) => {
-          localStorage.setItem('token', response.username);
+          sessionStorage.setItem('token', response.username);
         }
       )
     )
@@ -39,12 +39,12 @@ export class AuthService {
   }
 
   public isLoggedIn(): boolean {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     return !!token;
   }
 
   public signOut() : void {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.authStatusSubject.next(false);
     this.navigationService.navigateToSignIn();
   }

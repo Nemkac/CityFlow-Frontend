@@ -46,7 +46,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   routeBuses : Bus[] = [];
   times : string[] = [];
 
-  token : string | null = localStorage.getItem('token');
+  token : string | null = sessionStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
 
@@ -107,7 +107,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   }
 
   public fetchRoute() : void{
-    this.routeService.getRoute(this.routeId).subscribe(
+    this.routeService.getById(this.routeId).subscribe(
       (response : Route) => {
         this.route = response;
         this.routeBuses = this.route.buses;
@@ -232,7 +232,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 			longitude: longitude,
 		};
 
-		const token = localStorage.getItem('token');
+		const token = sessionStorage.getItem('token');
 		const headers = new HttpHeaders({
 		'Content-Type': 'application/json',
 		'Authorization': `Bearer ${token}`

@@ -44,7 +44,7 @@ export class SidePannelComponent implements OnInit{
     
     // window.addEventListener('storage', (event) => {
     //   if (event.key === 'token') {
-    //     this.isLoggedIn = !!localStorage.getItem('token');
+    //     this.isLoggedIn = !!sessionStorage.getItem('token');
     //   }
     // });
   }

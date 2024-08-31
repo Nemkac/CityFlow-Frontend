@@ -17,7 +17,7 @@ export class SidePanelProfileComponent implements OnInit{
   //Icons
   faSignOut = faSignOut;
   loggedUser? : User;
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   public role : string = '';
   isLoggedIn: boolean = false;
 
@@ -34,7 +34,7 @@ export class SidePanelProfileComponent implements OnInit{
     
     window.addEventListener('storage', (event) => {
       if (event.key === 'token') {
-        this.isLoggedIn = !!localStorage.getItem('token');
+        this.isLoggedIn = !!sessionStorage.getItem('token');
       }
     });
   }

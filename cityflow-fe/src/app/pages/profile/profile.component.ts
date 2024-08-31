@@ -18,7 +18,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class ProfileComponent implements OnInit{
   
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   loggedUser! : User;
 
   public toggleEditPersonal : boolean = false;

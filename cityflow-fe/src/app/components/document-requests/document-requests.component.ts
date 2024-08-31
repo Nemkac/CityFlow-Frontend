@@ -20,7 +20,7 @@ import { faFile, faDownload } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './document-requests.component.css'
 })
 export class DocumentRequestsComponent implements OnInit{
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   isOpen = false;
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;

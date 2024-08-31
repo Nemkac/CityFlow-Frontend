@@ -17,7 +17,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class FileUploadComponent implements OnInit{
 
   selectedFiles: { [key: string]: File } = {};
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   isOpen = false;
   faArrowDown = faArrowDown;
   faArrowUp = faArrowUp;

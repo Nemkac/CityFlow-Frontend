@@ -38,13 +38,22 @@
             </div>
         </div>
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            @for (bus of buses; track $index) {
-                <app-bus-card
-                    [busId]="bus.id"
-                    [licencePlate]="bus.licencePlate"
-                    [routes]="bus.routeNames"
-                    (busDeleted)="handleBusDeleted()"
-                />
+            @if (buses.length > 0) {
+                @for (bus of buses; track $index) {
+                    <app-bus-card
+                        [busId]="bus.id"
+                        [licencePlate]="bus.licencePlate"
+                        [routes]="bus.routeNames"
+                        (busDeleted)="handleBusDeleted()"
+                    />
+                }
+            } @else {
+                <div class="col-span-full">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no buses to display</p>
+                    <p class="text-[16px] font-light text-primaryBlack">
+                        You can add a new bus by pressing the <span class="font-medium text-primaryDarkGreen">"Add new"</span> button
+                    </p>
+                </div>
             }
         </div>
     </div>

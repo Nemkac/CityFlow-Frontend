@@ -24,7 +24,7 @@ export class AllRoutesComponent implements OnInit{
 
   routes : Route[] = [];
 
-  token : string | null = localStorage.getItem('token');
+  token : string | null = sessionStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
   mostFrequentedRouteName: String = '';

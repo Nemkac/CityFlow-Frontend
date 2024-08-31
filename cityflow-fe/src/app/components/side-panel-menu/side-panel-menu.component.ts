@@ -44,7 +44,7 @@ export class SidePanelMenuComponent implements OnInit, AfterViewInit{
   showUserRoutes : boolean = false;
   showStations : boolean  = false;
 
-  token : string | null = localStorage.getItem('token');
+  token : string | null = sessionStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
 

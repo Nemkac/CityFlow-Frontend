@@ -17,7 +17,7 @@ import { EditProfileDTO } from '../../dtos/editProfileDTO';
 })
 export class UserCardBalanceComponent implements OnInit{
 
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   
   constructor(private authService : AuthService,
               private userService : UserService) {}

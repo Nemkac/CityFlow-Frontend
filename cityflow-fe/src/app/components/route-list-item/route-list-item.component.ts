@@ -29,7 +29,7 @@ export class RouteListItemComponent implements OnInit{
 
   public toggledDropdown : boolean = false;
 
-  token : string | null = localStorage.getItem('token');
+  token : string | null = sessionStorage.getItem('token');
   loggedUser! : User;
   loggedUserRole : string  = '';
 
