@@ -41,13 +41,15 @@ export class BusesListItemComponent implements OnInit{
       busId : busId
     }
 
+    console.log(dto);
+
     const modalRef = this.modalService.open(
       WaringnComponent,
       {backdrop: 'static', keyboard : true}
     );
 
     modalRef.componentInstance.confirmation.subscribe(
-      () => {
+      (res : any) => {
         this.routeService.deleteBusFromRoute(dto).subscribe(
           (response: any) => {
             console.log(response);

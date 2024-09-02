@@ -60,7 +60,7 @@ export class RoutesService {
   }
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
-    return this.http.put<any>(`${this.apiServerUrl}/route/deleteBusFromRoute`, dto, { headers : this.getHeaders() });
+    return this.http.delete<any>(`${this.apiServerUrl}/route/bus/delete?routeID=${dto.routeId}&busID=${dto.busId}`, { headers : this.getHeaders() });
   }
 
   public getAllStations() : Observable<Location[]>{
@@ -70,4 +70,14 @@ export class RoutesService {
   public saveStation(body : Location) : Observable<Location>{
     return this.http.post<Location>(`${this.apiServerUrl}/route/station/save`, body, { headers : this.getHeaders() });
   }
+
+  public getDestinations(routeId : number) : Observable<string>{
+    const options = {
+      headers: this.getHeaders(),
+      responseType: 'text' as 'json' 
+    };
+    return this.http.get<string>(`${this.apiServerUrl}/route/destinations/get/${routeId}`, options);
+  }
+
+
 }

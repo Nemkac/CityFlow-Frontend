@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RoutesService } from '../../service/routes.service';
@@ -14,7 +14,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-create-bus-form',
   standalone: true,
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule, NgClass, CommonModule],
   templateUrl: './create-bus-form.component.html',
   styleUrl: './create-bus-form.component.css'
 })
@@ -48,7 +48,7 @@ export class CreateBusFormComponent implements OnInit{
     this.selectedRoutes.pop();
   }
 
-  onCheckboxChange(event: Event, selectedRoute: Route): void {
+  public onCheckboxChange(event: Event, selectedRoute: Route): void {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
       this.selectRoute(selectedRoute)
@@ -70,11 +70,13 @@ export class CreateBusFormComponent implements OnInit{
   }
 
   public createBus() : void {
+    this.licencePlate = this.formatLicensePlate(this.licencePlate);
+
     const busDTO : BusDTO = {
       licencePlate : this.licencePlate,
       routes : this.selectedRoutes
     }
-
+    console.log(busDTO)
     this.busService.save(busDTO).subscribe(
       (response : Bus) => {
         console.log(response);
@@ -89,12 +91,54 @@ export class CreateBusFormComponent implements OnInit{
     );
   }
 
-  toggleDropdown() {
+  public toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
 
   public closeModal() {
     this.modalService.close()
+  }
+
+  public formatLicensePlate(input: string): string {
+    if (input.length > 11) {
+      input = input.substring(0, 11);
+    }
+  
+    let sanitized = input.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  
+    const pattern = /^([A-Z]{2})(\d{1,5})([A-Z]{2})$/;
+    const match = sanitized.match(pattern);
+  
+    if (match) {
+      let numbers = match[2];
+      if (numbers.length < 3) {
+        numbers = numbers.padStart(3, '0');
+      }
+  
+      return `${match[1]}${numbers}${match[3]}`;
+    } else {
+      return sanitized; 
+    }
+  }
+
+  public setActive(selectedRoute: Route): void {
+    const index = this.selectedRoutes.findIndex(route => route.id === selectedRoute.id);
+
+    if (index === -1) {
+      this.selectedRoutes.push(selectedRoute);
+    } else {
+      this.selectedRoutes.splice(index, 1);
+    }
+  }
+
+  public isActive(selectedRoute: Route): boolean {
+    const index = this.selectedRoutes.findIndex(route => route.id === selectedRoute.id);
+
+    if (index === -1) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

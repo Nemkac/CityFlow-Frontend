@@ -1,0 +1,79 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[800px] h-auto max-h-[800px] bg-primaryWhite rounded-[10px] p-4 gap-8 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Add bus to route</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="modalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey p-4 gap-4">
+            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">ROUTE DETAILS</p>
+            <div class="flex flex-col w-full gap-2">
+                <div class="flex flex-row items-center w-auto gap-2">
+                    <div class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+                        <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[20px]"/>
+                    </div>
+                    <p class="text-primaryBlack font-semibold text-[24px]">{{selectedRoute?.name}}</p>
+                </div>
+                <div class="flex flex-col w-full">
+                    <p class="text-primaryBlack font-light text-[16px]">Destinations: <span class="font-medium">{{destinations}}</span></p>
+                    <p class="text-primaryBlack font-light text-[16px]">Opening - Closing: <span class="font-medium">{{selectedRoute?.openingTime}} - {{selectedRoute?.closingTime}}</span></p>
+                    <p class="text-primaryBlack font-light text-[16px]">Current departure from starting station: <span class="font-medium">Every {{selectedRoute?.departureFromStartingStation}} minutes</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col w-full gap-2">
+            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">AVAILABLE BUSES</p>
+            <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey p-4 gap-4">
+                <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+                    <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Select one or more routes to which you want to add a new bus</label>
+                </div>
+                <div class="flex flex-row w-full justify-evenly max-h-full overflow-y-auto flex-wrap w-full gap-2">
+                    @for (bus of buses; track $index) {
+                        <div class="flex flex-col px-8 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2
+                                    hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]"
+                            [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(bus),
+                                        'border-[1px]':!isActive(bus)}"
+                            (click)="setActive(bus)">
+                            <div class="flex flex-row items-center w-auto gap-2">
+                                <img src="../../../assets/icons/BusIcon.png" class="size-[15px]"/>
+                                <p class="text-primaryBlack font-manrope font-semibold text-[16px]">Bus {{bus.id}}</p>
+                            </div>
+                            <p class="w-full text-[14px] font-semibold font-manrope text-primaryBlack">{{bus.licencePlate}}</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col w-full gap-2">
+            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">TIME TABLE SETTINIGS</p>
+            <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey p-4 gap-4">
+                <div class="flex flex-row w-full items-center rounded-md bg-primaryYellow/20 py-2 px-4 gap-4">
+                    <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">The minimum departure time from the starting station is 10 minutes. If, after adjusting the schedule, the time falls below the specified minute limit, it will be automatically set to 10.</label>
+                </div>               
+                <div class="flex flex-row w-full gap-8 items-center">
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="radio"/>
+                        <p class="text-primaryBlack text-[16px]">Adjust current time table</p>
+                    </div>
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="radio"/>
+                        <p class="text-primaryBlack text-[16px]">Adjust route closing time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row w-full items-center justify-end">
+            <button class="w-[220px] h-[45px] font-manrope font-medium text-primaryWhite rounded-md text-[18px] 
+                    bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]"
+                    type="submit" (click)="addBusses()">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

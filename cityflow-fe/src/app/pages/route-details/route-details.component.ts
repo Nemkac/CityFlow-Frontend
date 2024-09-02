@@ -11,15 +11,15 @@ import { Bus } from '../../models/bus';
 import { BusesListItemComponent } from '../../components/buses-list-item/buses-list-item.component';
 import { User } from '../../models/user';
 import { AuthService } from '../../service/auth.service';
-import moment, { Moment } from 'moment';
 
 import * as SockJS from 'sockjs-client';
 import * as Stomp from '@stomp/stompjs'
 import { LiveLocation } from '../../models/liveLocation';
 import { RabbitmqLiveLocationService } from '../../service/rabbitmq-live-location.service';
 
-import {jsPDF} from 'jspdf';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddBusToRouteComponent } from '../../components/modals/add-bus-to-route/add-bus-to-route.component';
 
 @Component({
   selector: 'app-route-details',
@@ -29,14 +29,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './route-details.component.css'
 })
 export class RouteDetailsComponent implements OnInit, AfterViewInit{
+  
   @ViewChild('pdfContent', { static: true }) pdfContent!: ElementRef;
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
-
-  //Icons
-  faPen = faPen;
-  faTrash = faTrash;
-  faRoute = faRoute;
-  faFilePdf = faFilePdf;
 
   routeId : number = 0;
   route!: Route;
@@ -54,13 +49,6 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   busMarker: L.Marker | null = null;
   routeCoordinates : any;
 
-  numberOfPassengers : number = 0;
-  numberOfBoughtTickets : number = 0;
-  numberOfPassengersWithCard : number = 0;
-  ticketPrice : number = 100;
-  numberOfBusesOnRoute : number = 0;
-  averageNumberOfPassengersPerBus : number = 0;
-
   public showTimeTable : boolean = true;
   public showBusSchedule : boolean = false;
 
@@ -70,9 +58,10 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   constructor(private routeService: RoutesService,
               private routes: ActivatedRoute,
               private authService: AuthService,
+              private modalService : NgbModal,
               private rabbitmqLiveLocationService: RabbitmqLiveLocationService){}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.fetchUser();
     const idFromRoute = this.routes.snapshot.paramMap.get('id');
     if(idFromRoute != null){
@@ -84,10 +73,9 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     // this.simulate();
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.loadMap();
     this.weekendTimeTable = this.getTimeTable(true);
-    console.log(this.weekendTimeTable);
     this.nonWeekendTimeTable = this.getTimeTable(false);
   }
 
@@ -121,7 +109,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     )
   }
 
-  fetchStations() : void {
+  public fetchStations() : void {
     const startingPoint: any = this.route.startingPoint;
     this.startingPoint = L.latLng(startingPoint.latitude, startingPoint.longitude);
 
@@ -136,7 +124,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     console.log('Stations: \n', this.stations);
   }
 
-  loadMap() {
+  public loadMap() {
     if (!this.mapContainer) return;
 
     this.map = L.map(this.mapContainer.nativeElement).setView(
@@ -226,7 +214,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     }
   }
 
-  sendCoordinateToRabbitMQ(latitude: number, longitude: number): void{
+  public sendCoordinateToRabbitMQ(latitude: number, longitude: number): void{
 		const liveLocation : LiveLocation = {
 			latitude: latitude,
 			longitude: longitude,
@@ -240,7 +228,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 		this.rabbitmqLiveLocationService.sendLiveLocationMessage(liveLocation,headers).subscribe();
 	}
 
-  simulate(): void {
+  public simulate(): void {
     let index = 0;
     let forward = true;
   
@@ -261,44 +249,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   }
 
   public generatePDF() : void {
-    const doc = new jsPDF();
 
-    const imgData = 'assets/LogoWithNameGrey.png';
-    doc.addImage(imgData, 'PNG', 10, 10, 60, 30);
-    
-    doc.setFontSize(24);
-    doc.text('ROUTE STATISTICS, 2024', 10, 60);
-
-    doc.setFontSize(14);
-    doc.text('June, 2024', 10, 50);
-    doc.text(`Statistics for route ${this.route.name}`, 10, 80);
-  
-    this.numberOfBusesOnRoute = this.route.buses.length;
-    this.numberOfBoughtTickets = this.numberOfPassengers - this.numberOfPassengersWithCard;
-    doc.setFontSize(12);
-    doc.text(`Total Number of passengers: ${this.numberOfPassengers}`, 10, 90);
-    doc.text(`Number of passengers who bought a ticket: ${this.numberOfBoughtTickets}`, 10, 100);
-    doc.text(`Number of passengers with a city transport card: ${this.numberOfPassengersWithCard}`, 10, 110);
-    doc.text(`Number of buses on the route: ${this.numberOfBusesOnRoute}`, 10, 120);
-    this.averageNumberOfPassengersPerBus = this.numberOfPassengers / this.numberOfBusesOnRoute;
-    doc.text(`Average number of passengers per bus: ${this.averageNumberOfPassengersPerBus}`, 10, 130);
-  
-    doc.setFontSize(16);
-    doc.text('Earnings from ticket sales', 10, 140);
-    doc.setFontSize(14);
-    const profit = this.numberOfBoughtTickets * this.ticketPrice;
-    doc.text(`${profit} DIN`, 10, 150);
-  
-    doc.save('Route_statistics.pdf');
-  }
-
-  public increaseNumberOfPassengers() : void {
-    this.numberOfPassengers ++;
-  }
-
-  public increaseNumberOfPassengersWithCard() : void {
-    this.numberOfPassengersWithCard ++;
-    this.numberOfPassengers ++;
   }
 
   public getTimeTable(isWeekend: boolean): { time: string, isNext: boolean }[] {
@@ -313,7 +264,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
         const [hours, minutes] = time.split(':').map(Number);
         const date = new Date();
         date.setHours(hours, minutes, 0, 0);
-        if (isClosing && hours < 12) { // Assume closing times less than 12 are early next day
+        if (isClosing && hours < 12) { 
             date.setDate(date.getDate() + 1);
         }
         return date;
@@ -362,6 +313,16 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       }
     }
     return -1; 
+  }
+
+  public addBusToRoute(){
+    const modalRef = this.modalService.open(
+      AddBusToRouteComponent,
+      { backdrop : 'static', keyboard : true }
+    );
+
+    modalRef.componentInstance.selectedRoute = this.route;
+  
   }
 
   public timeToDate(time: string): Date {

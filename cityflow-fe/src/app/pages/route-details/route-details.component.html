@@ -103,15 +103,31 @@
                 <div class="flex flex-row w-full items-center gap-2">
                     <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
                     <p class="font-manrope font-regular text-[18px] text-primaryBlack">Scheduled buses</p>
+                    <button class="flex flex-row py-1.5 px-3 gap-2 items-center rounded-md bg-primaryDarkGreen 
+                                    hover:bg-primaryLightGreen transition-[0.5s]"
+                            (click)="addBusToRoute()">
+                        <img src="../../../assets/icons/PlusIcon.png" class="size-[15px] nav_menu_icon"/>
+                        <p class="text-primaryWhite font-manrope text-[12px]">Add new</p>
+                    </button>
                 </div>
                 <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                    @for (bus of routeBuses; track $index) {
-                        <app-buses-list-item class="mb-4"
-                            [routeId]="routeId"
-                            [busId]="bus.id"
-                            [licencePlate]="bus.licencePlate"
-                            (busRemovedFromRoute)="handleBusListUpdate()"
-                        />
+                    @if (routeBuses.length > 0) {
+                        @for (bus of routeBuses; track $index) {
+                            <app-buses-list-item class="mb-4"
+                                [routeId]="routeId"
+                                [busId]="bus.id"
+                                [licencePlate]="bus.licencePlate"
+                                (busRemovedFromRoute)="handleBusListUpdate()"
+                            />
+                        }
+                    }
+                    @else {
+                        <div class="col-span-full">
+                            <p class="text-[24px] font-semibold text-primaryBlack">There are no scheduled buses to display</p>
+                            <p class="text-[16px] font-light text-primaryBlack">
+                                You can add a new bus to the route by pressing the <span class="font-medium text-primaryDarkGreen">"Add new"</span> button
+                            </p>
+                        </div>
                     }
                 </div>
             </div>

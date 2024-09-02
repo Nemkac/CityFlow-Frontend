@@ -14,7 +14,6 @@ module.exports = {
       grey: "#353B48",
       lightGrey: "#DCDDE1",
       white: "#FFFFFF",
-      yellow: "#FBC531",
       deepGreen: "#44BD32",
       lightGreen: "#4CD137",
       deepRed: "#C23616",
@@ -28,6 +27,7 @@ module.exports = {
       primaryLightGreen: "#00D47E",
       primaryWhite : "#FFFFFF",
       primaryGrey : "#a6a9ac",
+      primaryYellow: "#FB9600",
       sideMenuBg : "#f6f7f9",
 
       primaryBlue : "#247BA0",
