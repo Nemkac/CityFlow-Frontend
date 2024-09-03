@@ -7,6 +7,7 @@ import { RouteDTO } from '../dtos/routeDTO';
 import { deleteBusFromRouteDTO } from '../dtos/deleteBusFromRouteDTO';
 import { SearchDTO } from '../dtos/searchDTO';
 import { Location } from '../models/location';
+import { AddBusToRouteDTO } from '../dtos/addBusToRouteDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,10 @@ export class RoutesService {
       responseType: 'text' as 'json' 
     };
     return this.http.get<string>(`${this.apiServerUrl}/route/destinations/get/${routeId}`, options);
+  }
+
+  public addBusToRoute(dto : AddBusToRouteDTO) : Observable<string> {
+    return this.http.put<string>(`${this.apiServerUrl}/bus/addToRoute`, dto, { headers : this.getHeaders() });
   }
 
 

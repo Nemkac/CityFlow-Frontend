@@ -58,11 +58,11 @@
                 </div>               
                 <div class="flex flex-row w-full gap-8 items-center">
                     <div class="flex flex-row gap-2 items-center">
-                        <input type="radio"/>
+                        <input name="scaleDepartureTime" type="radio" [(ngModel)]="scaleDepartureTime" />
                         <p class="text-primaryBlack text-[16px]">Adjust current time table</p>
                     </div>
                     <div class="flex flex-row gap-2 items-center">
-                        <input type="radio"/>
+                        <input name="scaleDepartureTime" type="radio" [(ngModel)]="extendClosingTime"/>
                         <p class="text-primaryBlack text-[16px]">Adjust route closing time</p>
                     </div>
                 </div>
