@@ -61,7 +61,7 @@ export class RoutesService {
   }
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
-    return this.http.delete<any>(`${this.apiServerUrl}/route/bus/delete?routeID=${dto.routeId}&busID=${dto.busId}`, { headers : this.getHeaders() });
+    return this.http.delete<any>(`${this.apiServerUrl}/route/bus/delete?routeID=${dto.routeId}&busID=${dto.busId}`, { headers : this.getHeaders(), responseType: 'text' as 'json'  });
   }
 
   public getAllStations() : Observable<Location[]>{
@@ -81,8 +81,8 @@ export class RoutesService {
   }
 
   public addBusToRoute(dto : AddBusToRouteDTO) : Observable<string> {
-    return this.http.put<string>(`${this.apiServerUrl}/bus/addToRoute`, dto, { headers : this.getHeaders() });
-  }
+    return this.http.post<string>(`${this.apiServerUrl}/route/bus/addToRoute`, dto, { headers: this.getHeaders(), responseType: 'text' as 'json' });
+}
 
 
 }

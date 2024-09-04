@@ -9,16 +9,18 @@ import { RoutesService } from '../../../service/routes.service';
 import { CommonModule } from '@angular/common';
 import { AddBusToRouteDTO } from '../../../dtos/addBusToRouteDTO';
 import { NgToastService } from 'ng-angular-popup';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-bus-to-route',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './add-bus-to-route.component.html',
   styleUrl: './add-bus-to-route.component.css'
 })
 export class AddBusToRouteComponent implements OnInit{
+
+  public form! : FormGroup;
 
   @Input() selectedRoute? : Route;
   @Output() busesAdded = new EventEmitter<void>(); 
@@ -33,17 +35,23 @@ export class AddBusToRouteComponent implements OnInit{
   constructor(public modalService : NgbActiveModal,
               private routeService : RoutesService,
               private toast : NgToastService,
+              private fb : FormBuilder,
               private busService : BusService,){}
 
   ngOnInit(): void {
     this.getDestinations();
     this.fetchBuses();
+
+    this.form = this.fb.group({
+      option : ['', Validators.required]
+    });
   }
 
   public fetchBuses() : void {
     this.busService.getAll().subscribe(
       (response : Bus[]) => {
-        this.buses = response;
+        const assignedBusIds = new Set(this.selectedRoute?.buses.map(bus => bus.id));
+        this.buses = response.filter(bus => !assignedBusIds.has(bus.id));
       },
       (error : HttpErrorResponse) => {
         console.log("Error while fetching buses, ", error.message);
@@ -66,7 +74,21 @@ export class AddBusToRouteComponent implements OnInit{
 
   public addBusses() : void {
     let body : AddBusToRouteDTO;
+    
     if(this.selectedRoute){
+
+      const formValue = this.form.value;
+
+      if(formValue.option === "scaleDepartureTime"){
+        this.scaleDepartureTime = true;
+        this.extendClosingTime = false;
+      }
+
+      if(formValue.option === "extendClosingTime"){
+        this.scaleDepartureTime = false;
+        this.extendClosingTime = true;
+      }
+
       body  = {
         selectedRoute : this.selectedRoute,
         selectedBuses : this.selectedBuses,
@@ -75,16 +97,18 @@ export class AddBusToRouteComponent implements OnInit{
       }
       console.log(body);
 
-      // this.routeService.addBusToRoute(body).subscribe(
-      //   (response : string) => {
-      //     this.toast.success({detail:`${response}`,summary:'Bus schedule changed successfully!'});
-      //     this.busesAdded.emit();
-      //   },
-      //   (error : HttpErrorResponse) => {
-      //     console.log("Error while editing bus schedule, ", error.message);
-      //     this.toast.error({detail:"Error!",summary:'Bus schedule changed successfully!'});
-      //   }
-      // )
+      this.routeService.addBusToRoute(body).subscribe(
+        (response : string) => {
+          this.toast.success({detail:`${response}`,summary:'Bus schedule changed successfully!'});
+          this.busesAdded.emit();
+          this.modalService.close();
+        },
+        (error : HttpErrorResponse) => {
+          console.log("Error while editing bus schedule, ", error);
+          this.modalService.close();
+          this.toast.error({detail:"Error!",summary:'Error while changing bus schedule!'});
+        }
+      )
     }
   }
 

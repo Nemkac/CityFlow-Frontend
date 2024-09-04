@@ -56,16 +56,18 @@
                     <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
                     <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">The minimum departure time from the starting station is 10 minutes. If, after adjusting the schedule, the time falls below the specified minute limit, it will be automatically set to 10.</label>
                 </div>               
-                <div class="flex flex-row w-full gap-8 items-center">
-                    <div class="flex flex-row gap-2 items-center">
-                        <input name="scaleDepartureTime" type="radio" [(ngModel)]="scaleDepartureTime" />
-                        <p class="text-primaryBlack text-[16px]">Adjust current time table</p>
+                <form [formGroup]="form">
+                    <div class="flex flex-row w-full gap-8 items-center">
+                        <div class="flex flex-row gap-2 items-center">
+                            <input formControlName="option" type="radio" value="scaleDepartureTime" />
+                            <p class="text-primaryBlack text-[16px]">Adjust current time table</p>
+                        </div>
+                        <div class="flex flex-row gap-2 items-center">
+                            <input formControlName="option" type="radio" value="extendClosingTime"/>
+                            <p class="text-primaryBlack text-[16px]">Adjust route closing time</p>
+                        </div>
                     </div>
-                    <div class="flex flex-row gap-2 items-center">
-                        <input name="scaleDepartureTime" type="radio" [(ngModel)]="extendClosingTime"/>
-                        <p class="text-primaryBlack text-[16px]">Adjust route closing time</p>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="flex flex-row w-full items-center justify-end">

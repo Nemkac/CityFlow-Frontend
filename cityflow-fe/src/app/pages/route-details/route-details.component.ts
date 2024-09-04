@@ -322,6 +322,12 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     );
 
     modalRef.componentInstance.selectedRoute = this.route;
+    modalRef.componentInstance.busesAdded.subscribe(
+      () => {
+        this.fetchRoute();
+        window.location.reload();
+      }
+    )
   
   }
 
@@ -365,6 +371,7 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
   public handleBusListUpdate() {
     this.fetchRoute();
+    window.location.reload()
   }
 
   public toggleBusSchedule(){
