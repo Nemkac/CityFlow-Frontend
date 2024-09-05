@@ -16,6 +16,8 @@ export class ReportMalfunctionComponent implements OnInit{
 
   commentary!:string;
   driver!:Driver
+  priority: number = 3; // Default value
+
 
   constructor(private driverService:DriverService) {}
   ngOnInit(): void {}
@@ -29,12 +31,14 @@ export class ReportMalfunctionComponent implements OnInit{
   }
 
   reportMalfunction(driverId:number){
-    this.driverService.reportMalfunction(driverId,this.commentary).subscribe(
+    this.driverService.reportMalfunction(driverId,this.commentary,this.priority).subscribe(
       (report) => {
         console.log("Report : ", report);
       }
     )
     window.location.reload();
   }
+
+
 
 }
