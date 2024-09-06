@@ -1,39 +1,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="flex flex-col justify-center items-center center border-4 border-white rounded-[12px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 ">
-    <h1 class="text-white text-4xl font-bold mb-4">Rankings</h1>
+<div class="container">
+    <h1 class="title">Bus Service Rankings</h1>
 
-    <div *ngFor="let ranking of rankings" class="text-white flex flex-col bg-gray-800 rounded-lg p-4 mb-4">
-        <div class="flex items-center mb-2">
-            <div class="w-1/4">
-                <p class="text-xl"><b>BUS:</b> {{ ranking.bus.busId }}</p>
-            </div>
-            <div class="w-1/4">
-                <p class="text-xl"><b>SCORE:</b> {{ ranking.score }}</p>
-            </div>
-            <div class="w-1/4">
-                <p class="text-xl"><b>RANK:</b> {{ ranking.rank }}</p>
-            </div>
-            <div class="w-1/4 flex justify-end">
-                <button class="ml-2 py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-[8px] border border-white transition duration-300"
-                on-click="moveBusUpByRank(ranking.bus.busId)">
-                    Move Up
-                </button>
-                <button class="ml-2 py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-[8px] border border-white transition duration-300"
-                on-click="moveDown(ranking.bus.busId)">
-                    Move Down
-                </button>
-            </div>
+    <!-- Rankings List -->
+    <div *ngFor="let ranking of rankings" class="ranking-card">
+        <div class="ranking-info">
+            <p><b>Bus:</b> {{ ranking.bus.busId }}</p>
+            <p><b>Score:</b> {{ ranking.score }}</p>
+            <p><b>Rank:</b> {{ ranking.rank }}</p>
+        </div>
+        <div class="ranking-actions">
+            <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
+                Move Up
+            </button>
+            <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
+                Move Down
+            </button>
         </div>
     </div>
 
-    <hr class="w-1/2 border-white my-4">
-    <p class="text-xl my-4 text-white">Add available service time slot :</p>
-    <div class="flex items-center justify-center mb-4">
-        <input type="date" [(ngModel)]="timeSlotDate" class="border-2 border-gray-300 px-4 py-2 rounded-[8px] mr-4"> <br>
-        <button class="ml-2 py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-[8px] border border-white transition duration-300"
-        on-click="addTimeSlot(timeSlotDate)">
-            Add Time Slot
-        </button>
+    <hr class="divider">
+
+    <!-- Time Slot Input -->
+    <p class="add-time-title">Add Available Service Time Slot:</p>
+    <div class="time-slot-container">
+        <input type="date" [(ngModel)]="timeSlotDate" class="date-input">
+        <button class="add-time-btn" (click)="addTimeSlot(timeSlotDate)">Add Time Slot</button>
     </div>
 </div>

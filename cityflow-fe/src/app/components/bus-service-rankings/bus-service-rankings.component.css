@@ -1,0 +1,156 @@
+/* Container and layout styles */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2f3640;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Ranking card styles */
+.ranking-card {
+    background-color: #0f0225;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.ranking-card:hover {
+    transform: scale(1.05);
+    background-color: #000000;
+}
+
+.ranking-info p {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.ranking-info b {
+    color: #ffcc00;
+}
+
+/* Ranking action buttons */
+.ranking-actions {
+    display: flex;
+}
+
+.move-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.move-btn.up {
+    background-color: #28a745;
+    margin-right: 10px;
+}
+
+.move-btn.up:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+.move-btn.down {
+    background-color: #dc3545;
+}
+
+.move-btn.down:hover {
+    background-color: #c82333;
+    transform: translateY(-3px);
+}
+
+/* Divider */
+.divider {
+    border: 1px solid #ffffff;
+    width: 80%;
+    margin: 30px auto;
+}
+
+/* Time slot input styles */
+.add-time-title {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.time-slot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.date-input {
+    padding: 10px;
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.add-time-btn {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-time-btn:hover {
+    background-color: #ffb700;
+    transform: translateY(-3px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .ranking-card {
+        flex-direction: column;
+    }
+
+    .ranking-info, .ranking-actions {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    .ranking-actions {
+        justify-content: space-around;
+    }
+
+    .time-slot-container {
+        flex-direction: column;
+    }
+
+    .add-time-btn {
+        margin-top: 10px;
+    }
+}
