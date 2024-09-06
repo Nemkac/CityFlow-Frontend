@@ -12,14 +12,14 @@
           <li *ngFor="let servicing of pastServicings" class="servicing-item">
             <div 
               class="servicing-card-past"
-              [ngClass]="{'selected': servicing === selectedServicing, 'confirmed': servicing === confirmedServicing}"
+              [ngClass]="{'selected': servicing === selectedServicing}"
               (click)="handleClick(servicing)">
               <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
               <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
               <p><strong>Date:</strong> {{ servicing.date }}</p>
               
               <!-- Conditional confirmation message -->
-              <div *ngIf="servicing === selectedServicing && servicing !== confirmedServicing" class="confirmation">
+              <div *ngIf="servicing === selectedServicing" class="confirmation">
                 <p>Click again to confirm</p>
               </div>
             </div>

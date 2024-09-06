@@ -17,9 +17,7 @@ export class BusServicingsComponent implements OnInit{
   pastServicings!:BusServicing[];
   futureServicings!:BusServicing[];
 
-  selectedServicing: any = null;
-  confirmedServicing: any = null;
-  
+  selectedServicing: any = null;  
 
   constructor(private serviceAdminService:ServiceAdminService){}
   
@@ -49,12 +47,9 @@ export class BusServicingsComponent implements OnInit{
 
 
   handleClick(servicing: any) {
-    if (this.confirmedServicing === servicing) {
-      // If the user already confirmed, call the method to report the servicing
-      this.reportServicing(servicing);
-    } else if (this.selectedServicing === servicing) {
+    if (this.selectedServicing === servicing) {
       // On second click (confirmation click)
-      this.confirmedServicing = servicing;
+      this.reportServicing(servicing);
     } else {
       // On first click, highlight the card (show confirmation message)
       this.selectedServicing = servicing;
