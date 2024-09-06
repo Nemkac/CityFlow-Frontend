@@ -5,7 +5,7 @@
   padding: 20px;
   background-color: #2f3640; /* Darker background similar to rankings page */
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
   text-align: center;
   font-family: 'Arial', sans-serif;
 }
@@ -49,10 +49,10 @@
 /* Display State */
 .display-container {
   color: #ffffff;
-  background-color: #1f1f1f; /* Dark background for the display state */
+  background-color: #313030; /* Dark background for the display state */
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 /* Header and Section Styling */
@@ -64,7 +64,7 @@
 }
 
 .table-header {
-  background-color: #333333; /* Darker header background */
+  background-color: #000000; /* Darker header background */
   color: #ffffff;
   padding: 10px;
   border-radius: 8px;
@@ -74,7 +74,7 @@
 .table-row {
   background-color: #2f3640; /* Darker row background */
   color: #ffffff;
-  padding: 15px; /* Increased padding */
+  padding: 20px; /* Increased padding */
   border-radius: 8px;
   margin-bottom: 10px;
   display: flex;
@@ -82,13 +82,16 @@
   align-items: center;
 }
 
+/* Alternating row colors for better readability */
 .table-row:nth-child(even) {
-  background-color: #1f1f1f; /* Alternating row colors for better readability */
+  background-color: #1f1f1f; 
 }
 
 .table-cell {
   font-size: 1.2rem; /* Larger text for better readability */
-  padding: 5px; /* Added padding */
+  padding: 10px 15px; /* Increased padding */
+  /* Optional: Add text alignment */
+  text-align: center;
 }
 
 /* Button Styling */
@@ -104,8 +107,8 @@
 }
 
 .action-button.regenerate {
-  background-color: #1f1f1f; /* Dark background for the button */
-  border: 1px solid #ffffff;
+  background-color: #161647; /* Dark background for the button */
+  border: 3px solid #ffffff;
 }
 
 .action-button.regenerate:hover {

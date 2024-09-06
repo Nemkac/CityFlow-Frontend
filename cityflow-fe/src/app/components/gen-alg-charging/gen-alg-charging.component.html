@@ -11,7 +11,8 @@
 
     <div class="table-header">
         <div class="table-row">
-            <div class="table-cell"><b>Charging Station ID</b></div>
+            <div class="table-cell"><b>Bus ID</b></div>
+            <div class="table-cell"><b>Station ID</b></div>
             <div class="table-cell"><b>Charging Time</b></div>
             <div class="table-cell"><b>Start Time</b></div>
             <div class="table-cell"><b>End Time</b></div>
@@ -19,6 +20,7 @@
     </div>
 
     <div *ngFor="let genOutput of geneticOutputFull" class="table-row">
+        <div class="table-cell"><b>{{ genOutput.elBus.elBusId }}</b></div>
         <div class="table-cell"><b>{{ genOutput.chStation.chargerId }}</b></div>
         <div class="table-cell">{{ genOutput.chargingTime }}</div>
         <div class="table-cell">{{ genOutput.startTime | date: 'short' }}</div>
