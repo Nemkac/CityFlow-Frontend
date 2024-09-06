@@ -1,58 +1,82 @@
-/* Main container settings */
+.containerTop {
+    display:block;
+    max-width: 1000px;
+  }
+
+.page-title {
+text-align: center; 
+margin-top: 10px;
+margin-bottom: 20px;
+}
+
+.page-title h1 {
+font-size: 2.5rem;
+color: #ffffff; 
+font-weight: 700; 
+}
+
+.page-title h3 {
+    margin-left: auto;
+    font-size: 2rem;
+    color: #aab5e6; 
+    font-weight: 200; 
+  }
+
+.note{
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.note h3{
+    font-size: 2 rem; 
+    color: #b2c7f0; 
+    font-weight: 400; 
+}
+
 .container {
     margin-top: 30px;
-    display:inline-flex;
+    display:inline-flex;  
     max-width: 1200;
     width: 80%;
   }
 
-  .containerTop {
-    margin-top: 30px;
-    display:block;
-    max-width: 1200;
-    width: 80%;
-  }
 
-  .page-title {
-    text-align: right; /* Center-align the title */
-    margin-top: 10px;
-    margin-bottom: 20px; /* Space below the title */
-  }
   
-  .page-title h1 {
-    font-size: 2.5rem; /* Adjust font size as needed */
-    color: #ffffff; /* Set the color to match your design */
-    font-weight: 700; /* Make the title bold */
-  }
+.servicing-section {
+padding: 20px;
+}
+
   
-  /* Service section styling */
-  .servicing-section {
-    padding: 60px;
-  }
-  
-  /* Headings styling */
-  h3 {
+h3 {
     text-align: center;
-    color: #ffffff; /* White color for better visibility on dark background */
+    color: #ffffff; 
     font-weight: 700;
-    font-size: 1.5rem; /* Consistent heading size */
-    margin-bottom: 20px; /* Space below the heading */
-  }
+    font-size: 1.5rem; 
+    margin-bottom: 20px; 
+}
   
-  /* Styling for the list of services */
-  .servicing-list {
+.servicing-list {
     list-style-type: none;
     padding: 0;
-    margin: 0; /* Ensure no extra margin around the list */
-  }
+    margin: 0;
+}  
   
-  /* Individual servicing item styling */
-  .servicing-item {
+.servicing-item {
     margin-bottom: 15px;
-  }
+}
   
   /* Card styling */
-  .servicing-card {
+  .servicing-card-past {
+    background-color: #ffffff; /* Light card background for contrast */
+    color: #333333; /* Dark text color for readability */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease;
+  }
+
+  .servicing-card-future {
     background-color: #ffffff; /* Light card background for contrast */
     color: #333333; /* Dark text color for readability */
     padding: 15px;
@@ -61,9 +85,10 @@
     transition: transform 0.3s ease;
   }
   
-  .servicing-card:hover {
-    transform: scale(1.05); /* Slightly larger on hover */
+  .servicing-card-past:hover {
+    transform: scale(1.15); /* Slightly larger on hover */
   }
+  
   
   /* Text styling within cards */
   p {

@@ -1,34 +1,36 @@
-<div class="containerTop1">
+<div class="containerTop">
     <div class="page-title">
         <h1>Bus Servicings</h1>
-      </div>  
+        <h3>Please check if all past servicings actually performed .</h3>
+        <h3>If not , please click on such servicing .</h3>
+    </div>  
+    
     <div class="container">
-    <!-- Past Servicings Section -->
-    <div class="col-md-12 servicing-section">
-      <h3>Past Servicings</h3>
-      <ul class="servicing-list">
-        <li *ngFor="let servicing of pastServicings" class="servicing-item">
-          <div class="servicing-card">
-            <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-            <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-            <p><strong>Date:</strong> {{ servicing.date  }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    
+        <div class="col-md-12 servicing-section">
+        <h3>Past Servicings</h3>
+        <ul class="servicing-list">
+            <li *ngFor="let servicing of pastServicings" class="servicing-item">
+            <div class="servicing-card-past">
+                <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+                <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+                <p><strong>Date:</strong> {{ servicing.date  }}</p>
+            </div>
+            </li>
+        </ul>
+        </div>
 
-    <!-- Future Servicings Section -->
-    <div class="col-md-12 servicing-section">
-      <h3>Upcoming Servicings</h3>
-      <ul class="servicing-list">
-        <li *ngFor="let servicing of futureServicings" class="servicing-item">
-          <div class="servicing-card">
-            <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-            <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-            <p><strong>Date:</strong> {{ servicing.date  }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
+        <div class="col-md-12 servicing-section">
+        <h3>Upcoming Servicings</h3>
+        <ul class="servicing-list">
+            <li *ngFor="let servicing of futureServicings" class="servicing-item">
+            <div class="servicing-card-future">
+                <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+                <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+                <p><strong>Date:</strong> {{ servicing.date  }}</p>
+            </div>
+            </li>
+        </ul>
+        </div>
   </div>
 </div>
