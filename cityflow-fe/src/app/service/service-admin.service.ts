@@ -37,4 +37,12 @@ export class ServiceAdminService{
     public bookService(timeSlot:TimeSlot):Observable<BusServicing[]>{
         return this.http.put<BusServicing[]>(`${this.apiServerUrl}/CityFlow/bookServicesOneSlot`,timeSlot);
     }
+
+    public getPastServices():Observable<BusServicing[]>{
+        return this.http.get<BusServicing[]>(`${this.apiServerUrl}/CityFlow/getPastServicings`)
+    }
+
+    public getFutureServices():Observable<BusServicing[]>{
+        return this.http.get<BusServicing[]>(`${this.apiServerUrl}/CityFlow/getFutureServicings`)
+    }
 }
