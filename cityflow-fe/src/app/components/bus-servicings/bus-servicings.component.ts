@@ -43,4 +43,15 @@ export class BusServicingsComponent implements OnInit{
     console.log(this.futureServicings);
   }
 
+  reportServicing(busServicing : BusServicing){
+    this.serviceAdminService.reportPastServicing(busServicing.id).subscribe(
+      (pastServicings) => {
+        this.pastServicings = pastServicings;
+        console.log('nigaz');
+
+      }
+    )
+  }
+
+
 }

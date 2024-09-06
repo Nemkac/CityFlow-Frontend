@@ -11,7 +11,8 @@
         <h3>Past Servicings</h3>
         <ul class="servicing-list">
             <li *ngFor="let servicing of pastServicings" class="servicing-item">
-            <div class="servicing-card-past">
+            <div class="servicing-card-past"
+            (click)="reportServicing(servicing)">
                 <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
                 <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
                 <p><strong>Date:</strong> {{ servicing.date  }}</p>

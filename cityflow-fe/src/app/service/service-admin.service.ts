@@ -45,4 +45,8 @@ export class ServiceAdminService{
     public getFutureServices():Observable<BusServicing[]>{
         return this.http.get<BusServicing[]>(`${this.apiServerUrl}/CityFlow/getFutureServicings`)
     }
+
+    public reportPastServicing(servicingId:number):Observable<BusServicing[]>{
+        return this.http.get<BusServicing[]>(`${this.apiServerUrl}/CityFlow/reportServicing/${servicingId}`);
+    }
 }
