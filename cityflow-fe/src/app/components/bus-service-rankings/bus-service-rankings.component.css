@@ -20,7 +20,7 @@
 
 /* Ranking card styles */
 .ranking-card {
-    background-color: #0f0225;
+    background-color: #000000;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
@@ -32,7 +32,7 @@
 
 .ranking-card:hover {
     transform: scale(1.05);
-    background-color: #000000;
+    background-color: #0f0225;
 }
 
 .ranking-info p {
@@ -67,16 +67,16 @@
 }
 
 .move-btn.up:hover {
-    background-color: #218838;
+    background-color: #3b9c50;
     transform: translateY(-3px);
 }
 
 .move-btn.down {
-    background-color: #dc3545;
+    background-color: #d61428;
 }
 
 .move-btn.down:hover {
-    background-color: #c82333;
+    background-color: #e12b3d;
     transform: translateY(-3px);
 }
 
