@@ -1,0 +1,88 @@
+/* Main container settings */
+.container {
+    margin-top: 30px;
+    display:inline-flex;
+    max-width: 1200;
+    width: 80%;
+  }
+
+  .containerTop {
+    margin-top: 30px;
+    display:block;
+    max-width: 1200;
+    width: 80%;
+  }
+
+  .page-title {
+    text-align: right; /* Center-align the title */
+    margin-top: 10px;
+    margin-bottom: 20px; /* Space below the title */
+  }
+  
+  .page-title h1 {
+    font-size: 2.5rem; /* Adjust font size as needed */
+    color: #ffffff; /* Set the color to match your design */
+    font-weight: 700; /* Make the title bold */
+  }
+  
+  /* Service section styling */
+  .servicing-section {
+    padding: 60px;
+  }
+  
+  /* Headings styling */
+  h3 {
+    text-align: center;
+    color: #ffffff; /* White color for better visibility on dark background */
+    font-weight: 700;
+    font-size: 1.5rem; /* Consistent heading size */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  /* Styling for the list of services */
+  .servicing-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Ensure no extra margin around the list */
+  }
+  
+  /* Individual servicing item styling */
+  .servicing-item {
+    margin-bottom: 15px;
+  }
+  
+  /* Card styling */
+  .servicing-card {
+    background-color: #ffffff; /* Light card background for contrast */
+    color: #333333; /* Dark text color for readability */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease;
+  }
+  
+  .servicing-card:hover {
+    transform: scale(1.05); /* Slightly larger on hover */
+  }
+  
+  /* Text styling within cards */
+  p {
+    margin: 5px 0;
+  }
+  
+  /* Emphasizing labels */
+  strong {
+    color: #453ae0; /* Highlight color for labels */
+  }
+  
+  /* Responsive design adjustments */
+  @media (max-width: 768px) {
+    .servicing-section {
+      margin-bottom: 20px;
+    }
+  
+    h3 {
+      font-size: 1.25rem; /* Smaller heading size on small screens */
+    }
+  }
+  
