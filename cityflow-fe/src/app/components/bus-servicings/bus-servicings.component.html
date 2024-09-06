@@ -1,37 +1,44 @@
 <div class="containerTop">
     <div class="page-title">
-        <h1>Bus Servicings</h1>
-        <h3>Please check if all past servicings actually performed .</h3>
-        <h3>If not , please click on such servicing .</h3>
+      <h1>Bus Servicings</h1>
+      <h3>Please check if all past servicings actually performed.</h3>
+      <h3>If not, please click on such servicing.</h3>
     </div>  
     
     <div class="container">
-    
-        <div class="col-md-12 servicing-section">
+      <div class="col-md-12 servicing-section">
         <h3>Past Servicings</h3>
         <ul class="servicing-list">
-            <li *ngFor="let servicing of pastServicings" class="servicing-item">
-            <div class="servicing-card-past"
-            (click)="reportServicing(servicing)">
-                <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-                <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-                <p><strong>Date:</strong> {{ servicing.date  }}</p>
+          <li *ngFor="let servicing of pastServicings" class="servicing-item">
+            <div 
+              class="servicing-card-past"
+              [ngClass]="{'selected': servicing === selectedServicing, 'confirmed': servicing === confirmedServicing}"
+              (click)="handleClick(servicing)">
+              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+              <p><strong>Date:</strong> {{ servicing.date }}</p>
+              
+              <!-- Conditional confirmation message -->
+              <div *ngIf="servicing === selectedServicing && servicing !== confirmedServicing" class="confirmation">
+                <p>Click again to confirm</p>
+              </div>
             </div>
-            </li>
+          </li>
         </ul>
-        </div>
-
-        <div class="col-md-12 servicing-section">
+      </div>
+  
+      <div class="col-md-12 servicing-section">
         <h3>Upcoming Servicings</h3>
         <ul class="servicing-list">
-            <li *ngFor="let servicing of futureServicings" class="servicing-item">
+          <li *ngFor="let servicing of futureServicings" class="servicing-item">
             <div class="servicing-card-future">
-                <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-                <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-                <p><strong>Date:</strong> {{ servicing.date  }}</p>
+              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+              <p><strong>Date:</strong> {{ servicing.date }}</p>
             </div>
-            </li>
+          </li>
         </ul>
-        </div>
+      </div>
+    </div>
   </div>
-</div>
+  

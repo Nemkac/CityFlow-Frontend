@@ -66,15 +66,35 @@ h3 {
     margin-bottom: 15px;
 }
   
-  /* Card styling */
-  .servicing-card-past {
-    background-color: #ffffff; /* Light card background for contrast */
-    color: #333333; /* Dark text color for readability */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease;
-  }
+.servicing-card-past {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.servicing-card-past:hover {
+  transform: scale(1.15);
+}
+
+.servicing-card-past.selected {
+  background-color: red;
+  color: #fff;
+}
+
+.servicing-card-past.confirmed {
+  background-color: darkred;
+}
+
+.confirmation {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 500;
+}
+
 
   .servicing-card-future {
     background-color: #ffffff; /* Light card background for contrast */
@@ -85,10 +105,7 @@ h3 {
     transition: transform 0.3s ease;
   }
   
-  .servicing-card-past:hover {
-    transform: scale(1.15); /* Slightly larger on hover */
-  }
-  
+
   
   /* Text styling within cards */
   p {
