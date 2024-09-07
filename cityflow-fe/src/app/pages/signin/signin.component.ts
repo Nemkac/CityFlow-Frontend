@@ -18,20 +18,39 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit{
   //Icons
   faArrowRight = faArrowRight;
+  token !: string | null;
+  loggedUserRole !: string;
 
   ngOnInit(): void {}
 
-  constructor(private authService : AuthService, private router : Router){}
+  constructor(private authService : AuthService, 
+              private router : Router){}
 
-  public signIn(SignInForm: NgForm) : void{
+  public signIn(SignInForm: NgForm): void {
     this.authService.logIn(SignInForm.value).subscribe(
       (response: LoginDTO) => {
-        console.log("Successfully signed in!", response);
-        window.location.reload();
+        console.log("Successfully signed in!");
+  
+        this.token = localStorage.getItem('token');
+        if(this.token != null) {
+        this.authService.getUserFromToken(this.token).subscribe(
+          (response1:User) => {
+            this.loggedUserRole = response1.roles;
+            if (this.loggedUserRole === 'ROLE_DRIVER') {
+              this.router.navigate(['/reportMalfunction']);
+            } else if (this.loggedUserRole === 'ROLE_SERVICE') {
+              this.router.navigate(['/chargingPlanGeneticAlgorithm']);
+            } else if (this.loggedUserRole === 'ROLE_CHARGER') {
+              this.router.navigate(['/busesServiceRankings']);
+            }
+          }
+        )
+        } 
       },
       (error: HttpErrorResponse) => {
         console.log("Error while signing in: ", error);
       }
-    )
+    );
   }
+  
 }
