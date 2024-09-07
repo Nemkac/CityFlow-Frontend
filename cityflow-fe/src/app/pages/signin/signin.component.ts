@@ -38,9 +38,9 @@ export class SigninComponent implements OnInit{
             this.loggedUserRole = response1.roles;
             if (this.loggedUserRole === 'ROLE_DRIVER') {
               this.router.navigate(['/reportMalfunction']);
-            } else if (this.loggedUserRole === 'ROLE_SERVICE') {
-              this.router.navigate(['/chargingPlanGeneticAlgorithm']);
             } else if (this.loggedUserRole === 'ROLE_CHARGER') {
+              this.router.navigate(['/chargingPlanGeneticAlgorithm']);
+            } else if (this.loggedUserRole === 'ROLE_SERVICE') {
               this.router.navigate(['/busesServiceRankings']);
             }
           }
