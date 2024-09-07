@@ -1,14 +1,17 @@
-<div class="flex flex-col px-6 py-12 w-[310px] bg-darkGrey h-[100vh]">
-    <img src="../../../assets/LogoWithName.png" class="w-[250px] h-[50px]">
-    @if(isLoggedIn){
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="sidebar flex flex-col px-6 py-12 w-[350px] bg-darkGrey h-[100vh]">
+    <img src="../../../assets/LogoWithName.png" class="logo w-full h-auto mb-8">
+    
+    <!-- Conditional content display -->
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
         <app-side-panel-profile></app-side-panel-profile>
-    } @else {
-        <app-signin-signup/>
-    }
-    <hr class="flex w-full text-lightGrey/20 my-10">
-    @if(isLoggedIn) {
+        <hr class="divider my-10">
         <app-side-panel-menu></app-side-panel-menu>
-    } @else {
-        <p>Not logged in</p>
-    }
+    </ng-container>
+    
+    <ng-template #notLoggedIn>
+        <app-signin-signup></app-signin-signup>
+        <p class="not-logged-in mt-4">Not logged in</p>
+    </ng-template>
 </div>

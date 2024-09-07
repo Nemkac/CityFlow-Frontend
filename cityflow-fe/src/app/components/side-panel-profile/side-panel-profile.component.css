@@ -1,0 +1,60 @@
+/* Base styles for the side panel */
+.side-panel {
+    background-color: #282828; /* Dark gray background for the side panel */
+    max-width: 320px; /* Limit the maximum width of the panel */
+    width: 100%; /* Full width of the container */
+    padding: 20px; /* Add padding inside the panel */
+}
+
+/* Avatar styles */
+.avatar {
+    background-color: #ffffff; /* White background for the avatar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* User information section */
+.user-info {
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 5px;
+}
+
+.full-name {
+    margin-bottom: 5px;
+}
+
+/* Role styling */
+.role {
+    color: #b0b0b0; /* Light gray text color for role */
+}
+
+/* Sign out button styles */
+.sign-out-button {
+    background-color: #ffffff; /* White background */
+    border: 2px solid #000000; /* Black border */
+    color: #000000; /* Black text color */
+    display: flex;
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    transition: all 0.3s ease-in-out;
+    padding: 0 10px; /* Add padding for better button size, remove vertical padding */
+    border-radius: 10px; /* Rounded corners */
+    height: 50px; /* Define button height */
+}
+
+.sign-out-button p {
+    margin: 0; /* Remove default margin */
+}
+
+
+
+.sign-out-button:hover {
+    background-color: #000000;
+    border: 2px solid #ffffff; /* White background on hover */
+    color: #ffffff; /* Dark gray text color on hover */
+}

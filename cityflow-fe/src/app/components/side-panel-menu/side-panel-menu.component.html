@@ -1,6 +1,5 @@
 <div class="flex flex-col items-center justify-center text-white ">
-    <button [ngClass]="{'bg-lightGrey/30' : showHome,
-                    'bg-transparent': !showHome}" 
+    <button [ngClass]="{'bg-transparent' : 1==1}" 
             class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewHome()">
@@ -12,8 +11,7 @@
         </div>
     </button>
 
-    <button [ngClass]="{'bg-lightGrey/30' : showProfile,
-                        'bg-transparent': !showProfile}" 
+    <button [ngClass]="{'bg-transparent' : 1==1}" 
             class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewProfile()">
@@ -26,8 +24,7 @@
     </button>
 
     @if (loggedUserRole == 'ROLE_SERVICE') {
-        <button [ngClass]="{'bg-lightGrey/30' : showCards,
-                    'bg-transparent': !showCards}" 
+        <button [ngClass]="{'bg-transparent' : 1==1}"  
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="goToRankings()">
@@ -38,7 +35,7 @@
                 <p class="ml-[20px] text-[32px]">Bus rankings</p>
             </div>
         </button>
-        <button [ngClass]="{'bg-lightGrey/30' : showCards,
+        <button [ngClass]="{'bg-lightGrey/30' : !showCards,
                     'bg-transparent': !showCards}" 
             class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"

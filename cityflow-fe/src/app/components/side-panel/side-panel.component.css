@@ -1,0 +1,29 @@
+/* Sidebar styles */
+.sidebar {
+    /*background-color: #070a41;  Dark gray background for the sidebar */
+    background-color: #191919ea;
+    width: 350px; /* Fixed width */
+    height: 100vh; /* Full viewport height */
+    padding: 12px 24px; /* Padding for the content */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Logo styles */
+.logo {
+    width: 100%; /* Full width of the sidebar */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 24px; /* Space below the logo */
+}
+
+/* Divider styles */
+.divider {
+    border-top: 1px solid #6D6D6D; /* Light gray border for the divider */
+    width: 100%; /* Full width of the sidebar */
+}
+
+/* Not logged in message */
+.not-logged-in {
+    color: #B0B0B0; /* Light gray text color */
+    text-align: center; /* Center the text */
+}
