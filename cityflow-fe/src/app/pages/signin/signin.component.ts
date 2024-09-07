@@ -41,7 +41,7 @@ export class SigninComponent implements OnInit{
             } else if (this.loggedUserRole === 'ROLE_CHARGER') {
               this.router.navigate(['/chargingPlanGeneticAlgorithm']);
             } else if (this.loggedUserRole === 'ROLE_SERVICE') {
-              this.router.navigate(['/busesServiceRankings']);
+              this.router.navigate(['/busServicings']);
             }
           }
         )

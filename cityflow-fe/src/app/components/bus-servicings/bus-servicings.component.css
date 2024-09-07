@@ -21,12 +21,31 @@ font-weight: 700;
     color: #aab5e6; 
     font-weight: 200; 
   }
-
-.note{
+  .note {
     text-align: right;
     margin-top: 10px;
     margin-bottom: 10px;
-}
+  }
+  
+  .priority-label {
+    font-size: 1.2rem;
+    color: #aab5e6;
+    margin-right: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #3c85f2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #336bcc;
+  }
+  
 
 .note h3{
     font-size: 2 rem; 

@@ -1,44 +1,49 @@
 <div class="containerTop">
-    <div class="page-title">
-      <h1>Bus Servicings</h1>
-      <h3>Please check if all past servicings actually performed.</h3>
-      <h3>If not, please select such servicing and click on it again to confirm.</h3>
-    </div>  
-    
-    <div class="container">
-      <div class="col-md-12 servicing-section">
-        <h3>Past Servicings</h3>
-        <ul class="servicing-list">
-          <li *ngFor="let servicing of pastServicings" class="servicing-item">
-            <div 
-              class="servicing-card-past"
-              [ngClass]="{'selected': servicing === selectedServicing}"
-              (click)="handleClick(servicing)">
-              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-              <p><strong>Date:</strong> {{ servicing.date }}</p>
-              
-              <!-- Conditional confirmation message -->
-              <div *ngIf="servicing === selectedServicing" class="confirmation">
-                <p>Click again to confirm</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+  <div class="page-title">
+    <h1>Bus Servicings</h1>
+    <h3>Please check if all past servicings actually performed.</h3>
+    <h3>If not, please select such servicing and click on it again to confirm.</h3>
+  </div>  
   
-      <div class="col-md-12 servicing-section">
-        <h3>Upcoming Servicings</h3>
-        <ul class="servicing-list">
-          <li *ngFor="let servicing of futureServicings" class="servicing-item">
-            <div class="servicing-card-future">
-              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-              <p><strong>Date:</strong> {{ servicing.date }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <!-- New section with label and button -->
+  <div class="note">
+    <label for="priority-link" class="priority-label">To check priority rankings or add service time slot, click here:</label>
+    <button id="priority-link" class="btn btn-primary" (click)="handlePriorityClick()">Check Rankings</button>
   </div>
   
+  <div class="container">
+    <div class="col-md-12 servicing-section">
+      <h3>Past Servicings</h3>
+      <ul class="servicing-list">
+        <li *ngFor="let servicing of pastServicings" class="servicing-item">
+          <div 
+            class="servicing-card-past"
+            [ngClass]="{'selected': servicing === selectedServicing}"
+            (click)="handleClick(servicing)">
+            <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+            <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+            <p><strong>Date:</strong> {{ servicing.date }}</p>
+            
+            <!-- Conditional confirmation message -->
+            <div *ngIf="servicing === selectedServicing" class="confirmation">
+              <p>Click again to confirm</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-12 servicing-section">
+      <h3>Upcoming Servicings</h3>
+      <ul class="servicing-list">
+        <li *ngFor="let servicing of futureServicings" class="servicing-item">
+          <div class="servicing-card-future">
+            <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
+            <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
+            <p><strong>Date:</strong> {{ servicing.date }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

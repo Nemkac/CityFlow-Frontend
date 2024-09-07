@@ -47,7 +47,7 @@ export class SidePanelMenuComponent implements OnInit{
         (response : User) => {
           this.loggedUser = response;
           this.loggedUserRole = this.loggedUser.roles;
-          console.log(this.loggedUserRole);
+          //console.log(this.loggedUserRole);
         },
         (error: HttpErrorResponse) => {
           console.log('Error fetching user data:\n', error.message);

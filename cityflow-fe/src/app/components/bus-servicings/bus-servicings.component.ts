@@ -3,6 +3,7 @@ import { NgClass, NgFor } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { BusServicing } from '../../models/busServicing';
 import { ServiceAdminService } from '../../service/service-admin.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class BusServicingsComponent implements OnInit{
 
   selectedServicing: any = null;  
 
-  constructor(private serviceAdminService:ServiceAdminService){}
+  constructor(private serviceAdminService:ServiceAdminService,
+              private router : Router ){}
   
   ngOnInit(): void {
     this.getPastServicings();
@@ -65,6 +67,10 @@ export class BusServicingsComponent implements OnInit{
 
       }
     )
+  }
+
+  handlePriorityClick() {
+    this.router.navigate(['/busesServiceRankings']);
   }
 
 
