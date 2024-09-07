@@ -5,13 +5,13 @@ import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-panel-menu',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, NgIf],
   templateUrl: './side-panel-menu.component.html',
   styleUrl: './side-panel-menu.component.css'
 })
@@ -118,4 +118,13 @@ export class SidePanelMenuComponent implements OnInit{
   public navigateToProfile() : void {
     this.router.navigate(['/profile']);
   }
+
+  public goToRankings() : void {
+  this.router.navigate(['/busesServiceRankings']);
+  }
+
+  public goToServicings() :  void {
+    this.router.navigate(['/busServicings']);
+  }
+
 }

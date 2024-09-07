@@ -4,11 +4,14 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-side-panel-profile',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule,NgIf],
   templateUrl: './side-panel-profile.component.html',
   styleUrl: './side-panel-profile.component.css'
 })
@@ -18,7 +21,9 @@ export class SidePanelProfileComponent implements OnInit{
   loggedUser! : User;
   token = localStorage.getItem('token');
 
-  constructor(private authService : AuthService){}
+  constructor(private authService : AuthService,
+              private router : Router
+  ){}
 
   ngOnInit(): void {
     this.fetchUser();
@@ -39,6 +44,22 @@ export class SidePanelProfileComponent implements OnInit{
 
   public signOut() : void {
     localStorage.removeItem('token');
-    window.location.reload();
+    this.router.navigate(['/signin']);
+    this.token = null;
+    //window.location.reload();
+    if(this.token != null){
+      this.authService.getUserFromToken(this.token).subscribe(
+        (response : User) => {
+          this.loggedUser = response;
+          console.log(this.token);
+        },
+        (error: HttpErrorResponse) => {
+          console.log('Error fetching user data:\n', error.message);
+        }
+      )
+    } else {
+      console.log("nema lika");
+    }
+
   }
 }

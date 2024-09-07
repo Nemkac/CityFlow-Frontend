@@ -25,17 +25,29 @@
         </div>
     </button>
 
-    @if (loggedUserRole == 'ROLE_AUTHENTICATED') {
+    @if (loggedUserRole == 'ROLE_SERVICE') {
         <button [ngClass]="{'bg-lightGrey/30' : showCards,
                     'bg-transparent': !showCards}" 
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
-        (click)="viewCards()">
+        (click)="goToRankings()">
             <div class="flex w-[10%]">
                 <fa-icon [icon]="faIdCard" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Cards</p>
+                <p class="ml-[20px] text-[32px]">Bus rankings</p>
+            </div>
+        </button>
+        <button [ngClass]="{'bg-lightGrey/30' : showCards,
+                    'bg-transparent': !showCards}" 
+            class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+                hover:bg-lightGrey/30 transition-[0.5s]"
+            (click)="goToServicings()">
+            <div class="flex w-[10%]">
+                <fa-icon [icon]="faIdCard" class="text-[24px]"/>
+            </div>
+            <div class="flex w-[90%] justify-start">
+                <p class="ml-[20px] text-[32px]">Bus servicings</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'ROLE_ROUTEADMINISTRATOR') {
@@ -66,16 +78,4 @@
         </button>
     }
 
-    <button [ngClass]="{'bg-lightGrey/30' : showInbox,
-                        'bg-transparent': !showInbox}" 
-            class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
-                    hover:bg-lightGrey/30 transition-[0.5s]"
-            (click)="viewInbox()">
-        <div class="flex w-[10%]">
-            <fa-icon [icon]="faInbox" class="text-[24px]"/>
-        </div>
-        <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Inbox</p>
-        </div>
-    </button>
 </div>
