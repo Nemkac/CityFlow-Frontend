@@ -1,5 +1,18 @@
 /* Container and layout styles */
+html, body {
+    height: 100%;  /* Ensure the body fills the viewport */
+    margin: 0; /* Remove default margin */
+    overflow: hidden; /* Disable scrolling beyond the viewport height */
+  }
+
+  
 .container {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -20%);
+    
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;

@@ -1,31 +1,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+        <h1 class="title">Bus Service Rankings</h1>
 
-<div class="container">
-    <h1 class="title">Bus Service Rankings</h1>
-
-    <!-- Rankings List -->
-    <div *ngFor="let ranking of rankings" class="ranking-card">
-        <div class="ranking-info">
-            <p><b>Bus:</b> {{ ranking.bus.busId }}</p>
-            <p><b>Score:</b> {{ ranking.score }}</p>
-            <p><b>Rank:</b> {{ ranking.rank }}</p>
+        <!-- Rankings List -->
+        <div *ngFor="let ranking of rankings" class="ranking-card">
+            <div class="ranking-info">
+                <p><b>Bus:</b> {{ ranking.bus.busId }}</p>
+                <p><b>Score:</b> {{ ranking.score }}</p>
+                <p><b>Rank:</b> {{ ranking.rank }}</p>
+            </div>
+            <div class="ranking-actions">
+                <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
+                    Move Up
+                </button>
+                <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
+                    Move Down
+                </button>
+            </div>
         </div>
-        <div class="ranking-actions">
-            <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
-                Move Up
-            </button>
-            <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
-                Move Down
-            </button>
+
+        <hr class="divider">
+
+        <!-- Time Slot Input -->
+        <p class="add-time-title">Add Available Service Time Slot:</p>
+        <div class="time-slot-container">
+            <input type="date" [(ngModel)]="timeSlotDate" class="date-input">
+            <button class="add-time-btn" (click)="addTimeSlot(timeSlotDate)">Add Time Slot</button>
         </div>
     </div>
-
-    <hr class="divider">
-
-    <!-- Time Slot Input -->
-    <p class="add-time-title">Add Available Service Time Slot:</p>
-    <div class="time-slot-container">
-        <input type="date" [(ngModel)]="timeSlotDate" class="date-input">
-        <button class="add-time-btn" (click)="addTimeSlot(timeSlotDate)">Add Time Slot</button>
-    </div>
-</div>

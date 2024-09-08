@@ -1,110 +1,112 @@
 /* General panel styles */
 html, body {
   height: 100%;  /* Ensure the body fills the viewport */
+  margin: 0; /* Remove default margin */
   overflow: hidden; /* Disable scrolling beyond the viewport height */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-
 .flex-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 350px;
-  }
-  
-  .text-white {
-    color: #ffffff;
-  }
-  
-  /* Button styles */
-  button {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  button:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-  }
-  
-  button:active {
-    transform: translateY(0); /* Return to original position on click */
-  }
-  
-  .bg-lightGrey {
-    background-color: rgba(211, 211, 211, 0.3); /* Light grey background for active state */
-  }
-  
-  .bg-transparent {
-    background-color: transparent;
-  }
-  
-  /* Flexbox layout for button content */
-  button .flex {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  /* Adjust icon and text alignment */
-  button .w-10 {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  button .w-90 {
-    width: 90%;
-    display: flex;
-    justify-content: start;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  text-align: center; /* Center text inside the buttons */
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+/* Button styles */
+button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+}
+
+button:active {
+  transform: translateY(0); /* Return to original position on click */
+}
+
+.bg-lightGrey {
+  background-color: rgba(211, 211, 211, 0.3); /* Light grey background for active state */
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+/* Flexbox layout for button content */
+button .flex {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+/* Adjust icon and text alignment */
+button .w-10 {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button .w-90 {
+  width: 90%;
+  display: flex;
+  justify-content: start;
+}
+
+button p {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+/* Hover text color change */
+button:hover p {
+  color: #aab5e6; /* Light blue on hover */
+}
+
+button:hover .fa-icon {
+  color: #3d0303; /* Change icon color on hover */
+}
+
+/* Icon styles */
+.fa-icon {
+  color: #ffffff; /* Default white */
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+/* Button layout adjustments */
+button {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   button p {
-    margin-left: 20px;
-    font-size: 32px;
-    font-weight: 500;
-    color: #ffffff;
-    transition: color 0.3s ease;
-  }
-  
-  /* Hover text color change */
-  button:hover p {
-    color: #aab5e6; /* Light blue on hover */
-  }
-  
-  button:hover .fa-icon {
-    color: #3d0303; /* Change icon color on hover */
-  }
-  
-  /* Icon styles */
-  .fa-icon {
-    color: #ffffff; /* Default white */
-    font-size: 24px;
-    transition: color 0.3s ease;
-  }
-  
-  /* Button layout adjustments */
-  button {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 12px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    button p {
-      font-size: 24px; /* Adjust text size for smaller screens */
-    }
-  
-    .fa-icon {
-      font-size: 20px; /* Adjust icon size for smaller screens */
-    }
+    font-size: 24px; /* Adjust text size for smaller screens */
   }
 
-  
+  .fa-icon {
+    font-size: 20px; /* Adjust icon size for smaller screens */
+  }
+}
