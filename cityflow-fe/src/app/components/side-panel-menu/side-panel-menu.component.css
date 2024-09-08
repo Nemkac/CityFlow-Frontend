@@ -1,4 +1,10 @@
 /* General panel styles */
+html, body {
+  height: 100%;  /* Ensure the body fills the viewport */
+  overflow: hidden; /* Disable scrolling beyond the viewport height */
+}
+
+
 .flex-col {
     display: flex;
     flex-direction: column;

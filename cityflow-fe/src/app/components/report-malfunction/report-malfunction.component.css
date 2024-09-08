@@ -1,4 +1,9 @@
-/* Centering the container */
+html, body {
+    height: 100%;  /* Ensure the body fills the viewport */
+    overflow: hidden; /* Disable scrolling beyond the viewport height */
+}
+
+
 .center-container {
     display: flex;
     flex-direction: column;

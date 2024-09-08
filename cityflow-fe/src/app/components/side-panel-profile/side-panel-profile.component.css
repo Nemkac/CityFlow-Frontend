@@ -1,4 +1,10 @@
 /* Base styles for the side panel */
+html, body {
+    height: 100%;  /* Ensure the body fills the viewport */
+    overflow: hidden; /* Disable scrolling beyond the viewport height */
+}
+
+
 .side-panel {
     background-color: #282828; /* Dark gray background for the side panel */
     max-width: 320px; /* Limit the maximum width of the panel */

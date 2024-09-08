@@ -1,0 +1,141 @@
+/* Button Styles */
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease;
+    cursor: pointer;
+    width: 27vh;
+}
+
+/* Sign In Button */
+button.sign-in {
+    width: 27vh;
+    height: 43px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 18px; /* Increased font size */
+    color: #333; /* Dark Grey */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+button.sign-in:hover {
+    background-color: #000000; /* Dark Blue */
+    transform: translateY(-3px); /* Small lift on hover */
+    border: 2px solid #ffffff;
+}
+
+button.sign-in:hover p {
+    color: #ffffff;
+}
+
+.sign-in-text {
+    color: #000000; /* Black text for Sign In */
+    font-size: 16px; /* Increased font size */
+}
+
+/* Sign Up Button */
+button.sign-up {
+    width: 27vh;
+    height: 43px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 18px; /* Increased font size */
+    color: #ffffff; /* White text */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+button.sign-up:hover {
+    background-color: #ffffff;
+    color: #333; /* Dark Grey on hover */
+    transform: translateY(-3px); /* Small lift on hover */
+    border: 2px solid #000000;
+}
+
+button.sign-up:hover p {
+    color: #000000;
+}
+
+.sign-up-text {
+    color: #ffffff; /* White text for Sign Up */
+    font-size: 16px; /* Increased font size */
+}
+
+/* Flex container */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.flex-container p {
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 0 10px;
+}
+
+.flex-container hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background-color: #ffffff;
+}
+
+/* Font Awesome Icon Styling */
+fa-icon {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Adjust icon color on hover for both buttons */
+button.sign-in:hover fa-icon,
+button.sign-up:hover fa-icon {
+    color: #ffffff;
+}
+
+/* Flex container to center align items vertically */
+div {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment */
+}
+
+/* Line Styling */
+hr {
+    flex: 1; /* Stretch the line */
+    border: none;
+    border-top: 1px solid #ffffff; /* Adjust thickness and color */
+}
+
+/* Paragraph Styling */
+p {
+    margin: 0 10px; /* Add space between the lines and the text */
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: #000000;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    button.sign-in, button.sign-up {
+        width: 100%;
+    }
+
+    .flex-container p {
+        font-size: 10px;
+    }
+}
