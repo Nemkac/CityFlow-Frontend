@@ -36,10 +36,13 @@ html, body {
 }
 
 .custom-sign-in-button:hover {
-    background-color: #000000; /* Light Grey on hover */
+    background-color: #000000; /* Dark background color on hover */
+    color: #ffffff; /* Text color change on hover */
     transform: translateY(-2px); /* Slight lift on hover */
-    border: 2px #ffffff;
+    border: 2px solid #ffffff; /* Define border style, width, and color */
 }
+
+
 
 .custom-sign-in-button:hover p{
     color: rgb(255, 255, 255);
