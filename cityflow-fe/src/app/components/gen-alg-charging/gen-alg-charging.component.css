@@ -1,18 +1,17 @@
 /* General Container and Layout */
 .container {
-  max-width: 1200px; /* Increased width */
+  max-width: 1000px; /* Reduced width */
   margin: 0 auto; /* Center horizontally */
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   background-color: #2f3640; /* Darker background similar to rankings page */
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
   text-align: center;
   font-family: 'Arial', sans-serif;
   position: relative;
-  left: 45%; /* Center vertically */
-  transform: translateY(1%); /* Adjust positioning to truly center */
+  left: 65%; /* Adjust horizontal position */
+  transform: translateY(2%); /* Adjust positioning */
 }
-
 
 /* Loading State */
 .loading-container {
@@ -20,7 +19,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 165vh;
   background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
   display: flex;
   justify-content: center;
@@ -29,7 +28,7 @@
 
 .loading-text {
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Reduced text size */
   margin-bottom: 10px;
 }
 
@@ -39,38 +38,33 @@
   border-bottom: 4px solid #ffffff;
   border-left: 4px solid transparent;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  margin-left: 225px;
+  width: 40px; /* Smaller spinner */
+  height: 40px;
   animation: spin 1s linear infinite;
-}
-
-/* Animation for the spinner */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 /* Display State */
 .display-container {
   color: #ffffff;
-  background-color: #313030; /* Dark background for the display state */
+  background-color: #313030; /* Dark background */
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 /* Header and Section Styling */
 .header {
   color: #ffffff;
-  font-size: 2.5rem; /* Larger header size */
+  font-size: 2rem; /* Reduced header size */
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .table-header {
   background-color: #000000; /* Darker header background */
   color: #ffffff;
-  padding: 10px;
+  padding: 8px; /* Reduced padding */
   border-radius: 8px;
   margin-bottom: 10px;
 }
@@ -78,77 +72,63 @@
 .table-row {
   background-color: #2f3640; /* Darker row background */
   color: #ffffff;
-  padding: 20px; /* Increased padding */
+  padding: 15px; /* Reduced padding */
   border-radius: 8px;
-  margin-bottom: 0px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Alternating row colors for better readability */
 .table-row:nth-child(even) {
   background-color: #1f1f1f; 
 }
 
 .table-cell {
-  font-size: 1.2rem; /* Larger text for better readability */
-  padding: 10px 15px; /* Increased padding */
-  /* Optional: Add text alignment */
+  font-size: 1rem; /* Slightly reduced text size */
+  padding: 8px 12px; /* Reduced padding */
   text-align: center;
 }
 
 /* Button Styling */
-.action-button {
-  padding: 10px 20px;
-  border-radius: 18px;
-  border: none;
-  font-size: 1.5rem; /* Larger text for better readability */
+.regeneratebutton {
+  padding: 8px 16px; /* Reduced padding */
+  border-radius: 16px;
+  font-size: 1.2rem; /* Reduced text size */
   font-family:'Arial', 'sans-serif';
   color: #000000;
   cursor: pointer;
   font-weight: 350;
   transition: background-color 0.3s, transform 0.2s;
-  margin-top: 20px; /* Margin above button */
+  margin-top: 15px; /* Reduced margin */
+  background-color: #ffffff; 
+  border: 4px solid #000000; /* Slightly thinner border */
+  
 }
 
-.action-button:hover p {
-  color: #eeff00; /* Light blue on hover */
-}
-
-.action-button.regenerate {
-  background-color: #ffffff; /* Dark background for the button */
-  border: 5px solid #000000;
-}
-
-.action-button.regenerate:hover {
+.regeneratebutton:hover {
   background-color: #000000; /* Darker on hover */
   transform: translateY(-2px);
+  border: 2px solid #ffffff;
 }
 
-.action-button.regenerate:hover p{
+.regeneratebutton:hover p {
   color: #ffffff;
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-      padding: 15px;
+      padding: 10px;
       max-width: 100%; /* Full width on smaller screens */
   }
 
   .header {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
   }
 
   .table-row {
       flex-direction: column;
       align-items: flex-start;
-  }
-
-  .action-button {
-      width: 100%;
-      margin-top: 10px;
   }
 }
