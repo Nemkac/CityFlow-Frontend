@@ -1,17 +1,20 @@
 /* Sidebar styles */
 html, body {
     height: 100%;  /* Ensure the body fills the viewport */
-    overflow:auto; /* Disable scrolling beyond the viewport height */
+    overflow:auto;
+    margin:0; /* Disable scrolling beyond the viewport height */
 }
 
 .sidebar {
     /*background-color: #070a41;  Dark gray background for the sidebar */
     background-color: #191919ea;
     width: 250px; /* Fixed width */
-    height: 200; /* Full viewport height */
+    /*height: 200;  Full viewport height */
     padding: 12px 24px; /* Padding for the content */
     display: flex;
     flex-direction: column;
+    display: flex;
+    min-height: 230vh;
 }
 
 /* Logo styles */
