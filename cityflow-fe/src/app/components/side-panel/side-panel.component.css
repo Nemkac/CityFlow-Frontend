@@ -10,7 +10,7 @@ html, body {
     background-color: #191919ea;
     width: 250px; /* Fixed width */
     /*height: 200;  Full viewport height */
-    padding: 12px 24px; /* Padding for the content */
+    padding: 12px 20px; /* Padding for the content */
     display: flex;
     flex-direction: column;
     display: flex;

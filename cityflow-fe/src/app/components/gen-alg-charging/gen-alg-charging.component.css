@@ -1,14 +1,18 @@
 /* General Container and Layout */
 .container {
   max-width: 1200px; /* Increased width */
-  margin: 0 auto;
+  margin: 0 auto; /* Center horizontally */
   padding: 20px;
   background-color: #2f3640; /* Darker background similar to rankings page */
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
   text-align: center;
   font-family: 'Arial', sans-serif;
+  position: relative;
+  left: 45%; /* Center vertically */
+  transform: translateY(1%); /* Adjust positioning to truly center */
 }
+
 
 /* Loading State */
 .loading-container {
@@ -76,7 +80,7 @@
   color: #ffffff;
   padding: 20px; /* Increased padding */
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,24 +101,35 @@
 /* Button Styling */
 .action-button {
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 18px;
   border: none;
-  font-size: 1.2rem; /* Larger text for better readability */
-  color: #ffffff;
+  font-size: 1.5rem; /* Larger text for better readability */
+  font-family:'Arial', 'sans-serif';
+  color: #000000;
   cursor: pointer;
+  font-weight: 350;
   transition: background-color 0.3s, transform 0.2s;
   margin-top: 20px; /* Margin above button */
 }
 
+.action-button:hover p {
+  color: #eeff00; /* Light blue on hover */
+}
+
 .action-button.regenerate {
-  background-color: #161647; /* Dark background for the button */
-  border: 3px solid #ffffff;
+  background-color: #ffffff; /* Dark background for the button */
+  border: 5px solid #000000;
 }
 
 .action-button.regenerate:hover {
-  background-color: #333333; /* Darker on hover */
+  background-color: #000000; /* Darker on hover */
   transform: translateY(-2px);
 }
+
+.action-button.regenerate:hover p{
+  color: #ffffff;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

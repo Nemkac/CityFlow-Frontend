@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center justify-center text-white ">
+<div class="flex flex-col items-center justify-center text-white mt-[-40px] ">
     <button [ngClass]="{'bg-transparent' : 1==1}" 
-            class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+            class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewHome()">
         <div class="flex w-[10%]">
@@ -12,7 +12,7 @@
     </button>
 
     <button [ngClass]="{'bg-transparent' : 1==1}" 
-            class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+            class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                     hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="viewProfile()">
         <div class="flex w-[10%]">
@@ -25,7 +25,7 @@
 
     @if (loggedUserRole == 'ROLE_SERVICE') {
         <button [ngClass]="{'bg-transparent' : 1==1}"  
-        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+        class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="goToRankings()">
             <div class="flex w-[10%]">
@@ -37,7 +37,7 @@
         </button>
         <button [ngClass]="{'bg-lightGrey/30' : !showCards,
                     'bg-transparent': !showCards}" 
-            class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+            class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
             (click)="goToServicings()">
             <div class="flex w-[10%]">
@@ -50,7 +50,7 @@
     } @else if (loggedUserRole == 'ROLE_ROUTEADMINISTRATOR') {
         <button [ngClass]="{'bg-lightGrey/30' : showRoutes,
                     'bg-transparent': !showCards}" 
-        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+        class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="viewRoutes()">
             <div class="flex w-[10%]">
@@ -63,7 +63,7 @@
     } @else if (loggedUserRole == 'ROLE_HRAdministrator') {
         <button [ngClass]="{'bg-lightGrey/30' : showEmployees,
                     'bg-transparent': !showCards}" 
-        class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
+        class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
                 hover:bg-lightGrey/30 transition-[0.5s]"
         (click)="viewEmployees()">
             <div class="flex w-[10%]">

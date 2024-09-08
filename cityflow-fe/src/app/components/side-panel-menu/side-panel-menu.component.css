@@ -33,7 +33,7 @@ button {
 
 button:hover {
   transform: translateY(-2px); /* Slight lift on hover */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  background-color:#eeff00; /* Subtle hover effect */
 }
 
 button:active {
@@ -79,11 +79,11 @@ button p {
 
 /* Hover text color change */
 button:hover p {
-  color: #aab5e6; /* Light blue on hover */
+  color: #eeff00; /* Light blue on hover */
 }
 
 button:hover .fa-icon {
-  color: #3d0303; /* Change icon color on hover */
+  color: #eeff00; /* Change icon color on hover */
 }
 
 /* Icon styles */
