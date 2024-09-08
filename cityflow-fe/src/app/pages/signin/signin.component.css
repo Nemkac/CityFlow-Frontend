@@ -1,3 +1,27 @@
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    background-color: #191919;
+    border: 4px solid #ffffff;
+    border-radius: 26px;
+    width: 550px;
+    height: 640px;
+    max-width: 90%;
+}
+
+html, body {
+    height: 100%;  /* Ensure the body fills the viewport */
+    overflow: hidden; /* Disable scrolling beyond the viewport height */
+}
+
+
 .custom-sign-in-button {
     display: flex;
     align-items: center;
@@ -14,6 +38,7 @@
 .custom-sign-in-button:hover {
     background-color: #000000; /* Light Grey on hover */
     transform: translateY(-2px); /* Slight lift on hover */
+    border: 2px #ffffff;
 }
 
 .custom-sign-in-button:hover p{
