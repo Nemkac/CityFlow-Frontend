@@ -1,0 +1,40 @@
+.custom-sign-in-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #ffffff; /* White background */
+    margin-top: 24px;
+    transition: background-color 0.5s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.custom-sign-in-button:hover {
+    background-color: #000000; /* Light Grey on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.custom-sign-in-button:hover p{
+    color: rgb(255, 255, 255);
+}
+
+.custom-sign-in-button p {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #333; /* Dark Grey */
+    margin: 0; /* Remove default margin */
+    line-height: 1; /* Ensure text is vertically centered */
+}
+
+.custom-sign-in-button .fa-icon {
+    font-size: 32px;
+    margin-left: 10px;
+    color: #333; /* Dark Grey */
+}
+
+.custom-sign-in-button:hover .fa-icon {
+    color: #ffffff; /* White icon color on hover */
+}
