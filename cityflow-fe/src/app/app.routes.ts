@@ -10,8 +10,10 @@ import { ReportMalfunctionComponent } from './components/report-malfunction/repo
 import { BusServiceRankingsComponent } from './components/bus-service-rankings/bus-service-rankings.component';
 import { GenAlgChargingComponent } from './components/gen-alg-charging/gen-alg-charging.component';
 import { BusServicingsComponent } from './components/bus-servicings/bus-servicings.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 export const routes: Routes = [
+    {path:"", component : HomePageComponent},
     {path:"signin" , component:  SigninComponent},
     {path:"signup", component: SignupComponent},
     {path:"routes", component: RoutesComponent},

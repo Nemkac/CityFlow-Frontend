@@ -1,21 +1,20 @@
-<div class="center border-4 border-white rounded-[12px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10">
-    <h1 class="text-5xl font-bold text-white mb-4">Malfunction Report</h1><br><br>
+<div class="center-container">
+    <h1 class="title">Malfunction Report</h1>
 
-    <div class="mx-auto w-80">
+    <div class="textarea-container">
         <textarea 
             [(ngModel)]="commentary" 
-            class="border-2 border-gray-300 px-4 py-2 rounded-[12px] w-full h-40 resize-none focus:outline-none focus:border-blue-500 mx-auto" 
+            class="commentary-input" 
             placeholder="Describe what happened"></textarea>
     </div>
 
-    <div class="mx-auto w-80">
-        <label class="block text-white text-xl mb-2">Please rate the priority of malfunction resolving</label>
-        <input type="range" [(ngModel)]="priority" min="1" max="5" class="w-full mb-4">
-        <p class="text-white text-lg">Selected priority: {{ priority }}</p>
+    <div class="priority-container">
+        <label class="priority-label">Please rate the priority of malfunction resolving</label>
+        <input type="range" [(ngModel)]="priority" min="1" max="5" class="priority-slider">
+        <p class="priority-text">Selected priority: {{ priority }}</p>
     </div>
 
-    <button class="flex flex-row w-[144px] h-[44px] rounded-[10px] bg-white justify-center items-center hover:bg-lightGrey transition-[0.5s] mx-auto"
-    (click)="reportMalfunction(1)">
-        <p class="font-manrope text-darkGrey font-semibold text-[24px]">Report</p>
+    <button class="report-button" (click)="reportMalfunction(1)">
+        <p class="button-text">Report</p>
     </button>
 </div>
