@@ -1,4 +1,5 @@
 import { Bus } from "./bus";
+import { RouteType } from "./routeType";
 
 export interface Route{
     id: number;
@@ -10,4 +11,5 @@ export interface Route{
     openingTime: string;
     closingTime: string;
     departureFromStartingStation : number;
+    type : RouteType
 }

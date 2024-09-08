@@ -10,43 +10,58 @@
             <p class="text-[14px] text-primaryBlack">Select at least two stops to create a route. You select stations by pressing the station icon on the interactive map. When you have finished selecting stations, press the finish button that will appear in the lower left corner of the map to save the route path.</p>
         </div>
     </div>
-    <div class="flex relative w-full h-full gap-4 px-4 pb-4 overflow-hidden font-manrope">
-        <div #mapContainer class="flex h-full w-full rounded-md relative z-[1]"></div>
-        <div class="flex flex-col w-[400px] bg-primaryWhite p-4 rounded-tl-md gap-4 bottom-0 right-0 absolute z-[2] ">
+    <div class="flex flex-col w-full h-full gap-4 px-4 pb-4 overflow-hidden font-manrope">
+        <div class="flex w-full h-full relative">
+            <div #mapContainer class="flex relative h-full w-full rounded-md relative z-[1]"></div>
+            @if(possibleToSave){
+                <button class="flex h-[45px] w-[220px] rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]
+                                text-primaryWhite font-medium items-center justify-center text-[24px] absolute bottom-5 left-5 z-[2]"
+                        (click)="finishCreatingRoute()">
+                    Finish
+                </button>
+            }
+        </div>
+        <div class="flex flex-col w-full bg-primaryWhite p-4 border-[1px] border-lightGrey rounded-md gap-4">
             <p class="text-primaryGrey font-medium text-[14px] tracking-wider">ROUTE DETAILS</p>
-            <div class="flex flex-col w-full">
-                <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Route name</p>
-                <input class="placeholder:italic rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" placeholder="e. g. 4B" [(ngModel)]="routeName">
-            </div>
-            <div class="flex flex-row justify-between w-full items-center">
-                <div class="flex flex-col w-full justify-start">
-                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Opening time</p>
-                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="openingTime">
+            <div class="flex flex-row items-center w-full gap-8">
+                <div class="flex flex-col w-full">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Route name</p>
+                    <input class="placeholder:italic rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" placeholder="e. g. 4B" [(ngModel)]="routeName">
                 </div>
-                <div class="flex flex-col w-full justify-start ml-10">
-                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Closing time</p>
-                    <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="closingTime">
+                <div class="flex flex-row justify-between w-full items-center gap-2">
+                    <div class="flex flex-col w-full justify-start">
+                        <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Opening time</p>
+                        <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="openingTime">
+                    </div>
+                    <div class="flex flex-col w-full justify-start">
+                        <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Closing time</p>
+                        <input type="time" class="rounded-md border-[1px] h-[45px] border-primaryGrey w-full px-2 py-4 focus:outline-none" [(ngModel)]="closingTime">
+                    </div>
+                </div>
+                <div class="flex flex-col w-full">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Select route type</p>
+                    <div class="flex flex-row w-full items-center gap-2">
+                        <input type="radio" name="routeType" [(ngModel)]="selectedRouteType" [value]="routeType.CITY_ROUTE" required/>
+                        <p class="text-[18px] text-primaryBlack">City route</p>
+                    </div>
+                    <div class="flex flex-row w-full items-center gap-2">
+                        <input type="radio" name="routeType" [(ngModel)]="selectedRouteType" [value]="routeType.SUBURBAN_ROUTE" required />
+                        <p class="text-[18px] text-primaryBlack">Suburban route</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-row items-center gap-4 w-full justify-between">
-                <button class="flex flex-row py-2 h-[45px] w-full rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
-                        (click)="saveRoute()" [disabled]="!routeName || !openingTime || !closingTime || !routeFinished">
+            <div class="flex flex-row w-full items-center justify-end gap-4">
+                <button class="flex flex-row h-[45px] w-[220px] rounded-md bg-primaryDarkGreen justify-center items-center gap-2 hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="saveRoute()" [disabled]="!routeName || !openingTime || !closingTime || !routeFinished || !selectedRouteType">
                     <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save route</p>
                 </button>
-                <button class="flex h-[45px] w-full items-center justify-center rounded-md border-[1px] transition-[0.5s]
+                <button class="flex h-[45px] w-[220px] items-center justify-center rounded-md border-[1px] transition-[0.5s]
                                 text-primaryWhite bg-primaryBlack/70 font-medium text-[14px] hover:bg-primaryBlack/40"
                         (click)="cancelRouteCreation()">
                     <p class="font-manrope text-primaryWhite font-medium text-[16px]">Cancel</p>
                 </button>
             </div>
         </div>
-        @if(possibleToSave){
-            <button class="flex h-[45px] w-[220px] rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]
-                            text-primaryWhite font-medium items-center justify-center text-[24px] absolute bottom-10 left-10 z-[2]"
-                    (click)="finishCreatingRoute()">
-                Finish
-            </button>
-        }
     </div>
 </body>
 <!-- <div class="flex flex-col w-full h-full p-4 gap-4">

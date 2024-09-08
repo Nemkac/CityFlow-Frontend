@@ -1,26 +1,13 @@
-<!-- <div class="flex w-full flex-row justify-center justify-between items-center border-b-[1px] border-white/60 py-2">
-    <div class="flex flex-row w-full items-center">
-        <div class="flex rounded-full size-[40px] bg-[#E6C79C] items-center text-center justify-center">
-            <fa-icon class="text-white text-[22px]" [icon]="faBus"/>
-        </div>
-        <p class="text-white font-manrope font-semibold text-[32px] ml-5">Bus #{{busId}}</p>
-    </div>
-    <p class="w-full text-[24] font-light font-manrope text-lightGrey">Licence plate: {{licencePlate}}</p>
-    <div class="flex flex-row w-full justify-end justify-end">
-        <button class="flex rounded-[10px] bg-yellow size-[40px] items-center justify-center mr-10">
-            <fa-icon [icon]="faPen" class="text-grey font-bold text-[24px]"/>
-        </button>
-        <button class="flex rounded-[10px] bg-lightRed size-[40px] items-center justify-center"
-                (click)="deleteBusFromRoute(routeId, busId)">
-            <fa-icon [icon]="faTrash" class="text-white font-bold text-[24px]"/>
-        </button>
-    </div>
-</div> -->
-
 <div class="flex flex-col w-[300px] border-[1px] border-primaryGrey/50 rounded-md p-4 gap-4 relative
             hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]">
-    <div class="flex flex-row items-center w-auto gap-2">
+    <!-- <div class="flex flex-row items-center w-auto gap-2">
         <img src="../../../assets/icons/BusIcon.png" class="size-[25px]"/>
+        <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>
+    </div> -->
+    <div class="flex flex-row items-center w-auto gap-2">
+        <div class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+            <img src="../../../assets/icons/BusIcon.png" class="nav_menu_icon size-[20px]"/>
+        </div>
         <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>
     </div>
     <div>

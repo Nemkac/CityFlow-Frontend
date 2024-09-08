@@ -2,13 +2,15 @@
             hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]"
     (click)="showRoute(routeId)">
     <div class="flex flex-row items-center w-auto gap-2">
-        <div class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+        <div [ngClass]="{'bg-cityRoutes' : routeType === 'CITY_ROUTE',
+                        'bg-suburbanRoutes' : routeType === 'SUBURBAN_ROUTE'}"  
+            class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
             <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[20px]"/>
         </div>
         <p class="text-primaryBlack font-manrope font-semibold text-[24px]">{{routeName}}</p>
     </div>
-    <div>
-        <p class="w-full text-[14px] font-light font-manrope text-primaryBlack">Futoska pijaca - Centar</p>
+    <div class="">
+        <p class="w-full text-[14px] font-light font-manrope text-primaryBlack truncate">{{destinations}}</p>
         <p class="text-[14px] font-semibold font-manrope text-primaryBlack"> {{startTime}} - {{endTime}}</p>
     </div>
     <!-- <button class="flex flex-row gap-2 absolute top-2 right-2 items-center group button-hover-effect z-20"

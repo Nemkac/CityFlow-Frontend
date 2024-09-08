@@ -24,10 +24,13 @@ export class RouteListItemComponent implements OnInit{
   @Input() startTime: string = '';
   @Input() endTime: string = '';
   @Input() isUser: boolean = false;
+  @Input() routeType : string = '';
 
   @Output() routeDeleted = new EventEmitter<void>();
 
   public toggledDropdown : boolean = false;
+
+  public destinations : string = '';
 
   token : string | null = sessionStorage.getItem('token');
   loggedUser! : User;
@@ -40,6 +43,7 @@ export class RouteListItemComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchUser();
+    this.getDestinations()
   }
 
   public fetchUser() : void {
@@ -59,6 +63,17 @@ export class RouteListItemComponent implements OnInit{
 
   public showRoute(routeId : number) : void {
     this.routeService.showRoute(routeId, this.loggedUser.username, this.routeName);
+  }
+
+  public getDestinations() : void {
+    this.routeService.getDestinations(this.routeId).subscribe(
+      (response : any) => {
+        this.destinations = response;
+      },
+      (error : HttpErrorResponse) => {
+        console.log("Error while fetching route destinations, ", error.message);
+      }
+    )
   }
 
   public deleteRoute(routeId: number, event : Event): void {

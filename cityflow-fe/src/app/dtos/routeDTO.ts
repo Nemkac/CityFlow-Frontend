@@ -1,4 +1,5 @@
 import { Location } from "../models/location";
+import { RouteType } from "../models/routeType";
 
 export interface RouteDTO{
     routeName: string;
@@ -7,4 +8,5 @@ export interface RouteDTO{
     stations: Location[];
     openingTime: string;
     closingTime: string;
+    type : RouteType;
 }

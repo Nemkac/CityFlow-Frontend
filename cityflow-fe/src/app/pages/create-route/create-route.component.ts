@@ -13,6 +13,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WaringnComponent } from '../../components/modals/waringn/waringn.component';
+import { RouteType } from '../../models/routeType';
 
 L.Icon.Default.imagePath = 'assets/busSelected.png';
 L.Marker.prototype.options.icon = new L.Icon({
@@ -48,12 +49,14 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
   public selectedStationsLocations : any[] = [];
   public possibleToSave : boolean = false;
 
-  routeName: string = "";
-  openingTime: string = "";
-  closingTime: string = "";
-  startingStation?: L.LatLng;
-  endingStation?: L.LatLng;
-  selectedStations: L.LatLng[] = [];
+  public routeName: string = "";
+  public openingTime: string = "";
+  public closingTime: string = "";
+  public startingStation?: L.LatLng;
+  public endingStation?: L.LatLng;
+  public selectedStations: L.LatLng[] = [];
+  public routeType = RouteType;
+  public selectedRouteType? : RouteType;
 
   constructor(private routeService : RoutesService,
               private toast: NgToastService,
@@ -174,27 +177,30 @@ export class CreateRouteComponent implements AfterViewInit, OnInit {
     const endingPoint = this.selectedStationsLocations[this.selectedStationsLocations.length - 1];
     const stationsArray = this.selectedStationsLocations.slice(1, -1);
     
-    const routeDTO: RouteDTO = {
-      routeName: this.routeName,
-      startingPoint: startingPoint,
-      endingPoint: endingPoint,
-      stations: stationsArray,
-      openingTime: this.openingTime,
-      closingTime: this.closingTime
-    };
+    if(this.selectedRouteType){
+      const routeDTO: RouteDTO = {
+        routeName: this.routeName,
+        startingPoint: startingPoint,
+        endingPoint: endingPoint,
+        stations: stationsArray,
+        openingTime: this.openingTime,
+        closingTime: this.closingTime,
+        type : this.selectedRouteType
+      };
+      
+      console.log(routeDTO);
 
-    console.log(routeDTO);
-
-    this.routeService.saveRoute(routeDTO).subscribe(
-      (response : Route) => {
-        console.log(response);
-        this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
-        this.router.navigate(['/routes'])
-      },
-      (error : HttpErrorResponse) => {
-        console.log("Error while creating route: \n", error.message);
-      }
-    );
+      this.routeService.saveRoute(routeDTO).subscribe(
+        (response : Route) => {
+          console.log(response);
+          this.toast.success({detail:"SUCCESS",summary:'Route created successfully!'});
+          this.router.navigate(['/routes'])
+        },
+        (error : HttpErrorResponse) => {
+          console.log("Error while creating route: \n", error.message);
+        }
+      );
+    }
   } 
 
   public cancelRouteCreation(): void {

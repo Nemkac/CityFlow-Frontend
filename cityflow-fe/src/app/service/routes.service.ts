@@ -57,7 +57,7 @@ export class RoutesService {
   }
 
   public deleteRoute(id: number) : Observable<any>{
-    return this.http.delete<any>(`${this.apiServerUrl}/route/deleteRoute/${id}`, { headers : this.getHeaders() });
+    return this.http.delete<any>(`${this.apiServerUrl}/route/deleteRoute/${id}`, { headers : this.getHeaders(), responseType: 'text' as 'json'  });
   }
 
   public deleteBusFromRoute(dto: deleteBusFromRouteDTO) : Observable<any>{
