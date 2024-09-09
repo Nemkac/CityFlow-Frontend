@@ -6,6 +6,8 @@ import { NgFor } from '@angular/common';
 import { AppComponent } from '../../app.component';
 import { FormsModule, NgModel } from '@angular/forms';
 import { TimeSlot, TimeSlotImpl } from '../../models/timeSlot';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -13,7 +15,7 @@ import { TimeSlot, TimeSlotImpl } from '../../models/timeSlot';
 @Component({
   selector: 'app-bus-service-rankings',
   standalone: true,
-  imports: [NgFor,FormsModule],
+  imports: [NgFor,FormsModule,FontAwesomeModule],
   templateUrl: './bus-service-rankings.component.html',
   styleUrl: './bus-service-rankings.component.css'
 })
@@ -21,6 +23,8 @@ export class BusServiceRankingsComponent implements OnInit{
 
   rankings!:ServiceRanking[];
   timeSlotDate!:Date;
+
+  faCalculator = faCalculator;
 
   constructor(private serviceAdminService:ServiceAdminService
   ) {}

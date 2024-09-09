@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHome, faIdCard, faInbox } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faIdCard, faInbox,faScrewdriverWrench, faStairs } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
@@ -21,6 +21,8 @@ export class SidePanelMenuComponent implements OnInit{
   faHome = faHome;
   faIdCard = faIdCard;
   faInbox = faInbox;
+  faScrewdriverWrench = faScrewdriverWrench;
+  faStairs = faStairs;
 
   //Menu item selections
   showHome : boolean = true;

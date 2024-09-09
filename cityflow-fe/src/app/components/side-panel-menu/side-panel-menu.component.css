@@ -12,9 +12,9 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: bottom;
   width: 350px;
-  text-align: center; /* Center text inside the buttons */
+  text-align: bottom; /* Center text inside the buttons */
 }
 
 .text-white {
@@ -28,11 +28,11 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
 }
 
 button:hover {
-  transform: translateY(-2px); /* Slight lift on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
   background-color:#eeff00; /* Subtle hover effect */
 }
 
@@ -51,8 +51,8 @@ button:active {
 /* Flexbox layout for button content */
 button .flex {
   display: flex;
-  align-items: center;
-  justify-content: start;
+  align-items: bottom;
+  justify-content: bottom;
 }
 
 /* Adjust icon and text alignment */
@@ -66,7 +66,7 @@ button .w-10 {
 button .w-90 {
   width: 90%;
   display: flex;
-  justify-content: start;
+  justify-content: bottom;
 }
 
 button p {
