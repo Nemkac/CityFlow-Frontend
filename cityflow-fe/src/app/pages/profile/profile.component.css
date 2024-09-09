@@ -74,6 +74,27 @@ input::placeholder {
     width: 1300px;
 }
 
+.avatar {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px; 
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 50%; 
+    transform: scale(1.3); /
+
+}
+
 
 .submit-button {
     width: 444px;

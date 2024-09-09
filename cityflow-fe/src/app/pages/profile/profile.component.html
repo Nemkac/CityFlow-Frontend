@@ -1,6 +1,8 @@
 <form #EditProfileForm="ngForm" (ngSubmit)="editProfile(EditProfileForm)">    
     <div class="form-container">
-        <div class="avatar"></div>
+        <div class="avatar flex rounded-full w-[90px] h-[90px] bg-white mb-4">
+            <img [src]="getAvatarUrl()" alt="User Avatar" class="w-full h-full object-cover">
+        </div>
         <div class="form-section">
             <div class="form-column">
                 <div class="form-group">

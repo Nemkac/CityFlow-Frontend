@@ -17,7 +17,7 @@ export class DriverService {
         return this.http.get<MalfunctionReport>(`${this.apiServerUrl}/CityFlow/testReportOnFront`);
     }
 
-    public reportMalfunction(driverId:number,commentary:string, priority:number):Observable<MalfunctionReport>{
-        return this.http.post<MalfunctionReport>(`${this.apiServerUrl}/CityFlow/reportMalfunctionViaDriverId/${driverId}/${commentary}/${priority}`,null);
+    public reportMalfunction(userId:number,commentary:string, priority:number):Observable<MalfunctionReport>{
+        return this.http.post<MalfunctionReport>(`${this.apiServerUrl}/CityFlow/reportMalfunctionViaUserId/${userId}/${commentary}/${priority}`,null);
     }
 }

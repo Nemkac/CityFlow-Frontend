@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faHome, faIdCard, faInbox,faScrewdriverWrench, faStairs } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCircleExclamation, faIdCard, faInbox,faScrewdriverWrench,faPlug, faStairs } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
@@ -18,11 +18,12 @@ import { Router } from '@angular/router';
 export class SidePanelMenuComponent implements OnInit{
   //Icons
   faUser = faUser;
-  faHome = faHome;
+  faExclamation = faCircleExclamation;
   faIdCard = faIdCard;
   faInbox = faInbox;
   faScrewdriverWrench = faScrewdriverWrench;
   faStairs = faStairs;
+  faPlug = faPlug;
 
   //Menu item selections
   showHome : boolean = true;
@@ -127,6 +128,14 @@ export class SidePanelMenuComponent implements OnInit{
 
   public goToServicings() :  void {
     this.router.navigate(['/busServicings']);
+  }
+
+  public goToChargingPlan() : void {
+    this.router.navigate(['/chargingPlanGeneticAlgorithm'])
+  }
+
+  public goToReportMalfunction() : void {
+    this.router.navigate(['/reportMalfunction'])
   }
 
 }

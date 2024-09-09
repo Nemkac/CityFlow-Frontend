@@ -4,6 +4,9 @@ import { ServiceRanking } from '../../models/serviceRanking';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Driver } from '../../models/driver';
+import { AuthService } from '../../service/auth.service';
+import { User } from '../../models/user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-report-malfunction',
@@ -17,9 +20,14 @@ export class ReportMalfunctionComponent implements OnInit{
   commentary!:string;
   driver!:Driver
   priority: number = 3; // Default value
+  token = localStorage.getItem('token');
+  loggedUser! : User;
 
 
-  constructor(private driverService:DriverService) {}
+
+  constructor(private driverService:DriverService,
+              private authService:AuthService
+  ) {}
   ngOnInit(): void {}
 
   testReport(){
@@ -31,12 +39,22 @@ export class ReportMalfunctionComponent implements OnInit{
   }
 
   reportMalfunction(driverId:number){
-    this.driverService.reportMalfunction(driverId,this.commentary,this.priority).subscribe(
-      (report) => {
-        console.log("Report : ", report);
-      }
-    )
-    window.location.reload();
+    if(this.token != null){
+      this.authService.getUserFromToken(this.token).subscribe(
+        (response : User) => {
+          this.loggedUser = response;
+          this.driverService.reportMalfunction(response.id,this.commentary,this.priority).subscribe(
+            (report) => {
+              console.log("Report : ", report);
+            }
+          )
+          window.location.reload();
+        },
+        (error: HttpErrorResponse) => {
+          console.log('Error fetching user data:\n', error.message);
+        }
+      )
+    }
   }
 
 
