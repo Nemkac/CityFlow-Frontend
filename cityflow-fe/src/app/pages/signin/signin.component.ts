@@ -7,6 +7,8 @@ import { LoginDTO } from '../../dtos/loginDTO';
 import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-signin',
@@ -24,18 +26,19 @@ export class SigninComponent implements OnInit{
   ngOnInit(): void {}
 
   constructor(private authService : AuthService, 
-              private router : Router){}
+              private router : Router,
+              private cdRef: ChangeDetectorRef){}
 
   public signIn(SignInForm: NgForm): void {
     this.authService.logIn(SignInForm.value).subscribe(
       (response: LoginDTO) => {
         console.log("Successfully signed in!");
-  
         this.token = localStorage.getItem('token');
         if(this.token != null) {
         this.authService.getUserFromToken(this.token).subscribe(
           (response1:User) => {
             this.loggedUserRole = response1.roles;
+            this.cdRef.detectChanges();
             if (this.loggedUserRole === 'ROLE_DRIVER') {
               this.router.navigate(['/reportMalfunction']);
             } else if (this.loggedUserRole === 'ROLE_CHARGER') {
@@ -43,6 +46,7 @@ export class SigninComponent implements OnInit{
             } else if (this.loggedUserRole === 'ROLE_SERVICE') {
               this.router.navigate(['/busServicings']);
             }
+            window.location.reload();
           }
         )
         } 

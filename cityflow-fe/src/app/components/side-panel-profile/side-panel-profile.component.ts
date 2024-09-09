@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class SidePanelProfileComponent implements OnInit{
   token = localStorage.getItem('token');
 
   constructor(private authService : AuthService,
-              private router : Router
+              private router : Router,
+              private cdRef: ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
@@ -61,20 +63,9 @@ export class SidePanelProfileComponent implements OnInit{
     localStorage.removeItem('token');
     this.token = null;
     localStorage.removeItem('loggedUser');
+    this.cdRef.detectChanges();
     this.router.navigate(['/signin']);
-    if(this.token != null){
-      this.authService.getUserFromToken(this.token).subscribe(
-        (response : User) => {
-          this.loggedUser = response;
-          console.log(this.token);
-        },
-        (error: HttpErrorResponse) => {
-          console.log('Error fetching user data:\n', error.message);
-        }
-      )
-    } else {
-      console.log("nema lika");
-    }
+    window.location.reload();
 
   }
 }
