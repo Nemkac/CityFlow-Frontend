@@ -6,6 +6,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WaringnComponent } from '../modals/waringn/waringn.component';
 import { CommonModule } from '@angular/common';
+import { EditBusModalComponent } from '../modals/edit-bus-modal/edit-bus-modal.component';
+import { Bus } from '../../models/bus';
 
 @Component({
 	selector: 'app-bus-card',
@@ -15,7 +17,7 @@ import { CommonModule } from '@angular/common';
 	styleUrl: './bus-card.component.css'
 })
 export class BusCardComponent implements OnInit{
-	//Icons
+
 	faBus = faBus;
 	faTrash = faTrash;
 	faPen = faPen;
@@ -23,8 +25,10 @@ export class BusCardComponent implements OnInit{
 	@Input() busId: number = 0;
 	@Input() licencePlate: string = '';
   	@Input() routes: string[] = [];
+	@Input() bus! : Bus;
 
 	@Output() busDeleted = new EventEmitter<string>();
+	@Output() busEdited = new EventEmitter<void>();
 
 	public toggledDropdown : boolean = false;
 
@@ -56,4 +60,21 @@ export class BusCardComponent implements OnInit{
 	public toggleDropdown() : void {
 		this.toggledDropdown = !this.toggledDropdown;
 	}
+
+	public editBus(selectedBus : Bus) : void {
+		const modalRef = this.modalService.open(
+			EditBusModalComponent,
+			{ backdrop : 'static', keyboard : true }
+		);
+
+		modalRef.componentInstance.bus = selectedBus;
+		modalRef.componentInstance.busEdited.subscribe(
+			() => {
+				this.toggledDropdown = false;
+				this.busEdited.emit();
+			}
+		);
+	}
+
+
 }

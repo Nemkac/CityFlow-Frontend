@@ -6,7 +6,7 @@
     </div> -->
 
     <div class="flex flex-row items-center w-auto gap-2">
-        <div class="flex rounded-full items-center text-center justify-center p-2">
+        <div class="flex rounded-full items-center bg-cityRoutes text-center justify-center p-2">
             <img src="../../../assets/icons/BusIcon.png" class="nav_menu_icon size-[20px]"/>
         </div>
         <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>
@@ -37,7 +37,7 @@
          class="z-20 absolute top-10 right-2 bg-white divide-y divide-gray-100 shadow-xl border-[1px] rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
           <li>
-            <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2">
+            <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="editBus(bus)">
                 <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px]"/>
                 <p class="block">Edit bus</p>
             </div>

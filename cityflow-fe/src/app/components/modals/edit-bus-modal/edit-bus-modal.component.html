@@ -1,0 +1,77 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[800px] h-auto max-h-[800px] bg-primaryWhite rounded-[10px] p-4 gap-8 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Edit bus</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="activeModalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <div class="flex flex-col w-full h-auto gap-4">
+            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">BUS DETAILS</p>
+            <div class="flex flex-col w-full">
+                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Serial number</label>
+                <input [(ngModel)]="licencePlate" 
+                        #licencePlateModel="ngModel"
+                        class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
+                        [placeholder]="bus.licencePlate" type="text"
+                        pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
+                        required
+                        maxlength="11"
+                        (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
+            </div>
+        </div>
+        <div class="flex flex-col w-full max-h-[500px] overflow-y-auto p-4 rounded-md border-[1px] border-lightGrey">
+            <div class="flex flex-row gap-2 items-center">
+                <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">CURRENT ROUTES</p>
+                <button class="flex flex-row py-1.5 px-3 gap-2 items-center rounded-md bg-primaryDarkGreen 
+                                hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="addRouteToBus()">
+                    <img src="../../../assets/icons/PlusIcon.png" class="size-[15px] nav_menu_icon"/>
+                    <p class="text-primaryWhite font-manrope text-[12px]">Add new</p>
+                </button>
+            </div>
+            @if (bus.routes.length <= 0) {
+                <div class="flex flex-col w-full my-2">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no routes to display</p>
+                    <p class="text-[16px] font-light text-primaryBlack">
+                        You can arrange the bus on a new route by pressing the <span class="font-medium text-primaryDarkGreen">"Add new"</span> button
+                    </p>
+                </div>
+            } @else {
+                <div class="flex flex-row flex-wrap justify-evenly gap-4 w-full">
+                    @for (route of busRoutes; track $index) {
+                        <div class="flex flex-row px-4 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2 gap-8 relative
+                                    hover:border-primaryLightGreen transition-[0.5s] hover:shadow-md">
+                            <div class="flex flex-row items-center w-auto gap-2">
+                                <div [ngClass]="{'bg-cityRoutes' : route.type === 'CITY_ROUTE',
+                                                'bg-suburbanRoutes' : route.type === 'SUBURBAN_ROUTE'}"  
+                                    class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+                                    <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[15px]"/>
+                                </div>
+                                <p class="text-primaryBlack font-manrope font-semibold text-[16px]">{{route.name}}</p>
+                            </div>
+                            <button class="flex flex-row gap-2 items-center group button-hover-effect">
+                                <img src="../../../assets/icons/TrashIcon.png" class="size-[14px] opacity-50 nav_menu_icon_red"/>
+                                <p class="text-primaryBlack group-hover:text-lightRed group-hover:opacity-100 
+                                        opacity-50 font-manrope text-[12px] transition-[0.5s]"
+                                    (click)="deleteBusFromRoute(route.id, bus.id)">
+                                    Delete
+                                </p>
+                            </button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="flex flex-row w-full items-center justify-end">
+            <button [ngClass]="{'bg-primaryDarkGreen hover:bg-primaryLightGreen' : licencePlate !== '',
+                                'bg-primaryGrey cursor-disabled' : licencePlate === ''}"
+                    class="flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
+                    (click)="edit()" [disabled]="licencePlate === ''">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

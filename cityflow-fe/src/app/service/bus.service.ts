@@ -1,9 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Bus } from '../models/bus';
 import { BusDTO } from '../dtos/busDTO';
+import { AddRoutesToBusDTO } from '../dtos/addRoutesToBusDTO';
+import { B, dt } from '@fullcalendar/core/internal-common';
+import { EditBusDTO } from '../dtos/editBusDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +18,31 @@ export class BusService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
+  public getHeaders() : HttpHeaders{
+    const token = sessionStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization' : `Bearer ${token}`
+    });
+  }
+
   public getAll() : Observable<Bus[]> {
-    return this.http.get<Bus[]>(`${this.apiServerUrl}/CityFlow/buses`);
+    return this.http.get<Bus[]>(`${this.apiServerUrl}/bus/get/all`, { headers : this.getHeaders() });
   }
 
   public save(bus : BusDTO) : Observable<Bus> {
-    return this.http.post<Bus>(`${this.apiServerUrl}/CityFlow/saveBus`, bus);
+    return this.http.post<Bus>(`${this.apiServerUrl}/bus/save`, bus, { headers : this.getHeaders() });
   }
 
-  public deleteBus(id: number) : Observable<any>{
-    return this.http.delete<any>(`${this.apiServerUrl}/CityFlow/deleteBus/${id}`);
+  public deleteBus(id: number) : Observable<string>{
+    return this.http.delete<string>(`${this.apiServerUrl}/bus/delete/${id}`, { headers : this.getHeaders(), responseType: "text" as "json"});
+  }
+
+  public addRoutesToBus(dto : AddRoutesToBusDTO) : Observable<string> {
+    return this.http.post<string>(`${this.apiServerUrl}/bus/routes/add`, dto, { headers : this.getHeaders(), responseType: "text" as "json" });
+  }
+
+  public edit(dto : EditBusDTO) : Observable<Bus> {
+    return this.http.post<Bus>(`${this.apiServerUrl}/bus/update`, dto, { headers : this.getHeaders(), responseType: "text" as "json"  });
   }
 }

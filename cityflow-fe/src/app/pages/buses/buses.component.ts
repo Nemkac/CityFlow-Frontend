@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateBusFormComponent } from '../../components/create-bus-form/create-bus-form.component';
 import { NgToastService } from 'ng-angular-popup';
 import { FormsModule } from '@angular/forms';
+import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
 	selector: 'app-buses',
@@ -23,6 +24,7 @@ export class BusesComponent implements OnInit{
 
 	public buses : Bus[] = [];
 	public searchText : string = '';
+	public filteredBuses : Bus[] = [];
 
 	constructor(private busService : BusService,
 		private modalService: NgbModal,
@@ -40,6 +42,7 @@ export class BusesComponent implements OnInit{
 					...bus,
 					routeNames: bus.routes.map(route => route.name)
 				}));
+				this.filteredBuses = this.buses;
 			},
 			error: (error) => console.error('Error fetching buses', error)
 		});
@@ -59,11 +62,22 @@ export class BusesComponent implements OnInit{
 	}
 
 	public handleBusDeleted() : void {
-		this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully' });
+		this.toast.success({ detail: "SUCCESS", summary: 'Route deleted successfully!' });
 		this.fetchBuses();
 	}
 
+	public handleBusEdited() : void {
+		this.fetchBuses();
+		this.toast.success({ detail: "SUCCESS", summary: 'Bus edited successfully!' });
+	}
+
 	public searchBuses() : void  {
-		
+		if(!this.searchText) {
+			this.filteredBuses = this.buses;
+		  } else {
+			this.filteredBuses = this.buses.filter(bus => 
+			  bus.licencePlate.toLowerCase().includes(this.searchText.toLowerCase())
+			);
+		  }
 	}
 }

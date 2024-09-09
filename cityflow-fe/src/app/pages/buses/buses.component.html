@@ -51,12 +51,14 @@
         </div>
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             @if (buses.length > 0) {
-                @for (bus of buses; track $index) {
+                @for (bus of filteredBuses; track $index) {
                     <app-bus-card
                         [busId]="bus.id"
                         [licencePlate]="bus.licencePlate"
                         [routes]="bus.routeNames"
+                        [bus]="bus"
                         (busDeleted)="handleBusDeleted()"
+                        (busEdited)="handleBusEdited()"
                     />
                 }
             } @else {

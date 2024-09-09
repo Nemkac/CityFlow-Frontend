@@ -1,0 +1,85 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[800px] h-auto max-h-[800px] bg-primaryWhite rounded-[10px] p-4 gap-8 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Add routes</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="activeModalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+            <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+            <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Select one or more route that you want to add to your bus.</label>
+        </div>
+        <div [ngClass]="{'flex-row flex-wrap justify-evenly items-center' : availableRoutes.length > 0}"
+            class="flex p-4 gap-4 rounded-md border-[1px] border-lightGrey">
+            @if(availableRoutes.length <= 0) {
+                <div class="flex flex-col w-full">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no routes to display</p>
+                    <p class="text-[16px] font-light text-primaryBlack">
+                        All routes available in the application have already been added to selected bus.                    
+                    </p>
+                </div>
+            } @else {
+                @for (route of availableRoutes; track $index) {
+                    <!-- <div class="flex flex-col px-8 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2
+                                hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]"
+                        [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(route),
+                                    'border-[1px]':!isActive(route)}"
+                        (click)="setActive(route)">
+                        <div class="flex flex-row items-center w-auto gap-2">
+                            <p class="text-primaryBlack font-manrope font-semibold text-[16px]">{{route.name}}</p>
+                        </div>
+                    </div> -->
+
+                    <div class="flex flex-row px-4 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2 gap-8 relative
+                                hover:border-primaryLightGreen transition-[0.5s] hover:shadow-md hover:translate-y-[-5px] cursor-pointer"
+                        [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(route),
+                                    'border-[1px]':!isActive(route)}"
+                        (click)="setActive(route)">
+                        <div class="flex flex-row items-center w-auto gap-2">
+                            <div [ngClass]="{'bg-cityRoutes' : route.type === 'CITY_ROUTE',
+                                            'bg-suburbanRoutes' : route.type === 'SUBURBAN_ROUTE'}"  
+                                class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+                                <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[15px]"/>
+                            </div>
+                            <p class="text-primaryBlack font-manrope font-semibold text-[16px]">{{route.name}}</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="flex flex-col w-full gap-2">
+            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">TIME TABLE SETTINIGS</p>
+            <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey p-4 gap-4">
+                <div class="flex flex-row w-full items-center rounded-md bg-primaryYellow/20 py-2 px-4 gap-4">
+                    <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">The minimum departure time from the starting station is 10 minutes. If, after adjusting the schedule, the time falls below the specified minute limit, it will be automatically set to 10.</label>
+                </div>               
+                <form [formGroup]="form">
+                    <div class="flex flex-row w-full gap-8 items-center">
+                        <div class="flex flex-row gap-2 items-center">
+                            <input formControlName="option" type="radio" value="scaleDepartureTime" />
+                            <p class="text-primaryBlack text-[16px]">Adjust current time table</p>
+                        </div>
+                        <div class="flex flex-row gap-2 items-center">
+                            <input formControlName="option" type="radio" value="extendClosingTime"/>
+                            <p class="text-primaryBlack text-[16px]">Adjust route closing time</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @if (availableRoutes.length > 0) {
+            <div class="flex flex-row w-full items-center justify-end">
+                <button [ngClass]="{'bg-primaryDarkGreen hover:bg-primaryLightGreen' : selectedRoutes.length > 0,
+                                    'bg-primaryGrey cursor-disabled' : selectedRoutes.length <= 0}"
+                        class="flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
+                        (click)="addRoutesToBus()" [disabled]="selectedRoutes.length <= 0">
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save</p>
+                </button>
+            </div>
+        }
+    </div>
+</div>
