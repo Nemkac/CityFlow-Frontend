@@ -12,6 +12,28 @@ html, body {
     padding: 20px; /* Add padding inside the panel */
 }
 
+.avatar {
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 50%; /* Makes the container round */
+    overflow: hidden; /* Clips the image to the round container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px; /* Adjust as needed */
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining its aspect ratio */
+    border-radius: 50%; /* Optional, keeps the image rounded if it has extra space */
+    transform: scale(1.3); /* Zooms in the image by 10% */
+
+}
+
+
 /* Avatar styles */
 .avatar {
     background-color: #ffffff; /* White background for the avatar */

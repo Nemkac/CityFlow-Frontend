@@ -42,6 +42,21 @@ export class SidePanelProfileComponent implements OnInit{
     }
   }
 
+  public getAvatarUrl(): string {
+    if (!this.loggedUser) return '';
+
+    switch (this.loggedUser.roles) {
+      case 'ROLE_DRIVER':
+        return 'https://img.freepik.com/free-photo/man-working-as-truck-driver-posing_23-2151489877.jpg';
+      case 'ROLE_SERVICE':
+        return 'https://media.istockphoto.com/id/824981586/photo/portrait-of-a-mechanic-fixing-cars-at-an-auto-repair-shop.jpg?s=612x612&w=0&k=20&c=0yln2fLED8K9rskg6MjHjUCkv5cfh5IrYsjrYJq6Ezg=';
+      case 'ROLE_CHARGER':
+        return 'https://t3.ftcdn.net/jpg/03/67/46/48/240_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg';
+      default:
+        return 'default-image-url.jpg'; // Provide a default image URL if needed
+    }
+  }
+
   public signOut() : void {
     localStorage.removeItem('token');
     this.router.navigate(['/signin']);
