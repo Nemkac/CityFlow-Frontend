@@ -1,0 +1,56 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[800px] h-auto max-h-[800px] bg-primaryWhite rounded-[10px] p-4 gap-8 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Add new widget</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="modalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <div class="flex flex-row w-full items-center rounded-md bg-primaryLightGreen/20 py-2 px-4 gap-4">
+            <img src="../../../assets/icons/HelpIcon.png" class="size-[20px] "/>
+            <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Select one or more widgets that you want to add to your dashboard</label>
+        </div>
+        <div [ngClass]="{'flex-row flex-wrap justify-evenly items-center' : availableWidgets.length > 0}"
+            class="flex p-4 gap-4 rounded-md border-[1px] border-lightGrey">
+            @if(availableWidgets.length <= 0) {
+                <div class="flex flex-col w-full">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no widgets to display</p>
+                    <p class="text-[16px] font-light text-primaryBlack">
+                        All widgets available in the application have already been added to your dashboard.                    
+                    </p>
+                </div>
+            } @else {
+                @for (widget of availableWidgets; track $index) {
+                    <div class="flex flex-col px-8 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2
+                                hover:border-primaryLightGreen cursor-pointer transition-[0.5s] hover:shadow-md hover:translate-y-[-5px]"
+                        [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(widget),
+                                    'border-[1px]':!isActive(widget)}"
+                        (click)="setActive(widget)">
+                        <div class="flex flex-row items-center w-auto gap-2">
+                            @if (widget.name === "BusesWidget" || widget.name === "RoutesWidget") {
+                                <img src="../../../../assets/icons/PieChart.png" class="size-[20px]"/>
+                            } @else if (widget.name === "StationsCountWidget") {
+                                <img src="../../../../assets/icons/Card.png" class="size-[20px]"/>
+                            } @else {
+                                <img src="../../../../assets/icons/BarChart.png" class="size-[20px]"/>
+                            }
+                            <p class="text-primaryBlack font-manrope font-semibold text-[16px]">{{widget.name}}</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        @if (availableWidgets.length > 0) {
+            <div class="flex flex-row w-full items-center justify-end">
+                <button [ngClass]="{'bg-primaryDarkGreen hover:bg-primaryLightGreen' : selectedWidgets.length > 0,
+                                    'bg-primaryGrey cursor-disabled' : selectedWidgets.length <= 0}"
+                        class="flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
+                        (click)="addWidgetsToDashboard()" [disabled]="selectedWidgets.length <= 0">
+                    <p class="font-manrope text-primaryWhite font-medium text-[16px]">Save route</p>
+                </button>
+            </div>
+        }
+    </div>
+</div>

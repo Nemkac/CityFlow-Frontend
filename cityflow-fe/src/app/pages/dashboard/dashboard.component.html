@@ -4,19 +4,52 @@
             <img src="../../../assets/icons/DashboardIcon.png" class="size-[24px] icon"/>
             <p class="text-primaryBlack text-[24px] font-medium">Dashboard</p>
         </div>
-        <button class="flex flex-row py-2 px-4 items-center gap-2 rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]">
+        <button class="flex flex-row py-2 px-4 items-center gap-2 rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="addNewWidget()">
             <img src="../../../assets/icons/PlusIcon.png" class="size-[20px] nav_menu_icon"/>
             <p class="text-primaryWhite text-[16px]">Add new widget</p>
         </button>
     </div>
     <hr class="text-primaryGrey/50 w-full">
-    <div class="flex p-4 w-full h-full">
+    <div class="flex p-8 w-full h-full">
         <div class="grid grid-cols-3 w-full h-full gap-4">
-            <app-buses-widget/>
-            <app-routes-widget/>
-            <app-stations-count-widget/>
-            <app-bus-types-per-route-widget class="col-span-3"/>
-            <app-stations-count-per-route-widget class="col-span-3"/>
+            @if(adminWidgets.length <= 0) {
+                <div class="col-span-full">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no widgets to display</p>
+                    <p class="text-[16px] font-light text-primaryBlack">
+                        You can add a new widget by pressing the <span class="font-medium text-primaryDarkGreen">"Add new widget"</span> button
+                    </p>
+                </div>
+            } @else {
+                @for (widget of adminWidgets; track $index) {
+                    @if(widget.name === "BusesWidget") {
+                        <app-buses-widget
+                            [widget]="widget"
+                            (widgetRemoved)="handleWidgetRemoved()"
+                        />
+                    } @else if (widget.name === "RoutesWidget") {
+                        <app-routes-widget
+                            [widget]="widget"
+                            (widgetRemoved)="handleWidgetRemoved()"
+                        />
+                    } @else if (widget.name === "StationsCountPerRouteWidget"){
+                        <app-stations-count-per-route-widget class="col-span-3"
+                            [widget]="widget"
+                            (widgetRemoved)="handleWidgetRemoved()"
+                        />
+                    } @else if (widget.name === "StationsCountWidget") {
+                        <app-stations-count-widget
+                            [widget]="widget"
+                            (widgetRemoved)="handleWidgetRemoved()"
+                        />
+                    } @else {
+                        <app-bus-types-per-route-widget class="col-span-3"
+                            [widget]="widget"
+                            (widgetRemoved)="handleWidgetRemoved()"
+                        />
+                    }
+                }
+            }
         </div>
     </div>
 </div>

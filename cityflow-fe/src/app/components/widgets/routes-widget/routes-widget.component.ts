@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import ApexCharts, { ApexOptions } from 'apexcharts'
+import { Widget } from '../../../models/widget';
+import { RouteAdministratorService } from '../../../service/route-administrator.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -10,8 +13,28 @@ import ApexCharts, { ApexOptions } from 'apexcharts'
   styleUrl: './routes-widget.component.css'
 })
 export class RoutesWidgetComponent {
+  @Input() widget? : Widget;
+
+  @Output() widgetRemoved = new EventEmitter<string>();
+
+  constructor(private routeAdministratorService : RouteAdministratorService){}
+
   ngOnInit(): void {
     this.loadChart();
+  }
+
+  public removeWidgetFromDashboard() : void {
+    if(this.widget){
+      this.routeAdministratorService.removeWidgetFromDashboard(this.widget).subscribe(
+        (response : string) => {
+          console.log("Widget successfully removed from dashboard");
+          this.widgetRemoved.emit(response);
+        },
+        (error : HttpErrorResponse) => {
+          console.log("Error while deleting widget from dashboard, ", error.message);
+        }
+      )
+    }
   }
 
   loadChart(): void {
