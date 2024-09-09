@@ -59,9 +59,9 @@ export class SidePanelProfileComponent implements OnInit{
 
   public signOut() : void {
     localStorage.removeItem('token');
-    this.router.navigate(['/signin']);
     this.token = null;
-    window.location.reload();
+    localStorage.removeItem('loggedUser');
+    this.router.navigate(['/signin']);
     if(this.token != null){
       this.authService.getUserFromToken(this.token).subscribe(
         (response : User) => {
