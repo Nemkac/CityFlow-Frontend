@@ -22,6 +22,10 @@ export class GenAlgChargingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGeneticOutput();
+    if(sessionStorage.getItem('keyCharger') == '0') {
+      window.location.reload();
+      sessionStorage.setItem('keyCharger','1');
+    }
   }
 
   getGeneticOutput(): void {

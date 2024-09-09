@@ -25,7 +25,11 @@ export class BusServicingsComponent implements OnInit{
   
   ngOnInit(): void {
     this.getPastServicings();
-    this.getFutureServicings()
+    this.getFutureServicings();
+    if(sessionStorage.getItem('keyServicer') == '0') {
+      window.location.reload();
+      sessionStorage.setItem('keyServicer','1');
+    }
   }
 
   // TODO: vidi da sortiras po datumu

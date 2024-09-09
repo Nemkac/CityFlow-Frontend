@@ -63,9 +63,10 @@ export class SidePanelProfileComponent implements OnInit{
     localStorage.removeItem('token');
     this.token = null;
     localStorage.removeItem('loggedUser');
-    this.cdRef.detectChanges();
     this.router.navigate(['/signin']);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 125);
 
   }
 }

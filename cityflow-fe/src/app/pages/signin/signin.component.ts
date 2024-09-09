@@ -8,12 +8,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
+import { GlobalService } from '../../global.service';
+
 
 
 @Component({
   selector: 'app-signin',
   standalone: true,
   imports: [FontAwesomeModule, FormsModule],
+  providers: [NgToastService],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
@@ -27,27 +31,31 @@ export class SigninComponent implements OnInit{
 
   constructor(private authService : AuthService, 
               private router : Router,
-              private cdRef: ChangeDetectorRef){}
+              private cdRef: ChangeDetectorRef,
+              private toast: NgToastService,
+              private globalService:GlobalService){}
 
   public signIn(SignInForm: NgForm): void {
     this.authService.logIn(SignInForm.value).subscribe(
       (response: LoginDTO) => {
         console.log("Successfully signed in!");
         this.token = localStorage.getItem('token');
+        this.toast.success('Successfully loged in!','Success');
         if(this.token != null) {
         this.authService.getUserFromToken(this.token).subscribe(
           (response1:User) => {
             this.loggedUserRole = response1.roles;
-            this.cdRef.detectChanges();
             if (this.loggedUserRole === 'ROLE_DRIVER') {
               this.router.navigate(['/reportMalfunction']);
+              sessionStorage.setItem('keyDriver','0');
             } else if (this.loggedUserRole === 'ROLE_CHARGER') {
               this.router.navigate(['/chargingPlanGeneticAlgorithm']);
+              sessionStorage.setItem('keyCharger','0');
             } else if (this.loggedUserRole === 'ROLE_SERVICE') {
               this.router.navigate(['/busServicings']);
+              sessionStorage.setItem('keyServicer','0');
             }
-            window.location.reload();
-          }
+          }  
         )
         } 
       },

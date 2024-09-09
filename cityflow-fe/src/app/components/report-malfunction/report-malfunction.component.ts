@@ -7,6 +7,7 @@ import { Driver } from '../../models/driver';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
+import { GlobalService } from '../../global.service';
 
 @Component({
   selector: 'app-report-malfunction',
@@ -22,13 +23,21 @@ export class ReportMalfunctionComponent implements OnInit{
   priority: number = 3; // Default value
   token = localStorage.getItem('token');
   loggedUser! : User;
+  sessionValue !: string ;
+  sessionCounter : number = 0;
 
 
 
   constructor(private driverService:DriverService,
-              private authService:AuthService
+              private authService:AuthService,
+              private globalService:GlobalService
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(sessionStorage.getItem('keyDriver') == '0') {
+      window.location.reload();
+      sessionStorage.setItem('keyDriver','1');
+    }
+  }
 
   testReport(){
     this.driverService.testReport().subscribe(
