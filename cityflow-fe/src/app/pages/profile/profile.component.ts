@@ -18,7 +18,17 @@ import { EditProfileDTO } from '../../dtos/editProfileDTO';
 export class ProfileComponent implements OnInit{
   
   token = localStorage.getItem('token');
-  loggedUser! : User;
+  loggedUser: User = { // Initialize the loggedUser object with default values
+    id: 0,
+    name: '',
+    lastname: '',
+    dateOfBirth: '',
+    phoneNumber: '',
+    username: '',
+    email: '',
+    password: '',
+    roles :''
+  };
 
   constructor(private authService : AuthService,
               private userService : UserService) {}
@@ -31,7 +41,9 @@ export class ProfileComponent implements OnInit{
     if(this.token != null){
       this.userService.updateProfile(RegisterForm.value, this.loggedUser.id).subscribe(
         (response: string) => {
-          console.log(response);
+          //console.log(response);
+          //console.log(RegisterForm.value);
+          console.log(this.loggedUser.username);
         },
         (error : HttpErrorResponse) => {
           console.log("Error while updating profile:\n", error.message);

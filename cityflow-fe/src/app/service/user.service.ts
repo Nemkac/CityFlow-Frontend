@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EditProfileDTO } from '../dtos/editProfileDTO';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) { }
   
-  public updateProfile(requestBody : EditProfileDTO, id: number) : Observable<string>{
-    return this.http.post<string>(`${this.apiServerUrl}/CityFlow/Account/updateProfile/${id}`, requestBody);  
+  public updateProfile(requestBody : User, id: number) : Observable<string>{
+    return this.http.put<string>(`${this.apiServerUrl}/CityFlow/updateProfile/${id}`, requestBody);  
   }
   
 }
