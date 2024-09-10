@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GeneticAlgorithmOutput } from '../../models/geneticAlgorithmOutput';
 import { GenAlgChargeService } from '../../service/gen_alg_charge.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
+import { NgToastService } from 'ng-angular-popup'; 
 
 @Component({
   selector: 'app-gen-alg-charging',
   standalone: true,
-  imports: [NgFor, FormsModule, CommonModule,FontAwesomeModule],
+  imports: [NgFor, FormsModule, CommonModule,FontAwesomeModule,NgToastModule],
   templateUrl: './gen-alg-charging.component.html',
   styleUrls: ['./gen-alg-charging.component.css'] // fixed typo: styleUrl -> styleUrls
 })
@@ -17,8 +19,13 @@ export class GenAlgChargingComponent implements OnInit {
   geneticOutputFull!: GeneticAlgorithmOutput[];
   isLoading = true; // Added loading state
   faCalculator = faCalculator;
+  ToasterPosition = ToasterPosition;
+  private = inject(NgToastService); //inject the service
 
-  constructor(private genService: GenAlgChargeService) {}
+
+  constructor(private genService: GenAlgChargeService,
+              private toast:NgToastService
+  ) {}
 
   ngOnInit(): void {
     this.getGeneticOutput();
@@ -34,7 +41,7 @@ export class GenAlgChargingComponent implements OnInit {
         if (result.length != 0) {
           this.geneticOutputFull = result;
           console.log('Prikazivanje vec izvrsenog genetskog algoritma');
-          this.isLoading = false; 
+          this.isLoading = false;
         } else {
           this.genService.runGeneticAlgorithm().subscribe(
             (result1) => {
@@ -63,6 +70,7 @@ export class GenAlgChargingComponent implements OnInit {
         this.geneticOutputFull = result;
         console.log('Genetski algoritam uspesno izvrsen');
         this.isLoading = false;
+        this.toast.success("Charging plan successfully generated using genetic algorithm ", "SUCCESS", 5000)
       },
       (error) => {
         console.error('Greska sa izvrsavanjem genetskog algoritma', error);

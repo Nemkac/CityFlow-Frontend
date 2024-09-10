@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ServiceAdminService } from '../../service/service-admin.service';
 import { ServiceRanking } from '../../models/serviceRanking';
 import { Bus } from '../../models/bus';
@@ -8,13 +8,16 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { TimeSlot, TimeSlotImpl } from '../../models/timeSlot';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
+import { NgToastService } from 'ng-angular-popup'; 
+
 
 
 
 @Component({
   selector: 'app-bus-service-rankings',
   standalone: true,
-  imports: [NgFor,FormsModule,FontAwesomeModule],
+  imports: [NgFor,FormsModule,FontAwesomeModule,NgToastModule],
   templateUrl: './bus-service-rankings.component.html',
   styleUrl: './bus-service-rankings.component.css'
 })
@@ -24,8 +27,11 @@ export class BusServiceRankingsComponent implements OnInit{
   timeSlotDate!:Date;
 
   faCalculator = faCalculator;
+  ToasterPosition = ToasterPosition;
+  private = inject(NgToastService); //inject the service
 
-  constructor(private serviceAdminService:ServiceAdminService
+  constructor(private serviceAdminService:ServiceAdminService,
+              private toast:NgToastService
   ) {}
   ngOnInit(): void {
     this.getRankings();
@@ -38,7 +44,6 @@ export class BusServiceRankingsComponent implements OnInit{
         this.rankings.sort((a,b) => a.rank - b.rank);
       }
     )
-    console.log('niga');
   }
 
   moveBusUpByRank(busId:number){
@@ -79,7 +84,12 @@ export class BusServiceRankingsComponent implements OnInit{
         console.log(services);
       }
     )
-    window.location.reload();
+    this.toast.success("Bus successfully asigned to new added service time slot ", "SUCCESS", 5000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 750);
+
+
   }
 
 

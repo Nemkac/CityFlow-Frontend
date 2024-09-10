@@ -3,7 +3,6 @@ html, body {
     overflow: hidden; /* Disable scrolling beyond the viewport height */
 }
 
-
 .center-container {
     display: flex;
     flex-direction: column;
