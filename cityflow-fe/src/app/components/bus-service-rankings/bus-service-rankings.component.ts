@@ -11,7 +11,6 @@ import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 
 
-
 @Component({
   selector: 'app-bus-service-rankings',
   standalone: true,
