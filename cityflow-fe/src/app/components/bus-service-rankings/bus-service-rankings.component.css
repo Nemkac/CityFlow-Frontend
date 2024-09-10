@@ -13,9 +13,9 @@ html, body {
     left: 50%;
     transform: translate(-40%, -20%);
     
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     background-color: #2f3640;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -26,7 +26,7 @@ html, body {
 /* Title styles */
 .title {
     color: #ffffff;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 30px;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -36,9 +36,9 @@ html, body {
 .ranking-card {
     /*background-color: #000000;*/
     background-color:#191919ea;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
+    border-radius: 18px;
+    padding: 8px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,14 +50,15 @@ html, body {
 
 .ranking-card:hover {
     transform: scale(1.05);
-    background-color: #0f0225;
+    /*background-color: #0f0225;*/
+    background-color: #000000;
 }
 
 /* Ranking info */
 .ranking-info p {
     color: #ffffff;
-    font-size: 1.2rem;
-    margin: 5px 0;
+    font-size: 1.1rem;
+    margin: 5px ;
 }
 
 .ranking-info b {
@@ -73,7 +74,7 @@ html, body {
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
