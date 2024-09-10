@@ -49,4 +49,8 @@ export class ServiceAdminService{
     public reportPastServicing(servicingId:number):Observable<BusServicing[]>{
         return this.http.get<BusServicing[]>(`${this.apiServerUrl}/CityFlow/reportServicing/${servicingId}`);
     }
+
+    public calculateMalfunctionData():void{
+        this.http.get(`${this.apiServerUrl}/CityFlow/fillMalfunctionData`);
+    }
 }
