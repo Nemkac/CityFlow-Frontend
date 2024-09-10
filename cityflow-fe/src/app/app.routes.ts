@@ -11,6 +11,7 @@ import { BusServiceRankingsComponent } from './components/bus-service-rankings/b
 import { GenAlgChargingComponent } from './components/gen-alg-charging/gen-alg-charging.component';
 import { BusServicingsComponent } from './components/bus-servicings/bus-servicings.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { MalfunctionDataComponent } from './components/malfunction-data/malfunction-data.component';
 
 export const routes: Routes = [
     {path:"", component : HomePageComponent},
@@ -24,5 +25,6 @@ export const routes: Routes = [
     {path:"reportMalfunction", component:ReportMalfunctionComponent},
     {path:"busesServiceRankings",component:BusServiceRankingsComponent},
     {path:"chargingPlanGeneticAlgorithm",component : GenAlgChargingComponent},
-    {path:"busServicings",component : BusServicingsComponent}
+    {path:"busServicings",component : BusServicingsComponent},
+    {path:"malfunctionData",component : MalfunctionDataComponent}
 ];

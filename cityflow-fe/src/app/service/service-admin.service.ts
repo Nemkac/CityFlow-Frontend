@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { ServiceRanking } from "../models/serviceRanking";
 import { BusServicing } from "../models/busServicing";
 import { TimeSlot } from "../models/timeSlot";
+import { MalfunctionData } from "../models/malfunctionData";
 
 
 
@@ -52,5 +53,9 @@ export class ServiceAdminService{
 
     public calculateMalfunctionData():void{
         this.http.get(`${this.apiServerUrl}/CityFlow/fillMalfunctionData`);
+    }
+
+    public getMalfunctionData():Observable<MalfunctionData[]>{
+        return this.http.get<MalfunctionData[]>(`${this.apiServerUrl}/CityFlow/getMalfunctionData`);
     }
 }

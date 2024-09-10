@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Malfunction Data List</h1>
+
+    <ul class="malfunction-list">
+        <li class="malfunction-item" *ngFor="let manufacturerItem of malfunctionData">
+            <div class="malfunction-info">
+                <p><b>Manufacturer:</b> {{ manufacturerItem.manufacturer }}</p>
+                <p><b>In Last Month:</b> {{ manufacturerItem.inLastMonth }}</p>
+                <p><b>In Last Year:</b> {{ manufacturerItem.inLastYear }}</p>
+                <p><b>In Last Five Years:</b> {{ manufacturerItem.inLastFiveYears }}</p>
+                <p><b>Ever:</b> {{ manufacturerItem.ever }}</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
