@@ -7,6 +7,11 @@
 text-align: center; 
 margin-top: 10px;
 margin-bottom: 20px;
+position: relative;
+top: 40%;
+left: 50%;
+transform: translate(0%, 0%);
+
 }
 
 .page-title h1 {
@@ -17,7 +22,7 @@ font-weight: 700;
 
 .page-title h3 {
     margin-left: auto;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #aab5e6; 
     font-weight: 200; 
   }
@@ -56,8 +61,12 @@ font-weight: 700;
 .container {
     margin-top: 30px;
     display:inline-flex;  
-    max-width: 1200;
-    width: 80%;
+    max-width: 100;
+    width: 25%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-75%, 5%);
   }
 
 
@@ -95,7 +104,7 @@ h3 {
 }
 
 .servicing-card-past:hover {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 .servicing-card-past.selected {

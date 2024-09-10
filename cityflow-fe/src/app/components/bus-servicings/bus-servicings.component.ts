@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, NgModule, OnInit } from '@angular/core';
 import { NgClass, NgFor } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { BusServicing } from '../../models/busServicing';
 import { ServiceAdminService } from '../../service/service-admin.service';
 import { Router } from '@angular/router';
+import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
+import { NgToastService } from 'ng-angular-popup'; 
 
 
 @Component({
   selector: 'app-bus-servicings',
   standalone: true,
-  imports: [NgFor,FormsModule,NgClass],
+  imports: [NgFor,FormsModule,NgClass,NgToastModule],
   templateUrl: './bus-servicings.component.html',
   styleUrl: './bus-servicings.component.css'
 })
@@ -17,11 +19,14 @@ export class BusServicingsComponent implements OnInit{
 
   pastServicings!:BusServicing[];
   futureServicings!:BusServicing[];
+  ToasterPosition = ToasterPosition;
+  private = inject(NgToastService); //inject the service
 
   selectedServicing: any = null;  
 
   constructor(private serviceAdminService:ServiceAdminService,
-              private router : Router ){}
+              private router : Router,
+              private toast:NgToastService ){}
   
   ngOnInit(): void {
     this.getPastServicings();
@@ -32,7 +37,6 @@ export class BusServicingsComponent implements OnInit{
     }
   }
 
-  // TODO: vidi da sortiras po datumu
   getPastServicings(){
     this.serviceAdminService.getPastServices().subscribe(
       (pastServicings) => {
@@ -54,10 +58,9 @@ export class BusServicingsComponent implements OnInit{
 
   handleClick(servicing: any) {
     if (this.selectedServicing === servicing) {
-      // On second click (confirmation click)
       this.reportServicing(servicing);
+      this.toast.success("Alleged past servicing successfully reported. ", "SUCCESS", 5000);
     } else {
-      // On first click, highlight the card (show confirmation message)
       this.selectedServicing = servicing;
     }
   }
