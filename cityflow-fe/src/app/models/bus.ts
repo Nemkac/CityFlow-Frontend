@@ -5,5 +5,6 @@ export interface Bus {
     modelYear:number,
     seatingCapacity:number,
     registrationNumber:string,
-    currentMileage:number
+    currentMileage:number,
+    busLine:number
 }

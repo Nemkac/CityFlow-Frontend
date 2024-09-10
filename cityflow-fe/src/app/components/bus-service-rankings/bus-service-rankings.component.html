@@ -6,18 +6,23 @@
         <div *ngFor="let ranking of rankings" class="ranking-card">
             <div class="ranking-info">
                 <p><b>Bus:</b> {{ ranking.bus.busId }}</p>
-                <p><b>Score:</b> {{ ranking.score }}</p>
-                <p><b>Rank:</b> {{ ranking.rank }}</p>
+                <p><b>Bus line:</b> {{ ranking.bus.busLine }}</p>
+                <p><b>Manufacturer:</b> {{ ranking.bus.manufacturer }}</p>
             </div>
-            <div class="ranking-actions">
-                <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
-                    Move Up
-                </button>
-                <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
-                    Move Down
-                </button>
+            <div class="ranking-score">
+                <p><b>Score:</b> {{ ranking.score.toFixed(0) }}</p>
+                <p><b>Rank:</b> {{ ranking.rank }}</p> <br>
+                <div class="ranking-actions">
+                    <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
+                        Move Up
+                    </button>
+                    <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
+                        Move Down
+                    </button>
+                </div>
             </div>
         </div>
+        
 
         <hr class="divider">
 

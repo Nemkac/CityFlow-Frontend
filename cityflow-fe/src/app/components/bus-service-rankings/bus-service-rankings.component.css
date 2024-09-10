@@ -106,6 +106,18 @@ html, body {
     margin: 30px auto;
 }
 
+
+
+.ranking-score p {
+    margin: 0;
+    color: #45415c;
+}
+
+.ranking-score:hover p {
+    margin: 0;
+    color: #ffffff;
+}
+
 /* Time slot input styles */
 .add-time-title {
     color: #ffffff;
