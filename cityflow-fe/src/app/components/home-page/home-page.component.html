@@ -1,31 +1,55 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Bus Management System</title>
-</head>
-<body>
-  <div class="container">
-    <div class="welcome-message">
-      <h1>Welcome to the Bus Management System</h1>
-      <p>Your role: <span id="userRole">Driver</span></p>
-      <p>Access your services from the side panel to the left.</p>
-    </div>
+<div>
+  <p>Hello, {{ loggedUser.name }}.</p>
 
-    <div class="dashboard-links">
-      <a href="#" class="dashboard-card">
-        <h2>Bus Servicings</h2>
-        <p>Manage bus maintenance schedules.</p>
-      </a>
-      <a href="#" class="dashboard-card">
-        <h2>Charging Plan</h2>
-        <p>View or regenerate bus charging plans.</p>
-      </a>
-      <a href="#" class="dashboard-card">
-        <h2>Rankings</h2>
-        <p>View and manage priority rankings.</p>
-      </a>
-    </div>
+  <!-- For ROLE_DRIVER -->
+  <div *ngIf="loggedUserRole === 'ROLE_DRIVER'" class="driver-steps">
+    <h2>Safety Procedures you need to take after experiencing malfunction</h2>
+    <ol>
+      <li>Safely bring the bus to a complete stop at a secure location, preferably off the road.</li>
+      <li>Activate the hazard lights to warn surrounding traffic of the situation.</li>
+      <li>Ensure the safety and calm of all passengers, keeping them seated if possible.</li>
+      <li>Turn off the engine to prevent further complications and inspect the bus for any visible issues.</li>
+      <li>Report the malfunction immediately to the operations center using your communication device.</li>
+      <li>Await further instructions from the control center before taking additional actions.</li>
+      <li>If necessary, follow evacuation procedures to safely disembark passengers in a controlled manner.</li>
+      <li>After receiving clearance, ensure that all systems are secure before resuming the journey or waiting for assistance.</li>
+    </ol>
   </div>
-</body>
-</html>
+
+  <!-- For ROLE_SERVICER -->
+  <div *ngIf="loggedUserRole === 'ROLE_SERVICE'" class="servicer-steps">
+    <h2>Something about bus ranking system</h2>
+    <p>
+      Each bus in our fleet is assigned a priority ranking based on a comprehensive evaluation system. This ranking is determined by multiple parameters, including total mileage, age of the vehicle, the year of manufacture, its operational significance within the fleet, the time elapsed since its last service, and the number and severity of reported malfunctions.
+    </p>
+    <p>
+      Our ranking algorithm is designed to ensure that buses requiring urgent attention are prioritized for maintenance. By incorporating these critical factors, we aim to maximize the fleet’s efficiency and reliability, minimizing downtime and ensuring optimal performance.
+    </p>
+    <p>
+      As a bus servicer, your responsibility is to ensure that maintenance tasks are carried out promptly and in accordance with the ranking system, preserving the operational integrity of our transport services.
+    </p>
+    <p>
+      You have full controll, so if you want to move bus up or down in rankings, you can do that with a press of a buttion.
+    </p>
+    <p>
+      With adding a service time slot, you are assigning a first bus in the ranking system to that service.
+    </p>
+    <p>
+      You can view servicings, past or upcoming, in the Bus servicings page, where you can also report if some bus haven't been services but is statet otherwise.
+    </p>
+  </div>
+
+  <!-- For ROLE_CHARGER -->
+  <div *ngIf="loggedUserRole === 'ROLE_CHARGER'" class="charger-steps">
+    <h2>Something about charging plan optimization</h2>
+    <p>
+      Our charging plan is generated through the use of an advanced genetic algorithm, meticulously designed to optimize energy distribution across the fleet. The objective is to ensure that each bus is sufficiently charged for its daily route, without overcharging and thereby wasting resources.
+    </p>
+    <p>
+      The algorithm takes into account numerous factors such as the bus's operational schedule, current battery levels, and projected energy needs. This ensures that all buses are adequately prepared for service, reducing both the risk of underperformance and unnecessary charging.
+    </p>
+    <p>
+      If operational conditions change, you may initiate a recalculation of the charging plan by selecting the "Regenerate Charging Plan" option. This action will prompt the system to take into account any recent changes, ensuring the most accurate and efficient charging scenario.
+    </p>
+  </div>
+</div>

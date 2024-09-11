@@ -1,80 +1,72 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .welcome-message {
-    margin-bottom: 40px;
-  }
-  
-  .welcome-message h1 {
-    font-size: 2.5em;
-    color: #2a6b96;
-  }
-  
-  .welcome-message p {
-    font-size: 1.2em;
-    margin-top: 10px;
-  }
-  
-  #welcome-message span {
-    font-weight: bold;
-  }
-  
-  .dashboard-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .dashboard-card {
-    background-color: #fff;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .dashboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dashboard-card h2 {
-    font-size: 1.5em;
-    color: #2a6b96;
-  }
-  
-  .dashboard-card p {
-    font-size: 1em;
-    margin-top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .dashboard-links {
-      flex-direction: column;
-    }
-  
-    .dashboard-card {
-      width: 100%;
-    }
-  }
-  
+/* General container styling */
+div {
+  font-family: 'Arial', sans-serif;
+  margin: 70px;
+  padding: 0; /* No padding to avoid blocky appearance */
+  width: 1000px;
+}
+
+/* Greeting styling */
+p {
+  font-size: 52px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #e2e2e2;
+}
+
+/* Headings styling for each section */
+h2 {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-align: left; /* Align text to the left for more formal appearance */
+}
+
+/* Ordered list for ROLE_DRIVER steps */
+.driver-steps ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.driver-steps li {
+  margin-bottom: 10px;
+  font-size: 22px;
+  line-height: 1.6;
+  color: #dadada;
+}
+
+.driver-steps li:before {
+  content: "•";  /* Changed bullet style to a dot */
+  color: #0056b3;
+  margin-right: 8px;
+}
+
+/* Text paragraphs for ROLE_SERVICER and ROLE_CHARGER */
+.servicer-steps p, .charger-steps p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #c3c3c3;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* No background or border for role-based sections */
+.driver-steps, .servicer-steps, .charger-steps {
+  margin-bottom: 30px;
+}
+
+/* Button style (for future use) */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

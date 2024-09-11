@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { GlobalService } from '../../global.service';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 import { NgToastService } from 'ng-angular-popup'; 
+import { Router } from '@angular/router';
 
 
 
@@ -37,7 +38,8 @@ export class ReportMalfunctionComponent implements OnInit{
   constructor(private driverService:DriverService,
               private authService:AuthService,
               private globalService:GlobalService,
-              private toast:NgToastService
+              private toast:NgToastService,
+              private router : Router,
   ) {}
   ngOnInit(): void {
     if(sessionStorage.getItem('keyDriver') == '0') {
@@ -67,7 +69,7 @@ export class ReportMalfunctionComponent implements OnInit{
               this.priority = 3;
             }
           )
-          //window.location.reload();
+          setTimeout(() => this.router.navigate(['']), 2000);
         },
         (error: HttpErrorResponse) => {
           console.log('Error fetching user data:\n', error.message);

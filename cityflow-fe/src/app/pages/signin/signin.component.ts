@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { GlobalService } from '../../global.service';
+import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 
 
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [FontAwesomeModule, FormsModule],
+  imports: [FontAwesomeModule, FormsModule,NgToastModule],
   providers: [NgToastService],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
@@ -26,6 +27,10 @@ export class SigninComponent implements OnInit{
   faArrowRight = faArrowRight;
   token !: string | null;
   loggedUserRole !: string;
+
+  ToasterPosition = ToasterPosition;
+  private = inject(NgToastService); //inject the service
+
 
   ngOnInit(): void {}
 
@@ -49,10 +54,10 @@ export class SigninComponent implements OnInit{
               this.router.navigate(['/reportMalfunction']);
               sessionStorage.setItem('keyDriver','0');
             } else if (this.loggedUserRole === 'ROLE_CHARGER') {
-              this.router.navigate(['/chargingPlanGeneticAlgorithm']);
+              this.router.navigate(['']);
               sessionStorage.setItem('keyCharger','0');
             } else if (this.loggedUserRole === 'ROLE_SERVICE') {
-              this.router.navigate(['/busServicings']);
+              this.router.navigate(['']);
               sessionStorage.setItem('keyServicer','0');
             }
           }  
@@ -61,6 +66,7 @@ export class SigninComponent implements OnInit{
       },
       (error: HttpErrorResponse) => {
         console.log("Error while signing in: ", error);
+        this.toast.warning("Loging credentials incorrect", "Oops", 5000);
       }
     );
   }
