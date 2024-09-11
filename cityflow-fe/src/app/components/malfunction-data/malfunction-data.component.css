@@ -11,7 +11,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #000000;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 10 8px 16px rgba(255, 255, 255, 0.1);
     width: 600px;
     position: absolute;
@@ -68,7 +68,7 @@ h1 {
 
 .malfunction-manufacturer p{
     color: #ffd006;
-    
+  
 }
 
 
