@@ -10,14 +10,19 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #000000;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 10 8px 16px rgba(255, 255, 255, 0.1);
+    width: 600px;
+    position: absolute;
+    top:80%;
+    left: 54%;
+    transform: translate(-50%, -50%);
 }
 
 /* Title styles */
 h1 {
-    color: #333333;
+    color: #ffffff;
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -32,22 +37,58 @@ h1 {
 
 /* Malfunction item styles */
 .malfunction-item {
-    background-color: #e0e0e0;
+    background-color: #252525;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.malfunction-item p{
+    color: #ffffff;
+}
+
+
 
 .malfunction-item:hover {
     transform: scale(1.02);
-    background-color: #d4d4d4;
+    background-color: #2d2d2d;
 }
 
-/* Malfunction info styles */
+/* Manufacturer and other info styling */
+.malfunction-manufacturer {
+    flex: 1;
+    text-align: left;
+    font-size: 50px;
+}
+
+.malfunction-manufacturer p{
+    color: #ffd006;
+    
+}
+
+
+.malfunction-details {
+    flex: 3;
+    text-align: right;
+}
+
+.malfunction-details {
+    color: #000000;
+}
+
+.malfunction-details p{
+    color: #ffd000;
+}
+
 .malfunction-info {
-    color: #333333;
+    display: flex;
+    align-items: center; /* Center vertically */
+    width: 100%;
 }
 
 .malfunction-info p {
@@ -56,9 +97,31 @@ h1 {
 }
 
 .malfunction-info b {
-    color: #007bff;
+    color: #ffffff;
     font-size: 1rem;
 }
+
+.copyright-section {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 10px;
+    background-color: #353b48;
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    transform: translate(-45%, 20%);
+    width: 1300px;
+}
+
+/* Specific style for the "In Last Month" information */
+.manufacturerClass {
+    font-size: 1.6rem; /* Example of increasing font size */
+    color: #9f3ab6;    /* Example of changing text color */
+    font-weight: bold; /* Example of making text bold */
+}
+
 
 /* Responsive layout */
 @media (max-width: 768px) {
@@ -72,6 +135,17 @@ h1 {
 
     .malfunction-item {
         padding: 10px;
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .malfunction-info {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .malfunction-manufacturer,
+    .malfunction-details {
+        width: 100%; /* Full width on smaller screens */
+        text-align: center; /* Center text on smaller screens */
     }
 
     .malfunction-info p {

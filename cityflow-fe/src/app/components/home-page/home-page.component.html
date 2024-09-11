@@ -52,4 +52,10 @@
       If operational conditions change, you may initiate a recalculation of the charging plan by selecting the "Regenerate Charging Plan" option. This action will prompt the system to take into account any recent changes, ensuring the most accurate and efficient charging scenario.
     </p>
   </div>
+
+  <div *ngIf="loggedUserRole === 'ROLE_NONE'" class="no_roles">
+    <p>
+      The designated individual will redirect you to your permitted options by assigning you the appropriate role within the shortest possible time.
+    </p>
+  </div>
 </div>

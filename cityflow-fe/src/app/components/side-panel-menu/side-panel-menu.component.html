@@ -37,6 +37,18 @@
                 <p class="ml-[20px] text-[32px]">Bus servicings</p>
             </div>
         </button>
+        <button [ngClass]="{'bg-lightGrey/30' : !showCards,
+                'bg-transparent': !showCards}" 
+            class="flex flex-row w-full justify-start items-center px-2 mb-0 cursor-pointer rounded-[12px]
+                hover:bg-lightGrey/30 transition-[0.5s]"
+            (click)="goToMalfunctionData()">
+            <div class="flex w-[10%]">
+                <fa-icon [icon]="faScrewdriverWrench" class="text-[24px]"/>
+            </div>
+            <div class="flex w-[90%] justify-start">
+                <p class="ml-[20px] text-[32px]">Malfunction <br> history</p>
+            </div>
+        </button>
     } @else if (loggedUserRole == 'ROLE_CHARGER') {
         <button [ngClass]="{'bg-lightGrey/30' : showRoutes,
                     'bg-transparent': !showCards}" 

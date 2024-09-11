@@ -138,4 +138,8 @@ export class SidePanelMenuComponent implements OnInit{
     this.router.navigate(['/reportMalfunction'])
   }
 
+  public goToMalfunctionData() : void {
+    this.router.navigate(['malfunctionData']);
+  }
+
 }
