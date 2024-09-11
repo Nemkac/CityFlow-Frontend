@@ -1,0 +1,84 @@
+/* General container styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    border-radius: 10px;
+    background-color: rgba(200, 200, 200, 0.2); /* Adjust this color to match bg-lightGrey/20 */
+    align-items: center;
+    justify-content: center;
+    padding: 24px; /* Adjust this value to match p-6 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+
+/* Logo image styling */
+.logo-img {
+    width: 78px;
+}
+
+/* Flex row spacing */
+.flex-row-spacing {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px; /* Adjust this value to match my-4 */
+    width: 100%;
+}
+
+/* Column styling for form fields */
+.form-column {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+/* Spacer between columns */
+.spacer {
+    width: 4%;
+}
+
+/* Input field styling */
+.input-field {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Adjust this color to match border-white/60 */
+    height: 50px;
+    width: 100%;
+    background-color: rgba(200, 200, 200, 0.2); /* Adjust this color to match bg-lightGrey/20 */
+    padding: 8px 16px; /* Adjust this value to match px-2 py-4 */
+    color: #fff; /* Text color for inputs */
+}
+
+/* Button styling */
+.submit-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: bottom;
+    align-content: bottom;
+    width: 444px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+.submit-button:hover {
+    background-color: #000000; /* Adjust this color to match hover:bg-lightGrey */
+    border: 2px solid #ffffff;
+}
+
+.submit-button:hover p{
+    color: #ffffff;
+}
+
+/* Button text styling */
+.button-text {
+    font-family: 'Manrope', sans-serif; /* Ensure Manrope font is used */
+    color: #4a4a4a; /* Adjust this color to match text-darkGrey */
+    font-weight: 600;
+    font-size: 24px;
+    margin: 20px;
+}
