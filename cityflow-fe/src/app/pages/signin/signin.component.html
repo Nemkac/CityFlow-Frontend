@@ -1,5 +1,5 @@
 <form #SignInForm="ngForm" (ngSubmit)="signIn(SignInForm)" class="flex flex-col font-manrope w-full h-full items-center justify-center gap-4">
-    <div class="flex flex-row bg-primaryDarkGreen items-center  size-[150px] justify-center rounded-full">
+    <div class="flex flex-row bg-primaryLightGreen items-center  size-[150px] justify-center rounded-full">
         <img src="../../../assets/Logo.png" class="w-[70px]"/>
     </div>
     <div class="flex flex-col items-center justify-center w-full">
@@ -31,28 +31,23 @@
             </div>
         </div>
         <div class="flex lg:w-[50%] xl:w-[35%] items-center justify-center">
-            <button class="flex flex-row w-full h-[45px] rounded-md bg-primaryDarkGreen justify-center items-center hover:bg-primaryLightGreen transition-[0.5s]"
+            <button class="flex flex-row w-full h-[45px] rounded-md bg-primaryLightGreen justify-center items-center hover:bg-primaryDarkGreen transition-[0.5s]"
                     type="submit">
                 <p class="font-manrope text-primaryWhite font-medium text-[18px]">Sign In</p>
             </button>
         </div>
     </div>
 
-    <div class="flex lg:w-[50%] xl:w-[35%] items-center justify-end">
+    <!-- <div class="flex lg:w-[50%] xl:w-[35%] items-center justify-end">
         <p class="text-[12px] font-light text-primaryBlack hover:text-primaryLightGreen transition-[0.5s] cursor-pointer">Forgot password?</p>
-    </div>
+    </div> -->
 
-    <div class="flex flex-row sm:w-[50%] xl:w-[35%] justify-between items-center justify-center">
-        <hr class="w-[35%] text-primaryBlack">
-        <p class="text-[14px] text-primaryBlack font-light">Or continue with</p>
-        <hr class="w-[35%] text-primaryBlack">
-    </div>
 
     <div class="flex w-full items-center justify-center lg:w-[100%] xl:w-[35%] h-[45px]" id="buttonDiv"></div>
 
     <div class="flex flex-row lg:w-[50%] xl:w-[35%] items-center justify-center">
         <p class="text-[14px] text-primaryBlack font-light">Don't have an account yet?</p>
-        <p class="text-[14px] text-primaryDarkGreen font-bold ml-2 hover:text-primaryLightGreen transition-[0.5s] cursor-pointer"
+        <p class="text-[14px] text-primaryLightGreen font-bold ml-2 hover:text-primaryDarkGreen transition-[0.5s] cursor-pointer"
             (click)="navigationService.navigateToSignUp()">
             Sign up
         </p>

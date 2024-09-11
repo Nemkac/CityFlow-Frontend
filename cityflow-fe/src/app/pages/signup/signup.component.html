@@ -1,6 +1,6 @@
 <form [formGroup]="form" class="flex flex-col w-full items-center justify-center h-full">
     <div class="flex flex-col font-poppins w-full h-full items-center justify-center justify-evenly gap-4 p-4">
-        <div class="flex flex-row bg-primaryDarkGreen items-center  size-[150px] justify-center rounded-full">
+        <div class="flex flex-row bg-primaryLightGreen items-center  size-[150px] justify-center rounded-full">
             <img src="../../../assets/Logo.png" class="w-[70px]"/>
         </div>
         <div class="flex flex-row w-full lg:w-[75%] xl:w-[80%] items-start justify-start gap-8">
@@ -100,7 +100,7 @@
         </div>
         <div class="flex lg:w-[75%] justify-end">
             <button [disabled]="!form.valid" (click)="signUp()"
-                    [ngClass]="{'bg-primaryBlack/20 text-primaryBlack/50': !form.valid, 'bg-primaryDarkGreen hover:bg-primaryLightGreen text-primaryWhite': form.valid}"
+                    [ngClass]="{'bg-primaryBlack/20 text-primaryBlack/50': !form.valid, 'bg-primaryLightGreen hover:bg-primaryDarkGreen text-primaryWhite': form.valid}"
                     class="flex items-center justify-center px-16 py-2 rounded-md transition-[0.5s] font-medium text-[18px]" type="submit">
                 Sign Up
             </button>

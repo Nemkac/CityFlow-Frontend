@@ -1,0 +1,36 @@
+.img-routes {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  position: absolute;
+  animation: scaleUpDown 3s infinite ease-in-out;
+}
+
+@keyframes scaleUpDown {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.circle:nth-child(2) {
+  animation-delay: 0.5s; /* different delays to make the animation less uniform */
+  left: 20%;
+  top: 30%;
+  background-color: #FF5722;
+}
+
+.circle:nth-child(3) {
+  animation-delay: 1s;
+  left: 70%;
+  top: 50%;
+  background-color: #2196F3;
+}

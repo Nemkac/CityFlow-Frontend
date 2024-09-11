@@ -20,6 +20,7 @@ import { AddShiftFormComponent } from './components/add-shift-form/add-shift-for
 import { AllRoutesComponent } from './pages/all-routes/all-routes.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StationsComponent } from './pages/stations/stations.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
     // {path:"", component: DashboardComponent},
@@ -43,5 +44,7 @@ export const routes: Routes = [
     {path:"work-calendar", component: WorkCalendarComponent},
     {path:"add-shift", component: AddShiftFormComponent},
     {path:"allRoutes", component: AllRoutesComponent},
-    {path:"stations", component: StationsComponent}
+    {path:"stations", component: StationsComponent},
+    {path:"landing", component: LandingPageComponent},
+    {path:"", redirectTo:"landing", pathMatch:"full"}
 ];
