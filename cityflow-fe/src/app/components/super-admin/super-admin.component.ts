@@ -16,6 +16,8 @@ import { UserService } from '../../service/user.service';
 })
 export class SuperAdminComponent implements OnInit{
 
+  roles = ['Driver', 'Servicer', 'Charging admin', 'No role'];
+
   users !: User[];
 
   constructor(private userService:UserService){}
@@ -30,5 +32,14 @@ export class SuperAdminComponent implements OnInit{
       }
     )
   }
+
+  changeRole(user: any) {
+    const currentIndex = this.roles.indexOf(user.roles);
+    const nextIndex = (currentIndex + 1) % this.roles.length;
+    user.roles = this.roles[nextIndex];
+  }
+  
+
+  
 
 }

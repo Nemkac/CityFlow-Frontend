@@ -61,6 +61,29 @@
     background-color: #1f1f1f;
   }
 
+  /* Button Style for User Roles */
+.role-button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 4px;
+    background-color: #4CAF50; /* Default color */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  /* Hover Effect */
+  .role-button:hover {
+    background-color: #45a049; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+  }
+  
+
 
   
   /* Responsive Design */
