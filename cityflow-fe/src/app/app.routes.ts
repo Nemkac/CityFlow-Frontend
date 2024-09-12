@@ -12,6 +12,7 @@ import { GenAlgChargingComponent } from './components/gen-alg-charging/gen-alg-c
 import { BusServicingsComponent } from './components/bus-servicings/bus-servicings.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MalfunctionDataComponent } from './components/malfunction-data/malfunction-data.component';
+import { SuperAdminComponent } from './components/super-admin/super-admin.component';
 
 export const routes: Routes = [
     {path:"", component : HomePageComponent},
@@ -26,5 +27,6 @@ export const routes: Routes = [
     {path:"busesServiceRankings",component:BusServiceRankingsComponent},
     {path:"chargingPlanGeneticAlgorithm",component : GenAlgChargingComponent},
     {path:"busServicings",component : BusServicingsComponent},
-    {path:"malfunctionData",component : MalfunctionDataComponent}
+    {path:"malfunctionData",component : MalfunctionDataComponent},
+    {path:"superAdmin",component : SuperAdminComponent}
 ];

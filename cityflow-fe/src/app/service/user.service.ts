@@ -18,5 +18,9 @@ export class UserService {
   public updateProfile(requestBody : User, id: number) : Observable<string>{
     return this.http.put<string>(`${this.apiServerUrl}/CityFlow/updateProfile/${id}`, requestBody);  
   }
+
+  public getAllUsersNoAdmin():Observable<User[]>{
+    return this.http.get<User[]>(`${this.apiServerUrl}/CityFlow/getAllUsersNoAdmin`);
+  }
   
 }
