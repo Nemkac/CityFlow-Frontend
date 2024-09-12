@@ -61,6 +61,7 @@ export class SigninComponent implements OnInit{
               sessionStorage.setItem('keyServicer','0');
             } else if (this.loggedUserRole === 'ROLE_NONE') {
               this.router.navigate(['']);
+              sessionStorage.setItem('keyNoRole','0');
             }
           }  
         )

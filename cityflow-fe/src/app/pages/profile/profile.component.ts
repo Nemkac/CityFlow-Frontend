@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit{
       case 'ROLE_CHARGER':
         return 'https://t3.ftcdn.net/jpg/03/67/46/48/240_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg';
       default:
-        return 'default-image-url.jpg'; 
+        return 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='; 
     }
   }
 

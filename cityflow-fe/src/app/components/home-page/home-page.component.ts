@@ -33,6 +33,10 @@ export class HomePageComponent implements OnInit{
       window.location.reload();
       sessionStorage.setItem('keyServicer','1');
     }
+    if(sessionStorage.getItem('keyNoRole') == '0') {
+      window.location.reload();
+      sessionStorage.setItem('keyNoRole','1');
+    }
   }
 
     public fetchUser() : void {

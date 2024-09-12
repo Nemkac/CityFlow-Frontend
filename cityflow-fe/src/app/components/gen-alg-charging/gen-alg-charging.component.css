@@ -106,9 +106,9 @@
 
 /* Button Styling */
 .regeneratebutton {
-  padding: 8px 16px; /* Reduced padding */
+  padding: 3px 8px; /* Reduced padding */
   border-radius: 16px;
-  font-size: 1.2rem; /* Reduced text size */
+  font-size: 1.1rem; /* Reduced text size */
   font-family:'Arial', 'sans-serif';
   color: #000000;
   cursor: pointer;
