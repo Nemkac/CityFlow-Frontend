@@ -1,27 +1,27 @@
 <div class="user-list-container">
-    <h2 class="header">User List</h2>
+  <h2 class="header">User List</h2>
 
-    <div class="table-header">
-      <div class="table-row">
-        <div class="table-cell"><b>ID</b></div>
-        <div class="table-cell"><b>Username</b></div>
-        <div class="table-cell"><b>Name</b></div>
-        <div class="table-cell"><b>Last Name</b></div>
-        <div class="table-cell"><b>Roles</b></div>
-        <div class="table-cell"><b>Email</b></div>
-        <div class="table-cell"><b>Phone Number</b></div>
-      </div>
+  <div class="table-header">
+    <div class="table-row">
+      <div class="table-cell"><b>ID</b></div>
+      <div class="table-cell"><b>Username</b></div>
+      <div class="table-cell"><b>Name</b></div>
+      <div class="table-cell"><b>Last Name</b></div>
+      <div class="table-cell"><b>Roles</b></div>
+      <div class="table-cell"><b>Email</b></div>
+      <div class="table-cell"><b>Phone Number</b></div>
     </div>
+  </div>
 
-    <div *ngFor="let user of users" class="table-row">
-      <div class="table-cell">{{ user.id }}</div>
-      <div class="table-cell">{{ user.username }}</div>
-      <div class="table-cell">{{ user.name }}</div>
-      <div class="table-cell">{{ user.lastname }}</div>
-      <div class="table-cell">
-        <button class="role-button" (click)="changeRole(user)">{{ user.roles }}</button>
-      </div>
-      <div class="table-cell">{{ user.email }}</div>
-      <div class="table-cell">{{ user.phoneNumber }}</div>
+  <div *ngFor="let user of users" class="table-row">
+    <div class="table-cell">{{ user.id }}</div>
+    <div class="table-cell">{{ user.username }}</div>
+    <div class="table-cell">{{ user.name }}</div>
+    <div class="table-cell">{{ user.lastname }}</div>
+    <div class="table-cell">
+      <button class="role-button" (click)="changeUserRole(user)">{{ user.roles }}</button>
     </div>
+    <div class="table-cell">{{ user.email }}</div>
+    <div class="table-cell">{{ user.phoneNumber }}</div>
+  </div>
 </div>

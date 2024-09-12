@@ -22,5 +22,13 @@ export class UserService {
   public getAllUsersNoAdmin():Observable<User[]>{
     return this.http.get<User[]>(`${this.apiServerUrl}/CityFlow/getAllUsersNoAdmin`);
   }
+
+  public changeRoleVoid(userId:number, newRole:number):void{
+    this.http.get<void>(`${this.apiServerUrl}/CityFlow/changeRoleVoid/${userId}/${newRole}`);
+  }
+  
+  public changeRole(userId:number, newRole:number):Observable<User>{
+    return this.http.get<User>(`${this.apiServerUrl}/CityFlow/changeRole/${userId}/${newRole}`);
+  }
   
 }
