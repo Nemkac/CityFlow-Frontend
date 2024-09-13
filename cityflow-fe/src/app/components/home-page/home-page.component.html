@@ -53,9 +53,26 @@
     </p>
   </div>
 
-  <div *ngIf="loggedUserRole === 'ROLE_NONE'" class="no_roles">
-    <p>
-      The designated individual will redirect you to your permitted options by assigning you the appropriate role within the shortest possible time.
-    </p>
+  <div> 
+    <!-- For ROLE_SUPER_ADMIN -->
+    <div *ngIf="loggedUserRole === 'SUPER_ADMIN'" class="admin-steps">
+      <p>
+        As a Super Admin, you hold the highest level of access and authority within the system, enabling you to manage user roles and oversee the system’s functionality with full control. 
+      </p>
+      <h3><b>What You Can Do:</b></h3>
+      <ol>
+        <li>
+          <strong>View All Users:</strong> You have the ability to view a complete list of all registered users in the system. This allows you to monitor user activity, verify access levels, and ensure that all users are operating within the correct role parameters.
+        </li>
+        <li>
+          <strong>Modify User Roles:</strong> By clicking on a user’s assigned role, you can easily change or update their permissions. This can include adding, removing, or altering their roles to ensure that they have the correct level of access needed for their tasks. 
+        </li>
+      </ol>
+      <p>
+        You are entrusted with maintaining the system’s user role hierarchy, and through your careful management, the system can operate efficiently and securely.
+      </p>
+    </div>
   </div>
+  
+
 </div>

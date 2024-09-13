@@ -62,6 +62,9 @@ export class SigninComponent implements OnInit{
             } else if (this.loggedUserRole === 'ROLE_NONE') {
               this.router.navigate(['']);
               sessionStorage.setItem('keyNoRole','0');
+            } else if (this.loggedUserRole === 'SUPER_ADMIN') {
+              this.router.navigate(['']);
+              sessionStorage.setItem('keySuperAdmin','0');
             }
           }  
         )

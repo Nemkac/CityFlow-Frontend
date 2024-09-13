@@ -18,7 +18,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class SuperAdminComponent implements OnInit{
 
-  roles = ['Driver', 'Servicer', 'Charging admin', 'No role'];
 
   users !: User[];
   loggedUserRole : string  = '';
@@ -57,82 +56,102 @@ export class SuperAdminComponent implements OnInit{
     }
   }
 
-  changeUserRoleVoid(user: any) {
-    const currentIndex = this.roles.indexOf(user.roles);
-    const nextIndex = (currentIndex + 1) % this.roles.length;
-    user.roles = this.roles[nextIndex];
-    switch(this.roles[nextIndex]) {
-      case 'Driver' : {
-        this.userService.changeRoleVoid(user.id,1);
-        console.log("Driver : ",user.roles);
-        console.log(user.id,1);
-        break;
-      }
-      case 'Servicer' : {
-        this.userService.changeRoleVoid(user.id,2);
-        console.log("Servicer : ", user.roles);
-        console.log(user.id,2);
-        break;
-      }
-      case 'Charging admin' : {
-        this.userService.changeRoleVoid(user.id,3);
-        console.log("Charger : ",user.roles);
-        console.log(user.id,3);
-        break;
-      }
-      case 'No role' : {
-        this.userService.changeRoleVoid(user.id,0);
-        console.log("No role : ",user.roles);
-        console.log(user.id,4);
-        break;
-      }
-    }
+  public displayRole(role:string):string {
+    if(role=='ROLE_DRIVER' ) return 'Driver';
+    if(role=='ROLE_SERVICE' ) return 'Bus servicer';
+    if(role=='ROLE_CHARGER' ) return 'Charging admin';
+    else return 'No role';
   }
 
-  changeUserRole(user: any) {
-    const currentIndex = this.roles.indexOf(user.roles);
+  /*changeUserRoleVoid(user: any) {
+    const currentIndex = user.roles;
     const nextIndex = (currentIndex + 1) % this.roles.length;
     user.roles = this.roles[nextIndex];
-    switch(this.roles[nextIndex]) {
-      case 'Driver' : {
+    switch(user.roles) {
+      case 'ROLE_DRIVER' : {
+        this.userService.changeRoleVoid(user.id,1);
+        console.log("Driver : ",user.roles);
+        break;
+      }
+      case 'ROLE_SERVICE' : {
+        this.userService.changeRoleVoid(user.id,2);
+        console.log("Servicer : ", user.roles);
+        break;
+      }
+      case 'ROLE_CHARGER' : {
+        this.userService.changeRoleVoid(user.id,3);
+        console.log("Charger : ",user.roles);
+        break;
+      }
+      case 'NO_ROLE' : {
+        this.userService.changeRoleVoid(user.id,0);
+        console.log("No role : ",user.roles);
+        break;
+      }
+      default : {
+        console.log("Default case")
+      }
+    }
+  }*/
+
+  changeUserRole(user: any) {
+    const currentRole = user.roles;
+    switch(currentRole) {
+      case 'ROLE_DRIVER' : {
+        user.roles = "ROLE_SERVICE";
+        break;
+      }
+      case 'ROLE_SERVICE' : {
+        user.roles = "ROLE_CHARGER";
+        break;
+      }
+      case 'ROLE_CHARGER' : {
+        user.roles = "NO_ROLE";
+        break;
+      }
+      case 'NO_ROLE' : {
+        user.roles = "ROLE_DRIVER";
+        break;
+      }
+      default : {
+        user.roles = "nema jbg";
+      }
+    }
+    switch(user.roles) {
+      case 'ROLE_DRIVER' : {
         this.userService.changeRole(user.id,1).subscribe(
           (response:User) => {
-            console.log("Ajmo vako sad ", response.id);
+            console.log("Driver : ",response.roles);
           }
         )
-        console.log("Driver : ",user.roles);
-        console.log(user.id,1);
         break;
       }
-      case 'Servicer' : {
+      case 'ROLE_SERVICE' : {
         this.userService.changeRole(user.id,2).subscribe(
           (response:User) => {
-            console.log("Ajmo vako sad ", response.id);
+            console.log("Service : ",response.roles);
           }
         )
-        console.log("Servicer : ", user.roles);
-        console.log(user.id,2);
         break;
       }
-      case 'Charging admin' : {
+      case 'ROLE_CHARGER' : {
         this.userService.changeRole(user.id,3).subscribe(
           (response:User) => {
-            console.log("Ajmo vako sad ", response.id);
+            console.log("Charger : ",response.roles);
           }
         )
-        console.log("Charger : ",user.roles);
-        console.log(user.id,3);
         break;
       }
-      case 'No role' : {
+      case 'NO_ROLE' : {
         this.userService.changeRole(user.id,0).subscribe(
           (response:User) => {
-            console.log("Ajmo vako sad ", response.id);
+            console.log("No role : ",response.roles);
           }
         )
-        console.log("No role : ",user.roles);
-        console.log(user.id,4);
         break;
+      }
+      default : {
+        console.log("Default case")
       }
     }
   }

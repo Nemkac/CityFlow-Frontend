@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser, faCircleExclamation, faIdCard, faInbox,faScrewdriverWrench,faPlug, faStairs } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCircleExclamation, faIdCard, faInbox,faScrewdriverWrench,faPlug, faStairs, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { response } from 'express';
@@ -24,6 +24,7 @@ export class SidePanelMenuComponent implements OnInit{
   faScrewdriverWrench = faScrewdriverWrench;
   faStairs = faStairs;
   faPlug = faPlug;
+  faUsers = faUsers;
 
   //Menu item selections
   showHome : boolean = true;
@@ -140,6 +141,10 @@ export class SidePanelMenuComponent implements OnInit{
 
   public goToMalfunctionData() : void {
     this.router.navigate(['malfunctionData']);
+  }
+
+  public goToManageRoles() : void {
+    this.router.navigate(['superAdmin']);
   }
 
 }

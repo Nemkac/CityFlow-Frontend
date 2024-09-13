@@ -1,5 +1,5 @@
 <div class="user-list-container">
-  <h2 class="header">User List</h2>
+  <h2 class="header">List of users</h2>
 
   <div class="table-header">
     <div class="table-row">
@@ -19,7 +19,7 @@
     <div class="table-cell">{{ user.name }}</div>
     <div class="table-cell">{{ user.lastname }}</div>
     <div class="table-cell">
-      <button class="role-button" (click)="changeUserRole(user)">{{ user.roles }}</button>
+      <button class="role-button" (click)="changeUserRole(user)">{{ displayRole(user.roles) }}</button>
     </div>
     <div class="table-cell">{{ user.email }}</div>
     <div class="table-cell">{{ user.phoneNumber }}</div>

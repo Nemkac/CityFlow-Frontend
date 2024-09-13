@@ -51,9 +51,44 @@ h2 {
 }
 
 /* No background or border for role-based sections */
-.driver-steps, .servicer-steps, .charger-steps {
+.driver-steps, .servicer-steps, .charger-steps, .admin-steps {
   margin-bottom: 30px;
 }
+
+.admin-steps {
+  font-size: 1.2rem; /* Shrinks the text slightly */
+  line-height: 1.4; /* Adjusts line spacing for better readability */
+  max-width: 900px; /* Restricts the width of the content */
+  margin: 0 auto; /* Centers the content */
+  padding: 20px; /* Adds some space around the text */
+}
+
+.admin-steps h2 {
+  font-size: 1.2rem; /* Slightly smaller heading size */
+  margin-bottom: 10px;
+}
+
+.admin-steps h3 {
+  font-size: 1.4rem; /* Smaller sub-heading size */
+  margin-top: 15px;
+  color: #f0f0f0;
+  
+}
+
+.admin-steps p, .admin-steps li {
+  font-size: 1.4rem; /* Uniform text size for paragraphs and list items */
+}
+
+.admin-steps ol {
+  padding-left: 20px; /* Adds some indentation to the ordered list */
+}
+
+.admin-steps li {
+  margin-bottom: 10px; /* Adds space between list items for readability */
+  color: #caceed;
+}
+
+
 
 /* Button style (for future use) */
 button {

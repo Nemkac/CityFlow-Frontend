@@ -37,6 +37,10 @@ export class HomePageComponent implements OnInit{
       window.location.reload();
       sessionStorage.setItem('keyNoRole','1');
     }
+    if(sessionStorage.getItem('keySuperAdmin') == '0') {
+      window.location.reload();
+      sessionStorage.setItem('keySuperAdmin','1');
+    }
   }
 
     public fetchUser() : void {
