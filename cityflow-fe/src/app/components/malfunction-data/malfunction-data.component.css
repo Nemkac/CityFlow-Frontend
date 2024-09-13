@@ -17,7 +17,7 @@ body {
     position: absolute;
     top:80%;
     left: 54%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
 }
 
 /* Title styles */

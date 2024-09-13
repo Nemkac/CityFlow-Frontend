@@ -17,7 +17,8 @@ export class MalfunctionDataComponent implements OnInit{
   constructor(private adminService:ServiceAdminService){}
 
   ngOnInit(): void {
-    this.fetchMalfunctionData();
+    this.fillMalfunctionData();
+    //this.fetchMalfunctionData();
   }
 
 fetchMalfunctionData(){
@@ -27,6 +28,19 @@ fetchMalfunctionData(){
       console.log(data);
     }
   ) 
+}
+
+fillMalfunctionData(){
+  this.adminService.fillMalfunctionData().subscribe(
+    (data) => {
+      this.adminService.getMalfunctionData().subscribe(
+        (data) => {
+          this.malfunctionData = data;
+          console.log(data);
+        }
+      ) 
+    }
+  )
 }
 
 }

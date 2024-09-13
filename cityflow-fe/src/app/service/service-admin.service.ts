@@ -58,4 +58,8 @@ export class ServiceAdminService{
     public getMalfunctionData():Observable<MalfunctionData[]>{
         return this.http.get<MalfunctionData[]>(`${this.apiServerUrl}/CityFlow/getMalfunctionData`);
     }
+
+    public fillMalfunctionData():Observable<MalfunctionData[]> {
+        return this.http.get<MalfunctionData[]>(`${this.apiServerUrl}/CityFlow/fillMalfunctionData`);
+    }
 }
