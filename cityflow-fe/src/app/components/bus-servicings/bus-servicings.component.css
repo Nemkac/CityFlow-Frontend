@@ -1,99 +1,99 @@
 .containerTop {
-    display:block;
-    max-width: 1000px;
-  }
+  display: block;
+  max-width: 1200px;
+
+}
 
 .page-title {
-text-align: center; 
-margin-top: 10px;
-margin-bottom: 20px;
-position: relative;
-top: 40%;
-left: 50%;
-transform: translate(0%, 0%);
-
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-30%, 0%);
 }
 
 .page-title h1 {
-font-size: 2.5rem;
-color: #ffffff; 
-font-weight: 700; 
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .page-title h3 {
-    margin-left: auto;
-    font-size: 1.5rem;
-    color: #aab5e6; 
-    font-weight: 200; 
-  }
-  .note {
-    text-align: right;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .priority-label {
-    font-size: 1.2rem;
-    color: #aab5e6;
-    margin-right: 10px;
-  }
-  
-  .btn-primary {
-    background-color: #3c85f2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn-primary:hover {
-    background-color: #336bcc;
-  }
-  
+  margin-left: auto;
+  font-size: 1.5rem;
+  color: #aab5e6;
+  font-weight: 200;
+}
 
-.note h3{
-    font-size: 2 rem; 
-    color: #b2c7f0; 
-    font-weight: 400; 
+.note {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.priority-label {
+  font-size: 1.2rem;
+  color: #aab5e6;
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: #3c85f2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #336bcc;
+}
+
+.note h3 {
+  font-size: 2rem;
+  color: #b2c7f0;
+  font-weight: 400;
 }
 
 .container {
-    margin-top: 30px;
-    display:inline-flex;  
-    max-width: 100;
-    width: 25%;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-75%, 5%);
-  }
+  margin-top: 30px;
+  display: flex; /* Use flex layout */
+  justify-content: space-between; /* Ensure the columns are spaced */
+  max-width: 100%; /* Ensure the container width scales well */
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-30%, 15%);
+}
 
-
-  
 .servicing-section {
-padding: 20px;
+  flex: 1; /* Make the columns equal width */
+  margin: 0 20px; /* Add margin between columns */
 }
 
-  
+
 h3 {
-    text-align: center;
-    color: #ffffff; 
-    font-weight: 700;
-    font-size: 1.5rem; 
-    margin-bottom: 20px; 
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
-  
+
 .servicing-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}  
-  
-.servicing-item {
-    margin-bottom: 15px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
-  
+
+.servicing-item {
+  margin-bottom: 15px;
+}
+
+/* Styling for the servicing card */
 .servicing-card-past {
   background-color: #ffffff;
   color: #333333;
@@ -101,6 +101,29 @@ h3 {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+/* Flexbox for card content, splitting left and right */
+.card-content {
+  display: flex;
+  justify-content: space-between; /* Space out the left and right sides */
+}
+
+.card-left,
+.card-right {
+  flex: 1;
+}
+
+.card-left {
+  padding-right: 10px; /* Space between left and right columns */
+}
+
+.card-right {
+  padding-left: 10px;
+  border-left: 1px solid #ddd; /* Optional: border between the left and right */
 }
 
 .servicing-card-past:hover {
@@ -112,7 +135,6 @@ h3 {
   color: #fff;
 }
 
-
 .confirmation {
   margin-top: 10px;
   font-size: 0.9rem;
@@ -120,50 +142,57 @@ h3 {
   font-weight: 500;
 }
 
-
-  .servicing-card-future {
-    background-color: #ffffff; /* Light card background for contrast */
-    color: #333333; /* Dark text color for readability */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease;
-  }
-  
-
-  
-  /* Text styling within cards */
-  p {
-    margin: 5px 0;
-  }
-  
-  /* Emphasizing labels */
-  strong {
-    color: #453ae0; /* Highlight color for labels */
-  }
-
-  .copyright-section {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-    color: #ffffff;
-    padding: 10px;
-    background-color: #353b48;
-    position: absolute;
-    top: 200%;
-    left: 50%;
-    transform: translate(-45%, 20%);
-    width: 1300px;
+/* Future servicing card */
+.servicing-card-future {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 450px;
 }
-  
-  /* Responsive design adjustments */
-  @media (max-width: 768px) {
-    .servicing-section {
-      margin-bottom: 20px;
-    }
-  
-    h3 {
-      font-size: 1.25rem; /* Smaller heading size on small screens */
-    }
+
+p {
+  margin: 5px 0;
+}
+
+strong {
+  color: #453ae0;
+}
+
+/* Copyright section */
+.copyright-section {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 10px;
+  background-color: #353b48;
+  position: absolute;
+  top: 200%;
+  left: 50%;
+  transform: translate(-45%, 20%);
+  width: 1300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .servicing-section {
+    margin-bottom: 20px;
   }
-  
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .card-content {
+    flex-direction: column;
+  }
+
+  .card-left,
+  .card-right {
+    padding: 0;
+    border-left: none;
+  }
+}

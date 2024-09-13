@@ -12,19 +12,33 @@
         <h3>Past Servicings</h3>
         <ul class="servicing-list">
           <li *ngFor="let servicing of pastServicings" class="servicing-item">
-            <div 
-              class="servicing-card-past"
-              [ngClass]="{'selected': servicing === selectedServicing}"
-              (click)="handleClick(servicing)">
-              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-              <p><strong>Date:</strong> {{ servicing.date }}</p>
-              
-              <!-- Conditional confirmation message -->
-              <div *ngIf="servicing === selectedServicing" class="confirmation">
-                <p>Click again to confirm</p>
-              </div>
-            </div>
+            <div class="servicing-card-past"
+     [ngClass]="{'selected': servicing === selectedServicing}"
+     (click)="handleClick(servicing)">
+        <div class="card-content">
+          <!-- Left column -->
+          <div class="card-left">
+            <p><strong>Bus ID :</strong> {{ servicing.bus.busId }}</p>
+            <p><strong>Date :</strong> {{ servicing.date }}</p>
+            <p><strong>Mileage :</strong> {{ servicing.mileage }}</p>
+            <p><strong>Reg.num :</strong> {{ servicing.bus.registrationNumber }}</p>
+
+          </div>
+          <!-- Right column -->
+          <div class="card-right">
+            <p><strong>Manufacturer:</strong> {{ servicing.bus.manufacturer }}</p>
+            <p><strong>Model:</strong> {{ servicing.bus.model }}</p>
+            <p><strong>Model Year:</strong> {{ servicing.bus.modelYear }}</p>
+          </div>
+        </div>
+
+  <!-- Conditional confirmation message -->
+      <div *ngIf="servicing === selectedServicing" class="confirmation">
+    <p>Click again to confirm</p>
+  </div>
+</div>
+
+       
           </li>
         </ul>
       </div>
@@ -34,9 +48,22 @@
         <ul class="servicing-list">
           <li *ngFor="let servicing of futureServicings" class="servicing-item">
             <div class="servicing-card-future">
-              <p><strong>Bus ID:</strong> {{ servicing.bus.busId }}</p>
-              <p><strong>Mileage:</strong> {{ servicing.mileage }}</p>
-              <p><strong>Date:</strong> {{ servicing.date }}</p>
+              <div class="card-content">
+                <!-- Left column -->
+                <div class="card-left">
+                  <p><strong>Bus ID :</strong> {{ servicing.bus.busId }}</p>
+                  <p><strong>Date :</strong> {{ servicing.date }}</p>
+                  <p><strong>Mileage :</strong> {{ servicing.mileage }}</p>
+                  <p><strong>Reg.num :</strong> {{ servicing.bus.registrationNumber }}</p>
+      
+                </div>
+                <!-- Right column -->
+                <div class="card-right">
+                  <p><strong>Manufacturer:</strong> {{ servicing.bus.manufacturer }}</p>
+                  <p><strong>Model:</strong> {{ servicing.bus.model }}</p>
+                  <p><strong>Model Year:</strong> {{ servicing.bus.modelYear }}</p>
+                </div>
+              </div>
             </div>
           </li>
         </ul>
