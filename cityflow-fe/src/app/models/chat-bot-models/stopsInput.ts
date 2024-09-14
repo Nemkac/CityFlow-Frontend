@@ -1,6 +1,5 @@
 export interface StopsInput {
     special_features:string[];
-    longitude:number;
-    latitude:number;
+    nearby_landmarks:string;
     facilities:string;
 }

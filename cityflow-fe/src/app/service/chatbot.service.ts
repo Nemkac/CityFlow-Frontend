@@ -30,7 +30,7 @@ export class ChatbotService {
     }
 
     public searchStops(input:StopsInput):Observable<StopsOutput[]> {
-        return this.http.post<StopsOutput[]>(`${this.apiServerUrl}/searchLandmarks1`,input);
+        return this.http.post<StopsOutput[]>(`${this.apiServerUrl}/searchStops3`,input);
     }
     
 

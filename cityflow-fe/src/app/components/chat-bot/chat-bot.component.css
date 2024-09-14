@@ -1,15 +1,16 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+/* Container for the forms */
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-/* Container for the form */
-bodyMain {
-    max-width: 600px;
-    margin: 0 auto;
+/* Individual form containers */
+.form-container {
+    flex: 1;
+    max-width: 30%;
     padding: 20px;
     background-color: #333;
     border-radius: 8px;
@@ -67,15 +68,10 @@ h3 {
     color: #007bff;
 }
 
-div {
-    margin-top: 20px;
-}
-
 p {
     margin: 5px 0;
-    color:#ffffff
+    color: #ffffff;
 }
-
 
 hr {
     border: 0;
