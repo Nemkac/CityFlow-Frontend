@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the form */
+bodyMain {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #222;
+    color: #fff;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #aaa;
+}
+
+/* Button */
+button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button p {
+    margin: 0;
+}
+
+/* Output Section */
+h3 {
+    color: #007bff;
+}
+
+div {
+    margin-top: 20px;
+}
+
+p {
+    margin: 5px 0;
+    color:#ffffff
+}
+
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #555;
+    margin: 10px 0;
+}

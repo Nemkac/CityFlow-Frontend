@@ -1,0 +1,31 @@
+ <div class="bodyMain">   
+    <label style="color: rgb(255, 255, 255);">Landmarks (comma separated):</label>
+    <input type="text" id="landmark" [(ngModel)]="landmarkMain">
+  
+    <label style="color: rgb(255, 255, 255);">Region:</label>
+    <input type="text" id="region" [(ngModel)]="landmarkRegion">
+  
+    <label style="color: rgb(255, 255, 255);">Minimum Citizens:</label>
+    <input type="number" id="minCitizens" [(ngModel)]="landmarkMinCit">
+  
+    <label style="color: rgb(255, 255, 255);">Maximum Citizens:</label>
+    <input type="number" id="maxCitizens" [(ngModel)]="landmarkMaxCit">
+  
+    
+    <button (click)="runLandmarks()">
+        <p>Report</p>
+    </button>
+  
+  <div *ngIf="landmarksOutputList.length > 0">
+    <h3>Landmarks Output:</h3>
+    <div *ngFor="let output of landmarksOutputList; let i = index">
+      <p><strong>Landmark {{ i + 1 }}:</strong></p>
+      <p>Landmark: {{ output.Landmark }}</p>
+      <p>City: {{ output.City }}</p>
+      <p>Region: {{ output.Region }}</p>
+      <p>Number of Citizens: {{ output.NumberOfCitizens }}</p>
+      <hr>
+    </div>
+  </div>
+</div>
+  

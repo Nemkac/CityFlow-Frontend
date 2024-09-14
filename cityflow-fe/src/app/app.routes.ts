@@ -13,6 +13,7 @@ import { BusServicingsComponent } from './components/bus-servicings/bus-servicin
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MalfunctionDataComponent } from './components/malfunction-data/malfunction-data.component';
 import { SuperAdminComponent } from './components/super-admin/super-admin.component';
+import { ChatBotComponent } from './components/chat-bot/chat-bot.component';
 
 export const routes: Routes = [
     {path:"", component : HomePageComponent},
@@ -28,5 +29,6 @@ export const routes: Routes = [
     {path:"chargingPlanGeneticAlgorithm",component : GenAlgChargingComponent},
     {path:"busServicings",component : BusServicingsComponent},
     {path:"malfunctionData",component : MalfunctionDataComponent},
-    {path:"superAdmin",component : SuperAdminComponent}
+    {path:"superAdmin",component : SuperAdminComponent},
+    {path:"chatBot", component: ChatBotComponent}
 ];
