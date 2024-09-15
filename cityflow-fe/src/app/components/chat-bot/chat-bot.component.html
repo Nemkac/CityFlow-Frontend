@@ -2,17 +2,8 @@
     <!-- Landmarks Form -->
     <div class="form-container">
       <h2>Landmarks</h2>
-      <label>Landmarks (comma separated):</label>
+      <label>Landmarks:</label>
       <input type="text" id="landmark" [(ngModel)]="landmarkMain">
-  
-      <label>Region:</label>
-      <input type="text" id="region" [(ngModel)]="landmarkRegion">
-  
-      <label>Minimum Citizens:</label>
-      <input type="number" id="minCitizens" [(ngModel)]="landmarkMinCit">
-  
-      <label>Maximum Citizens:</label>
-      <input type="number" id="maxCitizens" [(ngModel)]="landmarkMaxCit">
   
       <button (click)="runLandmarks()">
           <p>Report</p>
@@ -37,12 +28,6 @@
       <label>Route Description:</label>
       <input type="text" id="routeDescription" [(ngModel)]="routeDescription">
   
-      <label>Route Duration:</label>
-      <input type="text" id="routeDuration" [(ngModel)]="routeDuration">
-  
-      <label>Departure Type:</label>
-      <input type="text" id="departureType" [(ngModel)]="departureTime">
-  
       <button (click)="runRoutes()">
           <p>Report</p>
       </button>
@@ -65,13 +50,6 @@
       <h2>Stops</h2>
       <label>Special Features :</label>
       <input type="text" id="specialFeatures" [(ngModel)]="specialFeatures">
-  
-      <label>Nearby features:</label>
-      <input type="text" id="nearbyFeatures" [(ngModel)]="nearbyLandmarks">
-  
-  
-      <label>Facilities:</label>
-      <input type="text" id="facilities" [(ngModel)]="facilities">
   
       <button (click)="runStops()">
           <p>Report</p>

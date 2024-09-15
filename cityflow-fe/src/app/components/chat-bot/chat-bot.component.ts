@@ -46,9 +46,9 @@ export class ChatBotComponent implements OnInit{
   runLandmarks(){
     const landmarksInput: LandmarksInput = {
       landmark: [this.landmarkMain],
-      region: this.landmarkRegion,
-      min_citizens: this.landmarkMinCit,
-      max_citizens: this.landmarkMaxCit
+      region: "vojvodina",
+      min_citizens: 1,
+      max_citizens: 9999999
   };
     this.chatbotService.searchLandmarks(landmarksInput).subscribe(
       (response:LandmarksOutput[]) => {
@@ -61,8 +61,8 @@ export class ChatBotComponent implements OnInit{
   runRoutes(){
     const routesInput : RoutesInput = {
       routeDescription : [this.routeDescription],
-      RouteDuration : this.routeDuration,
-      DepartureTime : this.departureTime
+      RouteDuration : "10",
+      DepartureTime : "23:59"
     };
     this.chatbotService.searchRoutes(routesInput).subscribe(
       (response:RoutesOutput[]) => {
@@ -75,13 +75,13 @@ export class ChatBotComponent implements OnInit{
   runStops() {
     const stopsInput : StopsInput = {
       special_features : [this.specialFeatures],
-      nearby_landmarks : this.nearbyLandmarks,
-      facilities : this.facilities
+      nearby_landmarks : "",
+      facilities : "wi-fi"
     };
     this.chatbotService.searchStops(stopsInput).subscribe(
       (response:StopsOutput[]) => {
         console.log(response);
-        this.stopsOutputList = response;
+        this.stopsOutputList = response; 
       }
     )
 
