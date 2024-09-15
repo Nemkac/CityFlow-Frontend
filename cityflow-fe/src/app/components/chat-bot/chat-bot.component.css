@@ -1,10 +1,28 @@
+/* Reset default margin */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Center the main content using flexbox */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 /* Container for the forms */
 .container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #000000;
+    width: 90%;
 }
 
 /* Individual form containers */
@@ -16,6 +34,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #fff;
+    margin-bottom: 20px;
 }
 
 /* Labels */
@@ -38,25 +57,21 @@ input[type="number"] {
     color: #fff;
 }
 
-input[type="text"]::placeholder,
-input[type="number"]::placeholder {
-    color: #aaa;
-}
-
 /* Button */
 button {
-    background-color: #007bff;
+    background-color: #1a8300;
     border: none;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 15px;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #007502;
 }
 
 button p {
@@ -65,7 +80,7 @@ button p {
 
 /* Output Section */
 h3 {
-    color: #007bff;
+    color: #27c300;
 }
 
 p {
@@ -78,4 +93,11 @@ hr {
     height: 1px;
     background: #555;
     margin: 10px 0;
+}
+
+/* Title styling */
+h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
 }
