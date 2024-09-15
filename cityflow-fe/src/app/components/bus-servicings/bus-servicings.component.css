@@ -95,8 +95,8 @@ h3 {
 
 /* Styling for the servicing card */
 .servicing-card-past {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #111111;
+  color: #ffffff;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -117,8 +117,18 @@ h3 {
   flex: 1;
 }
 
+
 .card-left {
   padding-right: 10px; /* Space between left and right columns */
+}
+
+.card-left strong {
+  color: #ffd006;
+}
+
+
+.card-right strong {
+  color: #ffd006;
 }
 
 .card-right {
@@ -131,8 +141,11 @@ h3 {
 }
 
 .servicing-card-past.selected {
-  background-color: red;
-  color: #fff;
+  background-color: rgb(129, 0, 0);
+}
+
+.servicing-card-past.selected strong{
+  color: #ffffff;
 }
 
 .confirmation {
@@ -144,8 +157,8 @@ h3 {
 
 /* Future servicing card */
 .servicing-card-future {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #111111;
+  color: #ffffff;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -157,9 +170,7 @@ p {
   margin: 5px 0;
 }
 
-strong {
-  color: #453ae0;
-}
+
 
 /* Copyright section */
 .copyright-section {

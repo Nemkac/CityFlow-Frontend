@@ -1,7 +1,7 @@
 <div class="main-container">
   <!-- Title Section -->
   <div class="title">
-      <h1>Chatbot Interaction</h1>
+      <h1>Learn about landmarks and search routes or stops based on the attractions you would like to see </h1>
   </div>
 
   <!-- Forms Container -->
@@ -9,7 +9,7 @@
       <!-- Landmarks Form -->
       <div class="form-container">
           <h2>Landmarks</h2>
-          <label>Landmarks you would like to check :</label>
+          <label>Learn more about landmarks :</label>
           <input type="text" id="landmark" [(ngModel)]="landmarkMain">
       
           <button (click)="runLandmarks()">
@@ -32,7 +32,7 @@
       <!-- Routes Form -->
       <div class="form-container">
           <h2>Routes</h2>
-          <label>Any preferred attractions along the route ?</label>
+          <label>Any preferred attractions ?</label>
           <input type="text" id="routeDescription" [(ngModel)]="routeDescription">
       
           <button (click)="runRoutes()">
@@ -45,7 +45,6 @@
                   <p><strong>Route {{ i + 1 }}:</strong></p>
                   <p>Description: {{ output.RouteDescription }}</p>
                   <p>Duration: {{ output.RouteDuration }}</p>
-                  <p>Departure Type: {{ output.DepartureTime }}</p>
                   <hr>
               </div>
           </div>

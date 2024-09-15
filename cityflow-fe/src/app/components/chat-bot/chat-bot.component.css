@@ -3,7 +3,9 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #000000;
 }
+
 
 /* Center the main content using flexbox */
 body {
@@ -13,6 +15,7 @@ body {
     background-color: #000000;
     min-height: 100vh;
     flex-direction: column;
+    border-radius: 10%;
 }
 
 /* Container for the forms */
@@ -21,8 +24,9 @@ body {
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    background-color: #000000;
+    background-color: #ffffff00;
     width: 90%;
+    border-radius: 2.5%;
 }
 
 /* Individual form containers */
@@ -30,7 +34,7 @@ body {
     flex: 1;
     max-width: 30%;
     padding: 20px;
-    background-color: #333;
+    background-color: #000000;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #fff;
