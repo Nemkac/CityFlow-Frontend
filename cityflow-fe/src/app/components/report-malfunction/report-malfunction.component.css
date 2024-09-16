@@ -42,11 +42,12 @@ html, body {
     height: 200px;
     padding: 16px;
     border-radius: 12px;
-    border: 2px solid rgba(200, 200, 200, 0.7);
-    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #937800;
+    background-color: rgba(0, 0, 0, 0.9);
     resize: none;
     font-size: 20px;
     transition: border-color 0.3s ease;
+    color: #ffffff;
 }
 
 .commentary-input:focus {
