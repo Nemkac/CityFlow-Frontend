@@ -1,19 +1,19 @@
 <ng-toast [width]="450" [position]="ToasterPosition.TOP_RIGHT" />
 
 <div class="center-container">
-    <h1 class="title">{{ 'Malfunction report' }}</h1>
+    <h1 class="title">{{ 'Malfunction report' | transPipe }}</h1>
 
     <div class="textarea-container">
         <textarea 
             [(ngModel)]="commentary" 
             class="commentary-input" 
-            placeholder="Describe what happened"></textarea>
+            [placeholder]=" 'Describe what happened' | transPipe" ></textarea>
     </div>
 
     <div class="priority-container">
-        <label class="priority-label">Please rate the priority of malfunction resolving</label>
+        <label class="priority-label">{{'Please rate the priority of malfunction resolving'| transPipe}}</label>
         <input type="range" [(ngModel)]="priority" min="1" max="5" class="priority-slider">
-        <p class="priority-text">Selected priority: {{ priority }}</p>
+        <p class="priority-text">{{'Selected priority:' | transPipe}} {{ priority }}</p>
     </div>
 
     <button class="report-button" (click)="reportMalfunction(1)">

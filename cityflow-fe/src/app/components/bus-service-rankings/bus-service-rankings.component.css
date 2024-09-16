@@ -9,9 +9,9 @@ html, body {
 .container {
 
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    transform: translate(-40%, -25%);
+    transform: translate(-38%, -10%);
     
     max-width: 700px;
     margin: 0 auto;
@@ -28,7 +28,7 @@ html, body {
     color: #ffffff;
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 

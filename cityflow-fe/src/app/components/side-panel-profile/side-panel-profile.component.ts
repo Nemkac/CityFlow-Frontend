@@ -69,4 +69,9 @@ export class SidePanelProfileComponent implements OnInit{
     }, 125);
 
   }
+
+  changeLanguage(){
+    localStorage.setItem('lang','eng');
+    window.location.reload();
+  }
 }

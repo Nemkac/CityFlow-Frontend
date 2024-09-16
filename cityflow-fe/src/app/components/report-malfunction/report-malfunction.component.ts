@@ -11,6 +11,7 @@ import { GlobalService } from '../../global.service';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 import { NgToastService } from 'ng-angular-popup'; 
 import { Router } from '@angular/router';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-report-malfunction',
   standalone: true,
-  imports: [NgFor,FormsModule,NgToastModule],
+  imports: [NgFor,FormsModule,NgToastModule,TransPipePipe],
   templateUrl: './report-malfunction.component.html',
   styleUrl: './report-malfunction.component.css'
 })
@@ -39,7 +40,7 @@ export class ReportMalfunctionComponent implements OnInit{
               private authService:AuthService,
               private globalService:GlobalService,
               private toast:NgToastService,
-              private router : Router,
+              private router : Router
   ) {}
   ngOnInit(): void {
     if(sessionStorage.getItem('keyDriver') == '0') {
