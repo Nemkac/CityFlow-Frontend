@@ -11,12 +11,12 @@ html, body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-40%, -20%);
+    transform: translate(-40%, -25%);
     
     max-width: 700px;
     margin: 0 auto;
     padding: 10px;
-    background-color: #2f3640;
+    background-color: #000000;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -35,7 +35,7 @@ html, body {
 /* Ranking card styles */
 .ranking-card {
     /*background-color: #000000;*/
-    background-color:#191919ea;
+    background-color:#000000ea;
     border-radius: 18px;
     padding: 8px;
     margin-bottom: 10px;
@@ -46,13 +46,19 @@ html, body {
     max-width: 600px; /* Adjust card width */
     margin-left: auto;
     margin-right: auto; /* Centering the cards */
+    border: solid #5a4a00;
+
 }
 
 .ranking-card:hover {
     transform: scale(1.05);
     /*background-color: #0f0225;*/
     background-color: #000000;
+    border: solid #fffb00;
+    color : #000000;
 }
+
+
 
 /* Ranking info */
 .ranking-info p {
@@ -64,6 +70,8 @@ html, body {
 .ranking-info b {
     color: #ffcc00;
 }
+
+
 
 /* Ranking action buttons */
 .ranking-actions {

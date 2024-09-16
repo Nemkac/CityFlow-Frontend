@@ -3,8 +3,8 @@
         <img [src]="getAvatarUrl()" alt="User Avatar" class="w-full h-full object-cover">
     </div>
     <div class="user-info flex flex-col items-center">
-        <p class="username text-xl font-bold text-white">{{loggedUser?.username}}</p>
-        <p class="full-name text-lg font-medium text-white">{{loggedUser?.name}} {{loggedUser?.lastname}}</p>
+        <p class="username text-xl font-bold ">{{loggedUser?.username}}</p>
+        <p class="full-name text-lg font-medium ">{{loggedUser?.name}} {{loggedUser?.lastname}}</p>
         <p class="role text-md font-light text-gray-300">
             <ng-container *ngIf="loggedUser?.roles === 'ROLE_DRIVER'">Bus driver</ng-container>
             <ng-container *ngIf="loggedUser?.roles === 'ROLE_SERVICE'">Bus servicer</ng-container>

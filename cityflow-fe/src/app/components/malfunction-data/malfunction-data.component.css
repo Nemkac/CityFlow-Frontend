@@ -37,7 +37,7 @@ h1 {
 
 /* Malfunction item styles */
 .malfunction-item {
-    background-color: #252525;
+    background-color: #000000;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -46,6 +46,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: solid #5a4a00;
 }
 
 .malfunction-item p{
@@ -56,7 +57,9 @@ h1 {
 
 .malfunction-item:hover {
     transform: scale(1.02);
-    background-color: #2d2d2d;
+    background-color: #000000;
+    border: solid #ffcc00;
+
 }
 
 /* Manufacturer and other info styling */
@@ -107,7 +110,7 @@ h1 {
     font-size: 16px;
     color: #ffffff;
     padding: 10px;
-    background-color: #353b48;
+    background-color: #000000;
     position: absolute;
     top: 200%;
     left: 50%;

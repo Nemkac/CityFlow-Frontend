@@ -40,7 +40,7 @@ button {
 
 button:hover {
   transform: translateY(-3px); /* Slight lift on hover */
-  background-color:#eeff00; /* Subtle hover effect */
+  color: #ffd006;
 }
 
 button:active {
