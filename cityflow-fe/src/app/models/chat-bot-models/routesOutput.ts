@@ -4,4 +4,5 @@ export interface RoutesOutput {
     DepartureTime:string;
     RouteDescription:string;
     RouteDuration:number;
+    busLine : number;
 }

@@ -1,29 +1,29 @@
 <div class="main-container">
   <!-- Title Section -->
   <div class="title">
-      <h1>Learn about landmarks and search routes or stops based on the attractions you would like to see </h1>
+      <h1>{{'Learn about landmarks and search routes or stops based on the attractions you would like to see' | transPipe}} </h1>
   </div>
 
   <!-- Forms Container -->
   <div class="container">
       <!-- Landmarks Form -->
       <div class="form-container">
-          <h2>Landmarks</h2>
-          <label>Learn more about landmarks :</label>
+          <h2>{{'Landmarks' | transPipe}}</h2>
+          <label>{{'Learn more about landmarks' | transPipe}} :</label>
           <input type="text" id="landmark" [(ngModel)]="landmarkMain">
       
           <button (click)="runLandmarks()">
-              <p>Check for answer</p>
+              <p>{{'Check for answer' | transPipe}}</p>
           </button>
       
           <div *ngIf="landmarksOutputList.length > 0">
-              <h3>Landmarks Output:</h3>
+              <h3>{{'Landmarks Output' | transPipe}}:</h3>
               <div *ngFor="let output of landmarksOutputList; let i = index">
-                  <p><strong>Landmark {{ i + 1 }}:</strong></p>
-                  <p>Landmark: {{ output.Landmark }}</p>
-                  <p>City: {{ output.City }}</p>
-                  <p>Region: {{ output.Region }}</p>
-                  <p>Number of Citizens: {{ output.NumberOfCitizens }}</p>
+                  <p><strong>{{'Landmark' | transPipe}} {{ i + 1 }}:</strong></p>
+                  <p>{{'Landmark' | transPipe}}: {{ output.Landmark }}</p>
+                  <p>{{'City' | transPipe}}: {{ output.City }}</p>
+                  <p>{{'Region' | transPipe}}: {{ output.Region }}</p>
+                  <p>{{'Number of Citizens' | transPipe}}: {{ output.NumberOfCitizens }}</p>
                   <hr>
               </div>
           </div>
@@ -31,20 +31,21 @@
 
       <!-- Routes Form -->
       <div class="form-container">
-          <h2>Routes</h2>
-          <label>Any preferred attractions ?</label>
+          <h2>{{'Routes' | transPipe}}</h2>
+          <label>{{'Any preferred attractions' | transPipe}} ?</label>
           <input type="text" id="routeDescription" [(ngModel)]="routeDescription">
       
           <button (click)="runRoutes()">
-              <p>Check for answer</p>
+              <p>{{'Check for answer' | transPipe}}</p>
           </button>
       
           <div *ngIf="routesOutputList.length > 0">
-              <h3>Routes Output:</h3>
+              <h3>{{'Routes Output' | transPipe}}:</h3>
               <div *ngFor="let output of routesOutputList; let i = index">
-                  <p><strong>Route {{ i + 1 }}:</strong></p>
-                  <p>Description: {{ output.RouteDescription }}</p>
-                  <p>Duration: {{ output.RouteDuration }}</p>
+                  <p><strong>{{'Route' | transPipe}} {{ i + 1 }}:</strong></p>
+                  <p>{{'Description' | transPipe}}: {{ output.RouteDescription }}</p>
+                  <p>{{'Duration' | transPipe}}: {{ output.RouteDuration }}</p>
+                  <p>{{'Bus line' | transPipe}}: {{ output.busLine }}</p>
                   <hr>
               </div>
           </div>
@@ -52,21 +53,22 @@
 
       <!-- Stops Form -->
       <div class="form-container">
-          <h2>Stops</h2>
-          <label>Where would you like your bus to stop ?</label>
+          <h2>{{'Stops' | transPipe}}</h2>
+          <label>{{'Where would you like your bus to stop' | transPipe}} ?</label>
           <input type="text" id="specialFeatures" [(ngModel)]="specialFeatures">
       
           <button (click)="runStops()">
-              <p>Check for answer</p>
+              <p>{{'Check for answer' | transPipe}}</p>
           </button>
       
           <div *ngIf="stopsOutputList.length > 0">
-              <h3>Stops Output:</h3>
+              <h3>{{'Stops Output' | transPipe}}:</h3>
               <div *ngFor="let output of stopsOutputList; let i = index">
-                  <p><strong>Stop {{ i + 1 }}:</strong></p>
-                  <p>Special Features: {{ output.SpecialFeatures }}</p>
-                  <p>Nearby landmarks: {{ output.NearbyLandmarks }}</p>
-                  <p>Facilities: {{ output.Facilities }}</p>
+                  <p><strong>{{'Stop' | transPipe}} {{ i + 1 }}:</strong></p>
+                  <p>{{'Special Features' | transPipe}}: {{ output.SpecialFeatures }}</p>
+                  <p>{{'Nearby landmarks' | transPipe}}: {{ output.NearbyLandmarks }}</p>
+                  <p>{{'Facilities' | transPipe}}: {{ output.Facilities }}</p>
+                  <p>{{'Bus line' | transPipe}}: {{ output.busLine }}</p>
                   <hr>
               </div>
           </div>

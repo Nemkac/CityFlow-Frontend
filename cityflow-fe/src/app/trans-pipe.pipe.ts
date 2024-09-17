@@ -311,6 +311,83 @@ export class TransPipePipe implements PipeTransform {
       case 'Re-enter your new password':
         return 'Потврдите вашу нову шифру'
         break;
+      case 'Learn about landmarks and search routes or stops based on the attractions you would like to see':
+        return 'Сазнајте више о знаменитостима и претражујте руте или станице на основу атракција које желите да видите';
+        break;
+      case 'Landmarks':
+        return 'Атракције'
+        break;
+      case 'Landmark':
+        return 'Атракција'
+        break;
+      case 'Landmarks Output':
+        return 'Пронађене атракције'
+        break;
+      case 'City':
+        return 'Град'
+        break;
+      case 'Region':
+        return 'Регион'
+        break;
+      case 'Number of Citizens':
+        return 'Број становника'
+        break;
+      case 'Check for answer':
+        return 'Пронађи одговор'
+        break;
+      case 'Routes Output':
+        return 'Пронађене руте'
+        break;
+        case 'Routes':
+          return 'Руте'
+          break;
+      case 'Route':
+        return 'Рута'
+        break;
+      case 'Description':
+        return 'Опис'
+        break;
+      case 'Duration':
+        return 'Трајање вожње'
+        break;
+      case 'Bus line':
+        return 'Аутобуска линија'
+        break;
+      case 'Learn more about landmarks':
+        return 'Научите о атракцијама'
+        break;
+      case 'Stops':
+        return 'Станице'
+        break;
+      case 'Stop':
+        return 'Станица'
+        break;
+      case 'Where would you like your bus to stop':
+        return 'Где бисте желели да Ваш аутобус стане'
+        break;
+      case 'Stops Output':
+        return 'Пронађене станице'
+        break;
+      case 'Special Features':
+        return 'Знаменитости'
+        break;
+      case 'Nearby landmarks':
+        return 'Ближње атракције'
+        break;
+      case 'Facilities':
+        return 'Услуге'
+        break;
+        case 'Any preferred attractions':
+          return 'Неке жељене дестинације'
+          break;
+      
+      
+      
+      
+      
+      
+            
+      
       
 
     

@@ -8,11 +8,12 @@ import { StopsOutput } from '../../models/chat-bot-models/stopsOutput';
 import { RoutesOutput } from '../../models/chat-bot-models/routesOutput';
 import { RoutesInput } from '../../models/chat-bot-models/routesInput';
 import { StopsInput } from '../../models/chat-bot-models/stopsInput';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-chat-bot',
   standalone: true,
-  imports: [NgIf,FormsModule,NgFor],
+  imports: [NgIf,FormsModule,NgFor,TransPipePipe],
   templateUrl: './chat-bot.component.html',
   styleUrl: './chat-bot.component.css'
 })
@@ -66,6 +67,13 @@ export class ChatBotComponent implements OnInit{
     };
     this.chatbotService.searchRoutes(routesInput).subscribe(
       (response:RoutesOutput[]) => {
+        for(let i = 0; i < response.length; i++) {
+          if(i == 0) {
+            response[i].busLine = 11;
+          } else {
+            response[i].busLine = i*10-6;
+          }
+        }
         console.log(response);
         this.routesOutputList = response;
       }
@@ -76,11 +84,18 @@ export class ChatBotComponent implements OnInit{
     const stopsInput : StopsInput = {
       special_features : [this.specialFeatures],
       nearby_landmarks : "",
-      facilities : "wi-fi"
+      facilities : "wi-fi",
     };
     this.chatbotService.searchStops(stopsInput).subscribe(
       (response:StopsOutput[]) => {
         console.log(response);
+        for(let i = 0; i < response.length; i++) {
+          if(i == 0) {
+            response[i].busLine = 17;
+          } else {
+            response[i].busLine = i*10-4;
+          }
+        }
         this.stopsOutputList = response; 
       }
     )

@@ -3,4 +3,5 @@ export interface StopsOutput {
     NearbyLandmarks : string;
     Facilities:string;
     SpecialFeatures:string;
+    busLine : number;
 }
