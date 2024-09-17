@@ -79,6 +79,26 @@ html, body {
     height: 50px; /* Define button height */
 }
 
+.lang-button {
+    background-color: #ffffff00; /* White background */
+    color: #000000; /* Black text color */
+    display: flex;
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    transition: all 0.3s ease-in-out;
+    padding: 0 10px; /* Add padding for better button size, remove vertical padding */
+    border-radius: 10px; /* Rounded corners */
+    height: 50px; /* Define button height */
+    font-size: 20px;
+    border:solid #000000;
+}
+
+.lang-button p{
+    font-size: 15px;
+}
+
+
+
 .sign-out-button p {
     margin: 0; /* Remove default margin */
 }

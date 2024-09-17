@@ -2,14 +2,14 @@
 
 <div class="containerTop">
     <div class="page-title">
-      <h1>Bus Servicings</h1>
-      <h3>Please check if all past servicings actually performed.</h3>
-      <h3>If not, please select such servicing and click on it again to confirm.</h3>
+      <h1>{{ 'Bus servicings' | transPipe}}</h1>
+      <h3>{{ 'Please check if all past servicings actually performed.' | transPipe}}</h3>
+      <h3>{{ 'If not, please select such servicing and click on it again to confirm.' | transPipe}}</h3>
     </div>  
     
     <div class="container">
       <div class="col-md-12 servicing-section">
-        <h3>Past Servicings</h3>
+        <h3>{{'Past Servicings' | transPipe}}</h3>
         <ul class="servicing-list">
           <li *ngFor="let servicing of pastServicings" class="servicing-item">
             <div class="servicing-card-past"
@@ -18,23 +18,23 @@
         <div class="card-content">
           <!-- Left column -->
           <div class="card-left">
-            <p><strong>Bus ID :</strong> {{ servicing.bus.busId }}</p>
-            <p><strong>Date :</strong> {{ servicing.date }}</p>
-            <p><strong>Mileage :</strong> {{ servicing.mileage }}</p>
-            <p><strong>Reg.num :</strong> {{ servicing.bus.registrationNumber }}</p>
+            <p><strong>{{'Bus ID' | transPipe}} :</strong> {{ servicing.bus.busId }}</p>
+            <p><strong>{{'Date' | transPipe}} :</strong> {{ servicing.date }}</p>
+            <p><strong>{{'Mileage' | transPipe}} :</strong> {{ servicing.mileage }}</p>
+            <p><strong>{{'Reg.num' | transPipe}} :</strong> {{ servicing.bus.registrationNumber }}</p>
 
           </div>
           <!-- Right column -->
           <div class="card-right">
-            <p><strong>Manufacturer:</strong> {{ servicing.bus.manufacturer }}</p>
-            <p><strong>Model:</strong> {{ servicing.bus.model }}</p>
-            <p><strong>Model Year:</strong> {{ servicing.bus.modelYear }}</p>
+            <p><strong>{{'Manufacturer' | transPipe}}:</strong> {{ servicing.bus.manufacturer }}</p>
+            <p><strong>{{'Model' | transPipe}}:</strong> {{ servicing.bus.model }}</p>
+            <p><strong>{{'Model Year' | transPipe}}:</strong> {{ servicing.bus.modelYear }}</p>
           </div>
         </div>
 
   <!-- Conditional confirmation message -->
       <div *ngIf="servicing === selectedServicing" class="confirmation">
-    <p>Click again to confirm</p>
+    <p>{{'Click again to confirm' | transPipe}}</p>
   </div>
 </div>
 
@@ -44,24 +44,24 @@
       </div>
   
       <div class="col-md-12 servicing-section">
-        <h3>Upcoming Servicings</h3>
+        <h3>{{'Upcoming Servicings' | transPipe}}</h3>
         <ul class="servicing-list">
           <li *ngFor="let servicing of futureServicings" class="servicing-item">
             <div class="servicing-card-future">
               <div class="card-content">
                 <!-- Left column -->
                 <div class="card-left">
-                  <p><strong>Bus ID :</strong> {{ servicing.bus.busId }}</p>
-                  <p><strong>Date :</strong> {{ servicing.date }}</p>
-                  <p><strong>Mileage :</strong> {{ servicing.mileage }}</p>
-                  <p><strong>Reg.num :</strong> {{ servicing.bus.registrationNumber }}</p>
+                  <p><strong>{{'Bus ID' | transPipe}} :</strong> {{ servicing.bus.busId }}</p>
+                  <p><strong>{{'Date' | transPipe}} :</strong> {{ servicing.date }}</p>
+                  <p><strong>{{'Mileage' | transPipe}} :</strong> {{ servicing.mileage }}</p>
+                  <p><strong>{{'Reg.num' | transPipe}} :</strong> {{ servicing.bus.registrationNumber }}</p>
       
                 </div>
                 <!-- Right column -->
                 <div class="card-right">
-                  <p><strong>Manufacturer:</strong> {{ servicing.bus.manufacturer }}</p>
-                  <p><strong>Model:</strong> {{ servicing.bus.model }}</p>
-                  <p><strong>Model Year:</strong> {{ servicing.bus.modelYear }}</p>
+                  <p><strong>{{'Manufacturer' | transPipe}}:</strong> {{ servicing.bus.manufacturer }}</p>
+                  <p><strong>{{'Model' | transPipe}}:</strong> {{ servicing.bus.model }}</p>
+                  <p><strong>{{'Model Year' | transPipe}}:</strong> {{ servicing.bus.modelYear }}</p>
                 </div>
               </div>
             </div>
@@ -71,6 +71,6 @@
     </div>
   </div>
   <div class="copyright-section">
-    <p>© CityFlow 2024. All rights reserved.</p>
-    <p>This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.</p>
+    <p>© {{'CityFlow 2024. All rights reserved.' | transPipe}}</p>
+    <p>{{'This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.' | transPipe}}</p>
 </div>

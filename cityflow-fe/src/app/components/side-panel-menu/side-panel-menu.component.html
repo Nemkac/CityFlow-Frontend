@@ -8,7 +8,7 @@
             <fa-icon [icon]="faUser" class="text-[24px]"/>
         </div>
         <div class="flex w-[90%] justify-start">
-            <p class="ml-[20px] text-[32px]">Profile</p>
+            <p class="ml-[20px] text-[32px]">{{'Profile' | transPipe}}</p>
         </div>
     </button>
 
@@ -22,7 +22,7 @@
                 <i class="fa-solid fa-screwdriver-wrench"></i>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Bus rankings</p>
+                <p class="ml-[20px] text-[32px]">{{'Bus rankings' | transPipe}}</p>
             </div>
         </button>
         <button [ngClass]="{'bg-lightGrey/30' : !showCards,
@@ -34,7 +34,7 @@
                 <fa-icon [icon]="faScrewdriverWrench" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Bus servicings</p>
+                <p class="ml-[20px] text-[32px]">{{'Bus servicings ' | transPipe}}</p>
             </div>
         </button>
         <button [ngClass]="{'bg-lightGrey/30' : !showCards,
@@ -46,7 +46,7 @@
                 <fa-icon [icon]="faScrewdriverWrench" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Malfunction <br> history</p>
+                <p class="ml-[20px] text-[32px]">{{'Malfunction ' | transPipe}} <br> {{'history' | transPipe}}</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'ROLE_CHARGER') {
@@ -59,7 +59,7 @@
                 <fa-icon [icon]="faPlug" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Charging plan</p>
+                <p class="ml-[20px] text-[32px]">{{'Charging plan' | transPipe}}</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'ROLE_DRIVER') {
@@ -72,7 +72,7 @@
                 <fa-icon [icon]="faExclamation" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Malfunction</p>
+                <p class="ml-[20px] text-[32px]">{{'Malfunction'|transPipe}}</p>
             </div>
         </button>
     } @else if (loggedUserRole == 'SUPER_ADMIN') {
@@ -85,7 +85,7 @@
                 <fa-icon [icon]="faUsers" class="text-[24px]"/>
             </div>
             <div class="flex w-[90%] justify-start">
-                <p class="ml-[20px] text-[32px]">Manage users</p>
+                <p class="ml-[20px] text-[32px]">{{'Manage users'|transPipe}}</p>
             </div>
         </button>
     }

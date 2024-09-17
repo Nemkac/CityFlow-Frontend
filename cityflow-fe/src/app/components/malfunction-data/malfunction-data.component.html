@@ -1,17 +1,17 @@
 <div class="container">
-    <h1>Malfunction report history</h1>
+    <h1>{{ 'Malfunction report history' | transPipe}}</h1>
 
     <ul class="malfunction-list">
         <li class="malfunction-item" *ngFor="let manufacturerItem of malfunctionData">
             <div class="malfunction-info">
                 <div class="malfunction-manufacturer">
-                    <p class="manufacturerClass"><b>Manufacturer </b> {{ manufacturerItem.manufacturer }}</p>
+                    <p class="manufacturerClass"><b>{{'Manufacturer' | transPipe}} </b> {{ manufacturerItem.manufacturer }}</p>
                 </div>
                 <div class="malfunction-details">
-                    <p><b>In Last Month:</b> {{ manufacturerItem.inLastMonth }}</p>
-                    <p><b>In Last Year:</b> {{ manufacturerItem.inLastYear }}</p>
-                    <p><b>In Last Five Years:</b> {{ manufacturerItem.inLastFiveYears }}</p>
-                    <p><b>Ever:</b> {{ manufacturerItem.ever }}</p>
+                    <p><b>{{'In Last Month' | transPipe}}:</b> {{ manufacturerItem.inLastMonth }}</p>
+                    <p><b>{{'In Last Year' | transPipe}}:</b> {{ manufacturerItem.inLastYear }}</p>
+                    <p><b>{{'In Last Five Years' | transPipe}}:</b> {{ manufacturerItem.inLastFiveYears }}</p>
+                    <p><b>{{'Ever' | transPipe}}:</b> {{ manufacturerItem.ever }}</p>
                 </div>
             </div>
         </li>
@@ -19,6 +19,6 @@
 </div>
 
 <div class="copyright-section">
-    <p>© CityFlow 2024. All rights reserved.</p>
-    <p>This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.</p>
+    <p>© {{'CityFlow 2024. All rights reserved.' | transPipe}}</p>
+    <p>{{'This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.' | transPipe}}</p>
 </div>

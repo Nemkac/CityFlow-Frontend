@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut, faLanguage } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 @Component({
   selector: 'app-side-panel-profile',
   standalone: true,
-  imports: [FontAwesomeModule,NgIf],
+  imports: [FontAwesomeModule,NgIf,TransPipePipe],
   templateUrl: './side-panel-profile.component.html',
   styleUrl: './side-panel-profile.component.css'
 })
@@ -20,6 +21,7 @@ export class SidePanelProfileComponent implements OnInit{
   //Icons
   faSignOut = faSignOut;
   loggedUser! : User;
+  faLanguage = faLanguage;
   token = localStorage.getItem('token');
 
   constructor(private authService : AuthService,
@@ -71,7 +73,11 @@ export class SidePanelProfileComponent implements OnInit{
   }
 
   changeLanguage(){
-    localStorage.setItem('lang','eng');
+    if(localStorage.getItem('lang') == 'srb') {
+      localStorage.setItem('lang','eng');
+    } else {
+      localStorage.setItem('lang','srb');
+    }
     window.location.reload();
   }
 }

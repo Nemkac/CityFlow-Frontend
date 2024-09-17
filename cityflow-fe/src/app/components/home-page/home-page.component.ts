@@ -3,11 +3,12 @@ import { AuthService } from '../../service/auth.service';
 import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgIf } from '@angular/common';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf,TransPipePipe],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })

@@ -2,22 +2,22 @@
 
 <div *ngIf="isLoading" class="loading-container">
     <div class="text-center">
-        <p class="loading-text">Genetic algorithm is generating charging plan.</p>
-        <p class="loading-text">This can take up to 10 seconds...</p>
+        <p class="loading-text">{{'Genetic algorithm is generating charging plan.' | transPipe }}</p>
+        <p class="loading-text">{{'This can take up to 10 seconds...' | transPipe }}</p>
         <div class="spinner"></div>
     </div>
 </div>
 
 <div *ngIf="!isLoading" class="container">
-    <h1 class="header">Charging plan results</h1>
+    <h1 class="header">{{'Charging plan results' | transPipe }}</h1>
 
     <div class="table-header">
         <div class="table-row">
-            <div class="table-cell"><b>Bus ID</b></div>
-            <div class="table-cell"><b>Station ID</b></div>
-            <div class="table-cell"><b>Charging Time</b></div>
-            <div class="table-cell"><b>Start Time</b></div>
-            <div class="table-cell"><b>End Time</b></div>
+            <div class="table-cell"><b>{{'Bus ID' | transPipe }}</b></div>
+            <div class="table-cell"><b>{{'Station ID' | transPipe }}</b></div>
+            <div class="table-cell"><b>{{'Charging Time' | transPipe }}</b></div>
+            <div class="table-cell"><b>{{'Start Time' | transPipe }}</b></div>
+            <div class="table-cell"><b>{{'End Time' | transPipe }}</b></div>
         </div>
     </div>
 
@@ -30,12 +30,12 @@
     </div>
 
     <button class="regeneratebutton" (click)="regenerateChargingPlan()">
-        <p>Regenerate Charging Plan</p>
+        <p>{{'Regenerate Charging Plan' | transPipe }}</p>
     </button>
 
 </div>
 <div class="copyright-section">
-    <p>© CityFlow 2024. All rights reserved.</p>
-    <p>This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.</p>
+    <p>© {{'CityFlow 2024. All rights reserved.' | transPipe }}</p>
+    <p>{{'This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.' | transPipe }}</p>
 </div>
 

@@ -2,24 +2,24 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="container">
-        <h1 class="title">Bus service rankings</h1>
+        <h1 class="title">{{ 'Bus service rankings' | transPipe}}</h1>
 
         <!-- Rankings List -->
         <div *ngFor="let ranking of rankings" class="ranking-card">
             <div class="ranking-info">
-                <p><b>Bus:</b> {{ ranking.bus.busId }}</p>
-                <p><b>Bus line:</b> {{ ranking.bus.busLine }}</p>
-                <p><b>Manufacturer:</b> {{ ranking.bus.manufacturer }}</p>
+                <p><b>{{'Bus: ' | transPipe}}</b> {{ ranking.bus.busId }}</p>
+                <p><b>{{'Bus line:' | transPipe}}</b> {{ ranking.bus.busLine }}</p>
+                <p><b>{{'Manufacturer:' | transPipe}}</b> {{ ranking.bus.manufacturer }}</p>
             </div>
             <div class="ranking-score">
-                <p><b>Score:</b> {{ ranking.score.toFixed(0) }}</p>
-                <p><b>Rank:</b> {{ ranking.rank }}</p> <br>
+                <p><b>{{'Score:' | transPipe}}</b> {{ ranking.score.toFixed(0) }}</p>
+                <p><b>{{'Rank:' | transPipe}}</b> {{ ranking.rank }}</p> <br>
                 <div class="ranking-actions">
                     <button class="move-btn up" (click)="moveBusUpByRank(ranking.bus.busId)">
-                        Move Up
+                        {{ 'Move up' | transPipe}}
                     </button>
                     <button class="move-btn down" (click)="moveDown(ranking.bus.busId)">
-                        Move Down
+                        {{ 'Move down' | transPipe}}
                     </button>
                 </div>
             </div>
@@ -27,10 +27,10 @@
         
 
         <hr class="divider">
-        <p class="add-time-title">Add svailable service time slot:</p>
+        <p class="add-time-title">{{ 'Add svailable service time slot:' | transPipe}}</p>
         <div class="time-slot-container">
             <input type="date" [(ngModel)]="timeSlotDate" class="date-input">
-            <button class="add-time-btn" (click)="addTimeSlot(timeSlotDate)">Add Time Slot</button>
+            <button class="add-time-btn" (click)="addTimeSlot(timeSlotDate)">{{ 'Add Time Slot' | transPipe}}</button>
         </div>
     </div>
 

@@ -37,7 +37,7 @@ h2 {
 
 .driver-steps li:before {
   content: "•";  /* Changed bullet style to a dot */
-  color: #0056b3;
+  color: #ffcc00;
   margin-right: 8px;
 }
 

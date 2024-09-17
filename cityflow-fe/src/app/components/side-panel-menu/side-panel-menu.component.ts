@@ -7,11 +7,12 @@ import { response } from 'express';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-side-panel-menu',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, NgIf],
+  imports: [FontAwesomeModule, CommonModule, NgIf,TransPipePipe],
   templateUrl: './side-panel-menu.component.html',
   styleUrl: './side-panel-menu.component.css'
 })

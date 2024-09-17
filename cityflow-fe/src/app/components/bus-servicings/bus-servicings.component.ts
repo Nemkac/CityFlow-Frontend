@@ -6,12 +6,13 @@ import { ServiceAdminService } from '../../service/service-admin.service';
 import { Router } from '@angular/router';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 import { NgToastService } from 'ng-angular-popup'; 
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 @Component({
   selector: 'app-bus-servicings',
   standalone: true,
-  imports: [NgFor,FormsModule,NgClass,NgToastModule],
+  imports: [NgFor,FormsModule,NgClass,NgToastModule,TransPipePipe],
   templateUrl: './bus-servicings.component.html',
   styleUrl: './bus-servicings.component.css'
 })

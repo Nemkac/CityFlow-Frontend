@@ -7,11 +7,12 @@ import { User } from '../../models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 import { EditProfileDTO } from '../../dtos/editProfileDTO';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [NgClass, FormsModule, FontAwesomeModule],
+  imports: [NgClass, FormsModule, FontAwesomeModule,TransPipePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

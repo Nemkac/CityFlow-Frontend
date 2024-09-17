@@ -7,12 +7,13 @@ import { User } from '../../models/user';
 import { UserService } from '../../service/user.service';
 import { AuthService } from '../../service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 @Component({
   selector: 'app-super-admin',
   standalone: true,
-  imports: [NgFor,FormsModule,NgClass,NgToastModule,NgIf,NgSwitch,CommonModule],
+  imports: [NgFor,FormsModule,NgClass,NgToastModule,NgIf,NgSwitch,CommonModule,TransPipePipe],
   templateUrl: './super-admin.component.html',
   styleUrl: './super-admin.component.css'
 })
@@ -57,10 +58,17 @@ export class SuperAdminComponent implements OnInit{
   }
 
   public displayRole(role:string):string {
-    if(role=='ROLE_DRIVER' ) return 'Driver';
-    if(role=='ROLE_SERVICE' ) return 'Bus servicer';
-    if(role=='ROLE_CHARGER' ) return 'Charging admin';
-    else return 'No role';
+    if(localStorage.getItem('lang') == 'eng'){
+      if(role=='ROLE_DRIVER' ) return 'Driver';
+      if(role=='ROLE_SERVICE' ) return 'Bus servicer';
+      if(role=='ROLE_CHARGER' ) return 'Charging admin';
+      else return 'No role';
+    } else {
+      if(role=='ROLE_DRIVER' ) return 'Возач';
+      if(role=='ROLE_SERVICE' ) return 'Сервисер';
+      if(role=='ROLE_CHARGER' ) return 'Админ пуњења';
+      else return 'Без улоге';
+    }
   }
 
   /*changeUserRoleVoid(user: any) {

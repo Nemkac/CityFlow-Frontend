@@ -1,55 +1,55 @@
 <div>
-  <p>Hello, {{ loggedUser.name }}.</p>
+  <p>{{'Hello' | transPipe }} {{ loggedUser.name }}.</p>
 
   <!-- For ROLE_DRIVER -->
   <div *ngIf="loggedUserRole === 'ROLE_DRIVER'" class="driver-steps">
-    <h2>Safety Procedures you need to take after experiencing malfunction</h2>
+    <h2>{{'Safety Procedures you need to take after experiencing malfunction' | transPipe }}</h2>
     <ol>
-      <li>Safely bring the bus to a complete stop at a secure location, preferably off the road.</li>
-      <li>Activate the hazard lights to warn surrounding traffic of the situation.</li>
-      <li>Ensure the safety and calm of all passengers, keeping them seated if possible.</li>
-      <li>Turn off the engine to prevent further complications and inspect the bus for any visible issues.</li>
-      <li>Report the malfunction immediately to the operations center using your communication device.</li>
-      <li>Await further instructions from the control center before taking additional actions.</li>
-      <li>If necessary, follow evacuation procedures to safely disembark passengers in a controlled manner.</li>
-      <li>After receiving clearance, ensure that all systems are secure before resuming the journey or waiting for assistance.</li>
+      <li>{{'Safely bring the bus to a complete stop at a secure location, preferably off the road.' | transPipe }}</li>
+      <li>{{'Activate the hazard lights to warn surrounding traffic of the situation.' | transPipe }}</li>
+      <li>{{'Ensure the safety and calm of all passengers, keeping them seated if possible.' | transPipe }}</li>
+      <li>{{'Turn off the engine to prevent further complications and inspect the bus for any visible issues.' | transPipe }}</li>
+      <li>{{'Report the malfunction immediately to the operations center using your communication device.' | transPipe }}</li>
+      <li>{{'Await further instructions from the control center before taking additional actions.' | transPipe }}</li>
+      <li>{{'If necessary, follow evacuation procedures to safely disembark passengers in a controlled manner.' | transPipe }}</li>
+      <li>{{'After receiving clearance, ensure that all systems are secure before resuming the journey or waiting for assistance.' | transPipe }}</li>
     </ol>
   </div>
 
   <!-- For ROLE_SERVICER -->
   <div *ngIf="loggedUserRole === 'ROLE_SERVICE'" class="servicer-steps">
-    <h2>Something about bus ranking system</h2>
+    <h2>{{'Something about bus ranking system' | transPipe }}</h2>
     <p>
-      Each bus in our fleet is assigned a priority ranking based on a comprehensive evaluation system. This ranking is determined by multiple parameters, including total mileage, age of the vehicle, the year of manufacture, its operational significance within the fleet, the time elapsed since its last service, and the number and severity of reported malfunctions.
+      {{'Each bus in our fleet is assigned a priority ranking based on a comprehensive evaluation system. This ranking is determined by multiple parameters, including total mileage, age of the vehicle, the year of manufacture, its operational significance within the fleet, the time elapsed since its last service, and the number and severity of reported malfunctions.' | transPipe }}
     </p>
     <p>
-      Our ranking algorithm is designed to ensure that buses requiring urgent attention are prioritized for maintenance. By incorporating these critical factors, we aim to maximize the fleet’s efficiency and reliability, minimizing downtime and ensuring optimal performance.
+      {{'Our ranking algorithm is designed to ensure that buses requiring urgent attention are prioritized for maintenance. By incorporating these critical factors, we aim to maximize the fleet’s efficiency and reliability, minimizing downtime and ensuring optimal performance.' | transPipe }}
     </p>
     <p>
-      As a bus servicer, your responsibility is to ensure that maintenance tasks are carried out promptly and in accordance with the ranking system, preserving the operational integrity of our transport services.
+      {{'As a bus servicer, your responsibility is to ensure that maintenance tasks are carried out promptly and in accordance with the ranking system, preserving the operational integrity of our transport services.' | transPipe }}
     </p>
     <p>
-      You have full controll, so if you want to move bus up or down in rankings, you can do that with a press of a buttion.
+      {{'You have full controll, so if you want to move bus up or down in rankings, you can do that with a press of a buttion.' | transPipe }}
     </p>
     <p>
-      With adding a service time slot, you are assigning a first bus in the ranking system to that service.
+      {{'With adding a service time slot, you are assigning a first bus in the ranking system to that service.' | transPipe }}
     </p>
     <p>
-      You can view servicings, past or upcoming, in the Bus servicings page, where you can also report if some bus haven't been services but is statet otherwise.
+      {{'You can view servicings, past or upcoming, in the Bus servicings page, where you can also report if some bus haven`t been services but is statet otherwise.' | transPipe }}
     </p>
   </div>
 
   <!-- For ROLE_CHARGER -->
   <div *ngIf="loggedUserRole === 'ROLE_CHARGER'" class="charger-steps">
-    <h2>Something about charging plan optimization</h2>
+    <h2>{{'Something about charging plan optimization' | transPipe }}</h2>
     <p>
-      Our charging plan is generated through the use of an advanced genetic algorithm, meticulously designed to optimize energy distribution across the fleet. The objective is to ensure that each bus is sufficiently charged for its daily route, without overcharging and thereby wasting resources.
+      {{'Our charging plan is generated through the use of an advanced genetic algorithm, meticulously designed to optimize energy distribution across the fleet. The objective is to ensure that each bus is sufficiently charged for its daily route, without overcharging and thereby wasting resources.' | transPipe }}
     </p>
     <p>
-      The algorithm takes into account numerous factors such as the bus's operational schedule, current battery levels, and projected energy needs. This ensures that all buses are adequately prepared for service, reducing both the risk of underperformance and unnecessary charging.
+      {{'The algorithm takes into account numerous factors such as the bus`s operational schedule, current battery levels, and projected energy needs. This ensures that all buses are adequately prepared for service, reducing both the risk of underperformance and unnecessary charging.' | transPipe }}
     </p>
     <p>
-      If operational conditions change, you may initiate a recalculation of the charging plan by selecting the "Regenerate Charging Plan" option. This action will prompt the system to take into account any recent changes, ensuring the most accurate and efficient charging scenario.
+      {{'If operational conditions change, you may initiate a recalculation of the charging plan by selecting the "Regenerate Charging Plan" option. This action will prompt the system to take into account any recent changes, ensuring the most accurate and efficient charging scenario.' | transPipe }}
     </p>
   </div>
 
@@ -57,19 +57,19 @@
     <!-- For ROLE_SUPER_ADMIN -->
     <div *ngIf="loggedUserRole === 'SUPER_ADMIN'" class="admin-steps">
       <p>
-        As a Super Admin, you hold the highest level of access and authority within the system, enabling you to manage user roles and oversee the system’s functionality with full control. 
+        {{'As a Super Admin, you hold the highest level of access and authority within the system, enabling you to manage user roles and oversee the system’s functionality with full control.' | transPipe }}
       </p>
-      <h3><b>What You Can Do:</b></h3>
+      <h3><b>{{'What You Can Do' | transPipe }}:</b></h3>
       <ol>
         <li>
-          <strong>View All Users:</strong> You have the ability to view a complete list of all registered users in the system. This allows you to monitor user activity, verify access levels, and ensure that all users are operating within the correct role parameters.
+          <strong>{{'View All Users' | transPipe }}:</strong> {{'You have the ability to view a complete list of all registered users in the system. This allows you to monitor user activity, verify access levels, and ensure that all users are operating within the correct role parameters.' | transPipe }}
         </li>
         <li>
-          <strong>Modify User Roles:</strong> By clicking on a user’s assigned role, you can easily change or update their permissions. This can include adding, removing, or altering their roles to ensure that they have the correct level of access needed for their tasks. 
+          <strong>{{'Modify User Roles' | transPipe }}:</strong> {{'By clicking on a user’s assigned role, you can easily change or update their permissions. This can include adding, removing, or altering their roles to ensure that they have the correct level of access needed for their tasks.' | transPipe }} 
         </li>
       </ol>
       <p>
-        You are entrusted with maintaining the system’s user role hierarchy, and through your careful management, the system can operate efficiently and securely.
+        {{'You are entrusted with maintaining the system’s user role hierarchy, and through your careful management, the system can operate efficiently and securely.' | transPipe }}
       </p>
     </div>
   </div>

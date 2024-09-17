@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 import { NgToastService } from 'ng-angular-popup'; 
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-gen-alg-charging',
   standalone: true,
-  imports: [NgFor, FormsModule, CommonModule,FontAwesomeModule,NgToastModule],
+  imports: [NgFor, FormsModule, CommonModule,FontAwesomeModule,NgToastModule,TransPipePipe],
   templateUrl: './gen-alg-charging.component.html',
   styleUrls: ['./gen-alg-charging.component.css'] // fixed typo: styleUrl -> styleUrls
 })

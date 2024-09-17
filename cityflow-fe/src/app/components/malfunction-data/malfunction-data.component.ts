@@ -3,11 +3,12 @@ import { ServiceAdminService } from '../../service/service-admin.service';
 import { MalfunctionData } from '../../models/malfunctionData';
 import { NgClass, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-malfunction-data',
   standalone: true,
-  imports: [NgFor,FormsModule,NgClass],
+  imports: [NgFor,FormsModule,NgClass,TransPipePipe],
   templateUrl: './malfunction-data.component.html',
   styleUrl: './malfunction-data.component.css'
 })

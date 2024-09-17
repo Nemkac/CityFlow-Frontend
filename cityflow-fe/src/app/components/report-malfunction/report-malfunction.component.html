@@ -17,11 +17,11 @@
     </div>
 
     <button class="report-button" (click)="reportMalfunction(1)">
-        <p class="button-text">Report</p>
+        <p class="button-text">{{ 'Report' | transPipe}}</p>
     </button>
 </div>
 
 <div class="copyright-section">
-    <p>© CityFlow 2024. All rights reserved.</p>
-    <p>This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.</p>
+    <p>{{'© CityFlow 2024. All rights reserved.' | transPipe}}</p>
+    <p>{{'This content is the property of CityFlow and is protected under international copyright laws. Unauthorized reproduction, distribution, or modification of any part of this material, in whole or in part, without express written permission of CityFlow, is strictly prohibited. All trademarks, logos, and images are the property of their respective owners. For commercial use, explicit authorization is required. Violators may be subject to legal action.' | transPipe}}</p>
 </div>

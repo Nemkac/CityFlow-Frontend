@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
 import { NgToastService } from 'ng-angular-popup'; 
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 
@@ -17,7 +18,7 @@ import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-bus-service-rankings',
   standalone: true,
-  imports: [NgFor,FormsModule,FontAwesomeModule,NgToastModule],
+  imports: [NgFor,FormsModule,FontAwesomeModule,NgToastModule,TransPipePipe],
   templateUrl: './bus-service-rankings.component.html',
   styleUrl: './bus-service-rankings.component.css'
 })
