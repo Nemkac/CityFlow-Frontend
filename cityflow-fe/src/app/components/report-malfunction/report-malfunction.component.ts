@@ -62,7 +62,11 @@ export class ReportMalfunctionComponent implements OnInit{
       this.authService.getUserFromToken(this.token).subscribe(
         (response : User) => {
           this.loggedUser = response;
-          this.toast.success("You have successfully reported malfunction ", "SUCCESS", 5000) // message with title and 5000ms duration
+          if(localStorage.getItem('lang') == 'srb') {
+          this.toast.success("Успешно сте пријавили квар ", "", 5000) 
+          } else {
+            this.toast.success("You have successfully reported malfunction ", "Успешно", 5000) 
+          }
           this.driverService.reportMalfunction(response.id,this.commentary,this.priority).subscribe(
             (report) => {
               console.log("Report : ", report);

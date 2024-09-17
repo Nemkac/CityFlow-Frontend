@@ -6,9 +6,10 @@
         <p class="username text-xl font-bold ">{{loggedUser?.username}}</p>
         <p class="full-name text-lg font-medium ">{{loggedUser?.name}} {{loggedUser?.lastname}}</p>
         <p class="role text-md font-light text-gray-300">
-            <ng-container *ngIf="loggedUser?.roles === 'ROLE_DRIVER'">Bus driver</ng-container>
-            <ng-container *ngIf="loggedUser?.roles === 'ROLE_SERVICE'">Bus servicer</ng-container>
-            <ng-container *ngIf="loggedUser?.roles === 'ROLE_CHARGER'">Bus charging services</ng-container>
+            <ng-container *ngIf="loggedUser?.roles === 'ROLE_DRIVER'">{{'Bus driver' | transPipe}}</ng-container>
+            <ng-container *ngIf="loggedUser?.roles === 'ROLE_SERVICE'">{{'Bus servicer' | transPipe}}</ng-container>
+            <ng-container *ngIf="loggedUser?.roles === 'ROLE_CHARGER'">{{'Bus charging admin' | transPipe}}</ng-container>
+            <ng-container *ngIf="loggedUser?.roles === 'SUPER_ADMIN'">{{'Super admin' | transPipe}}</ng-container>
         </p>
     </div>
         

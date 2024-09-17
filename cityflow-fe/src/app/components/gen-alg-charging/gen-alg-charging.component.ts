@@ -71,7 +71,11 @@ export class GenAlgChargingComponent implements OnInit {
         this.geneticOutputFull = result;
         console.log('Genetski algoritam uspesno izvrsen');
         this.isLoading = false;
-        this.toast.success("Charging plan successfully generated using genetic algorithm ", "SUCCESS", 5000)
+        if(localStorage.getItem('lang') == 'eng') {
+        this.toast.success("Charging plan successfully generated using genetic algorithm ", "SUCCESS", 5000);
+        } else {
+          this.toast.success("План пуњења успешно генерисан користећи генетски алгоритам ", "Успешно", 5000);
+        }
       },
       (error) => {
         console.error('Greska sa izvrsavanjem genetskog algoritma', error);

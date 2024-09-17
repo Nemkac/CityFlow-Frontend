@@ -21,7 +21,7 @@ export class TransPipePipe implements PipeTransform {
       case 'Describe what happened':
         return 'Објасните шта се десило'
       case 'Report' :
-        return 'Пријави'
+        return 'Пријавите'
         // rankings
       case 'Bus service rankings' :
         return 'Рангирање међу аутобусима'
@@ -42,16 +42,16 @@ export class TransPipePipe implements PipeTransform {
         return 'Ранг:'
         break;
       case 'Move up':
-        return 'Помери горе'
+        return 'Померите горе'
         break;
       case 'Move down':
-        return 'Помери доле'
+        return 'Померите доле'
         break;
       case 'Add svailable service time slot:':
         return 'Додајте слободан термин за сервис'
         break;
       case 'Add Time Slot':
-        return 'Додај термин'
+        return 'Додајте термин'
       // servisiranja  
       case 'Bus servicings':
         return 'Термини сервисирања аутобуса'
@@ -266,7 +266,7 @@ export class TransPipePipe implements PipeTransform {
         return 'Корисници'
         break;
       case 'Sign out':
-        return 'Излогуј се'
+        return 'Излогујте се'
         break;
       // profile
       case 'First Name':
@@ -282,7 +282,7 @@ export class TransPipePipe implements PipeTransform {
         return 'Потврдите шифру'
       break;
       case 'Save Changes':
-        return 'Сачувај измене'
+        return 'Сачувајте измене'
         break;
       case 'English':
         return 'Српски'
@@ -291,10 +291,10 @@ export class TransPipePipe implements PipeTransform {
         return 'Списак корисника'
         break;
       case 'Sign Up':
-        return 'Пријави се'
+        return 'Пријавите се'
         break;
       case 'Sign In':
-        return 'Пријави се'
+        return 'Пријавите се'
         break;
       case 'Enter your username':
         return 'Унесите корисничко име'
@@ -377,9 +377,26 @@ export class TransPipePipe implements PipeTransform {
       case 'Facilities':
         return 'Услуге'
         break;
-        case 'Any preferred attractions':
-          return 'Неке жељене дестинације'
-          break;
+      case 'Any preferred attractions':
+        return 'Неке жељене дестинације'
+        break;
+      case 'Sign Up ':
+        return 'Учланите се'
+      case 'Don`t have an account':
+        return 'Немате налог'
+      case 'Bus driver':
+        return 'Возач аутобуса'
+        break;
+      case 'Bus servicer':
+        return 'Сервисер аутобуса'
+        break;
+      case 'Bus charging admin':
+        return 'Надзорник пуњења'
+        break;
+      case 'Super admin':
+        return 'Врховни админ'
+        break;
+        
       
       
       

@@ -60,7 +60,11 @@ export class BusServicingsComponent implements OnInit{
   handleClick(servicing: any) {
     if (this.selectedServicing === servicing) {
       this.reportServicing(servicing);
+      if(localStorage.getItem('lang') == 'eng') {
       this.toast.success("Alleged past servicing successfully reported. ", "SUCCESS", 5000);
+      } else {
+        this.toast.success("Неверодостојно забележен сервис успешно уклоњен ", "Успешно", 5000);
+      }
     } else {
       this.selectedServicing = servicing;
     }

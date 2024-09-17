@@ -85,7 +85,11 @@ export class BusServiceRankingsComponent implements OnInit{
         console.log(services);
       }
     )
-    this.toast.success("Bus successfully asigned to new added service time slot ", "SUCCESS", 5000)
+    if(localStorage.getItem('lang') == 'eng') {
+    this.toast.success("Bus successfully asigned to new added service time slot ", "SUCCESS", 5000);
+    } else {
+      this.toast.success("Аутобус је успешно придодат додатом термину сервиса ", "Успешно", 5000);
+    }
     setTimeout(() => {
       window.location.reload();
     }, 750);

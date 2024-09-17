@@ -1,13 +1,13 @@
 <button class="sign-in" (click)="navigateToSignIn()">
-    <p class="sign-in-text">Sign In</p>
+    <p class="sign-in-text">{{'Sign In' | transPipe}}</p>
     <fa-icon [icon]="faArrowRight"></fa-icon>
 </button>
 <div class="flex flex-row w-full items-center justify-center my-8">
     <hr class="flex w-[30px] text-white"> 
-    <p class="flex text-white font-manrope font-light text-[11px] mx-2">Don't have an account?</p>
+    <p class="flex text-white font-manrope font-light text-[11px] mx-2">{{'Don`t have an account' | transPipe}}?</p>
     <hr class="flex w-[30px] text-white">
 </div>
 <button class="sign-up" (click)="navigateToSignUp()">
-    <p class="sign-up-text">Sign Up</p>
+    <p class="sign-up-text">{{'Sign Up ' | transPipe}}</p>
     <fa-icon [icon]="faArrowRight"></fa-icon>
 </button>

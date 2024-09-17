@@ -63,6 +63,7 @@ html, body {
 /* Role styling */
 .role {
     color: #000000; /* Light gray text color for role */
+    font-weight: 350;
 }
 
 /* Sign out button styles */

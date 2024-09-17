@@ -40,7 +40,11 @@ export class SignupComponent implements OnInit{
     this.authService.register(RegisterForm.value).subscribe(
       (response: RegisterDTO) => {
         console.log('User registered successfully:', response);
+        if(localStorage.getItem('lang') == 'eng') {
         this.toast.success("Succesffuly registered ! You can now log in. ","SUCCESS",1500);
+        } else {
+          this.toast.success("Успешно сте регистровани ! Можете се пријавити. ","Успешно",1500);
+        }
         setTimeout(() => {
           this.router.navigate(['/signin']); 
         }, 1500);  

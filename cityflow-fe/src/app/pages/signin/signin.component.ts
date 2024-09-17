@@ -73,7 +73,11 @@ export class SigninComponent implements OnInit{
       },
       (error: HttpErrorResponse) => {
         console.log("Error while signing in: ", error);
+        if(localStorage.getItem('lang') == 'eng') {
         this.toast.warning("Loging credentials incorrect", "Oops", 5000);
+        } else {
+          this.toast.warning("Неисправни креденцијали", "Грешка", 5000);
+        }
       }
     );
   }
