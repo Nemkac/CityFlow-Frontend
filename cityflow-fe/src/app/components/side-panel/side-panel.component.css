@@ -35,3 +35,35 @@ html, body {
     color: #B0B0B0; /* Light gray text color */
     text-align: center; /* Center the text */
 }
+
+.lang-button {
+    margin-top: 25px;
+    margin-left: 25%;
+    background-color: transparent; /* Transparent background */
+    color: #ababab; /* Black text color */
+    display: flex;
+    justify-content: center; /* Center text and icon horizontally */
+    align-items: center; /* Center text and icon vertically */
+    transition: all 0.3s ease-in-out;
+    padding: 0 10px; /* Add padding for better button size */
+    border-radius: 10px; /* Rounded corners */
+    height: 30px; /* Define button height */
+    border: solid 2px #ababab; /* Border styling */
+    font-size: 15px; /* Font size for the text */
+    width: 100px;
+}
+
+.lang-button:hover{
+    color: #d3ac00;
+    border: solid 2px #554500;
+}
+
+.lang-button-text {
+    margin: 0; /* Remove default margin */
+    line-height: 45px; /* Align text vertically within the button */
+}
+
+.lang-button-icon {
+    width: 12px; /* Icon width */
+    margin-left: 8px; /* Space between text and icon */
+}

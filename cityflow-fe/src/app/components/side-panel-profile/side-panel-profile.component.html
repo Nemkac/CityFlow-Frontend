@@ -11,16 +11,16 @@
             <ng-container *ngIf="loggedUser?.roles === 'ROLE_CHARGER'">Bus charging services</ng-container>
         </p>
     </div>
-    <button class="lang-button flex flex-row w-full max-w-[300px] h-[45px] rounded-lg 
-            transition-all duration-300 ease-in-out mt-4"
-        (click)="changeLanguage()">
-        <p class="text-lg font-bold">{{'Change language' | transPipe }}</p>
-        <fa-icon [icon]="faLanguage" class="w-[12px] ml-2"/>
-    </button>
+        
     <button class="sign-out-button flex flex-row w-full max-w-[300px] h-[45px] rounded-lg 
                    transition-all duration-300 ease-in-out mt-4"
             (click)="signOut()">
         <p class="text-lg font-bold">{{'Sign out' | transPipe}}</p>
         <fa-icon [icon]="faSignOut" class="w-[18px] ml-2"/>
+    </button> 
+    <button class="lang-button" (click)="changeLanguage()">
+        <p class="lang-button-text">{{'English' | transPipe }}</p>
+        <fa-icon [icon]="faLanguage" class="lang-button-icon"/>
     </button>
+
 </div>

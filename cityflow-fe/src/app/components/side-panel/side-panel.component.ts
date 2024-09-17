@@ -10,6 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-profile.component';
+import { TransPipePipe } from '../../trans-pipe.pipe';
+import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -23,7 +25,8 @@ import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-prof
     RouterOutlet, 
     HttpClientModule, 
     CommonModule,
-    SidePanelProfileComponent
+    SidePanelProfileComponent,
+    TransPipePipe
   ],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.css'
@@ -31,6 +34,7 @@ import { SidePanelProfileComponent } from '../side-panel-profile/side-panel-prof
 export class SidePannelComponent implements OnInit{
 
   isLoggedIn: boolean = false;
+  faLanguage = faLanguage;
   
   constructor(private authService : AuthService){}
 
@@ -42,5 +46,14 @@ export class SidePannelComponent implements OnInit{
         this.isLoggedIn = !!localStorage.getItem('token');
       }
     });
+  }
+
+  changeLanguage(){
+    if(localStorage.getItem('lang') == 'srb') {
+      localStorage.setItem('lang','eng');
+    } else {
+      localStorage.setItem('lang','srb');
+    }
+    window.location.reload();
   }
 }

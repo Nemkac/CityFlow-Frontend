@@ -68,7 +68,6 @@ html, body {
 /* Sign out button styles */
 .sign-out-button {
     background-color: #000000; /* White background */
-    border: 2px solid #000000; /* Black border */
     color: #ffffff; /* Black text color */
     display: flex;
     justify-content: center; /* Center text horizontally */
@@ -80,22 +79,35 @@ html, body {
 }
 
 .lang-button {
-    background-color: #ffffff00; /* White background */
+    margin-top: 25px;
+    background-color: transparent; /* Transparent background */
     color: #000000; /* Black text color */
     display: flex;
-    justify-content: center; /* Center text horizontally */
-    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text and icon horizontally */
+    align-items: center; /* Center text and icon vertically */
     transition: all 0.3s ease-in-out;
-    padding: 0 10px; /* Add padding for better button size, remove vertical padding */
+    padding: 0 10px; /* Add padding for better button size */
     border-radius: 10px; /* Rounded corners */
-    height: 50px; /* Define button height */
-    font-size: 20px;
-    border:solid #000000;
+    height: 30px; /* Define button height */
+    border: solid 2px #000000; /* Border styling */
+    font-size: 15px; /* Font size for the text */
 }
 
-.lang-button p{
-    font-size: 15px;
+.lang-button:hover{
+    background-color: #000000;
+    color: #d3ac00;
 }
+
+.lang-button-text {
+    margin: 0; /* Remove default margin */
+    line-height: 45px; /* Align text vertically within the button */
+}
+
+.lang-button-icon {
+    width: 12px; /* Icon width */
+    margin-left: 8px; /* Space between text and icon */
+}
+
 
 
 
@@ -106,7 +118,6 @@ html, body {
 
 
 .sign-out-button:hover {
-    background-color: #000000;
-    border: 2px solid #ffffff; /* White background on hover */
+    background-color: #772323;
     color: #ffffff; /* Dark gray text color on hover */
 }

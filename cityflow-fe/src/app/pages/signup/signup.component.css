@@ -12,6 +12,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-40%, -50%);
+    border: 4px solid #ffd006;
+
 }
 
 /* Logo image styling */
@@ -67,7 +69,7 @@
 
 .submit-button:hover {
     background-color: #000000; /* Adjust this color to match hover:bg-lightGrey */
-    border: 2px solid #ffffff;
+    border: 2px solid #ffd006;
 }
 
 .submit-button:hover p{

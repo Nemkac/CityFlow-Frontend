@@ -12,6 +12,10 @@
     
     <ng-template #notLoggedIn>
         <app-signin-signup></app-signin-signup>
-        <p class="not-logged-in mt-4">Not logged in</p>
+        <hr class="divider border-t-4 mb-3 my-10 border-yellow-100">
+        <button class="lang-button" (click)="changeLanguage()">
+            <p class="lang-button-text">{{'English' | transPipe }}</p>
+            <fa-icon [icon]="faLanguage" class="lang-button-icon"/>
+        </button>
     </ng-template>
 </div>

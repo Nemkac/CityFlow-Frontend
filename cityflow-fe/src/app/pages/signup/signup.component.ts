@@ -9,11 +9,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FontAwesomeModule,FormsModule,NgToastModule],
+  imports: [FontAwesomeModule,FormsModule,NgToastModule,TransPipePipe],
   providers: [NgToastService],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'

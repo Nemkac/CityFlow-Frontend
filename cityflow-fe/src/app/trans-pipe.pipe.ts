@@ -284,10 +284,34 @@ export class TransPipePipe implements PipeTransform {
       case 'Save Changes':
         return 'Сачувај измене'
         break;
-        case 'Change language':
-          return 'Измени језик'
-          break; 
-
+      case 'English':
+        return 'Српски'
+        break;
+      case 'List of users' :
+        return 'Списак корисника'
+        break;
+      case 'Sign Up':
+        return 'Пријави се'
+        break;
+      case 'Sign In':
+        return 'Пријави се'
+        break;
+      case 'Enter your username':
+        return 'Унесите корисничко име'
+        break;
+      case 'Enter your password':
+        return 'Унесите одговарајућу шифру'
+        break;
+      case 'Enter your phone number':
+        return 'Унесите број мобилног телефона'
+        break;
+      case 'Enter new passoword':
+        return 'Унесите нову шифру'
+        break;
+      case 'Re-enter your new password':
+        return 'Потврдите вашу нову шифру'
+        break;
+      
 
     
       

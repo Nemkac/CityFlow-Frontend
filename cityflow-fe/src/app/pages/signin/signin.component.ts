@@ -11,13 +11,14 @@ import { ChangeDetectorRef } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { GlobalService } from '../../global.service';
 import { NgToastModule, ToasterPosition } from 'ng-angular-popup'
+import { TransPipePipe } from '../../trans-pipe.pipe';
 
 
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [FontAwesomeModule, FormsModule,NgToastModule],
+  imports: [FontAwesomeModule, FormsModule,NgToastModule,TransPipePipe],
   providers: [NgToastService],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'

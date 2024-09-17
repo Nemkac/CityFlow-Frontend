@@ -6,61 +6,61 @@
         <div class="flex-row-spacing">
             <div class="form-column">
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">First Name</p>
+                    <p class="text-[14px] mb-2">{{'First Name' | transPipe}}</p>
                     <input class="input-field"
                             placeholder="e.g. John" ngModel name="name"
                             type="text" required>
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Last Name</p>
+                    <p class="text-[14px] mb-2">{{'Last Name' | transPipe}}</p>
                     <input class="input-field"
                             placeholder="e.g. Doe" ngModel name="lastname"
                             type="text" required>
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Date of Birth</p>
+                    <p class="text-[14px] mb-2">{{'Date of Birth' | transPipe}}</p>
                     <input class="input-field"
                             placeholder="MM/DD/YYYY"
                             type="date" ngModel name="dateOfBirth">
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Phone number</p>
+                    <p class="text-[14px] mb-2">{{'Phone number' | transPipe}}</p>
                     <input class="input-field"
-                            placeholder="Enter your phone number" ngModel name="phoneNumber"
+                            [placeholder]='"Enter your phone number" | transPipe' ngModel name="phoneNumber"
                             type="text">
                 </div>
             </div>
             <div class="spacer"></div>
             <div class="form-column">
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Username</p>
+                    <p class="text-[14px] mb-2">{{'Username' | transPipe}}</p>
                     <input class="input-field"
                             placeholder="e.g. john" ngModel name="username"
                             type="text" required>
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Email</p>
+                    <p class="text-[14px] mb-2">{{'Email' | transPipe}}</p>
                     <input class="input-field"
                             placeholder="you@gmail.com" ngModel name="email"
                             type="email" required>
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Password</p>
+                    <p class="text-[14px] mb-2">{{'Password' | transPipe}}</p>
                     <input class="input-field"
-                            placeholder="Enter your password" ngModel name="password"
+                            [placeholder]='"Enter new passoword" | transPipe' ngModel name="password"
                             type="password" required>
                 </div>
                 <div class="flex flex-col font-manrope font-regular w-full text-white my-4">
-                    <p class="text-[14px] mb-2">Confirm password</p>
+                    <p class="text-[14px] mb-2">{{'Confirm password' | transPipe}}</p>
                     <input class="input-field"
-                            placeholder="Re-enter your password"
+                            [placeholder]='"Re-enter your new password" | transPipe'
                             type="password">
                 </div>
             </div>
         </div>
         <button class="submit-button"
                 type="submit">
-            <p class="button-text">Sign Up</p>
+            <p class="button-text">{{'Sign Up' | transPipe}}</p>
             <!--<fa-icon [icon]="faArrowRight" class="w-[32px] ml-[10px] text-darkGrey"/>-->
         </button>
     </div>

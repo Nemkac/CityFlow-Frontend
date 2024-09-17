@@ -5,19 +5,19 @@
     <div class = "center-container">
         <img src="../../../assets/Logo.png" class="w-[74px] niga">
         <div class="flex flex-col font-manrope font-semibold w-full my-12 text-white">
-            <p class="text-[14px] mb-2">Username</p>
+            <p class="text-[14px] mb-2">{{'Username' | transPipe}}</p>
             <input class="rounded-[10px] border-[1px] h-[50px] border-white/60 w-full w-full bg-lightGrey/20 px-2 py-4"
-                    placeholder="Enter your username" ngModel name="username"
+                    [placeholder]="'Enter your username' | transPipe" ngModel name="username"
                     type="text" required>
         </div>
         <div class="flex flex-col font-manrope font-semibold my-6 text-white w-full">
-            <p class="text-[14px] mb-2">Password</p>
+            <p class="text-[14px] mb-2">{{'Password' | transPipe}}</p>
             <input class="rounded-[10px] border-[1px] h-[50px] border-white/60 w-full w-full bg-lightGrey/20 px-2 py-4"
-                    placeholder="Enter your password" ngModel name="password"
+                    [placeholder]=" 'Enter your password' | transPipe" ngModel name="password"
                     type="password" required>
         </div>
         <button class="custom-sign-in-button" type="submit">
-            <p>Sign In</p>
+            <p>{{'Sign In' | transPipe}}</p>
             <fa-icon [icon]="faArrowRight" class="fa-icon"/>
         </button>
         
