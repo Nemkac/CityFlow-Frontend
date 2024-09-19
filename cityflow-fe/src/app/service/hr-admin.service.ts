@@ -12,7 +12,7 @@ import { SalaryDTO } from '../dtos/salaryDTO';
   providedIn: 'root'
 })
 export class HrAdminService {
-  private apiServerUrl = 'http://localhost:8081'; 
+  private apiServerUrl = 'http://13.60.27.75:8081'; 
 
   constructor(private http: HttpClient,
               private router: Router) { }

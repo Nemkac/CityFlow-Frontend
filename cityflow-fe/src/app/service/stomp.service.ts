@@ -10,7 +10,7 @@ export class StompService {
 
     constructor() {
         this.client = new Client({
-            webSocketFactory: () => new SockJS('http://localhost:8081/livelocation-websocket'),
+            webSocketFactory: () => new SockJS('http://13.60.27.75:8081/livelocation-websocket'),
             connectHeaders: {
                 login: 'guest',
                 passcode: 'guest',
