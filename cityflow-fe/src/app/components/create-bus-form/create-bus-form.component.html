@@ -1,5 +1,5 @@
 <div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-50 font-manrope text-white">
-    <div class="flex flex-col w-[600px] max-h-[600px] h-auto h-auto bg-primaryWhite rounded-[10px] p-4 gap-4">
+    <div class="flex flex-col w-[600px] max-h-auto h-auto h-auto bg-primaryWhite rounded-[10px] p-4 gap-4">
         <div class="flex flex-row w-full items-center justify-between">
             <p class="text-[24px] font-semibold text-primaryDarkGreen">Add new bus</p>
             <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
@@ -8,23 +8,77 @@
                 <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
             </button>    
         </div>
-        <div class="flex flex-col w-full">
-            <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
-            <!-- <input [(ngModel)]="licencePlate" class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" 
-                    placeholder="e. g. AA-1111-BB" pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" type="text"/> -->
-            <input [(ngModel)]="licencePlate" 
-                    #licencePlateModel="ngModel"
-                    class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
-                    placeholder="e.g. AA1234BB" type="text"
-                    pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
-                    required
-                    maxlength="11"
-                    (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
-            <div *ngIf="licencePlateModel.errors?.['pattern'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-rlightRed text-[14px]">
-                Please enter a valid license plate format (e.g. AA1111BB).
+        <div class="flex flex-col w-full gap-2">
+
+
+            <!--ZA POTREBE SLIKE ZA DIPLOMSKI RAD-->
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
+                    <!-- <input [(ngModel)]="licencePlate" class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" 
+                            placeholder="e. g. AA-1111-BB" pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" type="text"/> -->
+                    <input [(ngModel)]="licencePlate" 
+                            #licencePlateModel="ngModel"
+                            class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
+                            placeholder="e.g. AA1234BB" type="text"
+                            pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
+                            required
+                            maxlength="11"
+                            (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
+                    <div *ngIf="licencePlateModel.errors?.['pattern'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-rlightRed text-[14px]">
+                        Please enter a valid license plate format (e.g. AA1111BB).
+                    </div>
+                    <div *ngIf="licencePlateModel.errors?.['required'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-lightRed text-[14px]">
+                        License plate is required.
+                    </div>
+                </div>
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Manufacture date</label>
+                    <input type="date" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div>
             </div>
-            <div *ngIf="licencePlateModel.errors?.['required'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-lightRed text-[14px]">
-                License plate is required.
+
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Seating capacity</label>
+                    <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div>
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Current mileage (in km)</label>
+                    <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div>
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Chassis number</label>
+                <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+            </div>
+            <div class="flex flex-col w-full">
+                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Bus type</label>
+                <div class="flex flex-row w-full items-center gap-8">
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="radio"/>
+                        <p class="text-primaryBlack text-[14px]">ICE</p>
+                    </div>
+                    <div class="flex flex-row gap-2 items-center">
+                        <input type="radio"/>
+                        <p class="text-primaryBlack text-[14px]">Electric</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="w-full text-primaryGrey">
+            <div class="flex flex-col w-full gap-2">
+                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Aditional informations required for selected bus type</label>
+                <div class="flex flex-row items-center w-full gap-4">
+                    <div class="flex flex-col w-full">
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Battery health (in %)</label>
+                        <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Battery capacity</label>
+                        <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                    </div>
+                </div>
             </div>
         </div>  
 

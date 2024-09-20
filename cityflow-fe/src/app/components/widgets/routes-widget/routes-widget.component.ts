@@ -45,8 +45,8 @@ export class RoutesWidgetComponent {
       series: [50, 50],
       colors: ["#E6C79C", "#7389AE"],
       chart: {
-        height: 700,
-        width: "100%",
+        height: 500,
+        width: "90%",
         type: 'pie',
       },
       stroke: {

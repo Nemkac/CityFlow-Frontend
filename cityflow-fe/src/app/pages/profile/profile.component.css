@@ -11,3 +11,7 @@
     opacity: 100;
     filter: invert(31%) sepia(77%) saturate(1708%) hue-rotate(349deg) brightness(93%) contrast(98%);
 }
+
+.image-container img {
+    object-fit: cover;
+}

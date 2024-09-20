@@ -33,21 +33,22 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   @ViewChild('pdfContent', { static: true }) pdfContent!: ElementRef;
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
-  routeId : number = 0;
-  route!: Route;
-  startingPoint!: L.LatLng;
-  endingPoint!: L.LatLng;
-  stations: L.LatLng[] = []; 
-  routeBuses : Bus[] = [];
-  times : string[] = [];
+  public routeId : number = 0;
+  public route!: Route;
+  public startingPoint!: L.LatLng;
+  public endingPoint!: L.LatLng;
+  public stations: L.LatLng[] = []; 
+  public routeBuses : Bus[] = [];
+  public times : string[] = [];
+  public destinations : string = '';
 
-  token : string | null = sessionStorage.getItem('token');
-  loggedUser! : User;
-  loggedUserRole : string  = '';
+  public token : string | null = sessionStorage.getItem('token');
+  public loggedUser! : User;
+  public loggedUserRole : string  = '';
 
-  map: L.Map | null = null;
-  busMarker: L.Marker | null = null;
-  routeCoordinates : any;
+  public map: L.Map | null = null;
+  public busMarker: L.Marker | null = null;
+  public routeCoordinates : any;
 
   public showTimeTable : boolean = true;
   public showBusSchedule : boolean = false;
@@ -68,15 +69,27 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       this.routeId =+ idFromRoute;
       this.fetchRoute();
     }
+    this.getDestinations()
 
-    // this.establishWebSocketConnection();
-    // this.simulate();
+    this.establishWebSocketConnection();
+    this.simulate();
   }
 
   public ngAfterViewInit(): void {
     this.loadMap();
     this.weekendTimeTable = this.getTimeTable(true);
     this.nonWeekendTimeTable = this.getTimeTable(false);
+  }
+
+  public getDestinations() : void {
+    this.routeService.getDestinations(this.routeId).subscribe(
+      (response : any) => {
+        this.destinations = response;
+      },
+      (error : HttpErrorResponse) => {
+        console.log("Error while fetching route destinations, ", error.message);
+      }
+    )
   }
 
   public fetchUser() : void {

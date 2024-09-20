@@ -1,39 +1,33 @@
 <div class="flex flex-col items-center font-manrope gap-2 justify-center text-white">
-    <!-- <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showDashboard,
-                    'bg-transparent': !showDashboard}" 
-            class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
-                    hover:bg-primaryWhite text-primaryBlack transition-[0.5s] items-center"
-            (click)="viewHome()">
-        <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
-            <img src="../../../assets/icons/DashboardIcon.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showDashboard}" />
-            <p class="text-[18px] font-medium">Dashboard</p>
-        </div>
-    </button>
-
-    <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showProfile,
-                        'bg-transparent': !showProfile}" 
-            class="button-hover-effect flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
-                    hover:bg-primaryWhite text-primaryBlack transition-[0.5s] group"
-            (click)="viewProfile()">
-        <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
-            <img src="../../../assets/icons/user.png"
-                class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showProfile}"/>
-            <p class="text-[18px] font-medium">Profile</p>
-        </div>
-    </button> -->
-            <button [ngClass]="{'bg-white text-primaryDarkGreen shadow-md' : showRoutes,
-                    'bg-transparent': !showCards}" 
+    @if (loggedUserRole === "ROLE_ROUTEADMINISTRATOR") {
+        <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showDashboard,
+                'bg-transparent': !showDashboard}" 
                 class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
-                        hover:bg-primaryWhite text-primaryBlack transition-[0.5s]"
-                (click)="viewRoutes()">
+                        hover:bg-primaryWhite text-primaryBlack transition-[0.5s] items-center"
+                (click)="viewHome()">
             <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
-                <img src="../../../assets/icons/travel.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showRoutes}"/>
-                <p class="text-[18px] font-medium">Routes</p>
+                <img src="../../../assets/icons/DashboardIcon.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showDashboard}" />
+                <p class="text-[18px] font-medium">Dashboard</p>
             </div>
         </button>
+    }
+
+    @if (loggedUserRole === "ROLE_USER" || loggedUserRole === "ROLE_ROUTEADMINISTRATOR") {
+        <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showProfile,
+                    'bg-transparent': !showProfile}" 
+                class="button-hover-effect flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
+                        hover:bg-primaryWhite text-primaryBlack transition-[0.5s] group"
+                (click)="viewProfile()">
+            <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
+                <img src="../../../assets/icons/user.png"
+                    class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showProfile}"/>
+                <p class="text-[18px] font-medium">Profile</p>
+            </div>
+        </button>
+    }
 
     @if (loggedUserRole == 'ROLE_USER') {
-        <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showUserRoutes,
+        <!-- <button [ngClass]="{'bg-primaryWhite text-primaryDarkGreen shadow-md' : showUserRoutes,
                     'bg-transparent': !showUserRoutes}" 
         class="flex flex-row w-full justify-start items-center px-2 mb-2 cursor-pointer rounded-[12px]
             hover:bg-primaryWhite text-primaryBlack transition-[0.5s]"
@@ -44,11 +38,21 @@
             <div class="flex w-[90%] justify-start">
                 <p class="text-[18px]">Routes</p>
             </div>
+        </button> -->
+        <button [ngClass]="{'bg-white text-primaryDarkGreen shadow-md' : showUserRoutes,
+                    'bg-transparent': !showUserRoutes}" 
+                class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
+                        hover:bg-primaryWhite text-primaryBlack transition-[0.5s]"
+                (click)="viewUserRoutes()">
+            <div class="flex flex-row items-center gap-4 w-[90%] justify-start">
+                <img src="../../../assets/icons/travel.png" class="size-[20px]" [ngClass]="{'nav_menu_icon_green' : showUserRoutes}"/>
+                <p class="text-[18px] font-medium">Routes</p>
+            </div>
         </button>
 
     } @else if (loggedUserRole == 'ROLE_ROUTEADMINISTRATOR') {
         <button [ngClass]="{'bg-white text-primaryDarkGreen shadow-md' : showRoutes,
-                    'bg-transparent': !showCards}" 
+                    'bg-transparent': !showRoutes}" 
                 class="flex flex-row w-full justify-start items-center p-2 cursor-pointer rounded-[12px]
                         hover:bg-primaryWhite text-primaryBlack transition-[0.5s]"
                 (click)="viewRoutes()">

@@ -47,7 +47,7 @@ export class BusesWidgetComponent implements OnInit{
       colors: ["#E6C79C", "#7389AE"],
       chart: {
         height: 700,
-        width: "100%",
+        width: "90%",
         type: 'pie',
       },
       stroke: {

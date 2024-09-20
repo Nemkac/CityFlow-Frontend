@@ -18,7 +18,9 @@ export class AuthService {
     private navigationService : NavigationService
   ) { }
 
-  private apiServerUrl = 'http://13.60.27.75:8081'; 
+  // private apiServerUrl = 'http://13.60.27.75:8081'; 
+  private apiServerUrl = 'http://localhost:8081'; 
+
 
   public logIn(logInDTO: LoginDTO):Observable<LoginDTO>{      
     return this.http.post<LoginDTO>(`${this.apiServerUrl}/CityFlow/Login`, logInDTO).pipe(

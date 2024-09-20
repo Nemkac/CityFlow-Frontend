@@ -7,12 +7,12 @@
                 </div>
                 <p class="text-primaryBlack font-manrope font-semibold text-[24px]">{{route.name}}</p>
             </div>
-            <p class="text-[16px] font-light font-manrope text-primaryBlack">Futoska pijaca - Centar</p>
+            <p class="text-[16px] font-light font-manrope text-primaryBlack">{{destinations}}</p>
             <p class="text-[16px] font-semibold font-manrope text-primaryBlack"> {{route.openingTime}} - {{route.closingTime}}</p>
         </div>
         @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
-            <div class="flex flex-row w-full gap-4 justify-end">
-                <button class="flex rounded-md bg-deepRed hover:bg-lightRed transition-[0.5s] items-center gap-2 py-2 px-4 justify-center"
+            <div class="flex flex-row w-auto gap-4 justify-end">
+                <button class="flex rounded-md bg-deepRed hover:bg-lightRed w-[220px] transition-[0.5s] items-center gap-2 py-2 px-4 justify-center"
                         (click)="generatePDF()">
                     <img src="../../../assets/icons/PDFIcon.png" class="size-[16px] nav_menu_icon"/>
                     <p class="text-primaryWhite text-[14px]">Generate PDF report</p>
@@ -23,6 +23,15 @@
                             opacity-50 font-manrope text-[14px] transition-[0.5s]">
                         Edit
                     </p>
+                </button>
+            </div>
+        } 
+        @if (loggedUserRole === "ROLE_USER") {
+            <div class="flex flex-row w-auto gap-4 justify-end">
+                <button class="flex rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen w-[220px] transition-[0.5s] items-center gap-2 py-2 px-4 justify-center"
+                        (click)="generatePDF()">
+                    <img src="../../../assets/icons/PDFIcon.png" class="size-[16px] nav_menu_icon"/>
+                    <p class="text-primaryWhite text-[14px]">Buy ticket</p>
                 </button>
             </div>
         }
@@ -39,26 +48,8 @@
             />
         }
     } -->
-    @if (loggedUserRole == "ROLE_ROUTEADMINISTRATOR") {
-        <!-- <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4">
-            <div class="flex flex-row w-full items-center gap-2">
-                <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
-                <p class="font-manrope font-regular text-[18px] text-primaryBlack">Scheduled buses</p>
-            </div>
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                @for (bus of routeBuses; track $index) {
-                    <app-buses-list-item class="mb-4"
-                        [routeId]="routeId"
-                        [busId]="bus.id"
-                        [licencePlate]="bus.licencePlate"
-                        (busRemovedFromRoute)="handleBusListUpdate()"
-                    />
-                }
-            </div>
-        </div> -->
-
-
-        <div class="border-b border-gray-200 dark:border-gray-700">
+    <div class="border-b max-h-[600px] border-gray-200 dark:border-gray-700">
+        @if (loggedUserRole === 'ROLE_ROUTEADMINISTRATOR') {
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                 <li class="me-2" (click)="toggleTimeTable()">
                     <a class="inline-flex items-center justify-center p-4 hover:border-b-2 hover:border-primaryBlack/30 cursor-pointer transition-[0.5s] rounded-t-lg hover:text-primaryBlack/60 group"
@@ -97,87 +88,90 @@
                     </a>
                 </li>
             </ul>
-        </div>
-        @if(showBusSchedule){
-            <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4">
-                <div class="flex flex-row w-full items-center justify-between">
-                    <div class="flex flex-row items-center gap-2">
-                        <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
-                        <p class="font-manrope font-regular text-[18px] text-primaryBlack">Scheduled buses</p>
-                        <button class="flex flex-row py-1.5 px-3 gap-2 items-center rounded-md bg-primaryDarkGreen 
-                                        hover:bg-primaryLightGreen transition-[0.5s]"
-                                (click)="addBusToRoute()">
-                            <img src="../../../assets/icons/PlusIcon.png" class="size-[15px] nav_menu_icon"/>
-                            <p class="text-primaryWhite font-manrope text-[12px]">Add new</p>
-                        </button>
-                    </div>
-                    <div class="flex flex-row gap-4">
-                        <div class="flex flex-row gap-2">
-                            <div class="flex size-[20px] rounded-full bg-cityRoutes"></div>
-                            <p class="font-manrope text-primaryBlack text-[12px] font-light">Electric buses</p>    
-                        </div>
-                        <div class="flex flex-row gap-2">
-                            <div class="flex size-[20px] rounded-full bg-suburbanRoutes"></div>
-                            <p class="font-manrope text-primaryBlack text-[12px] font-light">ICE buses</p>    
-                        </div>
-                    </div>
-                </div>
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                    @if (routeBuses.length > 0) {
-                        @for (bus of routeBuses; track $index) {
-                            <app-buses-list-item class="mb-4"
-                                [routeId]="routeId"
-                                [busId]="bus.id"
-                                [licencePlate]="bus.licencePlate"
-                                (busRemovedFromRoute)="handleBusListUpdate()"
-                            />
-                        }
-                    }
-                    @else {
-                        <div class="col-span-full">
-                            <p class="text-[24px] font-semibold text-primaryBlack">There are no scheduled buses to display</p>
-                            <p class="text-[16px] font-light text-primaryBlack">
-                                You can add a new bus to the route by pressing the <span class="font-medium text-primaryDarkGreen">"Add new"</span> button
-                            </p>
-                        </div>
-                    }
-                </div>
-            </div>
-        } @else if (showTimeTable) {
-            <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4 max-h-[35%] overflow-y-auto">
-                <div class="flex flex-row w-full items-center gap-2">
-                    <img src="../../../assets/icons/ClockIcon.png" class="size-[25px] icon"/>
-                    <p class="font-manrope font-regular text-[18px] text-primaryBlack">Time table</p>
-                </div>
-                <div class="flex flex-col w-full h-full gap-4">
-                    <div class="flex flex-col w-full items-start justify-start gap-2">
-                        <div class="flex flex-row gap-2 items-center">
-                            <div class="flex size-[20px] rounded-full bg-cityRoutes"></div>
-                            <p class="font-manrope text-primaryBlack text-[16px]">Monday - Friday</p>
-                        </div>
-                        <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
-                            <div *ngFor="let time of nonWeekendTimeTable" 
-                                 class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
-                                 [ngClass]="{'bg-primaryLightGreen text-white': time.isNext}">
-                                <p class="cursor-default">{{ time.time }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full items-start justify-start gap-2">
-                        <div class="flex flex-row gap-2 items-center">
-                            <div class="flex size-[20px] rounded-full bg-suburbanRoutes"></div>
-                            <p class="font-manrope text-primaryBlack text-[16px]">Weekend</p>
-                        </div>
-                        <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
-                            <div *ngFor="let time of weekendTimeTable" 
-                                 class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
-                                 [ngClass]="{'bg-primaryLightGreen  text-white': time.isNext}">
-                                <p class="cursor-default">{{ time.time }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         }
-    } 
+    </div>
+    @if(showBusSchedule){
+        <div class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4">
+            <div class="flex flex-row w-full items-center justify-between">
+                <div class="flex flex-row items-center gap-2">
+                    <img src="../../../assets/icons/BusIcon.png" class="size-[20px] icon"/>
+                    <p class="font-manrope font-regular text-[18px] text-primaryBlack">Scheduled buses</p>
+                    <button class="flex flex-row py-1.5 px-3 gap-2 items-center rounded-md bg-primaryDarkGreen 
+                                    hover:bg-primaryLightGreen transition-[0.5s]"
+                            (click)="addBusToRoute()">
+                        <img src="../../../assets/icons/PlusIcon.png" class="size-[15px] nav_menu_icon"/>
+                        <p class="text-primaryWhite font-manrope text-[12px]">Add new</p>
+                    </button>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <div class="flex flex-row gap-2">
+                        <div class="flex size-[20px] rounded-full bg-cityRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[12px] font-light">Electric buses</p>    
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <div class="flex size-[20px] rounded-full bg-suburbanRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[12px] font-light">ICE buses</p>    
+                    </div>
+                </div>
+            </div>
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                @if (routeBuses.length > 0) {
+                    @for (bus of routeBuses; track $index) {
+                        <app-buses-list-item class="mb-4"
+                            [routeId]="routeId"
+                            [busId]="bus.id"
+                            [licencePlate]="bus.licencePlate"
+                            (busRemovedFromRoute)="handleBusListUpdate()"
+                        />
+                    }
+                }
+                @else {
+                    <div class="col-span-full">
+                        <p class="text-[24px] font-semibold text-primaryBlack">There are no scheduled buses to display</p>
+                        <p class="text-[16px] font-light text-primaryBlack">
+                            You can add a new bus to the route by pressing the <span class="font-medium text-primaryDarkGreen">"Add new"</span> button
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    } @else if (showTimeTable) {
+        <div [ngClass]="{'max-h-[45%]' : loggedUserRole === 'ROLE_USER',
+                         'max-h-[35%]' : loggedUserRole === 'ROLE_ROUTEADMINISTRATOR'   
+                        }" 
+            class="flex flex-col w-full gap-4 rounded-md border-[1px] border-primaryGrey/50 p-4 overflow-y-auto">
+            <div class="flex flex-row w-full items-center gap-2">
+                <img src="../../../assets/icons/ClockIcon.png" class="size-[25px] icon"/>
+                <p class="font-manrope font-regular text-[18px] text-primaryBlack">Time table</p>
+            </div>
+            <div class="flex flex-col w-full h-full gap-4">
+                <div class="flex flex-col w-full items-start justify-start gap-2">
+                    <div class="flex flex-row gap-2 items-center">
+                        <div class="flex size-[20px] rounded-full bg-cityRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[16px]">Monday - Friday</p>
+                    </div>
+                    <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
+                        <div *ngFor="let time of nonWeekendTimeTable" 
+                             class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
+                             [ngClass]="{'bg-primaryLightGreen text-white': time.isNext}">
+                            <p class="cursor-default">{{ time.time }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full items-start justify-start gap-2">
+                    <div class="flex flex-row gap-2 items-center">
+                        <div class="flex size-[20px] rounded-full bg-suburbanRoutes"></div>
+                        <p class="font-manrope text-primaryBlack text-[16px]">Weekend</p>
+                    </div>
+                    <div class="flex flex-row flex-wrap justify-start w-full py-4 gap-2">
+                        <div *ngFor="let time of weekendTimeTable" 
+                             class="flex p-2 border-[1px] rounded-md hover:border-primaryLightGreen transition-[0.5s]"
+                             [ngClass]="{'bg-primaryLightGreen  text-white': time.isNext}">
+                            <p class="cursor-default">{{ time.time }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
