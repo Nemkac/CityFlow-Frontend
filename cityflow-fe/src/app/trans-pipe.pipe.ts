@@ -396,6 +396,27 @@ export class TransPipePipe implements PipeTransform {
       case 'Super admin':
         return 'Врховни админ'
         break;
+      case 'You currently do not have an assigned role in the system. Rest assured, an administrator will assign you the appropriate role as soon as possible, ensuring you have the access required for your tasks.':
+        return 'Тренутно немате додељену улогу у систему. Aдминистратор ће вам доделити одговарајућу улогу што је пре могуће, како би вам омогућио приступ потребан за обављање ваших задатака.'
+        break;
+      case 'What You Can Expect':
+        return ''
+        break;
+      case 'Pending Role Assignment':
+        return ''
+        break;
+      case 'Your role is currently pending assignment by an administrator. Once assigned, you will gain the appropriate access level based on your responsibilities.':
+        return 'Ваша улога је тренутно на чекању за доделу од стране администратора. Када буде додељена, добићете одговарајући ниво приступа на основу ваших одговорности.'
+        break;
+      case 'Minimal Waiting Time':
+        return 'Минимално време чекања'
+        break;
+      case 'The administrators are aware of your status and will provide you with the necessary role in the shortest possible time.':
+        return 'Администратори су упознати са вашим статусом и доделиће вам потребну улогу у најкраћем могућем року.'
+        break;
+      case 'In the meantime, please feel free to reach out to the system administrators for further assistance, if needed.':
+        return 'У међувремену, слободно се обратите администраторима система за додатну помоћ, ако је потребно.'
+        break;
         
       
       

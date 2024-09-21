@@ -1,5 +1,5 @@
 <div>
-  <p>{{'Hello' | transPipe }} {{ loggedUser.name }}.</p>
+  <p class="hello">{{'Hello' | transPipe }} {{ loggedUser.name }}.</p>
 
   <!-- For ROLE_DRIVER -->
   <div *ngIf="loggedUserRole === 'ROLE_DRIVER'" class="driver-steps">
@@ -73,6 +73,25 @@
       </p>
     </div>
   </div>
+
+  <div *ngIf="loggedUserRole === 'ROLE_NONE'" class="none-role-info">
+    <h3>
+      {{'You currently do not have an assigned role in the system. Rest assured, an administrator will assign you the appropriate role as soon as possible, ensuring you have the access required for your tasks.' | transPipe }}
+    </h3>
+    <h1><b>{{'What You Can Expect' | transPipe }}:</b></h1 >
+    <ol>
+      <li>
+        <strong>{{'Pending Role Assignment' | transPipe }}:</strong> {{'Your role is currently pending assignment by an administrator. Once assigned, you will gain the appropriate access level based on your responsibilities.' | transPipe }}
+      </li>
+      <li>
+        <strong>{{'Minimal Waiting Time' | transPipe }}:</strong> {{'The administrators are aware of your status and will provide you with the necessary role in the shortest possible time.' | transPipe }}
+      </li>
+    </ol>
+    <h3>
+      {{'In the meantime, please feel free to reach out to the system administrators for further assistance, if needed.' | transPipe }}
+    </h3>
+  </div>
+  
   
 
 </div>

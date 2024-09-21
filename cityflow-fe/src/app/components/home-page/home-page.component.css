@@ -14,10 +14,27 @@ p {
   color: #ffcc00;
 }
 
+li {
+  color: #ffffff;
+  font-size: 23px;
+}
+
 /* Headings styling for each section */
 h2 {
   font-size: 26px;
   color: #ffffff;
+  margin-bottom: 15px;
+  text-align: left; /* Align text to the left for more formal appearance */
+}
+
+h3 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-align: left; /* Align text to the left for more formal appearance */
+}
+
+h1 {
+  color: #ffcc00;
   margin-bottom: 15px;
   text-align: left; /* Align text to the left for more formal appearance */
 }

@@ -117,7 +117,7 @@ export class SuperAdminComponent implements OnInit{
         user.roles = "NO_ROLE";
         break;
       }
-      case 'NO_ROLE' : {
+      case 'ROLE_NONE' : {
         user.roles = "ROLE_DRIVER";
         break;
       }
