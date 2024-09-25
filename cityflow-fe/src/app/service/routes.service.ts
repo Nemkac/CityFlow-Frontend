@@ -14,8 +14,8 @@ import { AddBusToRouteDTO } from '../dtos/addBusToRouteDTO';
 })
 export class RoutesService {
 
-  private apiServerUrl = 'http://13.60.27.75:8081'; 
-  // private apiServerUrl = 'http://localhost:8081'; 
+  // private apiServerUrl = 'http://13.60.27.75:8081'; 
+  private apiServerUrl = 'http://localhost:8081'; 
 
   constructor(private http: HttpClient,
               private router: Router) { }
