@@ -1,6 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RoutesService } from '../../service/routes.service';
 import { Route } from '../../models/route';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,28 +14,46 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-create-bus-form',
   standalone: true,
-  imports: [FormsModule, NgClass, CommonModule],
+  imports: [FormsModule, NgClass, CommonModule, ReactiveFormsModule],
   templateUrl: './create-bus-form.component.html',
   styleUrl: './create-bus-form.component.css'
 })
 export class CreateBusFormComponent implements OnInit{
 
+  public form! : FormGroup;
+
   @Output() busCreated = new EventEmitter<void>();
 
-  licencePlate : string = '';
-  routes : Route[] = [];
-  selectedRoutes : Route[] = [];
-
-  public isOpen = false;
+  public routes : Route[] = [];
+  public selectedRoutes : Route[] = [];
+  public selectedType : string = '';
 
   constructor(private routeService : RoutesService,
               private modalService : NgbActiveModal,
               private busService : BusService,
               private toast : NgToastService,
-              private router: Router){}
+              private router: Router,
+              private fb : FormBuilder){}
 
   ngOnInit(): void {
+    this.initializeForm();
     this.fetchRoutes();
+  }
+
+  public initializeForm() : void {
+    this.form = this.fb.group({
+      LicencePlate : ['', [Validators.required, Validators.pattern('^[A-Z]{2}-?\\d{1,4}-?[A-Z]{2}$')]],
+      ManufactureDate : ['', Validators.required],
+      SeatingCapacity : [0, [Validators.required, Validators.min(0)]],
+      CurrentMileage : [0, [Validators.required, Validators.min(0)]],
+      ChassisNumber : [0, Validators.required],
+      Type : ['', Validators.required],
+      EngineDisplacement : [0],
+      HorsePower : [0],
+      TransmissionType : [''],
+      BatteryHealth : [0],
+      BatteryCapacity : [0]
+    });
   }
 
   public selectRoute(selectedRoute : Route) : void {
@@ -70,29 +88,39 @@ export class CreateBusFormComponent implements OnInit{
   }
 
   public createBus() : void {
-    this.licencePlate = this.formatLicensePlate(this.licencePlate);
-
-    const busDTO : BusDTO = {
-      licencePlate : this.licencePlate,
-      routes : this.selectedRoutes
-    }
-    console.log(busDTO)
-    this.busService.save(busDTO).subscribe(
-      (response : Bus) => {
-        console.log(response);
-        this.toast.success({detail:"SUCCESS",summary:'Bus created successfully!'});
-        this.busCreated.emit();
-        this.closeModal();
-      },
-      (error : HttpErrorResponse) => {
-        console.log("Error while creating new bus: ", error.message);
-        this.toast.error({detail:"Error",summary:'Error while creating new bus!'});
+    if(this.form.valid){
+      const formData = this.form.value;
+  
+      const busDTO = {
+        licencePlate : formData.LicencePlate,
+        manufactureDate : formData.ManufactureDate,
+        seatingCapacity : formData.SeatingCapacity,
+        currentMileage : formData.CurrentMileage,
+        chassisNumber : formData.ChassisNumber,
+        type : formData.Type,
+        engineDisplacement : formData.EngineDisplacement,
+        horsePower : formData.HorsePower,
+        transmission : formData.TransmissionType,
+        batteryHealth : formData.BatteryHealth,
+        batteryCapacity : formData.BatteryCapacity,
+        routes : this.selectedRoutes
       }
-    );
-  }
+  
+      console.log(busDTO);
 
-  public toggleDropdown() {
-    this.isOpen = !this.isOpen;
+      this.busService.save(busDTO).subscribe(
+        (response : Bus) => {
+          console.log(response);
+          this.toast.success({detail:"SUCCESS",summary:'Bus created successfully!'});
+          this.busCreated.emit();
+          this.closeModal();
+        },
+        (error : HttpErrorResponse) => {
+          console.log("Error while creating new bus: ", error.message);
+          this.toast.error({detail:"Error",summary:'Error while creating new bus!'});
+        }
+      );
+    }
   }
 
   public closeModal() {
@@ -100,10 +128,6 @@ export class CreateBusFormComponent implements OnInit{
   }
 
   public formatLicensePlate(input: string): string {
-    if (input.length > 11) {
-      input = input.substring(0, 11);
-    }
-  
     let sanitized = input.toUpperCase().replace(/[^A-Z0-9]/g, '');
   
     const pattern = /^([A-Z]{2})(\d{1,5})([A-Z]{2})$/;
@@ -111,6 +135,7 @@ export class CreateBusFormComponent implements OnInit{
   
     if (match) {
       let numbers = match[2];
+  
       if (numbers.length < 3) {
         numbers = numbers.padStart(3, '0');
       }
@@ -120,6 +145,7 @@ export class CreateBusFormComponent implements OnInit{
       return sanitized; 
     }
   }
+  
 
   public setActive(selectedRoute: Route): void {
     const index = this.selectedRoutes.findIndex(route => route.id === selectedRoute.id);
@@ -141,4 +167,11 @@ export class CreateBusFormComponent implements OnInit{
     }
   }
 
+  public onLicencePlateInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const formattedValue = this.formatLicensePlate(inputElement.value);
+  
+    this.form.get('LicencePlate')?.setValue(formattedValue, { emitEvent: false });
+  }
+  
 }

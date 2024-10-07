@@ -6,7 +6,9 @@
     </div> -->
 
     <div class="flex flex-row items-center w-auto gap-2">
-        <div class="flex rounded-full items-center bg-cityRoutes text-center justify-center p-2">
+        <div [ngClass]="{'bg-cityRoutes' : bus.type == 'ElectricBus',
+                        'bg-suburbanRoutes' : bus.type == 'ICEBus'}" 
+            class="flex rounded-full items-center bg-cityRoutes text-center justify-center p-2">
             <img src="../../../assets/icons/BusIcon.png" class="nav_menu_icon size-[20px]"/>
         </div>
         <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{busId}}</p>

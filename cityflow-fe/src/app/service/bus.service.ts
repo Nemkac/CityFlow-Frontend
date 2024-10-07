@@ -47,4 +47,8 @@ export class BusService {
   public edit(dto : EditBusDTO) : Observable<Bus> {
     return this.http.post<Bus>(`${this.apiServerUrl}/bus/update`, dto, { headers : this.getHeaders(), responseType: "text" as "json"  });
   }
+
+  public getType(busId : number) : Observable<string>{
+    return this.http.get<string>(`${this.apiServerUrl}/bus/get/type/${busId}`, { headers : this.getHeaders(), responseType: "text" as "json" });
+  }
 }

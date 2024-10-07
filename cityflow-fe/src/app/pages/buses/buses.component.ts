@@ -10,6 +10,7 @@ import { CreateBusFormComponent } from '../../components/create-bus-form/create-
 import { NgToastService } from 'ng-angular-popup';
 import { FormsModule } from '@angular/forms';
 import { dA } from '@fullcalendar/core/internal-common';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
 	selector: 'app-buses',
@@ -38,11 +39,24 @@ export class BusesComponent implements OnInit{
 	public fetchBuses() : void {
 		this.busService.getAll().subscribe({
 			next: (data) => {
-				this.buses = data.map(bus => ({
+			  const busWithTypes$ = data.map((bus) => {
+				return this.busService.getType(bus.id).pipe(
+				  map((type: string) => ({
 					...bus,
-					routeNames: bus.routes.map(route => route.name)
-				}));
-				this.filteredBuses = this.buses;
+					type,  
+					routeNames: bus.routes.map(route => route.name) 
+				  }))
+				);
+			  });
+		
+			  forkJoin(busWithTypes$).subscribe({
+				next: (busesWithTypes) => {
+				  this.buses = busesWithTypes; 
+				  this.filteredBuses = this.buses;
+				  console.log(this.filteredBuses);
+				},
+				error: (error) => console.error('Error fetching bus types', error)
+			  });
 			},
 			error: (error) => console.error('Error fetching buses', error)
 		});

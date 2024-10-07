@@ -25,7 +25,8 @@ export class BusCardComponent implements OnInit{
 	@Input() busId: number = 0;
 	@Input() licencePlate: string = '';
   	@Input() routes: string[] = [];
-	@Input() bus! : Bus;
+	@Input() bus! : any;
+	@Input() busType! : string;
 
 	@Output() busDeleted = new EventEmitter<string>();
 	@Output() busEdited = new EventEmitter<void>();
@@ -66,6 +67,7 @@ export class BusCardComponent implements OnInit{
 			EditBusModalComponent,
 			{ backdrop : 'static', keyboard : true }
 		);
+		this.toggledDropdown = !this.toggledDropdown
 
 		modalRef.componentInstance.bus = selectedBus;
 		modalRef.componentInstance.busEdited.subscribe(

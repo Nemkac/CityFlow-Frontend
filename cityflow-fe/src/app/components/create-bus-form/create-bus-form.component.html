@@ -1,116 +1,178 @@
-<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-50 font-manrope text-white">
-    <div class="flex flex-col w-[600px] max-h-auto h-auto h-auto bg-primaryWhite rounded-[10px] p-4 gap-4">
-        <div class="flex flex-row w-full items-center justify-between">
-            <p class="text-[24px] font-semibold text-primaryDarkGreen">Add new bus</p>
-            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
-                            hover:bg-primaryLightGreen transition-[0.5s]"
-                (click)="closeModal()">
-                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
-            </button>    
-        </div>
-        <div class="flex flex-col w-full gap-2">
-
-
-            <!--ZA POTREBE SLIKE ZA DIPLOMSKI RAD-->
-            <div class="flex flex-row items-center w-full gap-4">
-                <div class="flex flex-col w-full">
-                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
-                    <!-- <input [(ngModel)]="licencePlate" class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen" 
-                            placeholder="e. g. AA-1111-BB" pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" type="text"/> -->
-                    <input [(ngModel)]="licencePlate" 
-                            #licencePlateModel="ngModel"
-                            class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
-                            placeholder="e.g. AA1234BB" type="text"
-                            pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
-                            required
-                            maxlength="11"
-                            (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
-                    <div *ngIf="licencePlateModel.errors?.['pattern'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-rlightRed text-[14px]">
-                        Please enter a valid license plate format (e.g. AA1111BB).
-                    </div>
-                    <div *ngIf="licencePlateModel.errors?.['required'] && (licencePlateModel.dirty || licencePlateModel.touched)" class="text-lightRed text-[14px]">
-                        License plate is required.
-                    </div>
-                </div>
-                <div class="flex flex-col w-full">
-                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Manufacture date</label>
-                    <input type="date" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
-                </div>
+<form [formGroup]="form">
+    <div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-50 font-manrope text-white">
+        <div class="flex flex-col w-[600px] max-h-auto h-auto h-auto bg-primaryWhite rounded-[10px] p-4 gap-4">
+            <div class="flex flex-row w-full items-center justify-between">
+                <p class="text-[24px] font-semibold text-primaryDarkGreen">Add new bus</p>
+                <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                                hover:bg-primaryLightGreen transition-[0.5s]"
+                    (click)="closeModal()">
+                    <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+                </button>    
             </div>
-
-            <div class="flex flex-row items-center w-full gap-4">
-                <div class="flex flex-col w-full">
-                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Seating capacity</label>
-                    <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
-                </div>
-                <div class="flex flex-col w-full">
-                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Current mileage (in km)</label>
-                    <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
-                </div>
-            </div>
-
-            <div class="flex flex-col w-full">
-                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Chassis number</label>
-                <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
-            </div>
-            <div class="flex flex-col w-full">
-                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Bus type</label>
-                <div class="flex flex-row w-full items-center gap-8">
-                    <div class="flex flex-row gap-2 items-center">
-                        <input type="radio"/>
-                        <p class="text-primaryBlack text-[14px]">ICE</p>
-                    </div>
-                    <div class="flex flex-row gap-2 items-center">
-                        <input type="radio"/>
-                        <p class="text-primaryBlack text-[14px]">Electric</p>
-                    </div>
-                </div>
-            </div>
-            <hr class="w-full text-primaryGrey">
             <div class="flex flex-col w-full gap-2">
-                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Aditional informations required for selected bus type</label>
                 <div class="flex flex-row items-center w-full gap-4">
                     <div class="flex flex-col w-full">
-                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Battery health (in %)</label>
-                        <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
+                        <input formControlName="LicencePlate"
+                               class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5"
+                               placeholder="e.g. AA1234BB"
+                               type="text"
+                               maxlength="11"
+                               (input)="onLicencePlateInput($event)" /> <!-- Bind input event here -->
+                        <div *ngIf="form.get('LicencePlate')?.errors?.['pattern'] && (form.get('LicencePlate')?.dirty || form.get('LicencePlate')?.touched)" class="text-lightRed text-[14px]">
+                          Please enter a valid license plate format (e.g. AA1111BB).
+                        </div>
+                        <div *ngIf="form.get('LicencePlate')?.errors?.['required'] && (form.get('LicencePlate')?.dirty || form.get('LicencePlate')?.touched)" class="text-lightRed text-[14px]">
+                          License plate is required.
+                        </div>
                     </div>
+                      
                     <div class="flex flex-col w-full">
-                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Battery capacity</label>
-                        <input type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
-                    </div>
-                </div>
-            </div>
-        </div>  
-
-        <div class="flex flex-col w-full items-start justify-start gap-2 mt-4">
-            <label class="text-primaryGrey font-medium text-[14px] tracking-wider uppercase">Arrange on routes</label>
-            <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey/50 p-4 gap-8">
-                <div class="flex flex-col justify-start items-start w-full gap-4">
-                    <div class="flex flex-row items-center w-full gap-2">
-                        <img src="../../../assets/icons/HelpIcon.png" class="size-[15px]"/>
-                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Select one or more routes to which you want to add a new bus</label>
-                    </div>
-                    <div class="flex flex-row w-full flex-wrap items-center justify-evenly h-full">
-                        @for (route of routes; track $index) {
-                            <div class="flex flex-row px-4 py-2 gap-2 rounded-md relative hover:border-lightGreen transition-[0.5s] 
-                                        cursor-pointer hover:translate-y-[-5px] hover:shadow-md w-auto items-center"
-                                [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(route),
-                                            'border-[1px]':!isActive(route)}"
-                                (click)="setActive(route)">
-                                <img src="../../../assets/icons/travel.png" class="size-[15px]"/>
-                                <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{route.name}}</p>
-                            </div>
+                        @if (form.get('ManufactureDate')?.touched && form.get('ManufactureDate')?.invalid) {
+                            <label for="ManufactureDate" class="text-lightRed font-regular text-[12px]">Manufacture date (Required)</label>
+                        } @else {
+                            <label for="ManufactureDate" class="text-primaryBlack/70 font-regular text-[12px]">Manufacture date</label>
                         }
+                        <input formControlName="ManufactureDate" type="date" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                    </div> 
+                </div>
+    
+                <div class="flex flex-row items-center w-full gap-4">
+                    <div class="flex flex-col w-full">
+                        @if (form.get('SeatingCapacity')?.touched && form.get('SeatingCapacity')?.invalid) {
+                            <label for="SeatingCapacity" class="text-lightRed font-regular text-[12px]">Seating capacity (Required)</label>
+                        } @else {
+                            <label for="SeatingCapacity" class="text-primaryBlack/70 font-regular text-[12px]">Seating capacity</label>
+                        }
+                        <input formControlName="SeatingCapacity" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                    </div> 
+                    <div class="flex flex-col w-full">
+                        @if (form.get('CurrentMileage')?.touched && form.get('CurrentMileage')?.invalid) {
+                            <label for="CurrentMileage" class="text-lightRed font-regular text-[12px]">Current mileage (in km) (Required)</label>
+                        } @else {
+                            <label for="CurrentMileage" class="text-primaryBlack/70 font-regular text-[12px]">Current mileage (in km)</label>
+                        }
+                        <input formControlName="CurrentMileage" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                    </div> 
+                </div>
+    
+                <div class="flex flex-col w-full">
+                    @if (form.get('ChassisNumber')?.touched && form.get('ChassisNumber')?.invalid) {
+                        <label for="chassis" class="text-lightRed font-regular text-[12px]">Chassis number (Required)</label>
+                    } @else {
+                        <label for="chassis" class="text-primaryBlack/70 font-regular text-[12px]">Chassis number</label>
+                    }
+                    <input formControlName="ChassisNumber" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div> 
+
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Bus type</label>
+                    <div class="flex flex-row w-full items-center gap-8">
+                        <label class="flex items-center gap-2">
+                            <input type="radio" formControlName="Type" (change)="selectedType = 'ICEBus'" [value]="'ICEBus'" class="h-4 w-4">
+                            <span class="text-[14px] text-primaryBlack">ICE</span>
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="radio" formControlName="Type" (change)="selectedType = 'ElectricBus'" [value]="'ElectricBus'" class="h-4 w-4">
+                            <span class="text-[14px] text-primaryBlack">Electric</span>
+                        </label>>
+                    </div>
+                </div>
+                @if(selectedType === 'ElectricBus') {
+                    <hr class="w-full text-primaryGrey">
+                    <div class="flex flex-col w-full gap-2">
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Aditional informations required for selected bus type</label>
+                        <div class="flex flex-row items-center w-full gap-4">
+                            <div class="flex flex-col w-full">
+                                @if (form.get('BatteryHealth')?.touched && form.get('BatteryHealth')?.invalid) {
+                                    <label for="BatteryHealth" class="text-lightRed font-regular text-[12px]">Battery health (Required)</label>
+                                } @else {
+                                    <label for="BatteryHealth" class="text-primaryBlack/70 font-regular text-[12px]">Battery health (in %)</label>
+                                }
+                                <input formControlName="BatteryHealth" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                            </div>
+                            <div class="flex flex-col w-full">
+                                @if (form.get('BatteryCapacity')?.touched && form.get('BatteryCapacity')?.invalid) {
+                                    <label for="BatteryCapacity" class="text-lightRed font-regular text-[12px]">Battery capacity(Required)</label>
+                                } @else {
+                                    <label for="BatteryCapacity" class="text-primaryBlack/70 font-regular text-[12px]">Battery capacity</label>
+                                }
+                                <input formControlName="BatteryCapacity" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if(selectedType === 'ICEBus') {
+                    <hr class="w-full text-primaryGrey">
+                    <div class="flex flex-col w-full gap-2">
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Aditional informations required for selected bus type</label>
+                        <div class="flex flex-row items-center w-full gap-4">
+                            <div class="flex flex-col w-full">
+                                @if (form.get('EngineDisplacement')?.touched && form.get('EngineDisplacement')?.invalid) {
+                                    <label for="EngineDisplacement" class="text-lightRed font-regular text-[12px]">Engine displacement (Required)</label>
+                                } @else {
+                                    <label for="EngineDisplacement" class="text-primaryBlack/70 font-regular text-[12px]">Engine displacement</label>
+                                }
+                                <input formControlName="EngineDisplacement" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                            </div>
+                            <div class="flex flex-col w-full">
+                                @if (form.get('HorsePower')?.touched && form.get('HorsePower')?.invalid) {
+                                    <label for="HorsePower" class="text-lightRed font-regular text-[12px]">Horse power (Required)</label>
+                                } @else {
+                                    <label for="HorsePower" class="text-primaryBlack/70 font-regular text-[12px]">Horse power</label>
+                                }
+                                <input formControlName="HorsePower" type="number" placeholder="0" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Transmission</label>
+                            <div class="flex flex-row w-full items-center gap-8">
+                                <div class="flex flex-row gap-2 items-center">
+                                    <input formControlName="TransmissionType" type="radio" [value]="'Automatic'"/>
+                                    <p class="text-primaryBlack text-[14px]">Automatic</p>
+                                </div>
+                                <div class="flex flex-row gap-2 items-center">
+                                    <input formControlName="TransmissionType" type="radio" [value]="'Manual'"/>
+                                    <p class="text-primaryBlack text-[14px]">Manual</p>
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                }
+            </div>  
+    
+            <div class="flex flex-col w-full items-start justify-start gap-2 mt-4">
+                <label class="text-primaryGrey font-medium text-[14px] tracking-wider uppercase">Arrange on routes</label>
+                <div class="flex flex-col w-full rounded-md border-[1px] border-primaryGrey/50 p-4 gap-8">
+                    <div class="flex flex-col justify-start items-start w-full gap-4">
+                        <div class="flex flex-row items-center w-full gap-2">
+                            <img src="../../../assets/icons/HelpIcon.png" class="size-[15px]"/>
+                            <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Select one or more routes to which you want to add a new bus</label>
+                        </div>
+                        <div class="flex flex-row w-full flex-wrap items-center justify-evenly h-full">
+                            @for (route of routes; track $index) {
+                                <div class="flex flex-row px-4 py-2 gap-2 rounded-md relative hover:border-lightGreen transition-[0.5s] 
+                                            cursor-pointer hover:translate-y-[-5px] hover:shadow-md w-auto items-center"
+                                    [ngClass]="{'bg-lightGreen/30 border-[2px] border-lightGreen': isActive(route),
+                                                'border-[1px]':!isActive(route)}"
+                                    (click)="setActive(route)">
+                                    <img src="../../../assets/icons/travel.png" class="size-[15px]"/>
+                                    <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{route.name}}</p>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-row w-full items-center justify-center mt-4">
-            <button class="w-[220px] h-[45px] font-manrope font-medium text-primaryWhite rounded-md text-[18px] 
-                    bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s]"
-                    type="submit" (click)="createBus()">
-                Save
-            </button>
+            <div class="flex flex-row w-full items-center justify-center mt-4">
+                <button [disabled]="!form.valid"
+                        [ngClass]="{'bg-primaryGrey' : !form.valid,
+                                    'bg-primaryDarkGreen hover:bg-primaryLightGreen' : form.valid}"
+                        class="w-[220px] h-[45px] font-manrope font-medium text-primaryWhite rounded-md text-[18px] transition-[0.5s]"
+                        type="submit" (click)="createBus()">
+                    Save
+                </button>
+            </div>
         </div>
     </div>
-</div>
+</form>
