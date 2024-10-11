@@ -1,0 +1,32 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex items-center  justify-center bg-primaryBlack/30 font-poppins">
+        <div class="flex flex-col w-full h-full bg-white rounded-md p-4 gap-6">
+            <div class="flex flex-row w-full items-center justify-center justify-between">
+                <p class="text-[24px] font-semibold text-primaryBlack">Change picture</p> 
+                <button class="flex size-[30px] rounded-md bg-darkGreen items-center justify-center 
+                                hover:bg-lightGreen transition-[0.5s]"
+                        (click)="closeModal()">
+                    <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+                </button>        
+            </div>
+            <div class="flex flex-col w-full rounded-md border-[1px] p-4 gap-4">
+                <p class="text-[12px] font-light text-primaryBlack/50">Select an image from your device</p>
+                <input type="file" (change)="onPictureSelected($event)" class="flex w-full shadow-md cursor-pointer rounded-[6px] bg-primaryBlack/20"/>
+                <div class="flex w-full items-center justify-center">
+                    @if(imageSrc){
+                        <div class="flex size-[220px] img-container rounded-full border-[1px] border-primaryBlack/20">
+                            <img [src]="imageSrc" class="rounded-full w-full h-full" alt="Image Preview">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="flex flex-row w-full justify-end">
+                <button class="px-4 py-2 flex rounded-md bg-primaryDarkGreen hover:bg-primaryLightGreen transition-[0.5s] items-center justify-center
+                                text-primaryWhite font-medium text-[16px]"
+                    (click)="savePicture()">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

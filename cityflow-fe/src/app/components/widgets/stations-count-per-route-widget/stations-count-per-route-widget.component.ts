@@ -3,6 +3,7 @@ import ApexCharts, { ApexOptions } from 'apexcharts'
 import { Widget } from '../../../models/widget';
 import { RouteAdministratorService } from '../../../service/route-administrator.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RoutesService } from '../../../service/routes.service';
 
 
 @Component({
@@ -17,10 +18,14 @@ export class StationsCountPerRouteWidgetComponent {
 
   @Output() widgetRemoved = new EventEmitter<string>();
 
-  constructor(private routeAdministratorService : RouteAdministratorService){}
+  public routes : any[] = [];
+
+  constructor(private routeAdministratorService : RouteAdministratorService,
+    private routeService : RoutesService
+  ){}
 
   ngOnInit(): void {
-    this.loadChart();
+    this.getAllRoutes()
   }
 
   public removeWidgetFromDashboard() : void {
@@ -37,41 +42,31 @@ export class StationsCountPerRouteWidgetComponent {
     }
   }
 
-  loadChart(): void {
-    // const totalBudget = this.budgets.reduce((acc, current) => acc + current, 0);
-    // const percentages = this.budgets.map(budget => parseFloat((budget / totalBudget * 100).toFixed(2)));
-  
+  public getAllRoutes() : void {
+    this.routeService.getAll().subscribe(
+      (response : any) => {
+        this.routes = response;
+        this.loadChart(this.routes);
+      },
+      (error : HttpErrorResponse) => {
+        console.log("Error while fetching routes for stations count per route widget!", error);
+      }
+    )
+  }
+
+  public loadChart(routes : any[]): void {
+    const routeStationsData = routes.map(route => ({
+      x: route.name,
+      y: route.stations.length + 2
+    }));
+
     const options: ApexOptions = {
       colors: ["#E6C79C", "#7389AE"],
       series: [
         {
-          name: "Organic",
+          name: "Number of stations",
           color: "#025864",
-          data: [
-            { x: "Mon", y: 231 },
-            { x: "Tue", y: 122 },
-            { x: "Wed", y: 63 },
-            { x: "Thu", y: 421 },
-            { x: "Fri", y: 122 },
-            { x: "Sat", y: 323 },
-            { x: "Sun", y: 111 },
-            { x: "Mon", y: 231 },
-            { x: "Tue", y: 122 },
-            { x: "Wed", y: 63 },
-            { x: "Thu", y: 421 },
-            { x: "Fri", y: 122 },
-            { x: "Sat", y: 323 },
-            { x: "Sun", y: 111 },
-            { x: "Fri", y: 122 },
-            { x: "Sat", y: 323 },
-            { x: "Sun", y: 111 },
-            { x: "Mon", y: 231 },
-            { x: "Tue", y: 122 },
-            { x: "Wed", y: 63 },
-            { x: "Thu", y: 421 },
-            { x: "Fri", y: 122 },
-            { x: "Sat", y: 323 },
-          ],
+          data: routeStationsData,
         },
       ],
       chart: {

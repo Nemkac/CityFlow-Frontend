@@ -11,8 +11,16 @@
     <div class="flex flex-col w-full p-4">
         <div class="flex flex-row items-center w-full p-4 justify-between border-[1px] border-primaryGrey/50 rounded-md relative">
             <div class="flex flex-row gap-4 items-center">
-                <div class="flex size-[80px] bg-primaryLightGreen rounded-full border-[1px] border-primaryGrey/50 image-container">
-                    <img src="../../../assets/Nemkac.jpeg" class="rounded-full size-full"/>
+                <div class="flex size-[80px] rounded-full border-[1px] border-primaryGrey/50 image-container">
+                    @if (!imageChanged && !imageDeleted) {
+                        <img src="../../../assets/Nemkac.jpeg" class="rounded-full size-full"/>
+                    }
+                    @if (imageDeleted && !imageChanged) {
+                        <img src="../../../assets/UserIcon.png" class="rounded-full size-full"/>
+                    }
+                    @if (imageChanged && !imageDeleted) {
+                        <img src="../../../assets/Cat03.jpg" class="rounded-full size-full"/>
+                    }
                 </div>
                 <div class="flex flex-col">
                     <p class="text-[22px] text-primaryBlack">{{loggedUser?.name}} {{loggedUser?.lastname}}</p>
@@ -22,14 +30,16 @@
             </div>
             <div class="flex flex-col gap-2">
                 <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 bg-primaryDarkGreen 
-                                hover:bg-primaryLightGreen transition-[0.5s]">
+                                hover:bg-primaryLightGreen transition-[0.5s]"
+                        (click)="changeImage()">
                     <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px] nav_menu_icon"/>
                     <p class="text-primaryWhite font-manrope text-[16px] transition-[0.5s]">
                         Change image
                     </p>
                 </button>
                 <button class="flex flex-row gap-2 items-center group rounded-md px-4 py-2 border-[1px] border-primaryGrey/50 
-                                hover:border-lightRed transition-[0.5s] group button-hover-effect">
+                                hover:border-lightRed transition-[0.5s] group button-hover-effect"
+                        (click)="deletePicture()">
                     <img src="../../../assets/icons/TrashIcon.png" class="size-[20px] opacity-50 group-hover:opacity-100 nav_menu_icon_red"/>
                     <p class="text-primaryBlack group-hover:opacity-100 group-hover:text-lightRed
                             opacity-50 font-manrope text-[16px] transition-[0.5s]">
@@ -89,7 +99,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
-                                <p class="text-[18px] text-primaryBlack">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt optio ducimus reiciendis alias illo magni dolorem aut, dicta aspernatur. Alias molestias illum explicabo obcaecati eius eaque placeat assumenda. Ea, officia!</p>
+                                <p class="text-[18px] text-primaryBlack">{{loggedUser?.description}}</p>
                             </div>
                         </div>
                     } @else {
@@ -119,7 +129,7 @@
                             <div class="flex flex-col">
                                 <p class="text-[14px] text-primaryGrey tracking-wider uppercase">Bio</p>
                                 <textarea class="focus:outline-none text-primaryBlack border-[1px] border-primaryGrey rounded-md w-full px-4 h-[200px] max-h-[300px]"
-                                            placeholder="Lorem ipsum "></textarea>
+                                            [placeholder]="description" [(ngModel)]="description"></textarea>
                             </div>
                         </div>
                     }

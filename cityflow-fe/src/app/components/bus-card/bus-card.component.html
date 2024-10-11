@@ -38,12 +38,16 @@
     <div id="dropdownDotsHorizontal" [ngClass]="{'hidden' : !toggledDropdown}"
          class="z-20 absolute top-10 right-2 bg-white divide-y divide-gray-100 shadow-xl border-[1px] rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-          <li>
-            <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="editBus(bus)">
-                <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px]"/>
-                <p class="block">Edit bus</p>
-            </div>
-          </li>
+            <li>
+                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="viewBus(bus, $event)">
+                    <p class="block">View details</p>
+                </div>
+            </li>
+            <li>
+                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="editBus(bus)">
+                    <p class="block">Edit bus</p>
+                </div>
+            </li>
         </ul>
         <div class="flex flex-row items-center hover:bg-gray-100 px-4 gap-2 py-2 button-hover-effect" (click)="deleteBus(busId, $event)">
             <img src="../../../assets/icons/TrashIcon.png" class="size-[16px] nav_menu_icon_red"/>

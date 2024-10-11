@@ -8,6 +8,7 @@ import { WaringnComponent } from '../modals/waringn/waringn.component';
 import { CommonModule } from '@angular/common';
 import { EditBusModalComponent } from '../modals/edit-bus-modal/edit-bus-modal.component';
 import { Bus } from '../../models/bus';
+import { BusDetailsComponent } from '../modals/bus-details/bus-details.component';
 
 @Component({
 	selector: 'app-bus-card',
@@ -78,5 +79,13 @@ export class BusCardComponent implements OnInit{
 		);
 	}
 
-
+	public viewBus(bus: any, event : Event) : void {
+		event.stopPropagation();
+		const modalRef = this.modalService.open(
+			BusDetailsComponent,
+			{ backdrop : 'static', keyboard : true }
+		);
+		this.toggledDropdown = false;
+		modalRef.componentInstance.bus = bus;
+	}
 }

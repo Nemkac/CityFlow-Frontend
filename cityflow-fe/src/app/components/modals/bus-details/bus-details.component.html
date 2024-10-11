@@ -1,0 +1,110 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[800px] h-auto max-h-[800px] bg-primaryWhite rounded-[10px] p-4 gap-4 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Bus details</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="activeModalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">General bus informations</label>
+        <div class="flex flex-col w-full gap-2">
+            <div class="flex flex-row items-center w-auto gap-2">
+                <div [ngClass]="{'bg-cityRoutes' : bus.type == 'ElectricBus',
+                                'bg-suburbanRoutes' : bus.type == 'ICEBus'}" 
+                    class="flex rounded-full items-center bg-cityRoutes text-center justify-center p-2">
+                    <img src="../../../assets/icons/BusIcon.png" class="nav_menu_icon size-[20px]"/>
+                </div>
+                <p class="text-primaryBlack font-manrope font-semibold text-[24px]">Bus {{bus.id}}</p>
+            </div>
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
+                    <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{bus.licencePlate}}</p>
+                </div>
+                  
+                <div class="flex flex-col w-full">
+                    <label class="text-primaryBlack/70 font-regular text-[12px]">Manufacture date</label>
+                    <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{manufactureDate}}</p>
+                </div> 
+            </div>
+
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label class="text-primaryBlack/70 font-regular text-[12px]">Seating capacity</label>
+                    <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{seatingCapacity}}</p>
+                </div> 
+                <div class="flex flex-col w-full">
+                    <label class="text-primaryBlack/70 font-regular text-[12px]">Current mileage (in km)</label>
+                    <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{currentMileage}}</p>
+                </div> 
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label class="text-primaryBlack/70 font-regular text-[12px]">Chassis number</label>
+                <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{chassisNumber}}</p>
+            </div> 
+
+            @if(bus.type === 'ElectricBus') {
+                <hr class="w-full text-primaryGrey">
+                <div class="flex flex-col w-full gap-2">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Electric bus informations</label>
+                    <div class="flex flex-row items-center w-full gap-4">
+                        <div class="flex flex-col w-full">
+                            <label class="text-primaryBlack/70 font-regular text-[12px]">Battery health (in %)</label>
+                            <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{electricBus.batteryHealth}}</p>                        
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label class="text-primaryBlack/70 font-regular text-[12px]">Battery capacity</label>
+                            <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{batteryCapacity}}</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if(bus.type === 'ICEBus') {
+                <hr class="w-full text-primaryGrey">
+                <div class="flex flex-col w-full gap-2">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">ICE Bus informations</label>
+                    <div class="flex flex-row items-center w-full gap-4">
+                        <div class="flex flex-col w-full">
+                            <label class="text-primaryBlack/70 font-regular text-[12px]">Engine displacement</label>
+                            <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{engineDisplacement}}</p>                      
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label class="text-primaryBlack/70 font-regular text-[12px]">Horse power</label>
+                            <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{horsePower}}</p>                        
+                        </div>
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label class="text-primaryBlack/70 font-regular text-[12px]">Transmission</label>
+                        <p class="text-primaryBlack font-manrope font-medium text-[16px]">{{transmission}}</p>                   
+                    </div>
+                </div>
+            }
+        </div>  
+        <div class="flex flex-col w-full max-h-[500px] overflow-y-auto p-4 rounded-md border-[1px] border-lightGrey">
+            @if (bus.routes.length <= 0) {
+                <div class="flex flex-col w-full my-2">
+                    <p class="text-[24px] font-semibold text-primaryBlack">There are no routes to display</p>
+                </div>
+            } @else {
+                <div class="flex flex-row flex-wrap justify-evenly gap-4 w-full">
+                    @for (route of busRoutes; track $index) {
+                        <div class="flex flex-row px-4 py-4 border-[1px] border-primaryGrey/50 rounded-md mt-2 gap-8 relative
+                                    hover:border-primaryLightGreen transition-[0.5s] hover:shadow-md">
+                            <div class="flex flex-row items-center w-auto gap-2">
+                                <div [ngClass]="{'bg-cityRoutes' : route.type === 'CITY_ROUTE',
+                                                'bg-suburbanRoutes' : route.type === 'SUBURBAN_ROUTE'}"  
+                                    class="flex rounded-full bg-[#E6C79C] items-center text-center justify-center p-2">
+                                    <img src="../../../assets/icons/travel.png" class="nav_menu_icon size-[15px]"/>
+                                </div>
+                                <p class="text-primaryBlack font-manrope font-semibold text-[16px]">{{route.name}}</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

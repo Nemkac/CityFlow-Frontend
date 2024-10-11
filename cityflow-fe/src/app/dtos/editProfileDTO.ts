@@ -6,4 +6,5 @@ export interface EditProfileDTO{
     password : string;
     dateOfBirth : string;
     phoneNumber : string;
+    description : string;
 }

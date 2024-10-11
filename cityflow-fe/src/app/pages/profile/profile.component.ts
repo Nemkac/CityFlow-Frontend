@@ -8,6 +8,9 @@ import { HttpErrorResponse, HttpHeaderResponse, HttpHeaders } from '@angular/com
 import { UserService } from '../../service/user.service';
 import { EditProfileDTO } from '../../dtos/editProfileDTO';
 import { NgToastService } from 'ng-angular-popup';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChangePictureModalComponent } from '../../components/modals/change-picture-modal/change-picture-modal.component';
+import { WaringnComponent } from '../../components/modals/waringn/waringn.component';
 
 @Component({
   selector: 'app-profile',
@@ -32,11 +35,14 @@ export class ProfileComponent implements OnInit{
   public username : string = '';
   public email : string = '';
   public password : string = '';
-
+  public description : string = ''
+  public imageChanged : boolean = false;
+  public imageDeleted : boolean = false;
 
   constructor(private authService : AuthService,
               private toast : NgToastService,
-              private userService : UserService) {}
+              private userService : UserService,
+              private modalService : NgbModal) {}
 
   ngOnInit(): void {
     this.fetchUser();
@@ -55,6 +61,7 @@ export class ProfileComponent implements OnInit{
           this.username = this.loggedUser.username;
           this.email = this.loggedUser.email;
           this.password = this.loggedUser.password;
+          this.description = this.loggedUser.description;
         },
         (error: HttpErrorResponse) => {
           console.log('Error fetching user data:\n', error.message);
@@ -71,7 +78,8 @@ export class ProfileComponent implements OnInit{
       email : this.email,
       password : this.password,
       dateOfBirth : this.dateOfBirth,
-      phoneNumber : this.phoneNumber 
+      phoneNumber : this.phoneNumber, 
+      description : this.description
     }
 
     console.log("Updated data: ", updateDto);
@@ -102,5 +110,36 @@ export class ProfileComponent implements OnInit{
     if(section === "account"){
       this.toggleEditAccount = !this.toggleEditAccount;
     }
+  }
+
+  public changeImage() : void {
+    const modalRef = this.modalService.open(
+      ChangePictureModalComponent,
+      { backdrop : 'static', keyboard : true }
+    );
+
+    modalRef.componentInstance.imageUploaded.subscribe(
+      () => {
+        this.toast.success({detail:"SUCCESS",summary:'Profile photo successfully changed!', duration:3000});        
+        this.imageChanged = true;
+        this.imageDeleted = false;
+      }
+    );
+  }
+
+  public deletePicture() : void {
+    const modalRef = this.modalService.open(
+      WaringnComponent,
+      { backdrop : 'static', keyboard : true }
+    );
+
+    modalRef.componentInstance.confirmation.subscribe(
+      () => {
+        this.toast.success({detail:"SUCCESS",summary:'Profile photo successfully deleted!', duration:3000});        
+        this.imageDeleted = true;
+        this.imageChanged = false;
+      }
+    )
+
   }
 }

@@ -7,5 +7,6 @@ export interface User{
     roles: string,
     dateOfBirth: string, 
     email: string, 
-    phoneNumber: string 
+    phoneNumber: string,
+    description : string, 
 }

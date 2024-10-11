@@ -8,20 +8,89 @@
                 <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
             </button>    
         </div>
-        <div class="flex flex-col w-full h-auto gap-4">
-            <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">BUS DETAILS</p>
-            <div class="flex flex-col w-full">
-                <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Serial number</label>
-                <input [(ngModel)]="licencePlate" 
-                        #licencePlateModel="ngModel"
-                        class="placeholder:italic w-[50%] rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
-                        [placeholder]="bus.licencePlate" type="text"
-                        pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
-                        required
-                        maxlength="11"
-                        (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
+        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">General bus informations</label>
+        <div class="flex flex-col w-full gap-2">
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Licence plate</label>
+                    <input [(ngModel)]="licencePlate" 
+                            #licencePlateModel="ngModel"
+                            class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" 
+                            [placeholder]="bus.licencePlate" type="text"
+                            pattern="^[A-Z]{2}-?\d{1,4}-?[A-Z]{2}$" 
+                            required
+                            maxlength="11"
+                            (ngModelChange)="licencePlate = formatLicensePlate(licencePlateModel.value)"/>
+                </div>
+                  
+                <div class="flex flex-col w-full">
+                    <label for="ManufactureDate" class="text-primaryBlack/70 font-regular text-[12px]">Manufacture date</label>
+                    <input [placeholder]="bus.malfunctionDate" [(ngModel)]="manufactureDate" type="date" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div> 
             </div>
-        </div>
+
+            <div class="flex flex-row items-center w-full gap-4">
+                <div class="flex flex-col w-full">
+                    <label for="SeatingCapacity" class="text-primaryBlack/70 font-regular text-[12px]">Seating capacity</label>
+                    <input type="number" [placeholder]="bus.seatingCapacity" [(ngModel)]="seatingCapacity" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div> 
+                <div class="flex flex-col w-full">
+                    <label for="CurrentMileage" class="text-primaryBlack/70 font-regular text-[12px]">Current mileage (in km)</label>
+                    <input type="number" [placeholder]="bus.currentMileage" [(ngModel)]="currentMileage" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div> 
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="chassis" class="text-primaryBlack/70 font-regular text-[12px]">Chassis number</label>
+                <input type="number" [placeholder]="bus.chassisNumber" [(ngModel)]="chassisNumber" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+            </div> 
+
+            @if(bus.type === 'ElectricBus') {
+                <hr class="w-full text-primaryGrey">
+                <div class="flex flex-col w-full gap-2">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Electric bus informations</label>
+                    <div class="flex flex-row items-center w-full gap-4">
+                        <div class="flex flex-col w-full">
+                            <label for="BatteryHealth" class="text-primaryBlack/70 font-regular text-[12px]">Battery health (in %)</label>
+                            <input type="number" min="0" max="100" [placeholder]="electricBus.batteryHealth" [(ngModel)]="batteryHealth" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="BatteryCapacity" class="text-primaryBlack/70 font-regular text-[12px]">Battery capacity</label>
+                            <input type="number" min="0" max="100" [placeholder]="electricBus.batteryCapacity" [(ngModel)]="batteryCapacity" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                        </div>
+                    </div>
+                </div>
+            }
+            @if(bus.type === 'ICEBus') {
+                <hr class="w-full text-primaryGrey">
+                <div class="flex flex-col w-full gap-2">
+                    <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">ICE Bus informations</label>
+                    <div class="flex flex-row items-center w-full gap-4">
+                        <div class="flex flex-col w-full">
+                            <label for="EngineDisplacement" class="text-primaryBlack/70 font-regular text-[12px]">Engine displacement</label>
+                            <input type="number" [placeholder]="iceBus.engineDisplacement" [(ngModel)]="engineDisplacement" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="HorsePower" class="text-primaryBlack/70 font-regular text-[12px]">Horse power</label>
+                            <input ftype="number" min="0" max="2000" [placeholder]="iceBus.horsePower" [(ngModel)]="horsePower" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label for="licencePlate" class="text-primaryBlack/70 font-regular text-[12px]">Transmission</label>
+                        <div class="flex flex-row w-full items-center gap-8">
+                            <div class="flex flex-row gap-2 items-center">
+                                <input type="radio" [(ngModel)]="busType" [value]="'Automatic'"/>
+                                <p class="text-primaryBlack text-[14px]">Automatic</p>
+                            </div>
+                            <div class="flex flex-row gap-2 items-center">
+                                <input type="radio" [(ngModel)]="busType" [value]="'Manual'"/>
+                                <p class="text-primaryBlack text-[14px]">Manual</p>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+            }
+        </div>  
         <div class="flex flex-col w-full max-h-[500px] overflow-y-auto p-4 rounded-md border-[1px] border-lightGrey">
             <div class="flex flex-row gap-2 items-center">
                 <p class="text-primaryBlack/50 tracking-wide text-[14px] font-regular">CURRENT ROUTES</p>
@@ -66,10 +135,8 @@
             }
         </div>
         <div class="flex flex-row w-full items-center justify-end">
-            <button [ngClass]="{'bg-primaryDarkGreen hover:bg-primaryLightGreen' : licencePlate !== '',
-                                'bg-primaryGrey cursor-disabled' : licencePlate === ''}"
-                    class="flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
-                    (click)="edit()" [disabled]="licencePlate === ''">
+            <button class="bg-primaryDarkGreen hover:bg-primaryLightGreen flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
+                    (click)="edit()" >
                 Save
             </button>
         </div>

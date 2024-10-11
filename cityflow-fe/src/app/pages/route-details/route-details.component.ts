@@ -71,8 +71,8 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
     }
     this.getDestinations()
 
-    this.establishWebSocketConnection();
-    this.simulate();
+    // this.establishWebSocketConnection();
+    // this.simulate();
   }
 
   public ngAfterViewInit(): void {

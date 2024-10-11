@@ -7,6 +7,7 @@ import { BusDTO } from '../dtos/busDTO';
 import { AddRoutesToBusDTO } from '../dtos/addRoutesToBusDTO';
 import { B, dt } from '@fullcalendar/core/internal-common';
 import { EditBusDTO } from '../dtos/editBusDTO';
+import { AllBusTypesDTO } from '../models/allBusesWithTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,16 @@ export class BusService {
   public getType(busId : number) : Observable<string>{
     return this.http.get<string>(`${this.apiServerUrl}/bus/get/type/${busId}`, { headers : this.getHeaders(), responseType: "text" as "json" });
   }
+
+  public getAllWithTypes() : Observable<AllBusTypesDTO> {
+    return this.http.get<AllBusTypesDTO>(`${this.apiServerUrl}/bus/get/all/with/types`, { headers : this.getHeaders() });
+  }
+
+  public getICEBus(bus : any) : Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/bus/get/ice`, bus, { headers : this.getHeaders() });
+  } 
+
+  public getElectricBus(bus : any) : Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/bus/get/electric`, bus, { headers : this.getHeaders() });
+  } 
 }

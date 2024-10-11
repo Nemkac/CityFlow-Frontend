@@ -3,6 +3,8 @@ import ApexCharts, { ApexOptions } from 'apexcharts'
 import { Widget } from '../../../models/widget';
 import { RouteAdministratorService } from '../../../service/route-administrator.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AllBusTypesDTO } from '../../../models/allBusesWithTypes';
+import { BusService } from '../../../service/bus.service';
 
 
 @Component({
@@ -18,10 +20,24 @@ export class BusesWidgetComponent implements OnInit{
 
   @Output() widgetRemoved = new EventEmitter<string>();
 
-  constructor(private routeAdministratorService : RouteAdministratorService){}
+  public allBuses? : AllBusTypesDTO;
+
+  constructor(private routeAdministratorService : RouteAdministratorService,
+    private busService : BusService
+  ){}
 
   ngOnInit(): void {
-    this.loadChart();
+    this.fetchAllBuses()
+  }
+
+  public fetchAllBuses() : void {
+    this.busService.getAllWithTypes().subscribe(
+      (response : AllBusTypesDTO) => {
+        this.allBuses = response;
+        console.log("ALL BUSES ON WIDGET: ", this.allBuses)
+        this.loadChart(this.allBuses)
+      }
+    )
   }
 
   public removeWidgetFromDashboard() : void {
@@ -38,12 +54,18 @@ export class BusesWidgetComponent implements OnInit{
     }
   }
 
-  loadChart(): void {
-    // const totalBudget = this.budgets.reduce((acc, current) => acc + current, 0);
-    // const percentages = this.budgets.map(budget => parseFloat((budget / totalBudget * 100).toFixed(2)));
+  public loadChart(buses : AllBusTypesDTO): void {
+    const totalBuses = buses.buses.length;
+    const totalIceBuses = buses.iceBuses.length;
+    const totalElectricBuses = buses.electricBuses.length;
+  
+    const total = totalBuses + totalIceBuses + totalElectricBuses;
+    const busesPercentage = (totalBuses / total) * 100;
+    const iceBusesPercentage = (totalIceBuses / total) * 100;
+    const electricBusesPercentage = (totalElectricBuses / total) * 100;
   
     const options: ApexOptions = {
-      series: [30, 70],
+      series: [electricBusesPercentage, iceBusesPercentage],
       colors: ["#E6C79C", "#7389AE"],
       chart: {
         height: 700,
