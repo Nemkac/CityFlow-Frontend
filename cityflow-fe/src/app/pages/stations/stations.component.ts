@@ -90,4 +90,9 @@ export class StationsComponent implements OnInit{
     this.toggleMapView = !this.toggleMapView;
     console.log(this.toggleMapView);
   }
+
+  public handleStationEdited() : void {
+    this.fetchStations();
+    this.toast.success({detail: "Station successfully edited!", summary: "Success!", duration: 3000});
+  }
 }

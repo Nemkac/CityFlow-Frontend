@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
 import { Route } from '../../models/route';
 import { RoutesService } from '../../service/routes.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRoute, faPen, faTrash, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import * as L from 'leaflet';
@@ -20,6 +20,8 @@ import { RabbitmqLiveLocationService } from '../../service/rabbitmq-live-locatio
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddBusToRouteComponent } from '../../components/modals/add-bus-to-route/add-bus-to-route.component';
+import jsPDF from 'jspdf';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-route-details',
@@ -60,6 +62,8 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
               private routes: ActivatedRoute,
               private authService: AuthService,
               private modalService : NgbModal,
+              private http : HttpClient,
+              private toast : NgToastService,
               private rabbitmqLiveLocationService: RabbitmqLiveLocationService){}
 
   public ngOnInit(): void {
@@ -73,6 +77,9 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
 
     // this.establishWebSocketConnection();
     // this.simulate();
+
+    this.establishWebSocketConnection();
+    this.simulate();
   }
 
   public ngAfterViewInit(): void {
@@ -262,7 +269,43 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
   }
 
   public generatePDF() : void {
+    const route = {
+      name: '4B',
+      from: 'Zeleznicka stanica',
+      to: 'Zeleznicka stanica 3',
+      openingTime: '04:30',
+      closingTime: '01:00',
+      numberOfStations: 5,
+      travelingDuration: '34 minutes',
+      departureFrequency: 10,
+      numberOfBoughtCards: 16,
+      totalBuses: 2,
+      electricBuses: 1,
+      iceBuses: 1,
+      busiestStation: 'Bulevar Jase Tomica'
+    };
 
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text('Route Information', 10, 10);
+
+    doc.setFontSize(12);
+    doc.text(`Route Name: ${route.name}`, 10, 20);
+    doc.text(`From: ${route.from}`, 10, 30);
+    doc.text(`To: ${route.to}`, 10, 40);
+    doc.text(`Opening Time: ${route.openingTime}`, 10, 50);
+    doc.text(`Closing Time: ${route.closingTime}`, 10, 60);
+    doc.text(`Number of Stations: ${route.numberOfStations}`, 10, 70);
+    doc.text(`Traveling Duration: ${route.travelingDuration}`, 10, 80);
+    doc.text(`Departure Every: ${route.departureFrequency} minutes`, 10, 90);
+    doc.text(`Number of Bought Cards: ${route.numberOfBoughtCards}`, 10, 100);
+    doc.text(`Number of Buses: ${route.totalBuses}`, 10, 110);
+    doc.text(`  - Electric Buses: ${route.electricBuses}`, 10, 120);
+    doc.text(`  - ICE Buses: ${route.iceBuses}`, 10, 130);
+    doc.text(`Busiest Station: ${route.busiestStation}`, 10, 140);
+
+    doc.save('Route_report.pdf');
   }
 
   public getTimeTable(isWeekend: boolean): { time: string, isNext: boolean }[] {
@@ -326,6 +369,28 @@ export class RouteDetailsComponent implements OnInit, AfterViewInit{
       }
     }
     return -1; 
+  }
+
+  public buyTicket() {
+    const token = sessionStorage.getItem('token')
+    const params = new HttpParams()
+      .set('busId', 652)
+      .set('routeId', this.routeId)
+      .set('email', 'nemanjatodorovic132002002@gmail.com');
+
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${token}`
+    })
+
+    this.http.post('http://localhost:8081/tickets/buy', {}, { headers : headers, params: params, responseType: 'text' as 'json' })
+      .subscribe({
+        next: (response: any) => {
+          this.toast.success({detail: 'Ticket purchased successfully! Check your email for details.', summary: "Success!", duration: 3000});
+        },
+        error: (error) => {
+          this.toast.error({detail: 'Failed to purchase the ticket. Please try again.', summary: "Error!", duration: 3000});
+        }
+      });
   }
 
   public addBusToRoute(){

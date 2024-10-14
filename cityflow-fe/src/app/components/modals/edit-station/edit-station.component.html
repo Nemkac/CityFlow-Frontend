@@ -1,0 +1,37 @@
+<div class="fixed inset-0 flex items-center justify-center bg-primaryBlack/40 z-[30] font-manrope text-white">
+    <div class="flex flex-col w-[900px] h-[800px] bg-primaryWhite rounded-[10px] items-center justify-between justify-center p-4 gap-4 relative">
+        <div class="flex flex-row w-full items-center justify-between">
+            <p class="text-[24px] font-semibold text-primaryDarkGreen">Edit station</p>
+            <button class="flex size-[30px] rounded-md bg-primaryDarkGreen items-center justify-center 
+                            hover:bg-primaryLightGreen transition-[0.5s]"
+                (click)="modalService.close()">
+                <img src="../../../assets/icons/CloseIcon.png" class="size-[20px] nav_menu_icon">
+            </button>    
+        </div>
+        <div #mapContainer class="flex h-full w-full rounded-md z-[31]"></div>
+        <div class="flex flex-col w-full bg-primaryWhite p-4 rounded-tl-md gap-4 bottom-16 right-0 absolute z-[32] ">
+            <p class="text-primaryGrey font-medium text-[14px] tracking-wider">STATION DETAILS</p>
+            <div class="flex flex-row w-full gap-4 items-center justify-between">
+                <div class="flex flex-col w-full">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Address</p>
+                    <input [placeholder]="address" [(ngModel)]="address" type="text" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div>
+                <div class="flex flex-col w-full justify-start">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Latitude</p>
+                    <input [placeholder]="latitude" [(ngModel)]="latitude" disabled type="text" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+
+                </div>
+                <div class="flex flex-col w-full justify-start">
+                    <p class="text-primaryBlack xl:text-[18px] sm:text-[14px] font-manrope">Longitude</p>
+                    <input [placeholder]="longitude" [(ngModel)]="longitude" disabled type="text" class="placeholder:italic w-full rounded-md bg-white border-[1px] border-primaryBlack/20 h-[45px] p-4 text-primaryBlack focus:outline-lightGreen my-1.5" />
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row w-full items-center justify-end">
+            <button class="bg-primaryDarkGreen hover:bg-primaryLightGreen flex flex-row h-[45px] w-[220px] rounded-md justify-center items-center gap-2 transition-[0.5s]"
+                    (click)="save()" >
+                Save
+            </button>
+        </div>
+    </div>
+</div>

@@ -25,11 +25,15 @@
 
         <!-- Dropdown menu -->
     <div id="dropdownDotsHorizontal" [ngClass]="{'hidden' : !toggledDropdown}"
-        class="z-20 absolute top-10 right-2 bg-white divide-y divide-gray-100 shadow-xl border-[1px] rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        class="z-20 absolute top-10 right-2 bg-white divide-y divide-gray-100 shadow-xl border-[1px] rounded-lg shadow w-44 dark:bg-gray-700  dark:divide-gray-600">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
             <li>
-                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2">
-                    <img src="../../../assets/icons/Edit_duotone_line.png" class="size-[20px]"/>
+                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="viewStation()">
+                    <p class="block">View station</p>
+                </div>
+            </li>
+            <li>
+                <div class="flex flex-row items-center hover:bg-gray-100 px-4 py-2 gap-2" (click)="editStation()">
                     <p class="block">Edit station</p>
                 </div>
             </li>

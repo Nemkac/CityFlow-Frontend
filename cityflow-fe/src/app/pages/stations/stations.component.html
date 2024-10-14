@@ -56,9 +56,11 @@
                 @if (filteredStations.length > 0) {
                     @for (station of filteredStations; track $index) {
                         <app-station-card
+                            [station]="station"
                             [address]="station.address"
                             [latitude]="station.latitude"
                             [longitude]="station.longitude"
+                            (stationEdited)="handleStationEdited()"
                         />
                     }
                 } @else {

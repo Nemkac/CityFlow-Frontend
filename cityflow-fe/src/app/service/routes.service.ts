@@ -83,7 +83,10 @@ export class RoutesService {
 
   public addBusToRoute(dto : AddBusToRouteDTO) : Observable<string> {
     return this.http.post<string>(`${this.apiServerUrl}/route/bus/addToRoute`, dto, { headers: this.getHeaders(), responseType: 'text' as 'json' });
-}
+  }
 
-
+  
+  public editStation(body : any) : Observable<string>{
+    return this.http.post<string>(`${this.apiServerUrl}/route/station/update`, body, { headers : this.getHeaders(), responseType: 'text' as 'json' });
+  }
 }
